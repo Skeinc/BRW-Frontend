@@ -14,7 +14,8 @@
     "searchPlaceholder": "Поиск по каталогу",
     "searchLabel": "Поиск",
     "searchSubmit": "Найти",
-    "phoneLabel": "Позвонить"
+    "phoneLabel": "Позвонить",
+    "hours": "Пн–Пт 8:00–16:30"
   },
   "footer": {
     "contacts": "Контакты",

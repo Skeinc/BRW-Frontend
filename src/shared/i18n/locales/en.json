@@ -14,7 +14,8 @@
     "searchPlaceholder": "Search the catalog",
     "searchLabel": "Search",
     "searchSubmit": "Search",
-    "phoneLabel": "Call us"
+    "phoneLabel": "Call us",
+    "hours": "Mon–Fri 8:00–16:30"
   },
   "footer": {
     "contacts": "Contacts",
