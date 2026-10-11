@@ -18,8 +18,12 @@
   },
   "footer": {
     "contacts": "Contacts",
-    "catalog": "Catalog",
-    "rights": "© {{year}} BRW. All rights reserved."
+    "description": "Black Red White cabinet furniture in Mogilev with delivery across Belarus.",
+    "hours": "Mon–Fri 8:00–16:30, Sat 10:00–15:00",
+    "address": "Yakubovskogo st., 90",
+    "legalEntity": "Artamid LLC, 212025, Republic of Belarus, Mogilev region, Mogilev, Nepokorennykh blvd., 26. State registration certificate No. 791351518 of 14.01.2024, issued by the administration of the Leninsky district of Mogilev.",
+    "disclaimer": "All information about product characteristics, stock availability and prices is for reference only and is not a public offer as defined by Art. 407(2) of the Civil Code of the Republic of Belarus.",
+    "rights": "© {{year}} BRW · Black Red White. All rights reserved."
   },
   "pages": {
     "home": {
@@ -55,8 +59,9 @@
       "title": "Page not found",
       "description": "There is no such page.",
       "heading": "Page not found",
-      "lead": "The address may have changed or the page was removed.",
-      "action": "Go to the catalog"
+      "lead": "The product may have been removed or the link is outdated. Start from the home page or the catalog.",
+      "home": "Go home",
+      "catalog": "Open the catalog"
     }
   },
   "error": {

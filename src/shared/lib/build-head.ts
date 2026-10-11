@@ -3,7 +3,6 @@ import { getRuntimeConfig } from '@/shared/config';
 export interface BuildHeadInput {
   title: string;
   description: string;
-  /** Canonical path, e.g. `/catalog/shkafy`. Query params are never part of it unless passed explicitly. */
   path: string;
   isNoIndex?: boolean;
 }
