@@ -25,19 +25,21 @@ A module imports only from layers below it. Slices on the same layer do not impo
 
 ## Layout
 
+```
 src/
-app/ # router factory, providers, global styles, i18n init
-routes/ # TanStack Router files (thin), server routes
-pages/ # one page per route, composition only
-widgets/ # large composed blocks
-features/ # one user action (search, sort, sign-in)
-entities/ # business entity types and queries (product, category)
-shared/
-ui/ # shadcn components
-api/ # http client
-lib/ # pure helpers (dates, tokens, cn) — not React UI
-config/
-i18n/
+  app/        # router factory, providers, global styles, i18n init
+  routes/     # TanStack Router files (thin), server routes
+  pages/      # one page per route, composition only
+  widgets/    # large composed blocks (app-header, app-footer)
+  features/   # one user action (search, sort, sign-in)
+  entities/   # business entity types and queries (product, category)
+  shared/
+    ui/       # shadcn components (CLI only, add when used)
+    api/      # http client
+    lib/      # pure helpers (dates, tokens, cn) — not React UI
+    config/
+    i18n/
+```
 
 ## Routes
 
@@ -77,7 +79,7 @@ Do not add comments that restate the code.
 ## shadcn and styles
 
 - shadcn primitives live in `src/shared/ui` as source, not as a runtime package.
-- Add or update UI primitives only via CLI: `npx shadcn@latest add <name>`. Never hand-copy components from docs or invent parallel shadcn wrappers.
+- Keep only components that are used. Add or update UI primitives only via CLI: `npx shadcn@latest add <name>`. Never hand-copy components from docs or invent parallel shadcn wrappers.
 - Project-only UI (e.g. `ThemeToggle`) may live in `shared/ui` alongside CLI output; do not replace registry components with hand-written copies.
 - Style with Tailwind. Conditional classes go through `cn()`.
 - Variants use `cva` from the shadcn component, not a parallel class map.
