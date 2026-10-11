@@ -1,0 +1,90 @@
+{
+  "app": {
+    "name": "BRW",
+    "tagline": "Furniture for your home"
+  },
+  "nav": {
+    "catalog": "Catalog",
+    "home": "Home",
+    "cart": "Cart",
+    "cartWithCount": "Cart, items: {{count}}",
+    "goHome": "Go home"
+  },
+  "header": {
+    "searchPlaceholder": "Search the catalog",
+    "searchLabel": "Search",
+    "searchSubmit": "Search",
+    "phoneLabel": "Call us",
+    "hours": "Mon–Fri 8:00–16:30"
+  },
+  "footer": {
+    "contacts": "Contacts",
+    "description": "Black Red White cabinet furniture in Mogilev with delivery across Belarus.",
+    "hours": "Mon–Fri 8:00–16:30, Sat 10:00–15:00",
+    "address": "Yakubovskogo st., 90",
+    "legalEntity": "Artamid LLC, 212025, Republic of Belarus, Mogilev region, Mogilev, Nepokorennykh blvd., 26. State registration certificate No. 791351518 of 14.01.2024, issued by the administration of the Leninsky district of Mogilev.",
+    "disclaimer": "All information about product characteristics, stock availability and prices is for reference only and is not a public offer as defined by Art. 407(2) of the Civil Code of the Republic of Belarus.",
+    "rights": "© {{year}} BRW · Black Red White. All rights reserved."
+  },
+  "pages": {
+    "home": {
+      "title": "BRW furniture",
+      "description": "BRW furniture store: wardrobes, beds, dressers, tables and more with delivery across Belarus.",
+      "heading": "Furniture for your home",
+      "lead": "Storefront in progress."
+    },
+    "catalog": {
+      "title": "Furniture catalog",
+      "description": "BRW catalog: wardrobes, beds, dressers, tables, cabinets, shelves.",
+      "heading": "Catalog",
+      "lead": "All categories will be here."
+    },
+    "category": {
+      "title": "Category: {{slug}}",
+      "description": "Products in the \"{{slug}}\" category at BRW.",
+      "lead": "Category products will be here."
+    },
+    "product": {
+      "title": "Product: {{slug}}",
+      "description": "Product page \"{{slug}}\" at BRW.",
+      "lead": "The product page will be here."
+    },
+    "search": {
+      "title": "Search",
+      "titleWithQuery": "Search: {{q}}",
+      "description": "Search the BRW furniture catalog.",
+      "heading": "Search results",
+      "lead": "Search results will be here."
+    },
+    "notFound": {
+      "title": "Page not found",
+      "description": "There is no such page.",
+      "heading": "Page not found",
+      "lead": "The product may have been removed or the link is outdated. Start from the home page or the catalog.",
+      "home": "Go home",
+      "catalog": "Open the catalog"
+    }
+  },
+  "error": {
+    "title": "Something went wrong",
+    "retry": "Try again"
+  },
+  "api": {
+    "errors": {
+      "GENERIC": "The request failed. Please try again.",
+      "NETWORK_ERROR": "Cannot reach the server. Check your connection.",
+      "CATEGORY_NOT_FOUND": "Category not found.",
+      "PRODUCT_NOT_FOUND": "Product not found.",
+      "SLUG_TAKEN": "This address is already taken.",
+      "VALIDATION_FAILED": "Check the entered data.",
+      "UNAUTHORIZED": "Sign-in required.",
+      "INTERNAL_ERROR": "Server error. Try again later."
+    }
+  },
+  "language": {
+    "label": "Language",
+    "ru": "Русский",
+    "en": "English",
+    "be": "Беларуская"
+  }
+}

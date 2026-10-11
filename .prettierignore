@@ -1,0 +1,7 @@
+dist
+.output
+node_modules
+coverage
+package-lock.json
+routeTree.gen.ts
+*.tsbuildinfo
