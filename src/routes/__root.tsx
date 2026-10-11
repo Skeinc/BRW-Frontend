@@ -15,6 +15,7 @@ interface RouterContext {
 }
 
 export const Route = createRootRouteWithContext<RouterContext>()({
+  staleTime: Number.POSITIVE_INFINITY,
   loader: async () => ({ config: await loadRuntimeConfig(), language: readLanguage() }),
   head: ({ loaderData }) => ({
     meta: [
