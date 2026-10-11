@@ -26,18 +26,18 @@ A module imports only from layers below it. Slices on the same layer do not impo
 ## Layout
 
 src/
-  app/        # router factory, providers, global styles, i18n init
-  routes/     # TanStack Router files (thin), server routes
-  pages/      # one page per route, composition only
-  widgets/    # large composed blocks
-  features/   # one user action (search, sort, sign-in)
-  entities/   # business entity types and queries (product, category)
-  shared/
-    ui/       # shadcn components
-    api/      # http client
-    lib/      # pure helpers (dates, tokens, cn) — not React UI
-    config/
-    i18n/
+app/ # router factory, providers, global styles, i18n init
+routes/ # TanStack Router files (thin), server routes
+pages/ # one page per route, composition only
+widgets/ # large composed blocks
+features/ # one user action (search, sort, sign-in)
+entities/ # business entity types and queries (product, category)
+shared/
+ui/ # shadcn components
+api/ # http client
+lib/ # pure helpers (dates, tokens, cn) — not React UI
+config/
+i18n/
 
 ## Routes
 
@@ -136,8 +136,8 @@ Handle forms effectively:
 6. Implement proper accessibility attributes
 7. Handle submission loading states
 8. Prevent double submissions
-11. Zod must not emit default English messages — put i18n keys in the schema (`error: 'auth.validation.email'`) and translate at render with `translateFieldError` / `t(error.message)`
-12. Server/API errors only through `getApiErrorMessage` — map by domain `code`, never show raw API `message` or branch on HTTP status in features
+9. Zod must not emit default English messages — put i18n keys in the schema (`error: 'auth.validation.email'`) and translate at render with `translateFieldError` / `t(error.message)`
+10. Server/API errors only through `getApiErrorMessage` — map by domain `code`, never show raw API `message` or branch on HTTP status in features
 
 # DataTable
 

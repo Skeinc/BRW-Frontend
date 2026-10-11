@@ -7,7 +7,7 @@ import { Badge } from '@/shared/ui/badge';
 import { Button } from '@/shared/ui/button';
 import { HeaderSearch } from './header-search';
 
-export function SiteHeader() {
+export function AppHeader() {
   const { t } = useTranslation();
   const itemCount = useCartLines().reduce((sum, line) => sum + line.qty, 0);
   return (

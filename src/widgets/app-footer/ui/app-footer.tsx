@@ -4,7 +4,7 @@ import { SITE_PHONE, SITE_PHONE_LABEL } from '@/shared/config';
 
 const CURRENT_YEAR = new Date().getFullYear();
 
-export function SiteFooter() {
+export function AppFooter() {
   const { t } = useTranslation();
   return (
     <footer className="mt-16 border-t bg-card">

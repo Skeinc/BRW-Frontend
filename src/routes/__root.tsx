@@ -4,8 +4,8 @@ import { createServerFn } from '@tanstack/react-start';
 import { readServerRuntimeConfig } from '@/shared/config';
 import { i18n } from '@/shared/i18n';
 import appCss from '@/app/styles/index.css?url';
-import { SiteFooter } from '@/widgets/site-footer';
-import { SiteHeader } from '@/widgets/site-header';
+import { AppFooter } from '@/widgets/app-footer';
+import { AppHeader } from '@/widgets/app-header';
 
 const loadRuntimeConfig = createServerFn({ method: 'GET' }).handler(() => readServerRuntimeConfig());
 
@@ -40,11 +40,11 @@ function RootComponent() {
         <HeadContent />
       </head>
       <body className="flex min-h-screen flex-col">
-        <SiteHeader />
+        <AppHeader />
         <main className="flex-1">
           <Outlet />
         </main>
-        <SiteFooter />
+        <AppFooter />
         <Scripts />
       </body>
     </html>
