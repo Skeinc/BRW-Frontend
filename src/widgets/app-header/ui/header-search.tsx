@@ -1,6 +1,6 @@
 import { useNavigate } from '@tanstack/react-router';
 import { Search } from 'lucide-react';
-import { useState, type FormEvent } from 'react';
+import { useState, type SubmitEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/shared/ui/input';
 
@@ -8,7 +8,7 @@ export function HeaderSearch() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
-  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = (event: SubmitEvent<HTMLFormElement>): void => {
     event.preventDefault();
     const q = query.trim();
     if (q) {
