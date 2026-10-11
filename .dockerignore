@@ -1,0 +1,17 @@
+node_modules
+dist
+dist-ssr
+.output
+.nitro
+.tanstack
+.git
+.agents
+.cursor
+.env
+.env.*
+!.env.example
+*.local
+*.log
+.DS_Store
+*.tsbuildinfo
+README.md

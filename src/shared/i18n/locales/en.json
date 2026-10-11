@@ -1,0 +1,78 @@
+{
+  "app": {
+    "name": "BRW",
+    "tagline": "Furniture for your home"
+  },
+  "nav": {
+    "catalog": "Catalog",
+    "home": "Home",
+    "cart": "Cart",
+    "cartWithCount": "Cart, items: {{count}}",
+    "goHome": "Go home"
+  },
+  "header": {
+    "searchPlaceholder": "Search the catalog",
+    "searchLabel": "Search",
+    "searchSubmit": "Search",
+    "phoneLabel": "Call us"
+  },
+  "footer": {
+    "contacts": "Contacts",
+    "catalog": "Catalog",
+    "rights": "© {{year}} BRW. All rights reserved."
+  },
+  "pages": {
+    "home": {
+      "title": "BRW furniture",
+      "description": "BRW furniture store: wardrobes, beds, dressers, tables and more with delivery across Belarus.",
+      "heading": "Furniture for your home",
+      "lead": "Storefront in progress."
+    },
+    "catalog": {
+      "title": "Furniture catalog",
+      "description": "BRW catalog: wardrobes, beds, dressers, tables, cabinets, shelves.",
+      "heading": "Catalog",
+      "lead": "All categories will be here."
+    },
+    "category": {
+      "title": "Category: {{slug}}",
+      "description": "Products in the \"{{slug}}\" category at BRW.",
+      "lead": "Category products will be here."
+    },
+    "product": {
+      "title": "Product: {{slug}}",
+      "description": "Product page \"{{slug}}\" at BRW.",
+      "lead": "The product page will be here."
+    },
+    "search": {
+      "title": "Search",
+      "titleWithQuery": "Search: {{q}}",
+      "description": "Search the BRW furniture catalog.",
+      "heading": "Search results",
+      "lead": "Search results will be here."
+    },
+    "notFound": {
+      "title": "Page not found",
+      "description": "There is no such page.",
+      "heading": "Page not found",
+      "lead": "The address may have changed or the page was removed.",
+      "action": "Go to the catalog"
+    }
+  },
+  "error": {
+    "title": "Something went wrong",
+    "retry": "Try again"
+  },
+  "api": {
+    "errors": {
+      "GENERIC": "The request failed. Please try again.",
+      "NETWORK_ERROR": "Cannot reach the server. Check your connection.",
+      "CATEGORY_NOT_FOUND": "Category not found.",
+      "PRODUCT_NOT_FOUND": "Product not found.",
+      "SLUG_TAKEN": "This address is already taken.",
+      "VALIDATION_FAILED": "Check the entered data.",
+      "UNAUTHORIZED": "Sign-in required.",
+      "INTERNAL_ERROR": "Server error. Try again later."
+    }
+  }
+}
