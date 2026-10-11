@@ -80,5 +80,11 @@
       "UNAUTHORIZED": "Sign-in required.",
       "INTERNAL_ERROR": "Server error. Try again later."
     }
+  },
+  "language": {
+    "label": "Language",
+    "ru": "Русский",
+    "en": "English",
+    "be": "Беларуская"
   }
 }

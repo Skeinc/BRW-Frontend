@@ -79,6 +79,7 @@ Do not add comments that restate the code.
 ## shadcn and styles
 
 - shadcn primitives live in `src/shared/ui` as source, not as a runtime package.
+- After `shadcn add`, the CLI writes `import { cn } from 'cn'` and installs the unrelated `cn` package: change the import to `@/shared/lib/utils` and `npm rm cn`.
 - Keep only components that are used. Add or update UI primitives only via CLI: `npx shadcn@latest add <name>`. Never hand-copy components from docs or invent parallel shadcn wrappers.
 - Project-only UI (e.g. `ThemeToggle`) may live in `shared/ui` alongside CLI output; do not replace registry components with hand-written copies.
 - Style with Tailwind. Conditional classes go through `cn()`.
@@ -111,7 +112,7 @@ Do not add comments that restate the code.
 
 - Forms use React Hook Form, Zod, and shadcn `Form`.
 - Show loading, error, and empty states. Error text is user-facing, not a stack trace.
-- Every user-visible string goes through i18next. `ru` is filled. `en` has the same keys. No hardcoded Russian in JSX.
+- Every user-visible string goes through i18next. Languages: `ru` (default), `en`, `be`; all three have the same keys. The visitor language lives in the `brw-lang` cookie and is read on the server, so SSR output is already in that language. In route `head()` use `translate(readHeadLanguage(matches), key)`. No hardcoded Russian in JSX.
 - Associate labels with inputs. Field errors use `role="alert"`.
 
 ## Performance

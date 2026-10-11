@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { LayoutGrid, Phone, ShoppingCart } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useCartLines } from '@/entities/cart';
+import { LanguageSwitcher } from '@/features/switch-language';
 import { SITE_PHONE, SITE_PHONE_LABEL } from '@/shared/config';
 import { Badge } from '@/shared/ui/badge';
 import { BrandLogo } from '@/shared/ui/brand-logo';
@@ -30,6 +31,7 @@ export function AppHeader() {
           </a>
           <span className="text-xs text-muted-foreground">{t('header.hours')}</span>
         </div>
+        <LanguageSwitcher />
         <Button
           variant="outline"
           className="relative h-12 shrink-0 px-3 sm:px-4"

@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { z } from 'zod';
 import { SearchPage } from '@/pages/search';
-import { i18n } from '@/shared/i18n';
+import { readHeadLanguage, translate } from '@/shared/i18n';
 import { buildHead } from '@/shared/lib/build-head';
 
 const searchSchema = z.object({
@@ -10,15 +10,17 @@ const searchSchema = z.object({
 
 export const Route = createFileRoute('/search')({
   validateSearch: searchSchema,
-  head: ({ match }) =>
-    buildHead({
+  head: ({ match, matches }) => {
+    const language = readHeadLanguage(matches);
+    return buildHead({
       title: match.search.q
-        ? i18n.t('pages.search.titleWithQuery', { q: match.search.q })
-        : i18n.t('pages.search.title'),
-      description: i18n.t('pages.search.description'),
+        ? translate(language, 'pages.search.titleWithQuery', { q: match.search.q })
+        : translate(language, 'pages.search.title'),
+      description: translate(language, 'pages.search.description'),
       path: '/search',
       isNoIndex: true,
-    }),
+    });
+  },
   component: SearchRoute,
 });
 

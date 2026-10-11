@@ -1,6 +1,6 @@
 import { SITE_CURRENCY } from '@/shared/config';
 
-const LOCALE_TAGS: Record<string, string> = { ru: 'ru-RU', en: 'en-US' };
+const LOCALE_TAGS: Record<string, string> = { ru: 'ru-RU', en: 'en-US', be: 'be-BY' };
 
 /** Formats an API money string (`"1299.00"`) for display, e.g. `1 299,00 BYN`. Display only, never arithmetic. */
 export function formatPrice(value: string, locale: string = 'ru'): string {
