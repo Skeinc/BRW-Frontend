@@ -5,6 +5,7 @@
   },
   "nav": {
     "catalog": "Catalog",
+    "about": "About us",
     "home": "Home",
     "cart": "Cart",
     "cartWithCount": "Cart, items: {{count}}",
@@ -19,12 +20,20 @@
   },
   "footer": {
     "contacts": "Contacts",
+    "navigation": "Navigation",
+    "instagram": "Instagram",
     "description": "Black Red White cabinet furniture in Mogilev with delivery across Belarus.",
     "hours": "Mon–Fri 8:00–16:30, Sat 10:00–15:00",
-    "address": "Yakubovskogo st., 90",
     "legalEntity": "Artamid LLC, 212025, Republic of Belarus, Mogilev region, Mogilev, Nepokorennykh blvd., 26. State registration certificate No. 791351518 of 14.01.2024, issued by the administration of the Leninsky district of Mogilev.",
     "disclaimer": "All information about product characteristics, stock availability and prices is for reference only and is not a public offer as defined by Art. 407(2) of the Civil Code of the Republic of Belarus.",
     "rights": "© {{year}} BRW · Black Red White. All rights reserved."
+  },
+  "stores": {
+    "city": "Mogilev",
+    "nepokorennykh": {
+      "street": "Nepokorennykh blvd., 26",
+      "address": "$t(stores.city), $t(stores.nepokorennykh.street)"
+    }
   },
   "pages": {
     "home": {
@@ -55,6 +64,30 @@
       "description": "Search the BRW furniture catalog.",
       "heading": "Search results",
       "lead": "Search results will be here."
+    },
+    "about": {
+      "title": "About BRW",
+      "description": "Black Red White: 25 years of producing and selling cabinet furniture, more than 2,500 furniture items and a store in Mogilev.",
+      "heading": "Black Red White",
+      "lead": "Black Red White is an international group of companies focused on producing and selling cabinet furniture. The company is modernising its production processes and growing its store network in Belarus and abroad.",
+      "slogan": "Create stylish interiors with furniture from Black Red White",
+      "cta": "Go to the catalog",
+      "facts": {
+        "years": "25",
+        "yearsLabel": "years of experience",
+        "items": "2,500+",
+        "itemsLabel": "furniture items"
+      },
+      "stores": {
+        "heading": "Store in Mogilev",
+        "addressLabel": "Address",
+        "phoneLabel": "Phone",
+        "instagram": "Follow us on Instagram",
+        "mapTitle": "Store on the map: {{address}}"
+      },
+      "legal": {
+        "heading": "Company details"
+      }
     },
     "notFound": {
       "title": "Page not found",
