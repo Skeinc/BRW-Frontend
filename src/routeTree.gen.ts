@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as DeliveryAndPaymentRouteImport } from './routes/delivery-and-payment'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
 import { Route as CatalogCategorySlugRouteImport } from './routes/catalog.$categorySlug'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeliveryAndPaymentRoute = DeliveryAndPaymentRouteImport.update({
+  id: '/delivery-and-payment',
+  path: '/delivery-and-payment',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SearchRoute = SearchRouteImport.update({
@@ -50,6 +56,7 @@ const ProductProductSlugRoute = ProductProductSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/delivery-and-payment': typeof DeliveryAndPaymentRoute
   '/search': typeof SearchRoute
   '/catalog/$categorySlug': typeof CatalogCategorySlugRoute
   '/product/$productSlug': typeof ProductProductSlugRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/delivery-and-payment': typeof DeliveryAndPaymentRoute
   '/search': typeof SearchRoute
   '/catalog/$categorySlug': typeof CatalogCategorySlugRoute
   '/product/$productSlug': typeof ProductProductSlugRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/delivery-and-payment': typeof DeliveryAndPaymentRoute
   '/search': typeof SearchRoute
   '/catalog/$categorySlug': typeof CatalogCategorySlugRoute
   '/product/$productSlug': typeof ProductProductSlugRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/delivery-and-payment'
     | '/search'
     | '/catalog/$categorySlug'
     | '/product/$productSlug'
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/delivery-and-payment'
     | '/search'
     | '/catalog/$categorySlug'
     | '/product/$productSlug'
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/delivery-and-payment'
     | '/search'
     | '/catalog/$categorySlug'
     | '/product/$productSlug'
@@ -102,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  DeliveryAndPaymentRoute: typeof DeliveryAndPaymentRoute
   SearchRoute: typeof SearchRoute
   CatalogCategorySlugRoute: typeof CatalogCategorySlugRoute
   ProductProductSlugRoute: typeof ProductProductSlugRoute
@@ -122,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/delivery-and-payment': {
+      id: '/delivery-and-payment'
+      path: '/delivery-and-payment'
+      fullPath: '/delivery-and-payment'
+      preLoaderRoute: typeof DeliveryAndPaymentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/search': {
@@ -158,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  DeliveryAndPaymentRoute: DeliveryAndPaymentRoute,
   SearchRoute: SearchRoute,
   CatalogCategorySlugRoute: CatalogCategorySlugRoute,
   ProductProductSlugRoute: ProductProductSlugRoute,

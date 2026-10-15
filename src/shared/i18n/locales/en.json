@@ -9,7 +9,8 @@
     "home": "Home",
     "cart": "Cart",
     "cartWithCount": "Cart, items: {{count}}",
-    "goHome": "Go home"
+    "goHome": "Go home",
+    "deliveryAndPayment": "Delivery and payment"
   },
   "header": {
     "searchPlaceholder": "Search the catalog",
@@ -87,6 +88,148 @@
       },
       "legal": {
         "heading": "Company details"
+      }
+    },
+    "deliveryAndPayment": {
+      "title": "Delivery and payment",
+      "description": "Payment methods, delivery terms across Mogilev and the region, and rules for receiving, returning and exchanging BRW furniture.",
+      "heading": "Delivery and payment",
+      "lead": "We deliver furniture across Mogilev and the Mogilev region. You can pay in cash on delivery or at the pickup point.",
+      "facts": {
+        "area": "Mogilev and the region",
+        "term": "Order time 2–30 days",
+        "payment": "Cash payment"
+      },
+      "nav": {
+        "label": "Page sections",
+        "payment": "Payment",
+        "delivery": "Delivery",
+        "receiving": "Receiving",
+        "returns": "Returns",
+        "documents": "Documents",
+        "breadcrumbs": "Breadcrumbs"
+      },
+      "payment": {
+        "heading": "Payment methods",
+        "lead": "You receive a cash receipt with your purchase.",
+        "courier": {
+          "title": "Cash on delivery",
+          "text": "You pay the courier when you receive your order. Available for delivery within Mogilev."
+        },
+        "pickup": {
+          "title": "Cash at the pickup point",
+          "text": "You pay and collect your order at the store.",
+          "hours": "Opening hours: {{hours}}"
+        },
+        "card": {
+          "title": "Bank card on the website",
+          "text": "Online card payment will be available later.",
+          "badge": "Temporarily unavailable"
+        }
+      },
+      "delivery": {
+        "heading": "Delivery",
+        "lead": "We deliver furniture across Mogilev and the Mogilev region.",
+        "price": {
+          "title": "Cost",
+          "text": "Depending on the order amount, delivery is either paid or free. The manager will tell you when confirming your order."
+        },
+        "term": {
+          "title": "Lead time",
+          "text": "From 2 to 30 calendar days."
+        },
+        "place": {
+          "title": "Where we deliver",
+          "text": "Delivery is made to the building entrance."
+        },
+        "warning": {
+          "title": "Good to know",
+          "lift": "The seller does not carry furniture up floors or into the apartment and is not liable for any damage caused while doing so.",
+          "unload": "Unloading from the vehicle is done by the buyer. Arrange helpers in advance who can unload the order."
+        }
+      },
+      "receiving": {
+        "heading": "Receiving your order",
+        "lead": "Furniture is handed over disassembled and packed. Check your order right when you receive it.",
+        "steps": {
+          "count": {
+            "title": "Check the quantity",
+            "text": "Compare the number of packages with your order."
+          },
+          "integrity": {
+            "title": "Inspect the packages",
+            "text": "Make sure the packages are intact and unopened. Always check mirrors and glass items."
+          },
+          "completeness": {
+            "title": "Check completeness and quality",
+            "text": "Verify the contents and inspect the parts."
+          },
+          "report": {
+            "title": "Report any problem",
+            "text": "If you find damaged or opened packages, mechanical damage or missing items, tell the seller immediately."
+          }
+        },
+        "claim": {
+          "title": "Defect claim",
+          "text": "Contact the store within 3 calendar days: describe all defects in a written claim and attach photos showing all marking labels of the package (on an electronic medium or by email to the store).",
+          "assembled": "Claims to remedy defects are accepted only if the furniture is disassembled. The seller is not liable for chips, cracks, scratches or other defects on furniture you have assembled."
+        }
+      },
+      "returns": {
+        "heading": "Returns and exchanges",
+        "title": "Furniture cannot be returned or exchanged",
+        "text": "Furniture of proper quality is on the list of non-food goods that cannot be returned or exchanged for a similar item of a different size, shape, dimensions, style, colour or configuration. It is also exempt from the requirement to provide a similar item free of charge during repair or replacement.",
+        "law": "Law of the Republic of Belarus “On Consumer Rights Protection”, Council of Ministers Resolution No. 26 of 14 January 2009."
+      },
+      "documents": {
+        "heading": "Documents",
+        "lead": "With your order you receive:",
+        "items": {
+          "receipt": "Cash receipt confirming the purchase",
+          "waybill": "Consignment note",
+          "contract": "Contract: order for delivery of goods from the online store",
+          "act": "Acceptance certificate"
+        },
+        "completion": "The order is considered fulfilled after payment, signing of the consignment note and the contract.",
+        "pickupDeadline": "For pickup, collect the furniture from the warehouse within 5 days of being notified that the order is ready."
+      },
+      "faq": {
+        "heading": "Frequently asked questions",
+        "items": {
+          "price": {
+            "q": "Is delivery paid or free?",
+            "a": "It depends on the order amount. The manager will tell you whether delivery is free in your case when confirming the order."
+          },
+          "term": {
+            "q": "How quickly is an order fulfilled?",
+            "a": "The order lead time is from 2 to 30 calendar days."
+          },
+          "lift": {
+            "q": "Will you carry the furniture up to my floor?",
+            "a": "No. Delivery is made to the building entrance. The seller does not carry furniture up floors or into the apartment. Unloading from the vehicle is done by the buyer."
+          },
+          "damage": {
+            "q": "What should I do if I find damage?",
+            "a": "Tell the seller immediately upon receipt. Within 3 calendar days, contact the store with a claim and photos of the defects showing all marking labels of the package. Claims are accepted only for disassembled furniture."
+          },
+          "return": {
+            "q": "Can I return or exchange furniture?",
+            "a": "No. Furniture of proper quality cannot be returned or exchanged under the legislation of the Republic of Belarus."
+          },
+          "pickup": {
+            "q": "How long is an order held for pickup?",
+            "a": "Collect the furniture within 5 days of being notified that the order is ready."
+          },
+          "card": {
+            "q": "Can I pay by card on the website?",
+            "a": "Not yet. Card payment on the website is temporarily unavailable. Pay in cash on delivery within Mogilev or at the pickup point."
+          }
+        }
+      },
+      "cta": {
+        "heading": "Still have questions?",
+        "text": "Give us a call — a manager will confirm the delivery cost and answer any questions about your order.",
+        "call": "Call us"
       }
     },
     "notFound": {

@@ -30,6 +30,9 @@ export function AppFooter() {
             <Link to="/about" className="hover:text-primary">
               {t('nav.about')}
             </Link>
+            <Link to="/delivery-and-payment" className="hover:text-primary">
+              {t('nav.deliveryAndPayment')}
+            </Link>
           </nav>
           <div className="flex flex-col gap-4 text-sm">
             <p className="text-xs font-semibold uppercase tracking-widest text-background/60">{t('footer.contacts')}</p>
