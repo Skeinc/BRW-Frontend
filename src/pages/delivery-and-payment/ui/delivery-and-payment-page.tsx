@@ -10,7 +10,7 @@ import { ReturnsNotice } from './returns-notice';
 
 export function DeliveryAndPaymentPage() {
   return (
-    <>
+    <div className="[--section-scroll-margin:9rem]">
       <DeliveryHero />
       <DeliveryAnchorNav />
       <PaymentMethods />
@@ -20,6 +20,6 @@ export function DeliveryAndPaymentPage() {
       <DocumentsList />
       <DeliveryFaq />
       <ContactCta />
-    </>
+    </div>
   );
 }
