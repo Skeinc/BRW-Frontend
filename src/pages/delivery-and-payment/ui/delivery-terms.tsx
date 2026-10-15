@@ -1,7 +1,7 @@
 import { CalendarClock, DoorOpen, TriangleAlert, Wallet } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { DeliveryCallout } from './delivery-callout';
-import { DeliverySection } from './delivery-section';
+import { Callout } from '@/shared/ui/callout';
+import { PageSection } from '@/shared/ui/page-section';
 
 const TERMS = [
   { key: 'price', icon: Wallet },
@@ -13,7 +13,7 @@ export function DeliveryTerms() {
   const { t } = useTranslation();
   const base = 'pages.deliveryAndPayment.delivery';
   return (
-    <DeliverySection id="delivery" heading={t(`${base}.heading`)} lead={t(`${base}.lead`)}>
+    <PageSection id="delivery" heading={t(`${base}.heading`)} lead={t(`${base}.lead`)}>
       <ul className="grid gap-4 md:grid-cols-3">
         {TERMS.map(({ key, icon: Icon }) => (
           <li key={key} className="rounded-xl border bg-card p-6">
@@ -24,11 +24,11 @@ export function DeliveryTerms() {
         ))}
       </ul>
       <div className="mt-4">
-        <DeliveryCallout icon={TriangleAlert} tone="warning" title={t(`${base}.warning.title`)}>
+        <Callout icon={TriangleAlert} tone="warning" title={t(`${base}.warning.title`)}>
           <p>{t(`${base}.warning.lift`)}</p>
           <p>{t(`${base}.warning.unload`)}</p>
-        </DeliveryCallout>
+        </Callout>
       </div>
-    </DeliverySection>
+    </PageSection>
   );
 }

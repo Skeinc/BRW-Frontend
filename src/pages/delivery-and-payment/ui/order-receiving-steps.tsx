@@ -1,7 +1,7 @@
 import { FileWarning } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { DeliveryCallout } from './delivery-callout';
-import { DeliverySection } from './delivery-section';
+import { Callout } from '@/shared/ui/callout';
+import { PageSection } from '@/shared/ui/page-section';
 
 const STEPS = ['count', 'integrity', 'completeness', 'report'] as const;
 
@@ -9,7 +9,7 @@ export function OrderReceivingSteps() {
   const { t } = useTranslation();
   const base = 'pages.deliveryAndPayment.receiving';
   return (
-    <DeliverySection id="receiving" heading={t(`${base}.heading`)} lead={t(`${base}.lead`)}>
+    <PageSection id="receiving" heading={t(`${base}.heading`)} lead={t(`${base}.lead`)}>
       <ol className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {STEPS.map((step, index) => (
           <li key={step} className="rounded-xl border bg-card p-6">
@@ -22,11 +22,11 @@ export function OrderReceivingSteps() {
         ))}
       </ol>
       <div className="mt-4">
-        <DeliveryCallout icon={FileWarning} title={t(`${base}.claim.title`)}>
+        <Callout icon={FileWarning} title={t(`${base}.claim.title`)}>
           <p>{t(`${base}.claim.text`)}</p>
           <p>{t(`${base}.claim.assembled`)}</p>
-        </DeliveryCallout>
+        </Callout>
       </div>
-    </DeliverySection>
+    </PageSection>
   );
 }

@@ -33,6 +33,9 @@ export function AppFooter() {
             <Link to="/delivery-and-payment" className="hover:text-primary">
               {t('nav.deliveryAndPayment')}
             </Link>
+            <Link to="/installment" className="hover:text-primary">
+              {t('nav.installment')}
+            </Link>
           </nav>
           <div className="flex flex-col gap-4 text-sm">
             <p className="text-xs font-semibold uppercase tracking-widest text-background/60">{t('footer.contacts')}</p>

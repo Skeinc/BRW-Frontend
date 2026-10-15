@@ -1,27 +1,13 @@
-import { getRuntimeConfig } from '@/shared/config';
 import { translate, type Language } from '@/shared/i18n';
+import { buildBreadcrumbJsonLd } from '@/shared/lib/build-breadcrumb-json-ld';
 import { FAQ_IDS } from '../model/faq-ids';
-
-const PAGE_PATH = '/delivery-and-payment';
 
 /** schema.org `FAQPage` and `BreadcrumbList` for the delivery and payment page. */
 export function buildDeliveryJsonLd(language: Language): Record<string, unknown> {
-  const siteUrl = getRuntimeConfig().siteUrl.replace(/\/$/, '');
   return {
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: translate(language, 'nav.home'), item: `${siteUrl}/` },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: translate(language, 'pages.deliveryAndPayment.heading'),
-            item: `${siteUrl}${PAGE_PATH}`,
-          },
-        ],
-      },
+      buildBreadcrumbJsonLd(language, translate(language, 'pages.deliveryAndPayment.heading'), '/delivery-and-payment'),
       {
         '@type': 'FAQPage',
         mainEntity: FAQ_IDS.map((id) => ({

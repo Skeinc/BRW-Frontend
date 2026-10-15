@@ -2,14 +2,14 @@ import type { LucideIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { cn } from '@/shared/lib/utils';
 
-interface DeliveryCalloutProps {
+interface CalloutProps {
   icon: LucideIcon;
   title: string;
   tone?: 'warning' | 'neutral';
   children: ReactNode;
 }
 
-export function DeliveryCallout({ icon: Icon, title, tone = 'neutral', children }: DeliveryCalloutProps) {
+export function Callout({ icon: Icon, title, tone = 'neutral', children }: CalloutProps) {
   return (
     <div
       role="note"

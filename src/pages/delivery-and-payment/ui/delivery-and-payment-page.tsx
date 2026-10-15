@@ -1,5 +1,5 @@
+import { ContactCta } from '@/widgets/contact-cta';
 import { DeliveryAnchorNav } from './delivery-anchor-nav';
-import { DeliveryContactCta } from './delivery-contact-cta';
 import { DeliveryFaq } from './delivery-faq';
 import { DeliveryHero } from './delivery-hero';
 import { DeliveryTerms } from './delivery-terms';
@@ -19,7 +19,7 @@ export function DeliveryAndPaymentPage() {
       <ReturnsNotice />
       <DocumentsList />
       <DeliveryFaq />
-      <DeliveryContactCta />
+      <ContactCta />
     </>
   );
 }

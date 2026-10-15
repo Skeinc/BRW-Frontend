@@ -10,7 +10,9 @@
     "cart": "Cart",
     "cartWithCount": "Cart, items: {{count}}",
     "goHome": "Go home",
-    "deliveryAndPayment": "Delivery and payment"
+    "deliveryAndPayment": "Delivery and payment",
+    "breadcrumbs": "Breadcrumbs",
+    "installment": "Installments"
   },
   "header": {
     "searchPlaceholder": "Search the catalog",
@@ -106,8 +108,7 @@
         "delivery": "Delivery",
         "receiving": "Receiving",
         "returns": "Returns",
-        "documents": "Documents",
-        "breadcrumbs": "Breadcrumbs"
+        "documents": "Documents"
       },
       "payment": {
         "heading": "Payment methods",
@@ -125,7 +126,8 @@
           "title": "Bank card on the website",
           "text": "Online card payment will be available later.",
           "badge": "Temporarily unavailable"
-        }
+        },
+        "installmentLink": "Want to pay in parts? See installment and loan terms"
       },
       "delivery": {
         "heading": "Delivery",
@@ -225,11 +227,208 @@
             "a": "Not yet. Card payment on the website is temporarily unavailable. Pay in cash on delivery within Mogilev or at the pickup point."
           }
         }
+      }
+    },
+    "installment": {
+      "title": "Installments and furniture loans BRW",
+      "description": "Installment cards and bank loans for Black Red White furniture: terms, rates, conditions and how to apply.",
+      "heading": "Installments",
+      "lead": "Buy Black Red White furniture in parts: with an installment card or a bank loan. Below are the terms, rates and conditions of every option.",
+      "facts": {
+        "cards": "Cards for 2–8 months",
+        "loans": "Loans up to 7 years",
+        "zero": "Interest-free options available"
       },
-      "cta": {
-        "heading": "Still have questions?",
-        "text": "Give us a call — a manager will confirm the delivery cost and answer any questions about your order.",
-        "call": "Call us"
+      "quickNav": {
+        "cards": {
+          "title": "Installment cards",
+          "text": "Pay by card in the store: for 2, 3 or 8 months."
+        },
+        "loans": {
+          "title": "Bank loans",
+          "text": "Sber, Belarusbank, Priorbank, BSB Bank — terms up to 7 years."
+        }
+      },
+      "cards": {
+        "heading": "Installment cards",
+        "lead": "Pay by card in Black Red White stores. The purchase is repaid monthly in equal parts.",
+        "months": "{{count}} mo.",
+        "rateLabel": "Interest",
+        "rates": {
+          "zero": "Interest-free",
+          "ask": "Ask the manager"
+        },
+        "payDayLabel": "Payment",
+        "payDay": "by day {{day}} of each month",
+        "notice": {
+          "title": "Promotions and discounts do not apply",
+          "text": "Promotional offers and discount programs do not apply when paying with an installment card."
+        },
+        "items": {
+          "halva": {
+            "name": "Halva",
+            "note": "Installment card"
+          },
+          "purchaseCard": {
+            "name": "Purchase Card",
+            "note": "Belgazprombank"
+          },
+          "turtle": {
+            "name": "Cherepakha",
+            "note": "Universal installment card"
+          }
+        }
+      },
+      "loans": {
+        "heading": "Bank loans and installments",
+        "lead": "Arranged at the bank. Terms, rates and conditions depend on the program.",
+        "termLabel": "Term",
+        "rateLabel": "Rate",
+        "detailsTitle": "Requirements and documents",
+        "stepsTitle": "How to apply",
+        "facts": {
+          "amount": "Amount",
+          "payment": "Payments",
+          "deferral": "Principal deferral",
+          "disbursement": "How it is paid out",
+          "interest": "Interest",
+          "applying": "Application"
+        },
+        "badges": {
+          "domesticGoods": "For Belarusian goods",
+          "noDownPayment": "No down payment",
+          "noIncomeProof": "No income certificate",
+          "noGuarantors": "No guarantors",
+          "noInsurance": "No insurance",
+          "noPurposeCheck": "No check of intended use"
+        },
+        "detailLabels": {
+          "documents": "Documents",
+          "citizenship": "Who can apply",
+          "age": "Age",
+          "military": "Men under 27",
+          "income": "Proof of income"
+        },
+        "items": {
+          "sberInstallment": {
+            "name": "Installment “Buy with Sber Bank!” for 6 months",
+            "bank": "Sber Bank",
+            "term": "6 mo.",
+            "rate": "0.0001% per year",
+            "facts": {
+              "amount": "BYN 300–35,000. Partial approval of the amount is not made."
+            }
+          },
+          "sberGrace": {
+            "name": "Installment “Buy with Sber Bank!” with a 3-month grace period",
+            "bank": "Sber Bank",
+            "term": "13–60 mo.",
+            "rate": "0.0001% per year for the first 3 months, then 16.75% per year (RR + 7.13 p.p.)",
+            "facts": {
+              "amount": "BYN 300–35,000. Partial approval of the amount is not made.",
+              "payment": "Monthly, no later than the 20th, starting from the month after the loan is issued."
+            }
+          },
+          "sberCredit": {
+            "name": "Loan “Buy with Sber Bank!”",
+            "bank": "Sber Bank",
+            "term": "13–60 mo.",
+            "rate": "16.55% per year (RR + 5.5 p.p.)",
+            "facts": {
+              "amount": "BYN 300–35,000. Partial approval of the amount is not made.",
+              "payment": "Monthly, no later than the 20th, starting from the month after the loan is issued, in conditionally equal shares."
+            }
+          },
+          "belarusbankNative": {
+            "name": "Loan “Na rodnyya tavary”",
+            "bank": "Belarusbank",
+            "term": "up to 3 years",
+            "rate": "4% per year (fixed)",
+            "facts": {
+              "amount": "No more than 300 base units, within the borrower’s solvency.",
+              "payment": "At the bank’s info kiosks, via internet and mobile banking, or by autopay.",
+              "disbursement": "By non-cash transfer to third-party accounts based on payment documents for the goods (invoice, contract).",
+              "interest": "Paid for the actual time the loan is used."
+            },
+            "details": {
+              "income": "Income information for the last six months before the month of applying for the loan."
+            },
+            "steps": {
+              "1": "Tell the consultant that you are arranging a loan through Belarusbank.",
+              "2": "To get the original invoice, visit the brand store in your city.",
+              "3": "Go to the bank with the invoice and the required set of documents.",
+              "4": "After the bank transfers the funds, you will receive an SMS with the delivery date and time."
+            }
+          },
+          "belarusbankPartner": {
+            "name": "Loan “Partner Optimalny”",
+            "bank": "Belarusbank",
+            "term": "up to 3 years",
+            "rate": "up to 13.5% (NB RR + 4 p.p.)",
+            "facts": {
+              "payment": "In equal installments. You can repay at the bank’s info kiosks, via internet and mobile banking, or by autopay.",
+              "deferral": "12 months."
+            },
+            "details": {
+              "documents": "Passport, invoice stating the manufacturer, proof of income (valid for up to 30 calendar days from issue).",
+              "citizenship": "Citizens of Belarus, foreign citizens and stateless persons with a residence permit in Belarus.",
+              "age": "From 21 to 65 years at the time of submitting documents.",
+              "military": "They additionally provide a document confirming military service status (conscript certificate, military ID, etc.) and copies of pages with personal data and significant marks."
+            }
+          },
+          "priorbank": {
+            "name": "Loan “Prosto pokupki”",
+            "bank": "Priorbank",
+            "term": "up to 7 years",
+            "rate": "4% for the first 12 months, then 12.5% per year",
+            "facts": {
+              "amount": "BYN 150–90,000.",
+              "applying": "In the Prior Online mobile app.",
+              "disbursement": "By transferring funds to the seller’s settlement account."
+            }
+          },
+          "bsb": {
+            "name": "Loan “Not just a loan, but for BELARUSIAN goods”",
+            "bank": "BSB Bank",
+            "term": "up to 7 years",
+            "rate": "11.97%",
+            "facts": {
+              "disbursement": "The bank transfers the funds directly to the showroom’s account."
+            },
+            "steps": {
+              "1": "Choose Belarusian-made Black Red White furniture in our showroom.",
+              "2": "Ask the consultant for a document confirming the origin and price of the goods.",
+              "3": "Go to BSB Bank with the set of documents and wait for the decision.",
+              "4": "Get approval, pick up your purchase and pay for it in convenient parts."
+            }
+          }
+        }
+      },
+      "steps": {
+        "heading": "How to arrange a loan",
+        "lead": "General procedure. Loan cards may include details specific to a bank.",
+        "items": {
+          "choose": {
+            "title": "Choose furniture",
+            "text": "Choose furniture in the store and tell the consultant that you will arrange a loan."
+          },
+          "document": {
+            "title": "Get a payment document",
+            "text": "Ask the consultant for an invoice or a document confirming the price and origin of the goods."
+          },
+          "bank": {
+            "title": "Go to the bank",
+            "text": "Submit an application with the set of documents and wait for the bank’s decision."
+          },
+          "receive": {
+            "title": "Pick up your purchase",
+            "text": "After approval, pick up the furniture and pay the bank in parts."
+          }
+        }
+      },
+      "notice": {
+        "title": "Terms may change",
+        "text": "Terms and rates are set by banks and may change. Before applying, check the current terms with the store manager."
       }
     },
     "notFound": {
@@ -262,5 +461,10 @@
     "ru": "Русский",
     "en": "English",
     "be": "Беларуская"
+  },
+  "contactCta": {
+    "heading": "Still have questions?",
+    "text": "Give us a call — a manager will confirm the delivery cost and answer any questions about your order.",
+    "call": "Call us"
   }
 }

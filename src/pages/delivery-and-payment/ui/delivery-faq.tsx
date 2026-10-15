@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/shared/ui/accordion';
 import { FAQ_IDS } from '../model/faq-ids';
-import { DeliverySection } from './delivery-section';
+import { PageSection } from '@/shared/ui/page-section';
 
 export function DeliveryFaq() {
   const { t } = useTranslation();
   const base = 'pages.deliveryAndPayment.faq';
   return (
-    <DeliverySection id="faq" heading={t(`${base}.heading`)}>
+    <PageSection id="faq" heading={t(`${base}.heading`)}>
       <Accordion type="single" collapsible className="rounded-xl border bg-card px-6">
         {FAQ_IDS.map((id) => (
           <AccordionItem key={id} value={id}>
@@ -18,6 +18,6 @@ export function DeliveryFaq() {
           </AccordionItem>
         ))}
       </Accordion>
-    </DeliverySection>
+    </PageSection>
   );
 }

@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as DeliveryAndPaymentRouteImport } from './routes/delivery-and-payment'
+import { Route as InstallmentRouteImport } from './routes/installment'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
 import { Route as CatalogCategorySlugRouteImport } from './routes/catalog.$categorySlug'
@@ -30,6 +31,11 @@ const AboutRoute = AboutRouteImport.update({
 const DeliveryAndPaymentRoute = DeliveryAndPaymentRouteImport.update({
   id: '/delivery-and-payment',
   path: '/delivery-and-payment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstallmentRoute = InstallmentRouteImport.update({
+  id: '/installment',
+  path: '/installment',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SearchRoute = SearchRouteImport.update({
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/delivery-and-payment': typeof DeliveryAndPaymentRoute
+  '/installment': typeof InstallmentRoute
   '/search': typeof SearchRoute
   '/catalog/$categorySlug': typeof CatalogCategorySlugRoute
   '/product/$productSlug': typeof ProductProductSlugRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/delivery-and-payment': typeof DeliveryAndPaymentRoute
+  '/installment': typeof InstallmentRoute
   '/search': typeof SearchRoute
   '/catalog/$categorySlug': typeof CatalogCategorySlugRoute
   '/product/$productSlug': typeof ProductProductSlugRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/delivery-and-payment': typeof DeliveryAndPaymentRoute
+  '/installment': typeof InstallmentRoute
   '/search': typeof SearchRoute
   '/catalog/$categorySlug': typeof CatalogCategorySlugRoute
   '/product/$productSlug': typeof ProductProductSlugRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/delivery-and-payment'
+    | '/installment'
     | '/search'
     | '/catalog/$categorySlug'
     | '/product/$productSlug'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/delivery-and-payment'
+    | '/installment'
     | '/search'
     | '/catalog/$categorySlug'
     | '/product/$productSlug'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/delivery-and-payment'
+    | '/installment'
     | '/search'
     | '/catalog/$categorySlug'
     | '/product/$productSlug'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   DeliveryAndPaymentRoute: typeof DeliveryAndPaymentRoute
+  InstallmentRoute: typeof InstallmentRoute
   SearchRoute: typeof SearchRoute
   CatalogCategorySlugRoute: typeof CatalogCategorySlugRoute
   ProductProductSlugRoute: typeof ProductProductSlugRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/delivery-and-payment'
       fullPath: '/delivery-and-payment'
       preLoaderRoute: typeof DeliveryAndPaymentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/installment': {
+      id: '/installment'
+      path: '/installment'
+      fullPath: '/installment'
+      preLoaderRoute: typeof InstallmentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/search': {
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   DeliveryAndPaymentRoute: DeliveryAndPaymentRoute,
+  InstallmentRoute: InstallmentRoute,
   SearchRoute: SearchRoute,
   CatalogCategorySlugRoute: CatalogCategorySlugRoute,
   ProductProductSlugRoute: ProductProductSlugRoute,

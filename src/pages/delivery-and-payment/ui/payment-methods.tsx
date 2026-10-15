@@ -1,13 +1,14 @@
-import { Banknote, CreditCard, MapPin, Store } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
+import { ArrowRight, Banknote, CreditCard, MapPin, Store } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Badge } from '@/shared/ui/badge';
-import { DeliverySection } from './delivery-section';
+import { PageSection } from '@/shared/ui/page-section';
 
 export function PaymentMethods() {
   const { t } = useTranslation();
   const base = 'pages.deliveryAndPayment.payment';
   return (
-    <DeliverySection id="payment" heading={t(`${base}.heading`)} lead={t(`${base}.lead`)}>
+    <PageSection id="payment" heading={t(`${base}.heading`)} lead={t(`${base}.lead`)}>
       <ul className="grid gap-4 md:grid-cols-3">
         <li className="rounded-xl border bg-card p-6">
           <Banknote aria-hidden className="size-8 text-primary" />
@@ -35,6 +36,13 @@ export function PaymentMethods() {
           </Badge>
         </li>
       </ul>
-    </DeliverySection>
+      <Link
+        to="/installment"
+        className="mt-4 flex min-h-11 items-center gap-2 font-semibold text-primary hover:underline"
+      >
+        {t(`${base}.installmentLink`)}
+        <ArrowRight aria-hidden className="size-4" />
+      </Link>
+    </PageSection>
   );
 }

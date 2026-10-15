@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { SITE_PHONE, SITE_PHONE_LABEL } from '@/shared/config';
 import { Button } from '@/shared/ui/button';
 
-export function DeliveryContactCta() {
+export function ContactCta() {
   const { t } = useTranslation();
-  const base = 'pages.deliveryAndPayment.cta';
+  const base = 'contactCta';
   return (
     <section className="mx-auto w-full max-w-7xl px-4">
       <div className="grid gap-6 rounded-xl bg-foreground p-6 text-background md:grid-cols-[1.5fr_1fr] md:p-10">

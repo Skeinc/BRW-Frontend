@@ -1,13 +1,13 @@
 import type { ReactNode } from 'react';
 
-interface DeliverySectionProps {
+interface PageSectionProps {
   id: string;
   heading: string;
   lead?: string;
   children: ReactNode;
 }
 
-export function DeliverySection({ id, heading, lead, children }: DeliverySectionProps) {
+export function PageSection({ id, heading, lead, children }: PageSectionProps) {
   const headingId = `${id}-heading`;
   return (
     <section id={id} aria-labelledby={headingId} className="mx-auto w-full max-w-7xl scroll-mt-36 px-4 pb-12 md:pb-16">
