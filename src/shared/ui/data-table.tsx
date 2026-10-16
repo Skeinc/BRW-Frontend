@@ -1,3 +1,13 @@
+import {
+  closestCenter,
+  DndContext,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from '@dnd-kit/core';
+import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import type { LucideIcon } from 'lucide-react';
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, EllipsisVertical } from 'lucide-react';
 import type { ReactNode } from 'react';
@@ -11,12 +21,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './dropdown-menu';
-import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from './empty';
+import { DataTableEmptyState } from './data-table-empty-state';
 import { Label } from './label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select';
 import { Skeleton } from './skeleton';
 import { Spinner } from './spinner';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './table';
+import { cn } from '@/shared/lib/utils';
+import { DataTableSortableRow } from './data-table-sortable-row';
 import { DisabledWithTooltip } from './disabled-with-tooltip';
 
 const DEFAULT_PAGE_SIZES = [10, 25, 50] as const;
@@ -60,6 +72,7 @@ export type DataTableEmptyConfig = {
   title: ReactNode;
   description?: ReactNode;
   icon?: LucideIcon;
+  action?: ReactNode;
 };
 
 type DataTablePaginationBase = {
@@ -74,6 +87,16 @@ export type DataTablePaginationConfig =
   | (DataTablePaginationBase & { mode: 'server'; total: number })
   | (DataTablePaginationBase & { mode: 'client'; total?: never });
 
+export type DataTableReorderConfig<T> = {
+  /** False while sorting is unavailable (search or filter active): the handles stay visible but disabled. */
+  enabled: boolean;
+  handleLabel: string;
+  disabledReason?: ReactNode;
+  /** Rows can only be dropped among rows with the same key, for example siblings of one parent. */
+  getGroupKey?: (row: T) => string;
+  onReorder: (activeId: string, overId: string) => void;
+};
+
 export type DataTableProps<T> = {
   columns: DataTableColumn<T>[];
   data: T[];
@@ -87,6 +110,10 @@ export type DataTableProps<T> = {
   actions?: false | DataTableActionsConfig<T>;
   pagination?: false | DataTablePaginationConfig;
   skeletonRows?: number;
+  /** Drag-and-drop sorting of rows. */
+  reorder?: DataTableReorderConfig<T>;
+  /** Stretch to the bottom of the screen; the parent must be a flex column with a bounded height. */
+  fillHeight?: boolean;
 };
 
 function resolveActionFlag<T>(value: boolean | ((row: T) => boolean) | undefined, row: T): boolean {
@@ -132,13 +159,7 @@ function DataTablePagination({
         <Label htmlFor={pageSizeId} className="text-sm font-medium">
           {t('table.pagination.pageSize')}
         </Label>
-        <Select
-          value={String(pageSize)}
-          onValueChange={(value) => {
-            onPageSizeChange(Number(value));
-            onPageChange(1);
-          }}
-        >
+        <Select value={String(pageSize)} onValueChange={(value) => onPageSizeChange(Number(value))}>
           <SelectTrigger size="sm" className="w-20" id={pageSizeId}>
             <SelectValue />
           </SelectTrigger>
@@ -275,10 +296,16 @@ export function DataTable<T>({
   actions = false,
   pagination = false,
   skeletonRows = VIEWPORT_BODY_ROWS,
+  reorder,
+  fillHeight = false,
 }: DataTableProps<T>) {
   const showActions = Boolean(actions);
-  const columnCount = columns.length + (showActions ? 1 : 0);
-  const EmptyIcon = empty?.icon;
+  const columnCount = columns.length + (showActions ? 1 : 0) + (reorder ? 1 : 0);
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  );
+  const fillClass = fillHeight ? 'h-64' : BODY_FILL_HEIGHT_CLASS;
   const paginationConfig = pagination === false || pagination == null ? null : pagination;
   const pageSizes = paginationConfig?.pageSizes ?? DEFAULT_PAGE_SIZES;
 
@@ -296,73 +323,134 @@ export function DataTable<T>({
     return { rows: data, total: paginationConfig.total };
   }, [data, paginationConfig]);
 
+  const hasState = !isLoading && (Boolean(error) || rows.length === 0);
+  /** In a screen-filling table the empty or error state takes the whole body, not one table row. */
+  const showFillState = fillHeight && hasState;
+
+  const handleDragEnd = ({ active, over }: DragEndEvent) => {
+    if (!reorder || !over || active.id === over.id) {
+      return;
+    }
+    if (reorder.getGroupKey) {
+      const activeRow = data.find((row) => getRowId(row) === active.id);
+      const overRow = data.find((row) => getRowId(row) === over.id);
+      if (!activeRow || !overRow || reorder.getGroupKey(activeRow) !== reorder.getGroupKey(overRow)) {
+        return;
+      }
+    }
+    reorder.onReorder(String(active.id), String(over.id));
+  };
+
   return (
-    <div className="flex flex-col gap-4">
-      <div className="overflow-hidden rounded-lg border" aria-busy={isLoading || isRefreshing || undefined}>
-        <Table containerClassName={`${BODY_VIEWPORT_CLASS} overflow-auto`}>
-          <TableHeader className="sticky top-0 z-10 bg-muted">
-            <TableRow className={HEADER_ROW_CLASS}>
-              {columns.map((column) => (
-                <TableHead key={column.id} className={column.headerClassName}>
-                  {column.header}
-                </TableHead>
-              ))}
-              {showActions ? <TableHead className="w-12" /> : null}
-            </TableRow>
-          </TableHeader>
-          <TableBody className={isRefreshing && !isLoading ? 'pointer-events-none opacity-50' : undefined}>
-            {isLoading ? (
-              Array.from({ length: skeletonRows }, (_, rowIndex) => (
-                <TableRow key={`skeleton-${rowIndex}`} className={BODY_ROW_CLASS}>
-                  {Array.from({ length: columnCount }, (__, cellIndex) => (
-                    <TableCell key={cellIndex} className={BODY_CELL_CLASS}>
-                      <Skeleton className="h-4 w-full max-w-40" />
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : error ? (
-              <TableRow>
-                <TableCell colSpan={columnCount} className={`${BODY_FILL_HEIGHT_CLASS} text-center text-destructive`}>
-                  {error}
-                </TableCell>
-              </TableRow>
-            ) : rows.length === 0 ? (
-              <TableRow>
-                <TableCell colSpan={columnCount} className={`${BODY_FILL_HEIGHT_CLASS} p-0`}>
-                  <div className={`flex ${BODY_FILL_HEIGHT_CLASS} items-center justify-center`}>
-                    <Empty className="border-0">
-                      <EmptyHeader>
-                        {EmptyIcon ? (
-                          <EmptyMedia variant="icon">
-                            <EmptyIcon />
-                          </EmptyMedia>
-                        ) : null}
-                        <EmptyTitle>{empty?.title}</EmptyTitle>
-                        {empty?.description ? <EmptyDescription>{empty.description}</EmptyDescription> : null}
-                      </EmptyHeader>
-                    </Empty>
-                  </div>
-                </TableCell>
-              </TableRow>
-            ) : (
-              rows.map((row) => (
-                <TableRow key={getRowId(row)} className={BODY_ROW_CLASS}>
+    <div className={cn('flex flex-col gap-4', fillHeight && 'min-h-0 flex-1')}>
+      <div
+        className={cn('overflow-hidden rounded-lg border', fillHeight && 'flex min-h-0 flex-1 flex-col')}
+        aria-busy={isLoading || isRefreshing || undefined}
+      >
+        <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+          <SortableContext items={rows.map(getRowId)} strategy={verticalListSortingStrategy}>
+            <Table
+              containerClassName={
+                fillHeight
+                  ? cn('min-h-0 overflow-auto', showFillState ? 'flex-none' : 'flex-1')
+                  : `${BODY_VIEWPORT_CLASS} overflow-auto`
+              }
+            >
+              <TableHeader className="sticky top-0 z-10 bg-muted">
+                <TableRow className={HEADER_ROW_CLASS}>
+                  {reorder ? <TableHead className="w-10" /> : null}
                   {columns.map((column) => (
-                    <TableCell key={column.id} className={`${BODY_CELL_CLASS} ${column.className ?? ''}`}>
-                      {column.cell(row)}
-                    </TableCell>
+                    <TableHead key={column.id} className={column.headerClassName}>
+                      {column.header}
+                    </TableHead>
                   ))}
-                  {showActions && actions ? (
-                    <TableCell className={`${BODY_CELL_CLASS} text-right`}>
-                      <DataTableRowActions row={row} actions={actions} />
-                    </TableCell>
-                  ) : null}
+                  {showActions ? <TableHead className="w-12" /> : null}
                 </TableRow>
-              ))
+              </TableHeader>
+              <TableBody className={isRefreshing && !isLoading ? 'pointer-events-none opacity-50' : undefined}>
+                {showFillState ? null : isLoading ? (
+                  Array.from({ length: skeletonRows }, (_, rowIndex) => (
+                    <TableRow key={`skeleton-${rowIndex}`} className={BODY_ROW_CLASS}>
+                      {Array.from({ length: columnCount }, (__, cellIndex) => (
+                        <TableCell key={cellIndex} className={BODY_CELL_CLASS}>
+                          <Skeleton className="h-4 w-full max-w-40" />
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ))
+                ) : error ? (
+                  <TableRow>
+                    <TableCell colSpan={columnCount} className={`${fillClass} text-center text-destructive`}>
+                      {error}
+                    </TableCell>
+                  </TableRow>
+                ) : rows.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={columnCount} className={`${fillClass} p-0`}>
+                      <div className={`flex ${fillClass} items-center justify-center`}>
+                        <DataTableEmptyState
+                          title={empty?.title}
+                          description={empty?.description}
+                          icon={empty?.icon}
+                          action={empty?.action}
+                        />
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  rows.map((row) => {
+                    const cells = (
+                      <>
+                        {columns.map((column) => (
+                          <TableCell key={column.id} className={`${BODY_CELL_CLASS} ${column.className ?? ''}`}>
+                            {column.cell(row)}
+                          </TableCell>
+                        ))}
+                        {showActions && actions ? (
+                          <TableCell className={`${BODY_CELL_CLASS} text-right`}>
+                            <DataTableRowActions row={row} actions={actions} />
+                          </TableCell>
+                        ) : null}
+                      </>
+                    );
+                    return reorder ? (
+                      <DataTableSortableRow
+                        key={getRowId(row)}
+                        id={getRowId(row)}
+                        enabled={reorder.enabled}
+                        handleLabel={reorder.handleLabel}
+                        disabledReason={reorder.disabledReason}
+                        className={BODY_ROW_CLASS}
+                      >
+                        {cells}
+                      </DataTableSortableRow>
+                    ) : (
+                      <TableRow key={getRowId(row)} className={BODY_ROW_CLASS}>
+                        {cells}
+                      </TableRow>
+                    );
+                  })
+                )}
+              </TableBody>
+            </Table>
+          </SortableContext>
+        </DndContext>
+        {showFillState ? (
+          <div className="flex min-h-0 flex-1 items-center justify-center">
+            {error ? (
+              <p role="alert" className="text-sm text-destructive">
+                {error}
+              </p>
+            ) : (
+              <DataTableEmptyState
+                title={empty?.title}
+                description={empty?.description}
+                icon={empty?.icon}
+                action={empty?.action}
+              />
             )}
-          </TableBody>
-        </Table>
+          </div>
+        ) : null}
       </div>
 
       {paginationConfig ? (

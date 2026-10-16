@@ -114,6 +114,8 @@ Do not add comments that restate the code.
 - Show loading, error, and empty states. Error text is user-facing, not a stack trace.
 - Every user-visible string goes through i18next. Languages: `ru` (default), `en`, `be`; all three have the same keys. The visitor language lives in the `brw-lang` cookie and is read on the server, so SSR output is already in that language. In route `head()` use `translate(readHeadLanguage(matches), key)`. No hardcoded Russian in JSX.
 - Associate labels with inputs. Field errors use `role="alert"`.
+- Required fields: put `<RequiredMark />` (`@/shared/ui/required-mark`) inside the `FieldLabel` and `aria-required` on the control. It renders a red `*` with the tooltip "Required field" (`admin.common.required`). Use it on every form, admin or public, for every field the schema requires; optional fields get no mark.
+- Do not ask the user for technical values the API can build (slugs, sort order, ids). Sort order is changed by drag-and-drop in the table.
 
 ## Performance
 
@@ -155,14 +157,15 @@ Use `DataTable` from `@/shared/ui` for list/table screens. Do not rebuild table 
 
 ## Fixed viewport
 
-- Body viewport is always ~10 rows tall (`sticky` header + scroll inside).
-- Page sizes `10 | 25 | 50`: more than 10 rows on a page scroll inside the table container.
+- The body scrolls inside the table container with a `sticky` header. Admin screens pass `fillHeight` so the table stretches to the bottom of the screen; other tables keep a ~10 row viewport.
+- Every list has pagination. Page sizes `25 | 50 | 100`, default `25` (`TABLE_PAGE_SIZES`, `DEFAULT_TABLE_PAGE_SIZE` in `shared/lib/table-search.ts`). Page and page size live in the URL (`tablePageSearchSchema`).
 - Empty / error states keep the same viewport height; empty content is centered.
 
 ## Pagination
 
 - Prefer `pagination={{ mode: 'server', page, pageSize, total, pageSizes, onPageChange, onPageSizeChange }}`.
-- Reset `page` to `1` when filter or pageSize changes.
+- Reset `page` to `1` when filter or pageSize changes (the consumer does it; the table only reports the new size).
+- Drag-and-drop row order: pass `reorder={{ enabled, handleLabel, disabledReason, getGroupKey?, onReorder }}`; disable it while a search or filter is active.
 - Copy: `table.pagination.*` in i18n.
 
 ## Columns and actions
@@ -176,3 +179,10 @@ Use `DataTable` from `@/shared/ui` for list/table screens. Do not rebuild table 
 
 - Pass `empty={{ title, description?, icon? }}` with i18n strings.
 - API errors only through `getApiErrorMessage` into the `error` prop.
+
+# Admin list screens
+
+- No page `<h1>` plus subtitle above a list: the sidebar and the header already show the section name. The first row of the screen is the toolbar.
+- Toolbar, left to right: search input (`SearchInput`, debounced), filters (`Select`, one per useful dimension), a "Reset" ghost button shown only while something is filtered, and the primary create button on the right (`ml-auto`).
+- Search, filters and pagination are server-side: they are sent to the API as query params and live in the URL (`validateSearch`). Never filter or paginate a list on the client, because the client only holds one page. Changing a filter or the page size resets `page` to 1.
+- Drag-and-drop ordering is disabled while a search or filter is active.

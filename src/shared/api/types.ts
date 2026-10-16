@@ -17,3 +17,11 @@ export class ApiError extends Error {
     this.details = body.details ?? null;
   }
 }
+
+/** Paged list response of the API. */
+export interface Paginated<TItem> {
+  items: TItem[];
+  page: number;
+  pageSize: number;
+  total: number;
+}

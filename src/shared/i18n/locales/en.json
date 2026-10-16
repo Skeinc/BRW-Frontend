@@ -486,6 +486,10 @@
       "previous": "Previous",
       "next": "Next",
       "last": "Last"
+    },
+    "reorder": {
+      "handle": "Drag to reorder",
+      "disabled": "Sorting is unavailable while a search or filter is on"
     }
   },
   "admin": {
@@ -513,6 +517,137 @@
       },
       "invalidCredentials": "Invalid email or password"
     },
-    "panel": "Admin panel"
+    "panel": "Admin panel",
+    "common": {
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "save": "Save",
+      "edit": "Edit",
+      "create": "Create",
+      "published": "Published",
+      "yes": "Yes",
+      "no": "No",
+      "actions": "Actions",
+      "close": "Close",
+      "required": "Required field",
+      "nothingFound": "Nothing found",
+      "nothingFoundHint": "Try changing the query or resetting the filters."
+    },
+    "gallery": {
+      "title": "Photos",
+      "dropHint": "Drag photos here",
+      "choose": "Choose files",
+      "limits": "JPEG, PNG or WebP, up to 10 MB",
+      "uploading": "Uploading: {{name}}",
+      "dismiss": "Dismiss",
+      "cover": "Cover",
+      "drag": "Drag to reorder",
+      "alt": "Photo description",
+      "altPlaceholder": "Description (alt)",
+      "altSaved": "Description saved",
+      "delete": "Delete photo",
+      "deleteTitle": "Delete this photo?",
+      "deleteDescription": "The photo will be deleted permanently.",
+      "deleted": "Photo deleted",
+      "empty": "No photos yet",
+      "reorderHint": "The first photo is the cover. Drag a photo by its handle to reorder.",
+      "saveFirst": "Save first, then you can add a photo.",
+      "titleSingle": "Photo",
+      "dropHintSingle": "Drag the photo here",
+      "chooseSingle": "Choose a file"
+    },
+    "validation": {
+      "required": "Fill in this field",
+      "tooLong": "The value is too long",
+      "nameTaken": "An entry with this name already exists"
+    },
+    "categories": {
+      "title": "Categories",
+      "description": "The catalog category tree. Up to 3 levels.",
+      "create": "New category",
+      "createTitle": "New category",
+      "editTitle": "Edit category",
+      "formDescription": "Fill in the main fields. The page address is created automatically.",
+      "created": "Category created. You can add photos now.",
+      "updated": "Category saved",
+      "deleted": "Category deleted",
+      "deleteTitle": "Delete this category?",
+      "deleteDescription": "The category \"{{name}}\" will be deleted permanently.",
+      "deleteBlocked": {
+        "hasChildren": "Cannot delete: the category has subcategories",
+        "hasProducts": "Cannot delete: the category has products"
+      },
+      "columns": {
+        "name": "Name",
+        "products": "Products"
+      },
+      "empty": {
+        "title": "No categories yet",
+        "description": "Create the first category to add products to it."
+      },
+      "fields": {
+        "name": "Name",
+        "parent": "Parent category",
+        "noParent": "No parent (top level)",
+        "parentHint": "Only categories that keep the nesting within 3 levels are available.",
+        "description": "Description",
+        "seoTitle": "SEO title",
+        "seoDescription": "SEO description"
+      },
+      "searchPlaceholder": "Search by name",
+      "filters": {
+        "levelLabel": "Level",
+        "levelAll": "Any level",
+        "level": "Level {{level}}"
+      },
+      "expand": "Expand \"{{name}}\"",
+      "collapse": "Collapse \"{{name}}\"",
+      "expandAll": "Expand all",
+      "collapseAll": "Collapse all",
+      "childCount_one": "{{count}} subcategory",
+      "childCount_other": "{{count}} subcategories"
+    },
+    "collections": {
+      "title": "Collections",
+      "description": "Furniture series, for example JASMIN or CLASSIC.",
+      "create": "New collection",
+      "createTitle": "New collection",
+      "editTitle": "Edit collection",
+      "formDescription": "Fill in the main fields. The page address is created automatically.",
+      "created": "Collection created. You can add photos now.",
+      "updated": "Collection saved",
+      "deleted": "Collection deleted",
+      "deleteTitle": "Delete this collection?",
+      "deleteDescription": "The collection \"{{name}}\" will be deleted permanently.",
+      "deleteBlocked": "Cannot delete: the collection has products",
+      "columns": {
+        "name": "Name",
+        "products": "Products"
+      },
+      "empty": {
+        "title": "No collections yet",
+        "description": "Create the first collection to group products in it."
+      },
+      "fields": {
+        "name": "Name",
+        "description": "Description",
+        "seoTitle": "SEO title",
+        "seoDescription": "SEO description"
+      },
+      "searchPlaceholder": "Search by name",
+      "filters": {
+        "contentsLabel": "Contents",
+        "contentsAll": "Any contents",
+        "withProducts": "With products",
+        "empty": "Empty"
+      }
+    },
+    "filters": {
+      "statusLabel": "Publication status",
+      "statusAll": "Any status",
+      "statusPublished": "Published",
+      "statusHidden": "Hidden",
+      "reset": "Reset"
+    }
   }
 }
