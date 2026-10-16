@@ -1,10 +1,10 @@
-import { ChevronsDownUp, ChevronsUpDown, Plus, X } from 'lucide-react';
+import { ChevronsDownUp, ChevronsUpDown, Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { MAX_CATEGORY_DEPTH } from '@/entities/category';
-import { Button } from '@/shared/ui/button';
 import { ListToolbar } from '@/shared/ui/list-toolbar';
 import { SearchInput } from '@/shared/ui/search-input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
+import { ToolbarButton } from '@/shared/ui/toolbar-button';
 import type { CategoriesSearch } from '../model/categories-search';
 
 const ALL = 'all';
@@ -35,14 +35,19 @@ export function CategoriesToolbar({
   const { t } = useTranslation();
   return (
     <ListToolbar
+      isFiltered={hasFilters}
+      activeFilterCount={Number(Boolean(search.published)) + Number(Boolean(search.level))}
+      onReset={onReset}
+      search={
+        <SearchInput
+          className="w-full md:w-64"
+          value={search.q ?? ''}
+          placeholder={t('admin.categories.searchPlaceholder')}
+          onChange={(q) => onChange({ q: q || undefined })}
+        />
+      }
       filters={
         <>
-          <SearchInput
-            className="w-full sm:w-64"
-            value={search.q ?? ''}
-            placeholder={t('admin.categories.searchPlaceholder')}
-            onChange={(q) => onChange({ q: q || undefined })}
-          />
           <Select
             value={search.published ?? ALL}
             onValueChange={(value) => onChange({ published: value === ALL ? undefined : (value as 'yes' | 'no') })}
@@ -72,26 +77,19 @@ export function CategoriesToolbar({
               ))}
             </SelectContent>
           </Select>
-          {hasFilters ? (
-            <Button type="button" variant="ghost" className="h-10" onClick={onReset}>
-              <X aria-hidden />
-              {t('admin.filters.reset')}
-            </Button>
-          ) : null}
         </>
       }
       actions={
         <>
           {!hasFilters && canCollapse ? (
-            <Button type="button" variant="outline" className="h-10" onClick={onToggleAll}>
-              {isCollapsed ? <ChevronsUpDown aria-hidden /> : <ChevronsDownUp aria-hidden />}
-              {t(isCollapsed ? 'admin.categories.expandAll' : 'admin.categories.collapseAll')}
-            </Button>
+            <ToolbarButton
+              variant="outline"
+              icon={isCollapsed ? ChevronsUpDown : ChevronsDownUp}
+              label={t(isCollapsed ? 'admin.categories.expandAll' : 'admin.categories.collapseAll')}
+              onClick={onToggleAll}
+            />
           ) : null}
-          <Button className="h-10" onClick={onCreate}>
-            <Plus aria-hidden />
-            {t('admin.categories.create')}
-          </Button>
+          <ToolbarButton icon={Plus} label={t('admin.categories.create')} onClick={onCreate} />
         </>
       }
     />

@@ -21,11 +21,11 @@ import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
 import { Route as CatalogCategorySlugRouteImport } from './routes/catalog.$categorySlug'
 import { Route as ProductProductSlugRouteImport } from './routes/product.$productSlug'
 import { Route as AdminAuthedIndexRouteImport } from './routes/admin._authed.index'
-import { Route as AdminAuthedArticlesRouteImport } from './routes/admin._authed.articles'
 import { Route as AdminAuthedCategoriesRouteImport } from './routes/admin._authed.categories'
 import { Route as AdminAuthedCollectionsRouteImport } from './routes/admin._authed.collections'
 import { Route as AdminAuthedOrdersRouteImport } from './routes/admin._authed.orders'
-import { Route as AdminAuthedProductsRouteImport } from './routes/admin._authed.products'
+import { Route as AdminAuthedArticlesIndexRouteImport } from './routes/admin._authed.articles.index'
+import { Route as AdminAuthedProductsIndexRouteImport } from './routes/admin._authed.products.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -86,11 +86,6 @@ const AdminAuthedIndexRoute = AdminAuthedIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminAuthedRoute,
 } as any)
-const AdminAuthedArticlesRoute = AdminAuthedArticlesRouteImport.update({
-  id: '/articles',
-  path: '/articles',
-  getParentRoute: () => AdminAuthedRoute,
-} as any)
 const AdminAuthedCategoriesRoute = AdminAuthedCategoriesRouteImport.update({
   id: '/categories',
   path: '/categories',
@@ -106,11 +101,18 @@ const AdminAuthedOrdersRoute = AdminAuthedOrdersRouteImport.update({
   path: '/orders',
   getParentRoute: () => AdminAuthedRoute,
 } as any)
-const AdminAuthedProductsRoute = AdminAuthedProductsRouteImport.update({
-  id: '/products',
-  path: '/products',
-  getParentRoute: () => AdminAuthedRoute,
-} as any)
+const AdminAuthedArticlesIndexRoute =
+  AdminAuthedArticlesIndexRouteImport.update({
+    id: '/articles/',
+    path: '/articles/',
+    getParentRoute: () => AdminAuthedRoute,
+  } as any)
+const AdminAuthedProductsIndexRoute =
+  AdminAuthedProductsIndexRouteImport.update({
+    id: '/products/',
+    path: '/products/',
+    getParentRoute: () => AdminAuthedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -123,12 +125,12 @@ export interface FileRoutesByFullPath {
   '/catalog/$categorySlug': typeof CatalogCategorySlugRoute
   '/product/$productSlug': typeof ProductProductSlugRoute
   '/catalog/': typeof CatalogIndexRoute
-  '/admin/articles': typeof AdminAuthedArticlesRoute
   '/admin/categories': typeof AdminAuthedCategoriesRoute
   '/admin/collections': typeof AdminAuthedCollectionsRoute
   '/admin/orders': typeof AdminAuthedOrdersRoute
-  '/admin/products': typeof AdminAuthedProductsRoute
   '/admin/': typeof AdminAuthedIndexRoute
+  '/admin/articles/': typeof AdminAuthedArticlesIndexRoute
+  '/admin/products/': typeof AdminAuthedProductsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -141,11 +143,11 @@ export interface FileRoutesByTo {
   '/catalog/$categorySlug': typeof CatalogCategorySlugRoute
   '/product/$productSlug': typeof ProductProductSlugRoute
   '/catalog': typeof CatalogIndexRoute
-  '/admin/articles': typeof AdminAuthedArticlesRoute
   '/admin/categories': typeof AdminAuthedCategoriesRoute
   '/admin/collections': typeof AdminAuthedCollectionsRoute
   '/admin/orders': typeof AdminAuthedOrdersRoute
-  '/admin/products': typeof AdminAuthedProductsRoute
+  '/admin/articles': typeof AdminAuthedArticlesIndexRoute
+  '/admin/products': typeof AdminAuthedProductsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -160,12 +162,12 @@ export interface FileRoutesById {
   '/catalog/$categorySlug': typeof CatalogCategorySlugRoute
   '/product/$productSlug': typeof ProductProductSlugRoute
   '/catalog/': typeof CatalogIndexRoute
-  '/admin/_authed/articles': typeof AdminAuthedArticlesRoute
   '/admin/_authed/categories': typeof AdminAuthedCategoriesRoute
   '/admin/_authed/collections': typeof AdminAuthedCollectionsRoute
   '/admin/_authed/orders': typeof AdminAuthedOrdersRoute
-  '/admin/_authed/products': typeof AdminAuthedProductsRoute
   '/admin/_authed/': typeof AdminAuthedIndexRoute
+  '/admin/_authed/articles/': typeof AdminAuthedArticlesIndexRoute
+  '/admin/_authed/products/': typeof AdminAuthedProductsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -180,12 +182,12 @@ export interface FileRouteTypes {
     | '/catalog/$categorySlug'
     | '/product/$productSlug'
     | '/catalog/'
-    | '/admin/articles'
     | '/admin/categories'
     | '/admin/collections'
     | '/admin/orders'
-    | '/admin/products'
     | '/admin/'
+    | '/admin/articles/'
+    | '/admin/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -198,10 +200,10 @@ export interface FileRouteTypes {
     | '/catalog/$categorySlug'
     | '/product/$productSlug'
     | '/catalog'
-    | '/admin/articles'
     | '/admin/categories'
     | '/admin/collections'
     | '/admin/orders'
+    | '/admin/articles'
     | '/admin/products'
   id:
     | '__root__'
@@ -216,12 +218,12 @@ export interface FileRouteTypes {
     | '/catalog/$categorySlug'
     | '/product/$productSlug'
     | '/catalog/'
-    | '/admin/_authed/articles'
     | '/admin/_authed/categories'
     | '/admin/_authed/collections'
     | '/admin/_authed/orders'
-    | '/admin/_authed/products'
     | '/admin/_authed/'
+    | '/admin/_authed/articles/'
+    | '/admin/_authed/products/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -322,13 +324,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAuthedIndexRouteImport
       parentRoute: typeof AdminAuthedRoute
     }
-    '/admin/_authed/articles': {
-      id: '/admin/_authed/articles'
-      path: '/articles'
-      fullPath: '/admin/articles'
-      preLoaderRoute: typeof AdminAuthedArticlesRouteImport
-      parentRoute: typeof AdminAuthedRoute
-    }
     '/admin/_authed/categories': {
       id: '/admin/_authed/categories'
       path: '/categories'
@@ -350,32 +345,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAuthedOrdersRouteImport
       parentRoute: typeof AdminAuthedRoute
     }
-    '/admin/_authed/products': {
-      id: '/admin/_authed/products'
+    '/admin/_authed/articles/': {
+      id: '/admin/_authed/articles/'
+      path: '/articles'
+      fullPath: '/admin/articles/'
+      preLoaderRoute: typeof AdminAuthedArticlesIndexRouteImport
+      parentRoute: typeof AdminAuthedRoute
+    }
+    '/admin/_authed/products/': {
+      id: '/admin/_authed/products/'
       path: '/products'
-      fullPath: '/admin/products'
-      preLoaderRoute: typeof AdminAuthedProductsRouteImport
+      fullPath: '/admin/products/'
+      preLoaderRoute: typeof AdminAuthedProductsIndexRouteImport
       parentRoute: typeof AdminAuthedRoute
     }
   }
 }
 
 interface AdminAuthedRouteChildren {
-  AdminAuthedArticlesRoute: typeof AdminAuthedArticlesRoute
   AdminAuthedCategoriesRoute: typeof AdminAuthedCategoriesRoute
   AdminAuthedCollectionsRoute: typeof AdminAuthedCollectionsRoute
   AdminAuthedOrdersRoute: typeof AdminAuthedOrdersRoute
-  AdminAuthedProductsRoute: typeof AdminAuthedProductsRoute
   AdminAuthedIndexRoute: typeof AdminAuthedIndexRoute
+  AdminAuthedArticlesIndexRoute: typeof AdminAuthedArticlesIndexRoute
+  AdminAuthedProductsIndexRoute: typeof AdminAuthedProductsIndexRoute
 }
 
 const AdminAuthedRouteChildren: AdminAuthedRouteChildren = {
-  AdminAuthedArticlesRoute: AdminAuthedArticlesRoute,
   AdminAuthedCategoriesRoute: AdminAuthedCategoriesRoute,
   AdminAuthedCollectionsRoute: AdminAuthedCollectionsRoute,
   AdminAuthedOrdersRoute: AdminAuthedOrdersRoute,
-  AdminAuthedProductsRoute: AdminAuthedProductsRoute,
   AdminAuthedIndexRoute: AdminAuthedIndexRoute,
+  AdminAuthedArticlesIndexRoute: AdminAuthedArticlesIndexRoute,
+  AdminAuthedProductsIndexRoute: AdminAuthedProductsIndexRoute,
 }
 
 const AdminAuthedRouteWithChildren = AdminAuthedRoute._addFileChildren(

@@ -81,6 +81,7 @@ export function CollectionsTable({
   return (
     <DataTable
       fillHeight
+      onRowClick={onEdit}
       columns={columns}
       data={rows}
       getRowId={(row) => row.id}

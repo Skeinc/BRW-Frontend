@@ -5,6 +5,16 @@ export function fetchCollectionsPage(params: CollectionListParams): Promise<Pagi
   return apiRequest<Paginated<Collection>>(`/admin/collections${toQueryString({ ...params })}`);
 }
 
+export interface CollectionOption {
+  id: string;
+  name: string;
+}
+
+/** Every collection as id and name, not paged: for pickers and filters. */
+export function fetchCollectionOptions(): Promise<CollectionOption[]> {
+  return apiRequest<CollectionOption[]>('/admin/collections/options');
+}
+
 export function createCollection(input: CollectionInput): Promise<CollectionDetail> {
   return apiRequest<CollectionDetail>('/admin/collections', { method: 'POST', body: JSON.stringify(input) });
 }

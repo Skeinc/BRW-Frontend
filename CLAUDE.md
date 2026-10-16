@@ -4,7 +4,7 @@ Coding rules for Claude Code in this repo. Stack and plan: `../docs/BRW-dev-plan
 
 # Tests
 
-No tests on the frontend: do not write unit, component or e2e tests, spec files, or test tooling, and do not add test steps to tasks, plans or acceptance criteria (same as the backend). Verify changes with `npm run typecheck`, `npm run lint`, `npm run format:check` and `npm run build`.
+No tests on the frontend: do not write unit, component or e2e tests, spec files, or test tooling, and do not add test steps to tasks, plans or acceptance criteria (same as the backend). Verify changes with `npm run typecheck`, `npm run lint`, `npm run format:check` and `npm run build`; after a build run `npm run check:bundle`, which fails when admin screens end up in the main bundle of the storefront.
 
 # Commands
 
@@ -44,6 +44,11 @@ src/
 ## Routes
 
 `src/routes/` holds TanStack Router files. A route file only imports its page from `pages/`, declares `validateSearch` / `loader` / `head()`, and renders the page. No markup or logic beyond that. Server routes (`sitemap.xml`, `robots.txt`) live there too.
+
+## Admin screens stay out of the main bundle
+
+- The `/admin` pages are loaded on demand. The `index.ts` of an admin page slice exports its search schema and the page as `lazy(() => import('./ui/...'))`. The route file imports both from that `index.ts`, wraps the page in `<Suspense fallback={<ScreenSkeleton />}>` and uses the schema for `validateSearch`. Never re-export the page component directly from the slice `index.ts`: the route would pull the whole screen into the main bundle.
+- Do not judge the bundle by searching for package names (minified code has none); `npm run check:bundle` looks for admin strings in the entry chunk.
 
 ## Pages are composition only
 
@@ -85,7 +90,7 @@ Do not add comments that restate the code.
 - Style with Tailwind. Conditional classes go through `cn()`.
 - Variants use `cva` from the shadcn component, not a parallel class map.
 - Dialogs, inputs, and buttons come from `shared/ui`. Do not reimplement them.
-- Mobile-first breakpoints. Interactive targets stay at least 44px.
+- Mobile-first breakpoints. Interactive targets stay at least 44px: a global rule in `src/app/styles/index.css` raises buttons, inputs, selects and tabs to 44px on phones and touch screens (switches and checkboxes get a larger hit area), so keep the compact sizes of the UI kit and do not add fixed heights below 44px that fight it.
 - Light and dark themes via shadcn CSS variables and the `dark` class on `<html>`. Prefer semantic tokens (`bg-background`, `text-foreground`), not hardcoded `bg-white` / `bg-black`.
 - Pages render on the server: no `window` / `localStorage` access during render. Read them in effects or behind `useSyncExternalStore` with a server snapshot.
 - Theme preference may live in `localStorage` (UI only). Never store auth tokens there.
@@ -114,6 +119,7 @@ Do not add comments that restate the code.
 - Show loading, error, and empty states. Error text is user-facing, not a stack trace.
 - Every user-visible string goes through i18next. Languages: `ru` (default), `en`, `be`; all three have the same keys. The visitor language lives in the `brw-lang` cookie and is read on the server, so SSR output is already in that language. In route `head()` use `translate(readHeadLanguage(matches), key)`. No hardcoded Russian in JSX.
 - Associate labels with inputs. Field errors use `role="alert"`.
+- Phone numbers are stored and sent as `+` and digits (E.164, any country). Show them with `formatPhone` and link them with `toTelHref` (`shared/lib/phone.ts`); never print a raw number. Phone fields use `PhoneInput` (`shared/ui/phone-input.tsx`): its mask follows the country of the code typed. Do not hand-write masks.
 - Required fields: put `<RequiredMark />` (`@/shared/ui/required-mark`) inside the `FieldLabel` and `aria-required` on the control. It renders a red `*` with the tooltip "Required field" (`admin.common.required`). Use it on every form, admin or public, for every field the schema requires; optional fields get no mark.
 - Do not ask the user for technical values the API can build (slugs, sort order, ids). Sort order is changed by drag-and-drop in the table.
 

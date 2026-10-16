@@ -464,7 +464,8 @@
       "ARTICLE_NOT_FOUND": "Article not found.",
       "ORDER_NOT_FOUND": "Order not found.",
       "IMAGE_INVALID": "Invalid image (JPEG, PNG or WebP, up to 10 MB).",
-      "IMAGE_NOT_FOUND": "Image not found."
+      "IMAGE_NOT_FOUND": "Image not found.",
+      "ORDER_STATUS_INVALID": "The order status cannot be changed this way."
     }
   },
   "language": {
@@ -554,7 +555,8 @@
       "saveFirst": "Save first, then you can add a photo.",
       "titleSingle": "Photo",
       "dropHintSingle": "Drag the photo here",
-      "chooseSingle": "Choose a file"
+      "chooseSingle": "Choose a file",
+      "saveFirstLong": "You can add photos right after saving. The window stays open."
     },
     "validation": {
       "required": "Fill in this field",
@@ -592,7 +594,11 @@
         "parentHint": "Only categories that keep the nesting within 3 levels are available.",
         "description": "Description",
         "seoTitle": "SEO title",
-        "seoDescription": "SEO description"
+        "seoDescription": "SEO description",
+        "namePlaceholder": "For example: Dressers",
+        "descriptionPlaceholder": "Tell which products are collected in this category.",
+        "publishedText": "The category is visible in the catalog on the site.",
+        "draftText": "The category is hidden: only you can see it."
       },
       "searchPlaceholder": "Search by name",
       "filters": {
@@ -605,7 +611,16 @@
       "expandAll": "Expand all",
       "collapseAll": "Collapse all",
       "childCount_one": "{{count}} subcategory",
-      "childCount_other": "{{count}} subcategories"
+      "childCount_other": "{{count}} subcategories",
+      "editSubtitle": "Level {{level}} · subcategories: {{children}} · products: {{products}}",
+      "sections": {
+        "main": "Main",
+        "mainHint": "Name, place in the tree and description.",
+        "photo": "Photo",
+        "photoHint": "Shown next to the category in the catalog.",
+        "publication": "Publication and SEO",
+        "publicationHint": "Whether to show the category on the site and how it looks in search."
+      }
     },
     "collections": {
       "title": "Collections",
@@ -632,7 +647,11 @@
         "name": "Name",
         "description": "Description",
         "seoTitle": "SEO title",
-        "seoDescription": "SEO description"
+        "seoDescription": "SEO description",
+        "namePlaceholder": "For example: Jasmin",
+        "descriptionPlaceholder": "Tell about the series: style, materials, what is included.",
+        "publishedText": "The collection is visible on the site.",
+        "draftText": "The collection is hidden: only you can see it."
       },
       "searchPlaceholder": "Search by name",
       "filters": {
@@ -640,6 +659,16 @@
         "contentsAll": "Any contents",
         "withProducts": "With products",
         "empty": "Empty"
+      },
+      "editSubtitle_one": "{{count}} product in the collection",
+      "editSubtitle_other": "{{count}} products in the collection",
+      "sections": {
+        "main": "Main",
+        "mainHint": "Name and description of the furniture series.",
+        "photo": "Photo",
+        "photoHint": "Shown next to the collection on the site.",
+        "publication": "Publication and SEO",
+        "publicationHint": "Whether to show the collection on the site and how it looks in search."
       }
     },
     "filters": {
@@ -647,7 +676,269 @@
       "statusAll": "Any status",
       "statusPublished": "Published",
       "statusHidden": "Hidden",
-      "reset": "Reset"
+      "reset": "Reset",
+      "title": "Filters",
+      "description": "Choose which records to show",
+      "done": "Done",
+      "open": "Filters, on: {{count}}"
+    },
+    "products": {
+      "searchPlaceholder": "Search by name or SKU",
+      "create": "New product",
+      "deleted": "Product deleted",
+      "deleteTitle": "Delete this product?",
+      "deleteDescription": "The product \"{{name}}\" will be deleted permanently.",
+      "columns": {
+        "name": "Name",
+        "sku": "SKU",
+        "category": "Category",
+        "collection": "Collection",
+        "price": "Price",
+        "stock": "Availability"
+      },
+      "stock": {
+        "in_stock": "In stock",
+        "on_order": "On order",
+        "out_of_stock": "Out of stock"
+      },
+      "filters": {
+        "categoryLabel": "Category",
+        "categoryAll": "Any category",
+        "collectionLabel": "Collection",
+        "collectionAll": "Any collection"
+      },
+      "empty": {
+        "title": "No products yet",
+        "description": "Add the first product to show it in the catalog."
+      },
+      "createTitle": "New product",
+      "editTitle": "Edit product",
+      "backToList": "Back to products",
+      "created": "Product created. You can add photos now.",
+      "updated": "Product saved",
+      "sections": {
+        "main": "Main",
+        "price": "Price and availability",
+        "details": "Dimensions and colors",
+        "attributes": "Specifications",
+        "attributesHint": "Any extra properties: number of drawers, mechanism type, and so on.",
+        "publication": "Publication and SEO",
+        "mainHint": "Name, category and description: what the customer sees.",
+        "priceHint": "Price in Belarusian rubles and stock availability.",
+        "detailsHint": "Dimensions, material and colors for the product card.",
+        "photos": "Photos",
+        "photosHint": "The first photo becomes the cover in the catalog. Drag to reorder.",
+        "publicationHint": "Whether to show the product on the site and how it looks in search."
+      },
+      "fields": {
+        "name": "Name",
+        "category": "Category",
+        "categoryPlaceholder": "Choose a category",
+        "collection": "Collection",
+        "noCollection": "No collection",
+        "sku": "SKU",
+        "description": "Description",
+        "price": "Price, BYN",
+        "oldPrice": "Old price, BYN",
+        "oldPriceHint": "If higher than the price, a discount is shown on the site.",
+        "stockStatus": "Availability",
+        "widthMm": "Width, mm",
+        "heightMm": "Height, mm",
+        "heightMaxMm": "Maximum height, mm",
+        "depthMm": "Depth, mm",
+        "lengthMm": "Length, mm",
+        "material": "Material",
+        "colorBody": "Body color",
+        "colorFacade": "Facade color",
+        "attributeKey": "Name",
+        "attributeValue": "Value",
+        "attributeRemove": "Remove specification",
+        "attributeAdd": "Add specification",
+        "attributesEmpty": "No specifications yet.",
+        "publishedHint": "A published product is visible on the site.",
+        "seoTitle": "SEO title",
+        "seoDescription": "SEO description",
+        "namePlaceholder": "For example: Jasmin dresser, 4 drawers",
+        "nameHint": "The name the customer will see.",
+        "skuHint": "A unique code for the warehouse. Optional.",
+        "descriptionPlaceholder": "Tell about the product: what it is for, why it is convenient, what it is made of.",
+        "discount": "{{percent}}% off",
+        "dimensions": "Dimensions",
+        "mm": "mm",
+        "dimensionsHint": "All dimensions are in millimeters (1 m = 1000 mm).",
+        "attributeSuggestions": "Add in one click:",
+        "publishedText": "The product is visible on the site and in the catalog.",
+        "draftText": "The product is hidden: only you can see it."
+      },
+      "validation": {
+        "price": "Enter the price as a number, for example 1299.00",
+        "dimension": "A whole number from 1 to 100000",
+        "attributeKey": "Enter the specification name",
+        "attributeDuplicate": "This specification already exists",
+        "skuTaken": "A product with this SKU already exists"
+      },
+      "formDescription": "Product data: main, parameters, photos and publication.",
+      "tabs": {
+        "main": "Main",
+        "details": "Parameters",
+        "photos": "Photos",
+        "publication": "Publication"
+      },
+      "editSubtitle": "SKU {{sku}}"
+    },
+    "orders": {
+      "searchPlaceholder": "Number, name or phone",
+      "statusAll": "All",
+      "statusChanged": "Order status changed",
+      "statuses": {
+        "new": "New",
+        "in_progress": "In progress",
+        "done": "Done",
+        "cancelled": "Cancelled"
+      },
+      "deliveryMethods": {
+        "delivery": "Delivery",
+        "pickup": "Pickup"
+      },
+      "paymentMethods": {
+        "cash_on_delivery": "Cash on delivery",
+        "installment": "Installment",
+        "bank_transfer": "Bank transfer"
+      },
+      "columns": {
+        "number": "Number",
+        "date": "Date",
+        "name": "Name",
+        "phone": "Phone",
+        "total": "Total",
+        "status": "Status"
+      },
+      "empty": {
+        "title": "No orders yet",
+        "description": "When customers start placing orders on the site, they will appear here."
+      },
+      "sheet": {
+        "title": "Order",
+        "description": "Customer details, items and status of the order.",
+        "status": "Order status",
+        "contacts": "Contacts",
+        "name": "Name",
+        "phone": "Phone",
+        "email": "Email",
+        "delivery": "Receiving and payment",
+        "deliveryMethod": "Receiving",
+        "city": "City",
+        "address": "Address",
+        "payment": "Payment",
+        "comment": "Comment",
+        "items": "Items",
+        "total": "Total",
+        "progress": "Progress",
+        "customer": "Customer",
+        "call": "Call",
+        "commentTitle": "Customer's comment",
+        "subtitle_one": "{{date}} · {{count}} item",
+        "subtitle_other": "{{date}} · {{count}} items"
+      },
+      "cancelledBanner": "The order is cancelled",
+      "actions": {
+        "new_in_progress": "Start working on it",
+        "new_cancelled": "Cancel the order",
+        "in_progress_done": "Mark as done",
+        "in_progress_cancelled": "Cancel the order",
+        "done_in_progress": "Back to work",
+        "cancelled_new": "Restore as new"
+      }
+    },
+    "articles": {
+      "searchPlaceholder": "Search by title",
+      "create": "New article",
+      "createTitle": "New article",
+      "editTitle": "Edit article",
+      "backToList": "Back to articles",
+      "created": "Article created. You can add photos now.",
+      "updated": "Article saved",
+      "deleted": "Article deleted",
+      "deleteTitle": "Delete this article?",
+      "deleteDescription": "The article \"{{name}}\" will be deleted permanently.",
+      "columns": {
+        "title": "Title",
+        "publishedAt": "Publication date"
+      },
+      "empty": {
+        "title": "No articles yet",
+        "description": "Create the first article to tell customers about furniture and how to care for it."
+      },
+      "sections": {
+        "main": "Content",
+        "publication": "Publication and SEO",
+        "mainHint": "Title, short description and the text of the article.",
+        "photos": "Photos",
+        "photosHint": "The first photo becomes the cover of the article.",
+        "publicationHint": "Whether to show the article on the site and how it looks in search."
+      },
+      "fields": {
+        "title": "Title",
+        "excerpt": "Short description",
+        "content": "Article text",
+        "contentHint": "Markdown or HTML. To put an image into the text, click \"Insert image\": it is uploaded and placed where the cursor is.",
+        "insertImage": "Insert image",
+        "publishedHint": "A published article is visible on the site.",
+        "publishedAt": "Publication date and time",
+        "publishedAtHint": "The current time is set by default. You can change the date.",
+        "seoTitle": "SEO title",
+        "seoDescription": "SEO description",
+        "titlePlaceholder": "For example: How to choose a dresser for the bedroom",
+        "excerptPlaceholder": "One or two sentences about the article: shown in lists.",
+        "contentPlaceholder": "Start writing here…",
+        "words": "Words: {{count}}",
+        "publishedText": "The article is visible on the site.",
+        "draftText": "The article is hidden: only you can see it."
+      },
+      "formDescription": "Article data: content, photos and publication.",
+      "tabs": {
+        "content": "Content",
+        "photos": "Photos",
+        "publication": "Publication"
+      },
+      "format": {
+        "heading": "Subheading",
+        "bold": "Bold",
+        "italic": "Italic",
+        "list": "List",
+        "link": "Link"
+      },
+      "preview": {
+        "edit": "Editor",
+        "preview": "Preview",
+        "empty": "Nothing to show yet: add the article text."
+      }
+    }
+  },
+  "ui": {
+    "close": "Close",
+    "loading": "Loading",
+    "openMenu": "Open menu",
+    "toggleSidebar": "Show or hide the menu",
+    "sidebarTitle": "Menu",
+    "sidebarDescription": "Admin panel sections",
+    "hasErrors": "Has errors",
+    "editor": {
+      "menu": "Form sections",
+      "unsaved": "You have unsaved changes",
+      "shortcut": "Ctrl + Enter to save",
+      "discardTitle": "Close without saving?",
+      "discardDescription": "The changes you made will be lost.",
+      "discard": "Close without saving",
+      "keepEditing": "Keep editing",
+      "published": "Published",
+      "draft": "Draft",
+      "seoTitle": "SEO title",
+      "seoDescription": "SEO description",
+      "seoHint": "This is the short text in search results. Aim for 150–160 characters.",
+      "seoPreview": "How the page may look in search",
+      "seoPreviewTitle": "Page title",
+      "seoPreviewDescription": "The page description will appear here."
     }
   }
 }

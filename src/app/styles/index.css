@@ -107,6 +107,40 @@
   }
 }
 
+/*
+ * Touch targets: at least 44px on phones and touch screens (WCAG target size). The small controls of the UI kit
+ * keep their compact size with a mouse. Switches and checkboxes get a larger hit area without changing their look.
+ */
+@media (max-width: 767px), (pointer: coarse) {
+  :where(
+    button:not([role='switch'], [role='checkbox'], [role='radio'], [data-slot='sidebar-rail']),
+    a[data-slot='button'],
+    [role='combobox'],
+    [role='tab'],
+    input:not([type='checkbox'], [type='radio'], [type='file'], [type='hidden'])
+  ) {
+    min-height: 2.75rem;
+  }
+
+  :where(
+    button:not([role='switch'], [role='checkbox'], [role='radio'], [data-slot='sidebar-rail']),
+    a[data-slot='button'],
+    [role='tab']
+  ) {
+    min-width: 2.75rem;
+  }
+
+  :where([role='switch'], [role='checkbox']) {
+    position: relative;
+  }
+
+  :where([role='switch'], [role='checkbox'])::after {
+    content: '';
+    position: absolute;
+    inset: -0.9rem -0.6rem;
+  }
+}
+
 .tabular-price {
   font-variant-numeric: tabular-nums;
 }

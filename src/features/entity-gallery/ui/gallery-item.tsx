@@ -56,6 +56,12 @@ export function GalleryItem({ image, isCover, onAltChange, onDelete }: GalleryIt
           placeholder={t('admin.gallery.altPlaceholder')}
           aria-label={t('admin.gallery.alt')}
           onChange={(event) => setAlt(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              event.preventDefault();
+              event.currentTarget.blur();
+            }
+          }}
           onBlur={() => {
             if (alt !== (image.alt ?? '')) {
               onAltChange(image.id, alt);

@@ -1,3 +1,4 @@
+export { uploadContentImage, type ContentImage } from './api/gallery-api';
 export {
   galleryQueryKey,
   galleryQueryOptions,

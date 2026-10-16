@@ -105,7 +105,6 @@ export function AdminCategoriesPage({ search, onSearchChange }: AdminCategoriesP
       />
       {editor !== null ? (
         <CategoryFormDialog
-          key={editedCategory?.id ?? 'new'}
           open
           onOpenChange={(open) => {
             if (!open) {
@@ -114,7 +113,11 @@ export function AdminCategoriesPage({ search, onSearchChange }: AdminCategoriesP
           }}
           category={editedCategory}
           onSaved={(saved, wasCreated) => setEditor(wasCreated ? saved : null)}
-          gallery={editedCategory ? <EntityGallery owner="categories" ownerId={editedCategory.id} single /> : undefined}
+          gallery={
+            editedCategory ? (
+              <EntityGallery owner="categories" ownerId={editedCategory.id} single hideTitle />
+            ) : undefined
+          }
         />
       ) : null}
       <DeleteCategoryDialog category={categoryToDelete} onClose={() => setCategoryToDelete(null)} />

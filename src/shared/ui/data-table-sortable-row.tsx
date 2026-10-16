@@ -14,6 +14,7 @@ interface DataTableSortableRowProps {
   handleLabel: string;
   disabledReason?: ReactNode;
   className?: string;
+  onClick?: (event: React.MouseEvent) => void;
   children: ReactNode;
 }
 
@@ -23,6 +24,7 @@ export function DataTableSortableRow({
   handleLabel,
   disabledReason,
   className,
+  onClick,
   children,
 }: DataTableSortableRowProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
@@ -35,6 +37,7 @@ export function DataTableSortableRow({
       ref={setNodeRef}
       style={{ transform: CSS.Translate.toString(transform), transition }}
       className={cn(className, isDragging && 'relative z-20 bg-muted shadow-md')}
+      onClick={onClick}
     >
       <TableCell className="w-10 py-0 pr-0">
         {enabled ? (

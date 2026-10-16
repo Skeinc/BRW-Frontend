@@ -112,6 +112,8 @@ export type DataTableProps<T> = {
   skeletonRows?: number;
   /** Drag-and-drop sorting of rows. */
   reorder?: DataTableReorderConfig<T>;
+  /** Makes the whole row clickable, for example to open a side panel. Clicks on buttons and links inside still work on their own. */
+  onRowClick?: (row: T) => void;
   /** Stretch to the bottom of the screen; the parent must be a flex column with a bounded height. */
   fillHeight?: boolean;
 };
@@ -224,6 +226,7 @@ function DataTablePagination({
 }
 
 function DataTableRowActions<T>({ row, actions }: { row: T; actions: DataTableActionsConfig<T> }) {
+  const { t } = useTranslation();
   const visibleItems = actions.items.filter((item) => !item.hidden?.(row));
   if (visibleItems.length === 0) {
     return null;
@@ -239,7 +242,7 @@ function DataTableRowActions<T>({ row, actions }: { row: T; actions: DataTableAc
           className="size-8 text-muted-foreground data-[state=open]:bg-muted"
         >
           <EllipsisVertical />
-          <span className="sr-only">{actions.menuLabel ?? 'Open menu'}</span>
+          <span className="sr-only">{actions.menuLabel ?? t('ui.openMenu')}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-40">
@@ -297,6 +300,7 @@ export function DataTable<T>({
   pagination = false,
   skeletonRows = VIEWPORT_BODY_ROWS,
   reorder,
+  onRowClick,
   fillHeight = false,
 }: DataTableProps<T>) {
   const showActions = Boolean(actions);
@@ -326,6 +330,15 @@ export function DataTable<T>({
   const hasState = !isLoading && (Boolean(error) || rows.length === 0);
   /** In a screen-filling table the empty or error state takes the whole body, not one table row. */
   const showFillState = fillHeight && hasState;
+
+  /** A click on the row itself opens it; clicks on buttons, links and menu items inside keep their own meaning. */
+  const handleRowClick = (event: React.MouseEvent, row: T) => {
+    const target = event.target as HTMLElement;
+    const isInsideRow = event.currentTarget.contains(target);
+    if (isInsideRow && !target.closest('button, a, input, [role="menuitem"]')) {
+      onRowClick?.(row);
+    }
+  };
 
   const handleDragEnd = ({ active, over }: DragEndEvent) => {
     if (!reorder || !over || active.id === over.id) {
@@ -420,12 +433,17 @@ export function DataTable<T>({
                         enabled={reorder.enabled}
                         handleLabel={reorder.handleLabel}
                         disabledReason={reorder.disabledReason}
-                        className={BODY_ROW_CLASS}
+                        className={cn(BODY_ROW_CLASS, onRowClick && 'cursor-pointer')}
+                        onClick={onRowClick ? (event) => handleRowClick(event, row) : undefined}
                       >
                         {cells}
                       </DataTableSortableRow>
                     ) : (
-                      <TableRow key={getRowId(row)} className={BODY_ROW_CLASS}>
+                      <TableRow
+                        key={getRowId(row)}
+                        className={cn(BODY_ROW_CLASS, onRowClick && 'cursor-pointer')}
+                        onClick={onRowClick ? (event) => handleRowClick(event, row) : undefined}
+                      >
                         {cells}
                       </TableRow>
                     );

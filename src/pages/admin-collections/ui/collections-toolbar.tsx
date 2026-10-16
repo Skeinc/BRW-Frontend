@@ -1,9 +1,9 @@
-import { Plus, X } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/shared/ui/button';
 import { ListToolbar } from '@/shared/ui/list-toolbar';
 import { SearchInput } from '@/shared/ui/search-input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
+import { ToolbarButton } from '@/shared/ui/toolbar-button';
 import type { CollectionsSearch } from '../model/collections-search';
 
 const ALL = 'all';
@@ -20,14 +20,19 @@ export function CollectionsToolbar({ search, hasFilters, onChange, onReset, onCr
   const { t } = useTranslation();
   return (
     <ListToolbar
+      isFiltered={hasFilters}
+      activeFilterCount={Number(Boolean(search.published)) + Number(Boolean(search.contents))}
+      onReset={onReset}
+      search={
+        <SearchInput
+          className="w-full md:w-64"
+          value={search.q ?? ''}
+          placeholder={t('admin.collections.searchPlaceholder')}
+          onChange={(q) => onChange({ q: q || undefined })}
+        />
+      }
       filters={
         <>
-          <SearchInput
-            className="w-full sm:w-64"
-            value={search.q ?? ''}
-            placeholder={t('admin.collections.searchPlaceholder')}
-            onChange={(q) => onChange({ q: q || undefined })}
-          />
           <Select
             value={search.published ?? ALL}
             onValueChange={(value) => onChange({ published: value === ALL ? undefined : (value as 'yes' | 'no') })}
@@ -54,20 +59,9 @@ export function CollectionsToolbar({ search, hasFilters, onChange, onReset, onCr
               <SelectItem value="empty">{t('admin.collections.filters.empty')}</SelectItem>
             </SelectContent>
           </Select>
-          {hasFilters ? (
-            <Button type="button" variant="ghost" className="h-10" onClick={onReset}>
-              <X aria-hidden />
-              {t('admin.filters.reset')}
-            </Button>
-          ) : null}
         </>
       }
-      actions={
-        <Button className="h-10" onClick={onCreate}>
-          <Plus aria-hidden />
-          {t('admin.collections.create')}
-        </Button>
-      }
+      actions={<ToolbarButton icon={Plus} label={t('admin.collections.create')} onClick={onCreate} />}
     />
   );
 }

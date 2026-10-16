@@ -1,7 +1,7 @@
 import { queryOptions, useMutation, useQueryClient, type QueryKey } from '@tanstack/react-query';
 import type { Paginated } from '@/shared/api';
 import type { Collection, CollectionListParams } from '../model/types';
-import { fetchCollectionsPage, moveCollection } from './collection-api';
+import { fetchCollectionOptions, fetchCollectionsPage, moveCollection } from './collection-api';
 
 /** Prefix of every collection query. */
 export const collectionsQueryKey = ['admin', 'collections'] as const;
@@ -11,6 +11,11 @@ export const collectionsPageQueryOptions = (params: CollectionListParams) =>
     queryKey: [...collectionsQueryKey, 'page', params],
     queryFn: () => fetchCollectionsPage(params),
   });
+
+export const collectionOptionsQueryOptions = queryOptions({
+  queryKey: [...collectionsQueryKey, 'options'],
+  queryFn: fetchCollectionOptions,
+});
 
 /** The loaded page with `activeId` moved to the place of `overId`. */
 function moveInPage(rows: readonly Collection[], activeId: string, overId: string): Collection[] {

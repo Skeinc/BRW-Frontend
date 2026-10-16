@@ -82,7 +82,6 @@ export function AdminCollectionsPage({ search, onSearchChange }: AdminCollection
       />
       {editor !== null ? (
         <CollectionFormDialog
-          key={editedCollection?.id ?? 'new'}
           open
           onOpenChange={(open) => {
             if (!open) {
@@ -92,7 +91,9 @@ export function AdminCollectionsPage({ search, onSearchChange }: AdminCollection
           collection={editedCollection}
           onSaved={(saved, wasCreated) => setEditor(wasCreated ? saved : null)}
           gallery={
-            editedCollection ? <EntityGallery owner="collections" ownerId={editedCollection.id} single /> : undefined
+            editedCollection ? (
+              <EntityGallery owner="collections" ownerId={editedCollection.id} single hideTitle />
+            ) : undefined
           }
         />
       ) : null}

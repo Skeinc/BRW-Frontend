@@ -464,7 +464,8 @@
       "ARTICLE_NOT_FOUND": "Статья не найдена.",
       "ORDER_NOT_FOUND": "Заявка не найдена.",
       "IMAGE_INVALID": "Неподходящее изображение (JPEG, PNG или WebP, до 10 МБ).",
-      "IMAGE_NOT_FOUND": "Изображение не найдено."
+      "IMAGE_NOT_FOUND": "Изображение не найдено.",
+      "ORDER_STATUS_INVALID": "Нельзя сменить статус заявки таким образом."
     }
   },
   "language": {
@@ -554,7 +555,8 @@
       "saveFirst": "Сначала сохраните, потом можно будет добавить фото.",
       "titleSingle": "Фотография",
       "dropHintSingle": "Перетащите фото сюда",
-      "chooseSingle": "Выбрать файл"
+      "chooseSingle": "Выбрать файл",
+      "saveFirstLong": "Фотографии можно добавить сразу после сохранения. Окно останется открытым."
     },
     "validation": {
       "required": "Заполните это поле",
@@ -592,7 +594,11 @@
         "parentHint": "Доступны только категории, при которых вложенность не превысит 3 уровней.",
         "description": "Описание",
         "seoTitle": "SEO-заголовок",
-        "seoDescription": "SEO-описание"
+        "seoDescription": "SEO-описание",
+        "namePlaceholder": "Например: Комоды",
+        "descriptionPlaceholder": "Расскажите, какие товары собраны в этой категории.",
+        "publishedText": "Категория видна в каталоге на сайте.",
+        "draftText": "Категория скрыта: её видите только вы."
       },
       "searchPlaceholder": "Поиск по названию",
       "filters": {
@@ -607,7 +613,16 @@
       "childCount_one": "{{count}} подкатегория",
       "childCount_few": "{{count}} подкатегории",
       "childCount_many": "{{count}} подкатегорий",
-      "childCount_other": "{{count}} подкатегорий"
+      "childCount_other": "{{count}} подкатегорий",
+      "editSubtitle": "Уровень {{level}} · подкатегорий: {{children}} · товаров: {{products}}",
+      "sections": {
+        "main": "Основное",
+        "mainHint": "Название, место в дереве и описание.",
+        "photo": "Фотография",
+        "photoHint": "Показывается рядом с категорией в каталоге.",
+        "publication": "Публикация и SEO",
+        "publicationHint": "Показывать ли категорию на сайте и как она выглядит в поиске."
+      }
     },
     "collections": {
       "title": "Коллекции",
@@ -634,7 +649,11 @@
         "name": "Название",
         "description": "Описание",
         "seoTitle": "SEO-заголовок",
-        "seoDescription": "SEO-описание"
+        "seoDescription": "SEO-описание",
+        "namePlaceholder": "Например: Jasmin",
+        "descriptionPlaceholder": "Расскажите о серии: стиль, материалы, что входит.",
+        "publishedText": "Коллекция видна на сайте.",
+        "draftText": "Коллекция скрыта: её видите только вы."
       },
       "searchPlaceholder": "Поиск по названию",
       "filters": {
@@ -642,6 +661,18 @@
         "contentsAll": "Любое наполнение",
         "withProducts": "С товарами",
         "empty": "Пустые"
+      },
+      "editSubtitle_one": "{{count}} товар в коллекции",
+      "editSubtitle_few": "{{count}} товара в коллекции",
+      "editSubtitle_many": "{{count}} товаров в коллекции",
+      "editSubtitle_other": "{{count}} товаров в коллекции",
+      "sections": {
+        "main": "Основное",
+        "mainHint": "Название и описание серии мебели.",
+        "photo": "Фотография",
+        "photoHint": "Показывается рядом с коллекцией на сайте.",
+        "publication": "Публикация и SEO",
+        "publicationHint": "Показывать ли коллекцию на сайте и как она выглядит в поиске."
       }
     },
     "filters": {
@@ -649,7 +680,271 @@
       "statusAll": "Любой статус",
       "statusPublished": "Опубликованные",
       "statusHidden": "Скрытые",
-      "reset": "Сбросить"
+      "reset": "Сбросить",
+      "title": "Фильтры",
+      "description": "Выберите, какие записи показать",
+      "done": "Готово",
+      "open": "Фильтры, включено: {{count}}"
+    },
+    "products": {
+      "searchPlaceholder": "Поиск по названию или артикулу",
+      "create": "Новый товар",
+      "deleted": "Товар удалён",
+      "deleteTitle": "Удалить товар?",
+      "deleteDescription": "Товар «{{name}}» будет удалён без возможности восстановления.",
+      "columns": {
+        "name": "Название",
+        "sku": "Артикул",
+        "category": "Категория",
+        "collection": "Коллекция",
+        "price": "Цена",
+        "stock": "Наличие"
+      },
+      "stock": {
+        "in_stock": "В наличии",
+        "on_order": "Под заказ",
+        "out_of_stock": "Нет в наличии"
+      },
+      "filters": {
+        "categoryLabel": "Категория",
+        "categoryAll": "Любая категория",
+        "collectionLabel": "Коллекция",
+        "collectionAll": "Любая коллекция"
+      },
+      "empty": {
+        "title": "Товаров пока нет",
+        "description": "Добавьте первый товар, чтобы он появился в каталоге."
+      },
+      "createTitle": "Новый товар",
+      "editTitle": "Редактирование товара",
+      "backToList": "К списку товаров",
+      "created": "Товар создан. Теперь можно добавить фотографии.",
+      "updated": "Товар сохранён",
+      "sections": {
+        "main": "Основное",
+        "price": "Цена и наличие",
+        "details": "Размеры и цвета",
+        "attributes": "Характеристики",
+        "attributesHint": "Любые дополнительные свойства: количество ящиков, тип механизма и т. п.",
+        "publication": "Публикация и SEO",
+        "mainHint": "Название, категория и описание: то, что видит покупатель.",
+        "priceHint": "Цена в белорусских рублях и наличие на складе.",
+        "detailsHint": "Размеры, материал и цвета для карточки товара.",
+        "photos": "Фотографии",
+        "photosHint": "Первое фото станет обложкой в каталоге. Порядок меняется перетаскиванием.",
+        "publicationHint": "Показывать ли товар на сайте и как он выглядит в поиске."
+      },
+      "fields": {
+        "name": "Название",
+        "category": "Категория",
+        "categoryPlaceholder": "Выберите категорию",
+        "collection": "Коллекция",
+        "noCollection": "Без коллекции",
+        "sku": "Артикул",
+        "description": "Описание",
+        "price": "Цена, BYN",
+        "oldPrice": "Старая цена, BYN",
+        "oldPriceHint": "Если больше цены, на сайте покажется скидка.",
+        "stockStatus": "Наличие",
+        "widthMm": "Ширина, мм",
+        "heightMm": "Высота, мм",
+        "heightMaxMm": "Максимальная высота, мм",
+        "depthMm": "Глубина, мм",
+        "lengthMm": "Длина, мм",
+        "material": "Материал",
+        "colorBody": "Цвет корпуса",
+        "colorFacade": "Цвет фасада",
+        "attributeKey": "Название",
+        "attributeValue": "Значение",
+        "attributeRemove": "Удалить характеристику",
+        "attributeAdd": "Добавить характеристику",
+        "attributesEmpty": "Характеристик пока нет.",
+        "publishedHint": "Опубликованный товар виден на сайте.",
+        "seoTitle": "SEO-заголовок",
+        "seoDescription": "SEO-описание",
+        "namePlaceholder": "Например: Комод Jasmin, 4 ящика",
+        "nameHint": "Название, которое увидит покупатель.",
+        "skuHint": "Уникальный код для склада. Необязательно.",
+        "descriptionPlaceholder": "Расскажите о товаре: для чего он, чем удобен, из чего сделан.",
+        "discount": "Скидка {{percent}}%",
+        "dimensions": "Размеры",
+        "mm": "мм",
+        "dimensionsHint": "Все размеры указываются в миллиметрах (1 м = 1000 мм).",
+        "attributeSuggestions": "Добавить в один клик:",
+        "publishedText": "Товар виден на сайте и в каталоге.",
+        "draftText": "Товар скрыт: его видите только вы."
+      },
+      "validation": {
+        "price": "Введите цену числом, например 1299.00",
+        "dimension": "Целое число от 1 до 100000",
+        "attributeKey": "Укажите название характеристики",
+        "attributeDuplicate": "Такая характеристика уже есть",
+        "skuTaken": "Товар с таким артикулом уже есть"
+      },
+      "formDescription": "Данные товара: основное, параметры, фотографии и публикация.",
+      "tabs": {
+        "main": "Основное",
+        "details": "Параметры",
+        "photos": "Фото",
+        "publication": "Публикация"
+      },
+      "editSubtitle": "Артикул {{sku}}"
+    },
+    "orders": {
+      "searchPlaceholder": "Номер, имя или телефон",
+      "statusAll": "Все",
+      "statusChanged": "Статус заявки изменён",
+      "statuses": {
+        "new": "Новая",
+        "in_progress": "В работе",
+        "done": "Выполнена",
+        "cancelled": "Отменена"
+      },
+      "deliveryMethods": {
+        "delivery": "Доставка",
+        "pickup": "Самовывоз"
+      },
+      "paymentMethods": {
+        "cash_on_delivery": "Наличными при получении",
+        "installment": "Рассрочка",
+        "bank_transfer": "Банковский перевод"
+      },
+      "columns": {
+        "number": "Номер",
+        "date": "Дата",
+        "name": "Имя",
+        "phone": "Телефон",
+        "total": "Сумма",
+        "status": "Статус"
+      },
+      "empty": {
+        "title": "Заявок пока нет",
+        "description": "Когда покупатели начнут оформлять заявки на сайте, они появятся здесь."
+      },
+      "sheet": {
+        "title": "Заявка",
+        "description": "Данные покупателя, состав и статус заявки.",
+        "status": "Статус заявки",
+        "contacts": "Контакты",
+        "name": "Имя",
+        "phone": "Телефон",
+        "email": "Почта",
+        "delivery": "Получение и оплата",
+        "deliveryMethod": "Способ получения",
+        "city": "Город",
+        "address": "Адрес",
+        "payment": "Оплата",
+        "comment": "Комментарий",
+        "items": "Состав заявки",
+        "total": "Итого",
+        "progress": "Ход выполнения",
+        "customer": "Покупатель",
+        "call": "Позвонить",
+        "commentTitle": "Комментарий покупателя",
+        "subtitle_one": "{{date}} · {{count}} позиция",
+        "subtitle_few": "{{date}} · {{count}} позиции",
+        "subtitle_many": "{{date}} · {{count}} позиций",
+        "subtitle_other": "{{date}} · {{count}} позиций"
+      },
+      "cancelledBanner": "Заявка отменена",
+      "actions": {
+        "new_in_progress": "Взять в работу",
+        "new_cancelled": "Отменить заявку",
+        "in_progress_done": "Отметить выполненной",
+        "in_progress_cancelled": "Отменить заявку",
+        "done_in_progress": "Вернуть в работу",
+        "cancelled_new": "Вернуть как новую"
+      }
+    },
+    "articles": {
+      "searchPlaceholder": "Поиск по заголовку",
+      "create": "Новая статья",
+      "createTitle": "Новая статья",
+      "editTitle": "Редактирование статьи",
+      "backToList": "К списку статей",
+      "created": "Статья создана. Теперь можно добавить фотографии.",
+      "updated": "Статья сохранена",
+      "deleted": "Статья удалена",
+      "deleteTitle": "Удалить статью?",
+      "deleteDescription": "Статья «{{name}}» будет удалена без возможности восстановления.",
+      "columns": {
+        "title": "Заголовок",
+        "publishedAt": "Дата публикации"
+      },
+      "empty": {
+        "title": "Статей пока нет",
+        "description": "Создайте первую статью, чтобы рассказать покупателям о мебели и уходе за ней."
+      },
+      "sections": {
+        "main": "Содержание",
+        "publication": "Публикация и SEO",
+        "mainHint": "Заголовок, краткое описание и текст статьи.",
+        "photos": "Фотографии",
+        "photosHint": "Первое фото станет обложкой статьи.",
+        "publicationHint": "Показывать ли статью на сайте и как она выглядит в поиске."
+      },
+      "fields": {
+        "title": "Заголовок",
+        "excerpt": "Краткое описание",
+        "content": "Текст статьи",
+        "contentHint": "Markdown или HTML. Чтобы вставить картинку в текст, нажмите «Вставить картинку»: она загрузится и встанет туда, где стоит курсор.",
+        "insertImage": "Вставить картинку",
+        "publishedHint": "Опубликованная статья видна на сайте.",
+        "publishedAt": "Дата и время публикации",
+        "publishedAtHint": "По умолчанию стоит текущее время. Дату можно изменить.",
+        "seoTitle": "SEO-заголовок",
+        "seoDescription": "SEO-описание",
+        "titlePlaceholder": "Например: Как выбрать комод для спальни",
+        "excerptPlaceholder": "Одно-два предложения, о чём статья: показывается в списках.",
+        "contentPlaceholder": "Начните писать здесь…",
+        "words": "Слов: {{count}}",
+        "publishedText": "Статья видна на сайте.",
+        "draftText": "Статья скрыта: её видите только вы."
+      },
+      "formDescription": "Данные статьи: содержание, фотографии и публикация.",
+      "tabs": {
+        "content": "Содержание",
+        "photos": "Фото",
+        "publication": "Публикация"
+      },
+      "format": {
+        "heading": "Подзаголовок",
+        "bold": "Жирный",
+        "italic": "Курсив",
+        "list": "Список",
+        "link": "Ссылка"
+      },
+      "preview": {
+        "edit": "Редактор",
+        "preview": "Просмотр",
+        "empty": "Пока нечего показывать: добавьте текст статьи."
+      }
+    }
+  },
+  "ui": {
+    "close": "Закрыть",
+    "loading": "Загрузка",
+    "openMenu": "Открыть меню",
+    "toggleSidebar": "Показать или скрыть меню",
+    "sidebarTitle": "Меню",
+    "sidebarDescription": "Разделы админ-панели",
+    "hasErrors": "Есть ошибки",
+    "editor": {
+      "menu": "Разделы формы",
+      "unsaved": "Есть несохранённые изменения",
+      "shortcut": "Ctrl + Enter — сохранить",
+      "discardTitle": "Закрыть без сохранения?",
+      "discardDescription": "Внесённые изменения будут потеряны.",
+      "discard": "Закрыть без сохранения",
+      "keepEditing": "Продолжить редактирование",
+      "published": "Опубликовано",
+      "draft": "Черновик",
+      "seoTitle": "SEO-заголовок",
+      "seoDescription": "SEO-описание",
+      "seoHint": "Это краткое описание в результатах поиска. Лучше уложиться в 150–160 символов.",
+      "seoPreview": "Так страница может выглядеть в поиске",
+      "seoPreviewTitle": "Заголовок страницы",
+      "seoPreviewDescription": "Описание страницы появится здесь."
     }
   }
 }

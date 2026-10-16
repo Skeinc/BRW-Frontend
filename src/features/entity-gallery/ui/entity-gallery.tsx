@@ -24,9 +24,11 @@ interface EntityGalleryProps {
   ownerId: string;
   /** One photo only: no reordering and no descriptions, to replace it delete it and add another. */
   single?: boolean;
+  /** Leave out the gallery's own heading, for example when it sits in a titled section. */
+  hideTitle?: boolean;
 }
 
-export function EntityGallery({ owner, ownerId, single = false }: EntityGalleryProps) {
+export function EntityGallery({ owner, ownerId, single = false, hideTitle = false }: EntityGalleryProps) {
   const { t } = useTranslation();
   const gallery = useQuery(galleryQueryOptions(owner, ownerId));
   const queue = useUploadQueue(owner, ownerId);
@@ -40,7 +42,7 @@ export function EntityGallery({ owner, ownerId, single = false }: EntityGalleryP
 
   return (
     <section aria-label={title} className="flex flex-col gap-4">
-      <h3 className="text-sm font-medium">{title}</h3>
+      {hideTitle ? null : <h3 className="text-sm font-medium">{title}</h3>}
       {single && images.length > 0 ? null : (
         <GalleryDropzone onFiles={(files) => queue.addFiles(single ? files.slice(0, 1) : files)} multiple={!single} />
       )}

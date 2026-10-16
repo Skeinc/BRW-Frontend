@@ -470,7 +470,8 @@
       "ARTICLE_NOT_FOUND": "Артыкул не знойдзены.",
       "ORDER_NOT_FOUND": "Заяўка не знойдзена.",
       "IMAGE_INVALID": "Непадыходнае відарыс (JPEG, PNG або WebP, да 10 МБ).",
-      "IMAGE_NOT_FOUND": "Відарыс не знойдзены."
+      "IMAGE_NOT_FOUND": "Відарыс не знойдзены.",
+      "ORDER_STATUS_INVALID": "Нельга змяніць статус заяўкі такім чынам."
     }
   },
   "contactCta": {
@@ -554,7 +555,8 @@
       "saveFirst": "Спачатку захавайце, потым можна будзе дадаць фота.",
       "titleSingle": "Фотаздымак",
       "dropHintSingle": "Перацягніце фота сюды",
-      "chooseSingle": "Выбраць файл"
+      "chooseSingle": "Выбраць файл",
+      "saveFirstLong": "Фотаздымкі можна дадаць адразу пасля захавання. Акно застанецца адкрытым."
     },
     "validation": {
       "required": "Запоўніце гэтае поле",
@@ -592,7 +594,11 @@
         "parentHint": "Даступны толькі катэгорыі, пры якіх укладзенасць не перавысіць 3 узроўні.",
         "description": "Апісанне",
         "seoTitle": "SEO-загаловак",
-        "seoDescription": "SEO-апісанне"
+        "seoDescription": "SEO-апісанне",
+        "namePlaceholder": "Напрыклад: Камоды",
+        "descriptionPlaceholder": "Раскажыце, якія тавары сабраны ў гэтай катэгорыі.",
+        "publishedText": "Катэгорыя бачная ў каталогу на сайце.",
+        "draftText": "Катэгорыя схаваная: яе бачыце толькі вы."
       },
       "searchPlaceholder": "Пошук па назве",
       "filters": {
@@ -607,7 +613,16 @@
       "childCount_one": "{{count}} падкатэгорыя",
       "childCount_few": "{{count}} падкатэгорыі",
       "childCount_many": "{{count}} падкатэгорый",
-      "childCount_other": "{{count}} падкатэгорый"
+      "childCount_other": "{{count}} падкатэгорый",
+      "editSubtitle": "Узровень {{level}} · падкатэгорый: {{children}} · тавараў: {{products}}",
+      "sections": {
+        "main": "Асноўнае",
+        "mainHint": "Назва, месца ў дрэве і апісанне.",
+        "photo": "Фотаздымак",
+        "photoHint": "Паказваецца побач з катэгорыяй у каталогу.",
+        "publication": "Публікацыя і SEO",
+        "publicationHint": "Ці паказваць катэгорыю на сайце і як яна выглядае ў пошуку."
+      }
     },
     "collections": {
       "title": "Калекцыі",
@@ -634,7 +649,11 @@
         "name": "Назва",
         "description": "Апісанне",
         "seoTitle": "SEO-загаловак",
-        "seoDescription": "SEO-апісанне"
+        "seoDescription": "SEO-апісанне",
+        "namePlaceholder": "Напрыклад: Jasmin",
+        "descriptionPlaceholder": "Раскажыце пра серыю: стыль, матэрыялы, што ўваходзіць.",
+        "publishedText": "Калекцыя бачная на сайце.",
+        "draftText": "Калекцыя схаваная: яе бачыце толькі вы."
       },
       "searchPlaceholder": "Пошук па назве",
       "filters": {
@@ -642,6 +661,18 @@
         "contentsAll": "Любое напаўненне",
         "withProducts": "З таварамі",
         "empty": "Пустыя"
+      },
+      "editSubtitle_one": "{{count}} тавар у калекцыі",
+      "editSubtitle_few": "{{count}} тавары ў калекцыі",
+      "editSubtitle_many": "{{count}} тавараў у калекцыі",
+      "editSubtitle_other": "{{count}} тавараў у калекцыі",
+      "sections": {
+        "main": "Асноўнае",
+        "mainHint": "Назва і апісанне серыі мэблі.",
+        "photo": "Фотаздымак",
+        "photoHint": "Паказваецца побач з калекцыяй на сайце.",
+        "publication": "Публікацыя і SEO",
+        "publicationHint": "Ці паказваць калекцыю на сайце і як яна выглядае ў пошуку."
       }
     },
     "filters": {
@@ -649,7 +680,271 @@
       "statusAll": "Любы статус",
       "statusPublished": "Апублікаваныя",
       "statusHidden": "Схаваныя",
-      "reset": "Скінуць"
+      "reset": "Скінуць",
+      "title": "Фільтры",
+      "description": "Выберыце, якія запісы паказаць",
+      "done": "Гатова",
+      "open": "Фільтры, уключана: {{count}}"
+    },
+    "products": {
+      "searchPlaceholder": "Пошук па назве або артыкуле",
+      "create": "Новы тавар",
+      "deleted": "Тавар выдалены",
+      "deleteTitle": "Выдаліць тавар?",
+      "deleteDescription": "Тавар «{{name}}» будзе выдалены без магчымасці аднаўлення.",
+      "columns": {
+        "name": "Назва",
+        "sku": "Артыкул",
+        "category": "Катэгорыя",
+        "collection": "Калекцыя",
+        "price": "Цана",
+        "stock": "Наяўнасць"
+      },
+      "stock": {
+        "in_stock": "У наяўнасці",
+        "on_order": "Пад заказ",
+        "out_of_stock": "Няма ў наяўнасці"
+      },
+      "filters": {
+        "categoryLabel": "Катэгорыя",
+        "categoryAll": "Любая катэгорыя",
+        "collectionLabel": "Калекцыя",
+        "collectionAll": "Любая калекцыя"
+      },
+      "empty": {
+        "title": "Тавараў пакуль няма",
+        "description": "Дадайце першы тавар, каб ён з'явіўся ў каталозе."
+      },
+      "createTitle": "Новы тавар",
+      "editTitle": "Рэдагаванне тавару",
+      "backToList": "Да спісу тавараў",
+      "created": "Тавар створаны. Цяпер можна дадаць фотаздымкі.",
+      "updated": "Тавар захаваны",
+      "sections": {
+        "main": "Асноўнае",
+        "price": "Цана і наяўнасць",
+        "details": "Памеры і колеры",
+        "attributes": "Характарыстыкі",
+        "attributesHint": "Любыя дадатковыя ўласцівасці: колькасць шуфляд, тып механізма і г. д.",
+        "publication": "Публікацыя і SEO",
+        "mainHint": "Назва, катэгорыя і апісанне: тое, што бачыць пакупнік.",
+        "priceHint": "Цана ў беларускіх рублях і наяўнасць на складзе.",
+        "detailsHint": "Памеры, матэрыял і колеры для карткі тавару.",
+        "photos": "Фотаздымкі",
+        "photosHint": "Першае фота стане вокладкай у каталогу. Парадак змяняецца перацягваннем.",
+        "publicationHint": "Ці паказваць тавар на сайце і як ён выглядае ў пошуку."
+      },
+      "fields": {
+        "name": "Назва",
+        "category": "Катэгорыя",
+        "categoryPlaceholder": "Выберыце катэгорыю",
+        "collection": "Калекцыя",
+        "noCollection": "Без калекцыі",
+        "sku": "Артыкул",
+        "description": "Апісанне",
+        "price": "Цана, BYN",
+        "oldPrice": "Стары кошт, BYN",
+        "oldPriceHint": "Калі больш за цану, на сайце паказваецца зніжка.",
+        "stockStatus": "Наяўнасць",
+        "widthMm": "Шырыня, мм",
+        "heightMm": "Вышыня, мм",
+        "heightMaxMm": "Максімальная вышыня, мм",
+        "depthMm": "Глыбіня, мм",
+        "lengthMm": "Даўжыня, мм",
+        "material": "Матэрыял",
+        "colorBody": "Колер корпуса",
+        "colorFacade": "Колер фасада",
+        "attributeKey": "Назва",
+        "attributeValue": "Значэнне",
+        "attributeRemove": "Выдаліць характарыстыку",
+        "attributeAdd": "Дадаць характарыстыку",
+        "attributesEmpty": "Характарыстык пакуль няма.",
+        "publishedHint": "Апублікаваны тавар бачны на сайце.",
+        "seoTitle": "SEO-загаловак",
+        "seoDescription": "SEO-апісанне",
+        "namePlaceholder": "Напрыклад: Камод Jasmin, 4 шуфляды",
+        "nameHint": "Назва, якую ўбачыць пакупнік.",
+        "skuHint": "Унікальны код для склада. Неабавязкова.",
+        "descriptionPlaceholder": "Раскажыце пра тавар: для чаго ён, чым зручны, з чаго зроблены.",
+        "discount": "Зніжка {{percent}}%",
+        "dimensions": "Памеры",
+        "mm": "мм",
+        "dimensionsHint": "Усе памеры ўказваюцца ў міліметрах (1 м = 1000 мм).",
+        "attributeSuggestions": "Дадаць у адзін клік:",
+        "publishedText": "Тавар бачны на сайце і ў каталогу.",
+        "draftText": "Тавар схаваны: яго бачыце толькі вы."
+      },
+      "validation": {
+        "price": "Увядзіце цану лікам, напрыклад 1299.00",
+        "dimension": "Цэлы лік ад 1 да 100000",
+        "attributeKey": "Укажыце назву характарыстыкі",
+        "attributeDuplicate": "Такая характарыстыка ўжо ёсць",
+        "skuTaken": "Тавар з такім артыкулам ужо ёсць"
+      },
+      "formDescription": "Даныя тавару: асноўнае, параметры, фотаздымкі і публікацыя.",
+      "tabs": {
+        "main": "Асноўнае",
+        "details": "Параметры",
+        "photos": "Фота",
+        "publication": "Публікацыя"
+      },
+      "editSubtitle": "Артыкул {{sku}}"
+    },
+    "orders": {
+      "searchPlaceholder": "Нумар, імя або тэлефон",
+      "statusAll": "Усе",
+      "statusChanged": "Статус заяўкі зменены",
+      "statuses": {
+        "new": "Новая",
+        "in_progress": "У працы",
+        "done": "Выканана",
+        "cancelled": "Скасавана"
+      },
+      "deliveryMethods": {
+        "delivery": "Дастаўка",
+        "pickup": "Самавываз"
+      },
+      "paymentMethods": {
+        "cash_on_delivery": "Наяўнымі пры атрыманні",
+        "installment": "Растэрміноўка",
+        "bank_transfer": "Банкаўскі перавод"
+      },
+      "columns": {
+        "number": "Нумар",
+        "date": "Дата",
+        "name": "Імя",
+        "phone": "Тэлефон",
+        "total": "Сума",
+        "status": "Статус"
+      },
+      "empty": {
+        "title": "Заяўак пакуль няма",
+        "description": "Калі пакупнікі пачнуць афармляць заяўкі на сайце, яны з'явяцца тут."
+      },
+      "sheet": {
+        "title": "Заяўка",
+        "description": "Даныя пакупніка, склад і статус заяўкі.",
+        "status": "Статус заяўкі",
+        "contacts": "Кантакты",
+        "name": "Імя",
+        "phone": "Тэлефон",
+        "email": "Пошта",
+        "delivery": "Атрыманне і аплата",
+        "deliveryMethod": "Спосаб атрымання",
+        "city": "Горад",
+        "address": "Адрас",
+        "payment": "Аплата",
+        "comment": "Каментарый",
+        "items": "Склад заяўкі",
+        "total": "Разам",
+        "progress": "Ход выканання",
+        "customer": "Пакупнік",
+        "call": "Патэлефанаваць",
+        "commentTitle": "Каментарый пакупніка",
+        "subtitle_one": "{{date}} · {{count}} пазіцыя",
+        "subtitle_few": "{{date}} · {{count}} пазіцыі",
+        "subtitle_many": "{{date}} · {{count}} пазіцый",
+        "subtitle_other": "{{date}} · {{count}} пазіцый"
+      },
+      "cancelledBanner": "Заяўка скасавана",
+      "actions": {
+        "new_in_progress": "Узяць у працу",
+        "new_cancelled": "Скасаваць заяўку",
+        "in_progress_done": "Адзначыць выкананай",
+        "in_progress_cancelled": "Скасаваць заяўку",
+        "done_in_progress": "Вярнуць у працу",
+        "cancelled_new": "Вярнуць як новую"
+      }
+    },
+    "articles": {
+      "searchPlaceholder": "Пошук па загалоўку",
+      "create": "Новы артыкул",
+      "createTitle": "Новы артыкул",
+      "editTitle": "Рэдагаванне артыкула",
+      "backToList": "Да спісу артыкулаў",
+      "created": "Артыкул створаны. Цяпер можна дадаць фотаздымкі.",
+      "updated": "Артыкул захаваны",
+      "deleted": "Артыкул выдалены",
+      "deleteTitle": "Выдаліць артыкул?",
+      "deleteDescription": "Артыкул «{{name}}» будзе выдалены без магчымасці аднаўлення.",
+      "columns": {
+        "title": "Загаловак",
+        "publishedAt": "Дата публікацыі"
+      },
+      "empty": {
+        "title": "Артыкулаў пакуль няма",
+        "description": "Стварыце першы артыкул, каб расказаць пакупнікам пра мэблю і догляд за ёй."
+      },
+      "sections": {
+        "main": "Змест",
+        "publication": "Публікацыя і SEO",
+        "mainHint": "Загаловак, кароткае апісанне і тэкст артыкула.",
+        "photos": "Фотаздымкі",
+        "photosHint": "Першае фота стане вокладкай артыкула.",
+        "publicationHint": "Ці паказваць артыкул на сайце і як ён выглядае ў пошуку."
+      },
+      "fields": {
+        "title": "Загаловак",
+        "excerpt": "Кароткае апісанне",
+        "content": "Тэкст артыкула",
+        "contentHint": "Markdown або HTML. Каб уставіць відарыс у тэкст, націсніце «Уставіць відарыс»: ён загрузіцца і стане туды, дзе стаіць курсор.",
+        "insertImage": "Уставіць відарыс",
+        "publishedHint": "Апублікаваны артыкул бачны на сайце.",
+        "publishedAt": "Дата і час публікацыі",
+        "publishedAtHint": "Па змаўчанні стаіць бягучы час. Дату можна змяніць.",
+        "seoTitle": "SEO-загаловак",
+        "seoDescription": "SEO-апісанне",
+        "titlePlaceholder": "Напрыклад: Як выбраць камод для спальні",
+        "excerptPlaceholder": "Адзін-два сказы пра тое, пра што артыкул: паказваецца ў спісах.",
+        "contentPlaceholder": "Пачніце пісаць тут…",
+        "words": "Слоў: {{count}}",
+        "publishedText": "Артыкул бачны на сайце.",
+        "draftText": "Артыкул схаваны: яго бачыце толькі вы."
+      },
+      "formDescription": "Даныя артыкула: змест, фотаздымкі і публікацыя.",
+      "tabs": {
+        "content": "Змест",
+        "photos": "Фота",
+        "publication": "Публікацыя"
+      },
+      "format": {
+        "heading": "Падзагаловак",
+        "bold": "Тоўсты",
+        "italic": "Курсіў",
+        "list": "Спіс",
+        "link": "Спасылка"
+      },
+      "preview": {
+        "edit": "Рэдактар",
+        "preview": "Прагляд",
+        "empty": "Пакуль няма чаго паказваць: дадайце тэкст артыкула."
+      }
+    }
+  },
+  "ui": {
+    "close": "Закрыць",
+    "loading": "Загрузка",
+    "openMenu": "Адкрыць меню",
+    "toggleSidebar": "Паказаць або схаваць меню",
+    "sidebarTitle": "Меню",
+    "sidebarDescription": "Раздзелы адмін-панэлі",
+    "hasErrors": "Ёсць памылкі",
+    "editor": {
+      "menu": "Раздзелы формы",
+      "unsaved": "Ёсць незахаваныя змены",
+      "shortcut": "Ctrl + Enter — захаваць",
+      "discardTitle": "Закрыць без захавання?",
+      "discardDescription": "Унесеныя змены будуць страчаны.",
+      "discard": "Закрыць без захавання",
+      "keepEditing": "Працягнуць рэдагаванне",
+      "published": "Апублікавана",
+      "draft": "Чарнавік",
+      "seoTitle": "SEO-загаловак",
+      "seoDescription": "SEO-апісанне",
+      "seoHint": "Гэта кароткі тэкст у вынiках пошуку. Лепш уліцца ў 150–160 знакаў.",
+      "seoPreview": "Так старонка можа выглядаць у пошуку",
+      "seoPreviewTitle": "Загаловак старонкі",
+      "seoPreviewDescription": "Апісанне старонкі з'явіцца тут."
     }
   }
 }
