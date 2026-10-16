@@ -12,7 +12,8 @@
     "goHome": "На главную",
     "deliveryAndPayment": "Доставка и оплата",
     "breadcrumbs": "Хлебные крошки",
-    "installment": "Рассрочка"
+    "installment": "Рассрочка",
+    "adminPanel": "Админ-панель"
   },
   "header": {
     "searchPlaceholder": "Поиск по каталогу",
@@ -451,9 +452,19 @@
       "CATEGORY_NOT_FOUND": "Категория не найдена.",
       "PRODUCT_NOT_FOUND": "Товар не найден.",
       "SLUG_TAKEN": "Такой адрес уже занят.",
-      "VALIDATION_FAILED": "Проверьте введённые данные.",
       "UNAUTHORIZED": "Требуется вход.",
-      "INTERNAL_ERROR": "Ошибка сервера. Попробуйте позже."
+      "INTERNAL_ERROR": "Ошибка сервера. Попробуйте позже.",
+      "VALIDATION_ERROR": "Проверьте введённые данные.",
+      "SKU_TAKEN": "Такой артикул уже есть.",
+      "CATEGORY_DEPTH_EXCEEDED": "Максимум 3 уровня категорий.",
+      "CATEGORY_NOT_EMPTY": "Нельзя удалить: в категории есть товары или подкатегории.",
+      "COLLECTION_NOT_FOUND": "Коллекция не найдена.",
+      "COLLECTION_NOT_EMPTY": "Нельзя удалить: в коллекции есть товары.",
+      "PRODUCT_HAS_ORDERS": "Нельзя удалить: товар есть в заявках. Снимите его с публикации.",
+      "ARTICLE_NOT_FOUND": "Статья не найдена.",
+      "ORDER_NOT_FOUND": "Заявка не найдена.",
+      "IMAGE_INVALID": "Неподходящее изображение (JPEG, PNG или WebP, до 10 МБ).",
+      "IMAGE_NOT_FOUND": "Изображение не найдено."
     }
   },
   "language": {
@@ -466,5 +477,42 @@
     "heading": "Остались вопросы?",
     "text": "Позвоните нам — менеджер уточнит стоимость доставки и ответит на любые вопросы по заказу.",
     "call": "Позвонить"
+  },
+  "table": {
+    "pagination": {
+      "pageSize": "На странице",
+      "page": "Страница {{page}} из {{totalPages}}",
+      "first": "В начало",
+      "previous": "Назад",
+      "next": "Вперёд",
+      "last": "В конец"
+    }
+  },
+  "admin": {
+    "title": "Админ-панель BRW",
+    "nav": {
+      "label": "Разделы админ-панели",
+      "categories": "Категории",
+      "collections": "Коллекции",
+      "products": "Товары",
+      "orders": "Заявки",
+      "articles": "Статьи",
+      "logout": "Выйти",
+      "openMenu": "Открыть меню",
+      "administrator": "Администратор"
+    },
+    "auth": {
+      "title": "Вход в админ-панель",
+      "subtitle": "Введите почту и пароль администратора",
+      "email": "Почта",
+      "password": "Пароль",
+      "submit": "Войти",
+      "validation": {
+        "email": "Введите корректную почту",
+        "password": "Введите пароль"
+      },
+      "invalidCredentials": "Неверная почта или пароль"
+    },
+    "panel": "Админ-панель"
   }
 }

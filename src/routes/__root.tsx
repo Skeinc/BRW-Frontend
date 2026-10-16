@@ -1,5 +1,5 @@
 import type { QueryClient } from '@tanstack/react-query';
-import { createRootRouteWithContext, HeadContent, Outlet, Scripts } from '@tanstack/react-router';
+import { createRootRouteWithContext, HeadContent, Outlet, Scripts, useRouterState } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 import { I18nextProvider } from 'react-i18next';
 import appCss from '@/app/styles/index.css?url';
@@ -39,6 +39,9 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 
 function RootComponent() {
   const { language } = Route.useLoaderData();
+  const isAdmin = useRouterState({
+    select: (state) => state.location.pathname === '/admin' || state.location.pathname.startsWith('/admin/'),
+  });
   return (
     <html lang={language}>
       <head>
@@ -46,11 +49,17 @@ function RootComponent() {
       </head>
       <body className="flex min-h-screen flex-col">
         <I18nextProvider i18n={getI18n(language)}>
-          <AppHeader />
-          <main className="flex-1">
+          {isAdmin ? (
             <Outlet />
-          </main>
-          <AppFooter />
+          ) : (
+            <>
+              <AppHeader />
+              <main className="flex-1">
+                <Outlet />
+              </main>
+              <AppFooter />
+            </>
+          )}
         </I18nextProvider>
         <Scripts />
       </body>

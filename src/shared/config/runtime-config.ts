@@ -25,7 +25,13 @@ export function getRuntimeConfig(): RuntimeConfig {
   if (typeof window === 'undefined') {
     return readServerRuntimeConfig();
   }
-  return window.BRW_CONFIG ?? { publicApiUrl: DEFAULT_API_URL, siteUrl: window.location.origin };
+  if (window.BRW_CONFIG) {
+    return window.BRW_CONFIG;
+  }
+  if (import.meta.env.DEV) {
+    return { publicApiUrl: DEFAULT_API_URL, siteUrl: window.location.origin };
+  }
+  throw new Error('window.BRW_CONFIG is missing: the runtime config script did not run');
 }
 
 /** API base including the `/api` prefix: API_INTERNAL_URL on the server, PUBLIC_API_URL in the browser. */

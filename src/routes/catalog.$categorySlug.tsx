@@ -10,12 +10,13 @@ const categorySearchSchema = z.object({
 
 export const Route = createFileRoute('/catalog/$categorySlug')({
   validateSearch: categorySearchSchema,
-  head: ({ params, matches }) => {
+  head: ({ params, match, matches }) => {
     const language = readHeadLanguage(matches);
+    const { page } = match.search;
     return buildHead({
       title: translate(language, 'pages.category.title', { slug: params.categorySlug }),
       description: translate(language, 'pages.category.description', { slug: params.categorySlug }),
-      path: `/catalog/${params.categorySlug}`,
+      path: page && page > 1 ? `/catalog/${params.categorySlug}?page=${page}` : `/catalog/${params.categorySlug}`,
     });
   },
   component: CategoryRoute,

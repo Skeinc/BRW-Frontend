@@ -32,7 +32,7 @@ async function parseErrorBody(response: Response): Promise<ApiErrorBody> {
 /** Typed fetch wrapper. Errors become `ApiError` with the API `code`. */
 export async function apiRequest<T>(path: string, init: RequestInit = {}): Promise<T> {
   const headers = new Headers(init.headers);
-  if (init.body !== undefined && !headers.has('Content-Type')) {
+  if (init.body !== undefined && !(init.body instanceof FormData) && !headers.has('Content-Type')) {
     headers.set('Content-Type', 'application/json');
   }
   let response: Response;
@@ -47,5 +47,13 @@ export async function apiRequest<T>(path: string, init: RequestInit = {}): Promi
   if (response.status === 204) {
     return undefined as T;
   }
-  return (await response.json()) as T;
+  const text = await response.text();
+  if (!text) {
+    return undefined as T;
+  }
+  try {
+    return JSON.parse(text) as T;
+  } catch {
+    throw new ApiError(response.status, { code: 'HTTP_ERROR', message: 'Invalid response body' });
+  }
 }

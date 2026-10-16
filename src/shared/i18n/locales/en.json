@@ -12,7 +12,8 @@
     "goHome": "Go home",
     "deliveryAndPayment": "Delivery and payment",
     "breadcrumbs": "Breadcrumbs",
-    "installment": "Installments"
+    "installment": "Installments",
+    "adminPanel": "Admin panel"
   },
   "header": {
     "searchPlaceholder": "Search the catalog",
@@ -451,9 +452,19 @@
       "CATEGORY_NOT_FOUND": "Category not found.",
       "PRODUCT_NOT_FOUND": "Product not found.",
       "SLUG_TAKEN": "This address is already taken.",
-      "VALIDATION_FAILED": "Check the entered data.",
       "UNAUTHORIZED": "Sign-in required.",
-      "INTERNAL_ERROR": "Server error. Try again later."
+      "INTERNAL_ERROR": "Server error. Try again later.",
+      "VALIDATION_ERROR": "Check the entered data.",
+      "SKU_TAKEN": "This SKU already exists.",
+      "CATEGORY_DEPTH_EXCEEDED": "Categories can be at most 3 levels deep.",
+      "CATEGORY_NOT_EMPTY": "Cannot delete: the category has products or subcategories.",
+      "COLLECTION_NOT_FOUND": "Collection not found.",
+      "COLLECTION_NOT_EMPTY": "Cannot delete: the collection has products.",
+      "PRODUCT_HAS_ORDERS": "Cannot delete: the product is in orders. Unpublish it instead.",
+      "ARTICLE_NOT_FOUND": "Article not found.",
+      "ORDER_NOT_FOUND": "Order not found.",
+      "IMAGE_INVALID": "Invalid image (JPEG, PNG or WebP, up to 10 MB).",
+      "IMAGE_NOT_FOUND": "Image not found."
     }
   },
   "language": {
@@ -466,5 +477,42 @@
     "heading": "Still have questions?",
     "text": "Give us a call — a manager will confirm the delivery cost and answer any questions about your order.",
     "call": "Call us"
+  },
+  "table": {
+    "pagination": {
+      "pageSize": "Per page",
+      "page": "Page {{page}} of {{totalPages}}",
+      "first": "First",
+      "previous": "Previous",
+      "next": "Next",
+      "last": "Last"
+    }
+  },
+  "admin": {
+    "title": "BRW Admin panel",
+    "nav": {
+      "label": "Admin sections",
+      "categories": "Categories",
+      "collections": "Collections",
+      "products": "Products",
+      "orders": "Orders",
+      "articles": "Articles",
+      "logout": "Log out",
+      "openMenu": "Open menu",
+      "administrator": "Administrator"
+    },
+    "auth": {
+      "title": "Admin sign-in",
+      "subtitle": "Enter the administrator email and password",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "validation": {
+        "email": "Enter a valid email",
+        "password": "Enter the password"
+      },
+      "invalidCredentials": "Invalid email or password"
+    },
+    "panel": "Admin panel"
   }
 }
