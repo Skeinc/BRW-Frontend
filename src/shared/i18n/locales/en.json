@@ -109,24 +109,34 @@
       "title": "Furniture catalog",
       "description": "BRW catalog: wardrobes, beds, dressers, tables, cabinets, shelves.",
       "heading": "Catalog",
-      "lead": "All categories will be here."
+      "lead": "Choose a furniture category: wardrobes, beds, dressers, tables, cabinets, shelves."
     },
     "category": {
-      "title": "Category: {{slug}}",
-      "description": "Products in the \"{{slug}}\" category at BRW.",
-      "lead": "Category products will be here."
+      "title": "{{name}} — buy in Mogilev with delivery across Belarus | BRW",
+      "description": "{{name}} at BRW: prices, photos, availability. Delivery across Belarus, 0% instalments.",
+      "fallbackTitle": "Category"
     },
     "product": {
-      "title": "Product: {{slug}}",
-      "description": "Product page \"{{slug}}\" at BRW.",
-      "lead": "The product page will be here."
+      "title": "{{name}} — {{category}} | BRW",
+      "description": "{{name}}: {{category}} at BRW. Price, specifications and availability. Delivery across Belarus.",
+      "fallbackTitle": "Product"
     },
     "search": {
       "title": "Search",
       "titleWithQuery": "Search: {{q}}",
       "description": "Search the BRW furniture catalog.",
-      "heading": "Search results",
-      "lead": "Search results will be here."
+      "eyebrow": "Search results",
+      "found_one": "{{count}} product found for “{{q}}”",
+      "found_other": "{{count}} products found for “{{q}}”",
+      "searching": "Searching for “{{q}}”…",
+      "nothingFound": "Nothing found for “{{q}}”",
+      "emptyQuery": "Type what you are looking for",
+      "nothingFoundHint": "Check the spelling or try other words. We make cabinet furniture: wardrobes, chests of drawers, beds, tables and hallway units.",
+      "popular": "Popular searches:",
+      "popularQueries": ["sliding wardrobe", "white dresser", "bed 160×200", "hallway unit"],
+      "toCatalog": "Go to the catalog",
+      "call": "Call us",
+      "mayInterest": "You may like"
     },
     "about": {
       "title": "About BRW",
@@ -506,6 +516,11 @@
       "lead": "Add furniture from the catalog or call us — we will help you choose and place the order by phone.",
       "catalog": "Go to the catalog",
       "call": "Call us"
+    },
+    "collection": {
+      "title": "{{name}} collection — BRW furniture",
+      "description": "Furniture of the \"{{name}}\" collection at BRW: prices, photos, availability. Delivery across Belarus.",
+      "fallbackTitle": "Collection"
     }
   },
   "error": {
@@ -1131,6 +1146,131 @@
       "out_of_stock": "Out of stock"
     },
     "productsCount_one": "{{count}} product",
-    "productsCount_other": "{{count}} products"
+    "productsCount_other": "{{count}} products",
+    "sort": {
+      "label": "Sort",
+      "popular": "Most popular",
+      "new": "Newest first",
+      "price_asc": "Price: low to high",
+      "price_desc": "Price: high to low"
+    },
+    "filters": {
+      "title": "Filters",
+      "description": "Product filters",
+      "open": "Filters",
+      "price": "Price, BYN",
+      "priceFrom": "Price from",
+      "priceTo": "Price to",
+      "from": "from {{value}}",
+      "to": "to {{value}}",
+      "priceRange": "Price {{from}} – {{to}}",
+      "collection": "Collection",
+      "material": "Material",
+      "colorBody": "Body colour",
+      "colorFacade": "Facade colour",
+      "inStock": "In stock only",
+      "reset": "Reset filters",
+      "remove": "Remove filter: {{name}}",
+      "show_one": "Show {{count}} product",
+      "show_other": "Show {{count}} products"
+    },
+    "foundCount_one": "{{count}} product found",
+    "foundCount_other": "{{count}} products found",
+    "loadMore_one": "Show {{count}} more product",
+    "loadMore_other": "Show {{count}} more products",
+    "loadMoreError": "Could not load the products. Please try again.",
+    "empty": {
+      "title": "Nothing found",
+      "description": "Try changing or resetting the filters."
+    },
+    "pagination": {
+      "label": "Pages",
+      "previous": "Previous page",
+      "next": "Next page"
+    },
+    "emptyCategory": {
+      "title": "There are no products in this category yet",
+      "description": "New items are coming soon. Have a look at similar categories or call us and we will pick a model to order.",
+      "allCategories": "All categories",
+      "call": "Call us"
+    },
+    "similarCategories": "Similar categories",
+    "aboutCategory": "{{name}}: about the category",
+    "aboutCollection": "{{name}} collection"
+  },
+  "common": {
+    "collapse": "Collapse",
+    "readMore": "Read more",
+    "loadError": "Could not load the data. Please reload the page."
+  },
+  "product": {
+    "gallery": {
+      "zoom": "Zoom the photo",
+      "previous": "Previous photo",
+      "next": "Next photo",
+      "show": "Show photo {{index}}",
+      "zoomDescription": "Enlarged product photo"
+    },
+    "tiles": {
+      "dimensions": "W × H × D",
+      "material": "Material",
+      "facade": "Facades"
+    },
+    "cm": "cm",
+    "sku": "SKU {{sku}}",
+    "collection": "{{name}} collection",
+    "installment": "or from {{monthly}}/month with 0% instalments for {{months}} months",
+    "call": "Call us",
+    "orderNote": "Online ordering is coming soon. For now we take orders by phone: a manager will confirm availability, timing and delivery cost.",
+    "benefits": {
+      "delivery": {
+        "title": "Delivery across Belarus",
+        "text": "from 2 days · free in Mogilev over 500 BYN"
+      },
+      "warranty": {
+        "title": "18-month warranty",
+        "text": "official BRW furniture"
+      },
+      "installment": {
+        "title": "0% instalments",
+        "text": "up to 24 months, no overpayment"
+      },
+      "assembly": {
+        "title": "Assembly",
+        "text": "professional, from 10% of the price"
+      }
+    },
+    "specs": {
+      "width": "Width",
+      "length": "Length",
+      "height": "Height",
+      "heightMax": "Maximum height",
+      "depth": "Depth",
+      "material": "Body material",
+      "colorBody": "Body colour",
+      "colorFacade": "Facade colour"
+    },
+    "specsTitle": "Specifications",
+    "descriptionTitle": "About the model",
+    "faq": {
+      "title": "Frequently asked questions",
+      "delivery": {
+        "question": "How does delivery work?",
+        "answer": "We deliver across Belarus from 2 days. A manager agrees the date and time, and the driver calls before leaving. Delivery in Mogilev is free over 500 BYN."
+      },
+      "assembly": {
+        "question": "Do you assemble the furniture?",
+        "answer": "Yes, our fitters assemble it on the delivery day. Assembly costs from 10% of the price; a manager will give the exact amount."
+      },
+      "warranty": {
+        "question": "What is the warranty?",
+        "answer": "BRW furniture comes with an 18-month warranty. If a factory defect is found, we replace the part or the item."
+      }
+    },
+    "similar": {
+      "eyebrow": "From this category",
+      "title": "Similar products",
+      "all": "All: {{name}}"
+    }
   }
 }

@@ -1,15 +1,27 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { z } from 'zod';
+import {
+  catalogProductFacetsQueryOptions,
+  catalogProductsQueryOptions,
+  catalogSearchSchema,
+  toCatalogFilters,
+  toCatalogParams,
+} from '@/entities/product';
 import { SearchPage } from '@/pages/search';
 import { readHeadLanguage, translate } from '@/shared/i18n';
 import { buildHead } from '@/shared/lib/build-head';
 
-const searchSchema = z.object({
-  q: z.string().optional().catch(undefined),
-});
-
 export const Route = createFileRoute('/search')({
-  validateSearch: searchSchema,
+  validateSearch: catalogSearchSchema,
+  loaderDeps: ({ search }) => search,
+  loader: async ({ context, deps }) => {
+    if (!deps.q) {
+      return;
+    }
+    await Promise.allSettled([
+      context.queryClient.ensureQueryData(catalogProductsQueryOptions(toCatalogParams(deps))),
+      context.queryClient.ensureQueryData(catalogProductFacetsQueryOptions(toCatalogFilters(deps))),
+    ]);
+  },
   head: ({ match, matches }) => {
     const language = readHeadLanguage(matches);
     return buildHead({
@@ -21,10 +33,5 @@ export const Route = createFileRoute('/search')({
       isNoIndex: true,
     });
   },
-  component: SearchRoute,
+  component: SearchPage,
 });
-
-function SearchRoute() {
-  const { q } = Route.useSearch();
-  return <SearchPage q={q} />;
-}

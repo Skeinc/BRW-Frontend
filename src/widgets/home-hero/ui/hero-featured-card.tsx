@@ -11,11 +11,11 @@ interface HeroFeaturedCardProps {
 
 export function HeroFeaturedCard({ product }: HeroFeaturedCardProps) {
   const { t, i18n } = useTranslation();
-  const { slug, name, price, oldPrice, discountPercent, coverImage } = product;
+  const { id, name, price, oldPrice, discountPercent, coverImage } = product;
   return (
     <Link
-      to="/product/$productSlug"
-      params={{ productSlug: slug }}
+      to="/product/$productId"
+      params={{ productId: id }}
       className="absolute right-3 bottom-3 left-3 flex items-center gap-3 rounded-xl border bg-card p-3 shadow-sm sm:right-auto sm:max-w-sm"
     >
       <div className="size-14 shrink-0 overflow-hidden rounded-lg bg-muted">

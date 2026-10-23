@@ -2,9 +2,9 @@ import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { Badge } from '@/shared/ui/badge';
 import { ImagePlaceholder } from '@/shared/ui/image-placeholder';
-import { formatPrice } from '@/shared/lib/format-price';
 import { cn } from '@/shared/lib/utils';
 import type { CatalogProductCard } from '../model/catalog-types';
+import { PriceTag } from './price-tag';
 import { StockBadge } from './stock-badge';
 
 interface ProductCardProps {
@@ -15,9 +15,8 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, highlight, className }: ProductCardProps) {
-  const { t, i18n } = useTranslation();
-  const { slug, name, price, oldPrice, discountPercent, isHit, stockStatus, coverImage, category, collection } =
-    product;
+  const { t } = useTranslation();
+  const { id, name, price, oldPrice, discountPercent, isHit, stockStatus, coverImage, category, collection } = product;
   const badges: ('new' | 'hit')[] = [];
   if (highlight) {
     badges.push(highlight);
@@ -29,8 +28,8 @@ export function ProductCard({ product, highlight, className }: ProductCardProps)
   const isUnavailable = stockStatus === 'out_of_stock';
   return (
     <Link
-      to="/product/$productSlug"
-      params={{ productSlug: slug }}
+      to="/product/$productId"
+      params={{ productId: id }}
       className={cn('group flex h-full flex-col overflow-hidden rounded-xl border bg-card', className)}
     >
       <div className="relative aspect-4/5 overflow-hidden bg-muted">
@@ -65,16 +64,7 @@ export function ProductCard({ product, highlight, className }: ProductCardProps)
       <div className="flex flex-1 flex-col gap-2 p-4">
         <p className="truncate text-xs text-muted-foreground">{caption}</p>
         <p className="line-clamp-2 text-sm font-medium">{name}</p>
-        <div className="mt-auto flex flex-wrap items-baseline gap-x-2">
-          <span className={cn('tabular-price font-bold', discountPercent !== null && 'text-primary')}>
-            {formatPrice(price, i18n.language)}
-          </span>
-          {oldPrice !== null && discountPercent !== null && (
-            <span className="tabular-price text-xs text-muted-foreground line-through">
-              {formatPrice(oldPrice, i18n.language)}
-            </span>
-          )}
-        </div>
+        <PriceTag price={price} oldPrice={oldPrice} discountPercent={discountPercent} className="mt-auto" />
         <StockBadge status={stockStatus} />
       </div>
     </Link>

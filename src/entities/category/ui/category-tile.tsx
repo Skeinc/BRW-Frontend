@@ -10,11 +10,11 @@ interface CategoryTileProps {
 
 export function CategoryTile({ category }: CategoryTileProps) {
   const { t } = useTranslation();
-  const { slug, name, imageUrl, productCount } = category;
+  const { id, name, imageUrl, productCount } = category;
   return (
     <Link
-      to="/catalog/$categorySlug"
-      params={{ categorySlug: slug }}
+      to="/catalog/$categoryId"
+      params={{ categoryId: id }}
       className="group flex flex-col overflow-hidden rounded-xl border bg-card transition-colors hover:border-primary/40"
     >
       <div className="aspect-4/3 overflow-hidden bg-muted">

@@ -7,3 +7,17 @@ export interface CatalogCategory {
   productCount: number;
   children: CatalogCategory[];
 }
+
+export interface CatalogBreadcrumb {
+  id: string;
+  slug: string;
+  name: string;
+}
+
+/** A published category with its subtree, texts and the path from the root. */
+export interface CatalogCategoryDetail extends CatalogCategory {
+  description: string | null;
+  seoTitle: string | null;
+  seoDescription: string | null;
+  breadcrumbs: CatalogBreadcrumb[];
+}

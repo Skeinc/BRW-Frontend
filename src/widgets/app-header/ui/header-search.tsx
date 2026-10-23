@@ -1,18 +1,38 @@
-import { useNavigate } from '@tanstack/react-router';
+import { useNavigate, useRouterState, useSearch } from '@tanstack/react-router';
 import { Search } from 'lucide-react';
-import { useState, type SubmitEvent } from 'react';
+import { useEffect, useState, type SubmitEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/shared/ui/input';
+
+const DEBOUNCE_MS = 300;
 
 export function HeaderSearch() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [query, setQuery] = useState('');
+  const isSearchPage = useRouterState({ select: (state) => state.location.pathname === '/search' });
+  const urlQuery = useSearch({ strict: false, select: (search) => (typeof search.q === 'string' ? search.q : '') });
+  const [query, setQuery] = useState(urlQuery);
+
+  useEffect(() => {
+    setQuery(isSearchPage ? urlQuery : '');
+  }, [isSearchPage, urlQuery]);
+
+  useEffect(() => {
+    const q = query.trim();
+    if (q === '' || q === urlQuery.trim()) {
+      return;
+    }
+    const timer = window.setTimeout(() => {
+      void navigate({ to: '/search', search: { q }, replace: isSearchPage });
+    }, DEBOUNCE_MS);
+    return () => window.clearTimeout(timer);
+  }, [query, urlQuery, isSearchPage, navigate]);
+
   const handleSubmit = (event: SubmitEvent<HTMLFormElement>): void => {
     event.preventDefault();
     const q = query.trim();
     if (q) {
-      void navigate({ to: '/search', search: { q } });
+      void navigate({ to: '/search', search: { q }, replace: isSearchPage });
     }
   };
   return (

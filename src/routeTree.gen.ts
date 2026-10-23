@@ -19,8 +19,9 @@ import { Route as SearchRouteImport } from './routes/search'
 import { Route as AdminAuthedRouteImport } from './routes/admin._authed'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
-import { Route as CatalogCategorySlugRouteImport } from './routes/catalog.$categorySlug'
-import { Route as ProductProductSlugRouteImport } from './routes/product.$productSlug'
+import { Route as CatalogCategoryIdRouteImport } from './routes/catalog.$categoryId'
+import { Route as CollectionCollectionIdRouteImport } from './routes/collection.$collectionId'
+import { Route as ProductProductIdRouteImport } from './routes/product.$productId'
 import { Route as AdminAuthedIndexRouteImport } from './routes/admin._authed.index'
 import { Route as AdminAuthedAnalyticsRouteImport } from './routes/admin._authed.analytics'
 import { Route as AdminAuthedCategoriesRouteImport } from './routes/admin._authed.categories'
@@ -78,14 +79,19 @@ const CatalogIndexRoute = CatalogIndexRouteImport.update({
   path: '/catalog/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CatalogCategorySlugRoute = CatalogCategorySlugRouteImport.update({
-  id: '/catalog/$categorySlug',
-  path: '/catalog/$categorySlug',
+const CatalogCategoryIdRoute = CatalogCategoryIdRouteImport.update({
+  id: '/catalog/$categoryId',
+  path: '/catalog/$categoryId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProductProductSlugRoute = ProductProductSlugRouteImport.update({
-  id: '/product/$productSlug',
-  path: '/product/$productSlug',
+const CollectionCollectionIdRoute = CollectionCollectionIdRouteImport.update({
+  id: '/collection/$collectionId',
+  path: '/collection/$collectionId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductProductIdRoute = ProductProductIdRouteImport.update({
+  id: '/product/$productId',
+  path: '/product/$productId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminAuthedIndexRoute = AdminAuthedIndexRouteImport.update({
@@ -135,8 +141,9 @@ export interface FileRoutesByFullPath {
   '/installment': typeof InstallmentRoute
   '/search': typeof SearchRoute
   '/admin/login': typeof AdminLoginRoute
-  '/catalog/$categorySlug': typeof CatalogCategorySlugRoute
-  '/product/$productSlug': typeof ProductProductSlugRoute
+  '/catalog/$categoryId': typeof CatalogCategoryIdRoute
+  '/collection/$collectionId': typeof CollectionCollectionIdRoute
+  '/product/$productId': typeof ProductProductIdRoute
   '/catalog/': typeof CatalogIndexRoute
   '/admin/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/categories': typeof AdminAuthedCategoriesRoute
@@ -155,8 +162,9 @@ export interface FileRoutesByTo {
   '/installment': typeof InstallmentRoute
   '/search': typeof SearchRoute
   '/admin/login': typeof AdminLoginRoute
-  '/catalog/$categorySlug': typeof CatalogCategorySlugRoute
-  '/product/$productSlug': typeof ProductProductSlugRoute
+  '/catalog/$categoryId': typeof CatalogCategoryIdRoute
+  '/collection/$collectionId': typeof CollectionCollectionIdRoute
+  '/product/$productId': typeof ProductProductIdRoute
   '/catalog': typeof CatalogIndexRoute
   '/admin/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/categories': typeof AdminAuthedCategoriesRoute
@@ -176,8 +184,9 @@ export interface FileRoutesById {
   '/search': typeof SearchRoute
   '/admin/_authed': typeof AdminAuthedRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
-  '/catalog/$categorySlug': typeof CatalogCategorySlugRoute
-  '/product/$productSlug': typeof ProductProductSlugRoute
+  '/catalog/$categoryId': typeof CatalogCategoryIdRoute
+  '/collection/$collectionId': typeof CollectionCollectionIdRoute
+  '/product/$productId': typeof ProductProductIdRoute
   '/catalog/': typeof CatalogIndexRoute
   '/admin/_authed/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/_authed/categories': typeof AdminAuthedCategoriesRoute
@@ -198,8 +207,9 @@ export interface FileRouteTypes {
     | '/installment'
     | '/search'
     | '/admin/login'
-    | '/catalog/$categorySlug'
-    | '/product/$productSlug'
+    | '/catalog/$categoryId'
+    | '/collection/$collectionId'
+    | '/product/$productId'
     | '/catalog/'
     | '/admin/analytics'
     | '/admin/categories'
@@ -218,8 +228,9 @@ export interface FileRouteTypes {
     | '/installment'
     | '/search'
     | '/admin/login'
-    | '/catalog/$categorySlug'
-    | '/product/$productSlug'
+    | '/catalog/$categoryId'
+    | '/collection/$collectionId'
+    | '/product/$productId'
     | '/catalog'
     | '/admin/analytics'
     | '/admin/categories'
@@ -238,8 +249,9 @@ export interface FileRouteTypes {
     | '/search'
     | '/admin/_authed'
     | '/admin/login'
-    | '/catalog/$categorySlug'
-    | '/product/$productSlug'
+    | '/catalog/$categoryId'
+    | '/collection/$collectionId'
+    | '/product/$productId'
     | '/catalog/'
     | '/admin/_authed/analytics'
     | '/admin/_authed/categories'
@@ -258,8 +270,9 @@ export interface RootRouteChildren {
   DeliveryAndPaymentRoute: typeof DeliveryAndPaymentRoute
   InstallmentRoute: typeof InstallmentRoute
   SearchRoute: typeof SearchRoute
-  CatalogCategorySlugRoute: typeof CatalogCategorySlugRoute
-  ProductProductSlugRoute: typeof ProductProductSlugRoute
+  CatalogCategoryIdRoute: typeof CatalogCategoryIdRoute
+  CollectionCollectionIdRoute: typeof CollectionCollectionIdRoute
+  ProductProductIdRoute: typeof ProductProductIdRoute
   CatalogIndexRoute: typeof CatalogIndexRoute
 }
 
@@ -335,18 +348,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CatalogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/catalog/$categorySlug': {
-      id: '/catalog/$categorySlug'
-      path: '/catalog/$categorySlug'
-      fullPath: '/catalog/$categorySlug'
-      preLoaderRoute: typeof CatalogCategorySlugRouteImport
+    '/catalog/$categoryId': {
+      id: '/catalog/$categoryId'
+      path: '/catalog/$categoryId'
+      fullPath: '/catalog/$categoryId'
+      preLoaderRoute: typeof CatalogCategoryIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/product/$productSlug': {
-      id: '/product/$productSlug'
-      path: '/product/$productSlug'
-      fullPath: '/product/$productSlug'
-      preLoaderRoute: typeof ProductProductSlugRouteImport
+    '/collection/$collectionId': {
+      id: '/collection/$collectionId'
+      path: '/collection/$collectionId'
+      fullPath: '/collection/$collectionId'
+      preLoaderRoute: typeof CollectionCollectionIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product/$productId': {
+      id: '/product/$productId'
+      path: '/product/$productId'
+      fullPath: '/product/$productId'
+      preLoaderRoute: typeof ProductProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/_authed/': {
@@ -445,8 +465,9 @@ const rootRouteChildren: RootRouteChildren = {
   DeliveryAndPaymentRoute: DeliveryAndPaymentRoute,
   InstallmentRoute: InstallmentRoute,
   SearchRoute: SearchRoute,
-  CatalogCategorySlugRoute: CatalogCategorySlugRoute,
-  ProductProductSlugRoute: ProductProductSlugRoute,
+  CatalogCategoryIdRoute: CatalogCategoryIdRoute,
+  CollectionCollectionIdRoute: CollectionCollectionIdRoute,
+  ProductProductIdRoute: ProductProductIdRoute,
   CatalogIndexRoute: CatalogIndexRoute,
 }
 export const routeTree = rootRouteImport

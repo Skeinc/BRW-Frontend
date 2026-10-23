@@ -5,6 +5,8 @@ export interface BuildHeadInput {
   description: string;
   path: string;
   isNoIndex?: boolean;
+  /** Absolute or site-relative URL of the image for link previews. */
+  ogImage?: string;
   jsonLd?: Record<string, unknown>;
 }
 
@@ -19,8 +21,9 @@ function serializeJsonLd(jsonLd: Record<string, unknown>): string {
 }
 
 /** Title, description, canonical, Open Graph and optional JSON-LD for a route `head()`. Rendered on the server. */
-export function buildHead({ title, description, path, isNoIndex = false, jsonLd }: BuildHeadInput) {
-  const canonical = `${getRuntimeConfig().siteUrl.replace(/\/$/, '')}${path}`;
+export function buildHead({ title, description, path, isNoIndex = false, ogImage, jsonLd }: BuildHeadInput) {
+  const siteUrl = getRuntimeConfig().siteUrl.replace(/\/$/, '');
+  const canonical = `${siteUrl}${path}`;
   return {
     meta: [
       { title },
@@ -29,6 +32,7 @@ export function buildHead({ title, description, path, isNoIndex = false, jsonLd 
       { property: 'og:description', content: description },
       { property: 'og:url', content: canonical },
       { property: 'og:type', content: 'website' },
+      ...(ogImage ? [{ property: 'og:image', content: new URL(ogImage, `${siteUrl}/`).href }] : []),
       ...(isNoIndex ? [{ name: 'robots', content: 'noindex, follow' }] : []),
     ],
     links: [{ rel: 'canonical', href: canonical }],
