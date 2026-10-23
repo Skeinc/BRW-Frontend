@@ -6,6 +6,7 @@ import { catalogProductsQueryOptions, NEW_ARRIVALS_PARAMS, ProductCard } from '@
 import { Button } from '@/shared/ui/button';
 import { useScrollEdges } from '../model/use-scroll-edges';
 import { ShowcaseHeading } from './showcase-heading';
+import { ProductCardCartButton } from '@/features/add-to-cart';
 
 /** Not the `disabled` attribute: Firefox restores it on reload and it no longer matches the server HTML. */
 const ARROW_CLASS = 'size-11 aria-disabled:pointer-events-none aria-disabled:opacity-50';
@@ -61,7 +62,7 @@ export function NewArrivalsSection() {
       >
         {data.items.map((product) => (
           <li key={product.id} className="w-[70%] shrink-0 snap-start sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
-            <ProductCard product={product} highlight="new" />
+            <ProductCard product={product} highlight="new" footer={<ProductCardCartButton product={product} />} />
           </li>
         ))}
       </ul>

@@ -521,7 +521,24 @@
       "heading": "Your cart is empty",
       "lead": "Add furniture from the catalog or call us — we will help you choose and place the order by phone.",
       "catalog": "Go to the catalog",
-      "call": "Call us"
+      "call": "Call us",
+      "summary": "Request summary",
+      "itemsCount_one": "{{count}} item",
+      "itemsCount_other": "{{count}} items",
+      "checkout": "Place request",
+      "checkoutNote": "A manager will confirm prices and availability.",
+      "continue": "Continue shopping",
+      "clear": "Clear cart",
+      "clearTitle": "Clear the cart?",
+      "clearDescription": "All items will be removed from the cart.",
+      "cancel": "Cancel",
+      "remove": "Remove",
+      "removeItem": "Remove “{{name}}” from the cart",
+      "qtyFor": "Quantity: {{name}}",
+      "decrease": "Decrease quantity",
+      "increase": "Increase quantity",
+      "unavailable": "This product is no longer available and will not be part of the request.",
+      "loadError": "Could not load the product."
     },
     "collection": {
       "title": "{{name}} collection — BRW furniture",
@@ -1290,6 +1307,11 @@
       "eyebrow": "From this category",
       "title": "Similar products",
       "all": "All: {{name}}"
+    },
+    "addToCart": {
+      "label": "Add to cart",
+      "unavailable": "Out of stock",
+      "inCartCount": "In cart: {{count}}"
     }
   }
 }

@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { LayoutGrid, Phone, ShoppingCart } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useCartLines } from '@/entities/cart';
+import { useCartCount } from '@/entities/cart';
 import { LanguageSwitcher } from '@/features/switch-language';
 import { SITE_PHONE, SITE_PHONE_LABEL } from '@/shared/config';
 import { Badge } from '@/shared/ui/badge';
@@ -11,7 +11,7 @@ import { HeaderSearch } from './header-search';
 
 export function AppHeader() {
   const { t } = useTranslation();
-  const itemCount = useCartLines().reduce((sum, line) => sum + line.qty, 0);
+  const itemCount = useCartCount();
   return (
     <header className="sticky top-0 z-40 border-b bg-card">
       <div className="mx-auto flex h-20 w-full max-w-7xl items-center gap-3 px-4 lg:gap-5">

@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { Box, Palette, Phone, Ruler } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { formatDimensions, PriceTag, StockBadge, type CatalogProductDetail } from '@/entities/product';
+import { AddToCartButton } from '@/features/add-to-cart';
 import { SITE_PHONE } from '@/shared/config';
 import { formatPrice } from '@/shared/lib/format-price';
 import { toTelHref } from '@/shared/lib/phone';
@@ -23,7 +24,7 @@ interface SpecTile {
 
 export function ProductSummary({ product }: ProductSummaryProps) {
   const { t, i18n } = useTranslation();
-  const { name, sku, price, oldPrice, discountPercent, stockStatus, collection, material, colorFacade } = product;
+  const { id, name, sku, price, oldPrice, discountPercent, stockStatus, collection, material, colorFacade } = product;
   const dimensions = formatDimensions(product, i18n.language);
   const monthly = (Math.round((Number(price) * CENTS) / INSTALLMENT_MONTHS) / CENTS).toFixed(2);
   const tiles: SpecTile[] = [
@@ -73,7 +74,8 @@ export function ProductSummary({ product }: ProductSummaryProps) {
           ))}
         </ul>
       )}
-      <Button asChild className="h-12 text-base">
+      <AddToCartButton productId={id} stockStatus={stockStatus} name={name} className="h-12 w-full text-base" />
+      <Button asChild variant="outline" className="h-12 text-base">
         <a href={toTelHref(SITE_PHONE)}>
           <Phone aria-hidden />
           {t('product.call')}

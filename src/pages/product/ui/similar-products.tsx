@@ -3,6 +3,7 @@ import { Link } from '@tanstack/react-router';
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { catalogProductsQueryOptions, ProductCard, type CatalogProductDetail } from '@/entities/product';
+import { ProductCardCartButton } from '@/features/add-to-cart';
 
 const SIMILAR_COUNT = 4;
 
@@ -40,7 +41,7 @@ export function SimilarProducts({ product }: SimilarProductsProps) {
       <ul className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         {similar.map((item) => (
           <li key={item.id}>
-            <ProductCard product={item} />
+            <ProductCard product={item} footer={<ProductCardCartButton product={item} />} />
           </li>
         ))}
       </ul>

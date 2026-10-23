@@ -1,40 +1,85 @@
 import { Link } from '@tanstack/react-router';
-import { LayoutGrid, Phone, ShoppingCart } from 'lucide-react';
+import { useState, useSyncExternalStore } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SITE_PHONE } from '@/shared/config';
-import { toTelHref } from '@/shared/lib/phone';
+import { clearCart, useCartCount, useCartItems } from '@/entities/cart';
 import { Button } from '@/shared/ui/button';
+import { Skeleton } from '@/shared/ui/skeleton';
+import { ConfirmDialog } from '@/shared/ui/confirm-dialog';
 import { PageBreadcrumbs } from '@/shared/ui/page-breadcrumbs';
+import { CartEmpty } from './cart-empty';
+import { CartLine } from './cart-line';
+import { CartSummary } from './cart-summary';
+
+const subscribeNoop = (): (() => void) => () => {};
+
+/** The cart lives in localStorage, so the server cannot render it; wait for hydration to avoid an empty-cart flash. */
+function useIsHydrated(): boolean {
+  return useSyncExternalStore(
+    subscribeNoop,
+    () => true,
+    () => false,
+  );
+}
 
 export function CartPage() {
   const { t } = useTranslation();
+  const count = useCartCount();
+  const { items, total, isPending } = useCartItems();
+  const [isClearOpen, setIsClearOpen] = useState(false);
+  const isHydrated = useIsHydrated();
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-6 md:py-8">
+    <section className="mx-auto w-full max-w-7xl px-4 py-6 pb-40 md:py-8 lg:pb-8">
       <PageBreadcrumbs current={t('nav.cart')} />
-      <div className="flex flex-col items-center py-12 text-center md:py-20">
-        <span
-          aria-hidden
-          className="flex size-24 items-center justify-center rounded-full bg-muted text-muted-foreground"
-        >
-          <ShoppingCart className="size-10" strokeWidth={1.5} />
-        </span>
-        <h1 className="mt-8 text-3xl font-bold tracking-tight md:text-4xl">{t('pages.cart.heading')}</h1>
-        <p className="mt-4 max-w-md text-balance text-muted-foreground">{t('pages.cart.lead')}</p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button asChild className="h-11 px-6">
-            <Link to="/catalog">
-              <LayoutGrid aria-hidden />
-              {t('pages.cart.catalog')}
-            </Link>
-          </Button>
-          <Button asChild variant="outline" className="h-11 px-6">
-            <a href={toTelHref(SITE_PHONE)}>
-              <Phone aria-hidden />
-              {t('pages.cart.call')}
-            </a>
-          </Button>
-        </div>
-      </div>
+      {!isHydrated ? (
+        <Skeleton className="h-64 w-full rounded-xl" />
+      ) : items.length === 0 ? (
+        <CartEmpty />
+      ) : (
+        <>
+          <h1 className="mb-6 text-2xl font-bold tracking-tight md:text-4xl">{t('pages.cart.title')}</h1>
+          <div className="grid gap-6 lg:grid-cols-[1fr_22rem] lg:items-start">
+            <ul className="flex flex-col gap-3">
+              {items.map((item) => (
+                <CartLine key={item.line.productId} item={item} />
+              ))}
+            </ul>
+            <CartSummary
+              count={count}
+              total={total}
+              isPending={isPending}
+              hasPayableItems={items.some((item) => item.product)}
+              onClear={() => setIsClearOpen(true)}
+            />
+          </div>
+          <MobileActions onClear={() => setIsClearOpen(true)} />
+          <ConfirmDialog
+            open={isClearOpen}
+            onOpenChange={setIsClearOpen}
+            title={t('pages.cart.clearTitle')}
+            description={t('pages.cart.clearDescription')}
+            confirmLabel={t('pages.cart.clear')}
+            cancelLabel={t('pages.cart.cancel')}
+            onConfirm={() => {
+              clearCart();
+              setIsClearOpen(false);
+            }}
+          />
+        </>
+      )}
     </section>
+  );
+}
+
+function MobileActions({ onClear }: { onClear: () => void }) {
+  const { t } = useTranslation();
+  return (
+    <div className="mt-4 flex gap-3 lg:hidden">
+      <Button asChild variant="outline" className="h-11 flex-1">
+        <Link to="/catalog">{t('pages.cart.continue')}</Link>
+      </Button>
+      <Button type="button" variant="outline" className="h-11 flex-1" onClick={onClear}>
+        {t('pages.cart.clear')}
+      </Button>
+    </div>
   );
 }

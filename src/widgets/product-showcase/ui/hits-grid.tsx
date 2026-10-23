@@ -1,5 +1,6 @@
 import { ProductCard, type CatalogProductCard } from '@/entities/product';
 import { Skeleton } from '@/shared/ui/skeleton';
+import { ProductCardCartButton } from '@/features/add-to-cart';
 
 const SKELETON_COUNT = 8;
 const SKELETON_KEYS = Array.from({ length: SKELETON_COUNT }, (_, index) => `skeleton-${index}`);
@@ -32,7 +33,7 @@ export function HitsGrid({ products }: HitsGridProps) {
     <ul className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
       {products.map((product) => (
         <li key={product.id}>
-          <ProductCard product={product} />
+          <ProductCard product={product} footer={<ProductCardCartButton product={product} />} />
         </li>
       ))}
     </ul>

@@ -1,6 +1,7 @@
 import { ProductCard, type CatalogProductCard } from '@/entities/product';
 import { cn } from '@/shared/lib/utils';
 import { Skeleton } from '@/shared/ui/skeleton';
+import { ProductCardCartButton } from '@/features/add-to-cart';
 
 const SKELETON_COUNT = 6;
 const SKELETON_KEYS = Array.from({ length: SKELETON_COUNT }, (_, index) => `skeleton-${index}`);
@@ -37,7 +38,7 @@ export function ProductGrid({ products, className }: ProductGridProps) {
     <ul className={cn(GRID_CLASSES, className)}>
       {products.map((product) => (
         <li key={product.id}>
-          <ProductCard product={product} />
+          <ProductCard product={product} footer={<ProductCardCartButton product={product} />} />
         </li>
       ))}
     </ul>
