@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { categoryTreeQueryOptions } from '../api/category-queries';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
+import { SearchableSelect } from '@/shared/ui/searchable-select';
 
 const NONE = 'none';
 
@@ -27,23 +27,23 @@ export function CategorySelect({
   className,
 }: CategorySelectProps) {
   const tree = useQuery(categoryTreeQueryOptions);
+  const options = [
+    ...(noneLabel ? [{ value: NONE, label: noneLabel }] : []),
+    ...(tree.data ?? []).map((category) => ({
+      value: category.id,
+      label: category.name,
+      indent: (category.depth - 1) * 1.25,
+    })),
+  ];
   return (
-    <Select value={value || (noneLabel ? NONE : '')} onValueChange={(next) => onValueChange(next === NONE ? '' : next)}>
-      <SelectTrigger id={id} aria-label={ariaLabel} className={className}>
-        <SelectValue placeholder={placeholder} />
-      </SelectTrigger>
-      <SelectContent>
-        {noneLabel ? <SelectItem value={NONE}>{noneLabel}</SelectItem> : null}
-        {(tree.data ?? []).map((category) => (
-          <SelectItem
-            key={category.id}
-            value={category.id}
-            style={{ paddingLeft: `${0.5 + (category.depth - 1) * 1.25}rem` }}
-          >
-            {category.name}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+    <SearchableSelect
+      value={value || (noneLabel ? NONE : '')}
+      onValueChange={(next) => onValueChange(next === NONE ? '' : next)}
+      options={options}
+      placeholder={placeholder}
+      ariaLabel={ariaLabel}
+      id={id}
+      className={className}
+    />
   );
 }

@@ -531,6 +531,7 @@
       "actions": "Actions",
       "close": "Close",
       "required": "Required field",
+      "searchOptions": "Search",
       "nothingFound": "Nothing found",
       "nothingFoundHint": "Try changing the query or resetting the filters."
     },

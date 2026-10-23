@@ -5,7 +5,7 @@ export {
   categoryTreeQueryOptions,
   useMoveCategory,
 } from './api/category-queries';
-export { getDescendantIds, getParentOptions } from './lib/category-tree';
+export { getAncestorNames, getDescendantIds, getParentOptions } from './lib/category-tree';
 export { CategorySelect } from './ui/category-select';
 export {
   MAX_CATEGORY_DEPTH,

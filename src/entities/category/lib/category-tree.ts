@@ -34,3 +34,19 @@ export function getParentOptions(categories: readonly Category[], editing: Categ
       category.id !== editing?.id && !excluded.has(category.id) && category.depth + subtreeHeight <= MAX_CATEGORY_DEPTH,
   );
 }
+
+/** Names of the parents of `categoryId`, from the root down; empty for a root category or an unknown id. */
+export function getAncestorNames(categories: readonly Category[], categoryId: string): string[] {
+  const byId = new Map(categories.map((category) => [category.id, category]));
+  const names: string[] = [];
+  let parentId = byId.get(categoryId)?.parentId ?? null;
+  while (parentId && names.length < MAX_CATEGORY_DEPTH) {
+    const parent = byId.get(parentId);
+    if (!parent) {
+      break;
+    }
+    names.unshift(parent.name);
+    parentId = parent.parentId;
+  }
+  return names;
+}

@@ -1,5 +1,7 @@
+import { useQuery } from '@tanstack/react-query';
 import { Package, Pencil, Plus, SearchX, Trash2, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { categoryTreeQueryOptions, getAncestorNames } from '@/entities/category';
 import type { ProductListItem } from '@/entities/product';
 import { getApiErrorMessage } from '@/shared/api';
 import { formatPrice } from '@/shared/lib/format-price';
@@ -43,6 +45,7 @@ export function ProductsTable({
   onDelete,
 }: ProductsTableProps) {
   const { t, i18n } = useTranslation();
+  const categoryTree = useQuery(categoryTreeQueryOptions);
 
   const columns: DataTableColumn<ProductListItem>[] = [
     {
@@ -72,7 +75,23 @@ export function ProductsTable({
       cell: (row) => row.sku ?? '—',
       className: 'text-muted-foreground',
     },
-    { id: 'category', header: t('admin.products.columns.category'), cell: (row) => row.categoryName },
+    {
+      id: 'category',
+      header: t('admin.products.columns.category'),
+      cell: (row) => {
+        const ancestors = getAncestorNames(categoryTree.data ?? [], row.categoryId);
+        return (
+          <span>
+            {ancestors.map((name) => (
+              <span key={name} className="text-muted-foreground">
+                {name} ›{' '}
+              </span>
+            ))}
+            {row.categoryName}
+          </span>
+        );
+      },
+    },
     {
       id: 'collection',
       header: t('admin.products.columns.collection'),
