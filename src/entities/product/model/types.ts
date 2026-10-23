@@ -47,6 +47,7 @@ export interface Product {
   colorFacade: string | null;
   attributes: Record<string, string>;
   isPublished: boolean;
+  isHit: boolean;
   seoTitle: string | null;
   seoDescription: string | null;
   images: MediaImage[];
@@ -71,6 +72,7 @@ export interface ProductInput {
   colorFacade: string | null;
   attributes: Record<string, string>;
   isPublished: boolean;
+  isHit: boolean;
   seoTitle: string | null;
   seoDescription: string | null;
 }

@@ -9,6 +9,7 @@ import { TABLE_PAGE_SIZES } from '@/shared/lib/table-search';
 import { Badge } from '@/shared/ui/badge';
 import { Button } from '@/shared/ui/button';
 import { DataTable, type DataTableColumn } from '@/shared/ui/data-table';
+import { ImagePlaceholder } from '@/shared/ui/image-placeholder';
 import { StockBadge } from './stock-badge';
 
 interface ProductsTableProps {
@@ -56,12 +57,7 @@ export function ProductsTable({
           {row.cover ? (
             <img src={row.cover.thumbUrl} alt="" loading="lazy" className="size-9 shrink-0 rounded object-cover" />
           ) : (
-            <span
-              className="flex size-9 shrink-0 items-center justify-center rounded bg-muted text-muted-foreground"
-              aria-hidden
-            >
-              <Package className="size-4" />
-            </span>
+            <ImagePlaceholder kind="product" className="size-9 rounded" />
           )}
           <button type="button" className="truncate text-left font-medium hover:underline" onClick={() => onEdit(row)}>
             {row.name}

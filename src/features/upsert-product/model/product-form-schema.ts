@@ -45,6 +45,7 @@ export const productFormSchema = z
     colorFacade: optionalText(100),
     attributes: z.array(z.object({ key: z.string(), value: z.string() })),
     isPublished: z.boolean(),
+    isHit: z.boolean(),
     seoTitle: optionalText(120),
     seoDescription: optionalText(320),
   })

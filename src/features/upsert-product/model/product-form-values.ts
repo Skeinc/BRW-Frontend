@@ -26,6 +26,7 @@ export function toDefaultValues(product: Product | null): ProductFormValues {
     colorFacade: text(product?.colorFacade ?? null),
     attributes: Object.entries(product?.attributes ?? {}).map(([key, value]) => ({ key, value })),
     isPublished: product?.isPublished ?? true,
+    isHit: product?.isHit ?? false,
     seoTitle: text(product?.seoTitle ?? null),
     seoDescription: text(product?.seoDescription ?? null),
   };
@@ -56,6 +57,7 @@ export function toInput(values: ProductFormValues): ProductInput {
         .map((row) => [row.key.trim(), row.value.trim()] as const),
     ),
     isPublished: values.isPublished,
+    isHit: values.isHit,
     seoTitle: emptyToNull(values.seoTitle),
     seoDescription: emptyToNull(values.seoDescription),
   };

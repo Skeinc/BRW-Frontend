@@ -6,6 +6,7 @@ import { TABLE_PAGE_SIZES } from '@/shared/lib/table-search';
 import { Badge } from '@/shared/ui/badge';
 import { Button } from '@/shared/ui/button';
 import { DataTable, type DataTableColumn } from '@/shared/ui/data-table';
+import { ImagePlaceholder } from '@/shared/ui/image-placeholder';
 
 interface CollectionsTableProps {
   /** The collections of the current page, already searched and filtered by the API. */
@@ -55,7 +56,7 @@ export function CollectionsTable({
           {row.cover ? (
             <img src={row.cover.thumbUrl} alt="" loading="lazy" className="size-8 shrink-0 rounded object-cover" />
           ) : (
-            <span className="size-8 shrink-0 rounded bg-muted" aria-hidden />
+            <ImagePlaceholder kind="collection" className="size-8 rounded" />
           )}
           <span className="truncate font-medium">{row.name}</span>
         </div>

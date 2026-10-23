@@ -2,6 +2,7 @@ import { ChevronRight, Folder, FolderOpen, Tag } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import type { Category } from '@/entities/category';
 import { cn } from '@/shared/lib/utils';
+import { ImagePlaceholder } from '@/shared/ui/image-placeholder';
 
 interface CategoryNameCellProps {
   category: Category;
@@ -49,15 +50,11 @@ export function CategoryNameCell({ category, isTree, isExpanded, onToggle }: Cat
           className="mr-3 size-8 shrink-0 rounded object-cover"
         />
       ) : (
-        <span
-          className={cn(
-            'mr-3 flex size-8 shrink-0 items-center justify-center rounded-md',
-            hasChildren ? 'bg-accent text-accent-foreground' : 'bg-muted text-muted-foreground',
-          )}
-          aria-hidden
-        >
-          <Icon className="size-4" />
-        </span>
+        <ImagePlaceholder
+          kind="category"
+          icon={Icon}
+          className={cn('mr-3 size-8 rounded-md', hasChildren && 'bg-accent text-accent-foreground')}
+        />
       )}
       <span className={cn('truncate', category.depth === 1 ? 'font-semibold' : 'font-medium')}>{category.name}</span>
       {hasChildren ? (

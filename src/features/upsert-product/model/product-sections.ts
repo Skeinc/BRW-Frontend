@@ -9,7 +9,7 @@ export const PRODUCT_SECTION_FIELDS: Readonly<Record<ProductSection, readonly st
   details: ['widthMm', 'heightMm', 'heightMaxMm', 'depthMm', 'lengthMm', 'material', 'colorBody', 'colorFacade'],
   attributes: ['attributes'],
   photos: [],
-  publication: ['isPublished', 'seoTitle', 'seoDescription'],
+  publication: ['isPublished', 'isHit', 'seoTitle', 'seoDescription'],
 };
 
 /** Common specifications offered as one-click suggestions. */

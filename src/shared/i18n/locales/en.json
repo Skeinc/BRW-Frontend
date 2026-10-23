@@ -43,8 +43,67 @@
     "home": {
       "title": "BRW furniture",
       "description": "BRW furniture store: wardrobes, beds, dressers, tables and more with delivery across Belarus.",
-      "heading": "Furniture for your home",
-      "lead": "Storefront in progress."
+      "hero": {
+        "title": "Furniture you want to <accent>live</accent> in",
+        "lead": "Black Red White wardrobes, dressers, beds and hallway sets — in stock in Mogilev and delivered across Belarus. We will help you choose the size and colour by phone.",
+        "catalog": "Browse the catalogue",
+        "call": "Request a call",
+        "openProduct": "Open product",
+        "stats": {
+          "years": {
+            "value": "25 years",
+            "label": "in the furniture market"
+          },
+          "models": {
+            "value": "570+",
+            "label": "models in the catalogue"
+          },
+          "installment": {
+            "value": "0%",
+            "label": "instalments up to 24 months"
+          }
+        }
+      },
+      "categories": {
+        "eyebrow": "Catalogue",
+        "title": "Furniture categories",
+        "all": "Full catalogue"
+      },
+      "advantages": {
+        "delivery": {
+          "title": "Delivery across Belarus",
+          "text": "Free in Mogilev from 500 BYN, to other cities from 2 days"
+        },
+        "warranty": {
+          "title": "18-month warranty",
+          "text": "Official BRW furniture with documents and certificates"
+        },
+        "installment": {
+          "title": "0% instalments",
+          "text": "Up to 24 months with no overpayment on instalment cards"
+        },
+        "consultation": {
+          "title": "Consultation",
+          "text": "We help with sizes, colours and assembly by phone"
+        }
+      },
+      "newArrivals": {
+        "eyebrow": "Just added to the catalogue",
+        "title": "New arrivals",
+        "previous": "Previous products",
+        "next": "Next products"
+      },
+      "hits": {
+        "eyebrow": "Customers’ choice",
+        "title": "Bestsellers",
+        "all": "All bestsellers"
+      },
+      "installment": {
+        "eyebrow": "Instalments",
+        "title": "0% overpayment for up to 24 months",
+        "text": "Arrange instalments for any furniture in the store or by phone — no down payment.",
+        "cta": "See the terms"
+      }
     },
     "catalog": {
       "title": "Furniture catalog",
@@ -778,7 +837,9 @@
         "dimensionsHint": "All dimensions are in millimeters (1 m = 1000 mm).",
         "attributeSuggestions": "Add in one click:",
         "publishedText": "The product is visible on the site and in the catalog.",
-        "draftText": "The product is hidden: only you can see it."
+        "draftText": "The product is hidden: only you can see it.",
+        "hit": "Bestseller",
+        "hitText": "The product is shown in the \"Bestsellers\" block on the home page and gets a badge."
       },
       "validation": {
         "price": "Enter the price as a number, for example 1299.00",
@@ -1050,5 +1111,18 @@
       "seoPreviewTitle": "Page title",
       "seoPreviewDescription": "The page description will appear here."
     }
+  },
+  "catalog": {
+    "badge": {
+      "new": "New",
+      "hit": "Bestseller"
+    },
+    "stock": {
+      "in_stock": "In stock",
+      "on_order": "Made to order",
+      "out_of_stock": "Out of stock"
+    },
+    "productsCount_one": "{{count}} product",
+    "productsCount_other": "{{count}} products"
   }
 }
