@@ -504,7 +504,8 @@
       "articles": "Статьи",
       "logout": "Выйти",
       "openMenu": "Открыть меню",
-      "administrator": "Администратор"
+      "administrator": "Администратор",
+      "analytics": "Аналитика"
     },
     "auth": {
       "title": "Вход в админ-панель",
@@ -710,7 +711,15 @@
         "categoryLabel": "Категория",
         "categoryAll": "Любая категория",
         "collectionLabel": "Коллекция",
-        "collectionAll": "Любая коллекция"
+        "collectionAll": "Любая коллекция",
+        "issueLabel": "Требует внимания",
+        "issueAll": "Все товары",
+        "issues": {
+          "out_of_stock": "Нет в наличии",
+          "no_photo": "Без фото",
+          "no_collection": "Без коллекции",
+          "not_ordered": "Без заказов 90 дней"
+        }
       },
       "empty": {
         "title": "Товаров пока нет",
@@ -790,6 +799,106 @@
         "publication": "Публикация"
       },
       "editSubtitle": "Артикул {{sku}}"
+    },
+    "analytics": {
+      "title": "Аналитика",
+      "period": {
+        "label": "Период",
+        "7d": "7 дней",
+        "30d": "30 дней",
+        "90d": "90 дней",
+        "365d": "Год"
+      },
+      "range": "{{from}} – {{to}}",
+      "comparedWith": "Сравнение с предыдущим периодом такой же длины",
+      "kpi": {
+        "revenue": "Выручка",
+        "orders": "Заявки",
+        "averageCheck": "Средний чек",
+        "cancelled": "Отменено",
+        "revenueHint": "Закрытые заявки",
+        "ordersHint": "Все заявки, включая отменённые",
+        "averageCheckHint": "На одну закрытую заявку",
+        "cancelledHint": "Доля отменённых заявок",
+        "vsPrevious": "к прошлому периоду"
+      },
+      "trend": {
+        "revenueTitle": "Выручка по дням",
+        "ordersTitle": "Заявки по дням",
+        "revenueHint": "Сумма закрытых заявок",
+        "ordersHint": "Все заявки, включая отменённые",
+        "metricLabel": "Показатель",
+        "revenue": "Выручка",
+        "orders": "Заявки",
+        "ordersCount": "{{count}} заявок"
+      },
+      "statuses": {
+        "title": "Заявки по статусам",
+        "description": "Где застревают заявки",
+        "total": "заявок"
+      },
+      "activity": {
+        "title": "Когда оформляют заявки",
+        "description": "День недели и час, по вашему местному времени",
+        "less": "меньше",
+        "more": "больше",
+        "cell": "{{day}}, {{hour}}:00",
+        "orders": "{{count}} заявок",
+        "weekdays": {
+          "1": "Пн",
+          "2": "Вт",
+          "3": "Ср",
+          "4": "Чт",
+          "5": "Пт",
+          "6": "Сб",
+          "7": "Вс"
+        }
+      },
+      "products": {
+        "title": "Топ товаров",
+        "description": "Закрытые заявки за период",
+        "sortLabel": "Сортировка",
+        "byRevenue": "По выручке",
+        "byQuantity": "По штукам",
+        "pieces": "{{count}} шт."
+      },
+      "categories": {
+        "title": "Выручка по категориям",
+        "description": "Подкатегории входят в сумму родителя",
+        "scopeLabel": "Уровни",
+        "roots": "Основные",
+        "all": "Все уровни"
+      },
+      "collections": {
+        "title": "Коллекции",
+        "description": "Выручка по коллекциям"
+      },
+      "split": {
+        "title": "Оплата и получение",
+        "description": "Доля заявок",
+        "payment": "Способ оплаты",
+        "delivery": "Получение"
+      },
+      "cities": {
+        "title": "Города доставки",
+        "description": "Число заявок",
+        "orders": "{{count}} заявок"
+      },
+      "health": {
+        "title": "Здоровье каталога",
+        "description": "Что стоит поправить. Нажатие открывает список товаров с нужным фильтром.",
+        "open": "Открыть список",
+        "outOfStock": "Нет в наличии",
+        "withoutPhoto": "Без фото",
+        "hidden": "Скрытые",
+        "withoutCollection": "Без коллекции",
+        "notOrdered": "Без заказов за 90 дней"
+      },
+      "noData": "Нет данных за период",
+      "empty": {
+        "title": "Пока нет заявок за период",
+        "description": "Когда появятся заявки, здесь будут графики и итоги."
+      }
     },
     "orders": {
       "searchPlaceholder": "Номер, имя или телефон",

@@ -21,6 +21,7 @@ import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
 import { Route as CatalogCategorySlugRouteImport } from './routes/catalog.$categorySlug'
 import { Route as ProductProductSlugRouteImport } from './routes/product.$productSlug'
 import { Route as AdminAuthedIndexRouteImport } from './routes/admin._authed.index'
+import { Route as AdminAuthedAnalyticsRouteImport } from './routes/admin._authed.analytics'
 import { Route as AdminAuthedCategoriesRouteImport } from './routes/admin._authed.categories'
 import { Route as AdminAuthedCollectionsRouteImport } from './routes/admin._authed.collections'
 import { Route as AdminAuthedOrdersRouteImport } from './routes/admin._authed.orders'
@@ -86,6 +87,11 @@ const AdminAuthedIndexRoute = AdminAuthedIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminAuthedRoute,
 } as any)
+const AdminAuthedAnalyticsRoute = AdminAuthedAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AdminAuthedRoute,
+} as any)
 const AdminAuthedCategoriesRoute = AdminAuthedCategoriesRouteImport.update({
   id: '/categories',
   path: '/categories',
@@ -125,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/catalog/$categorySlug': typeof CatalogCategorySlugRoute
   '/product/$productSlug': typeof ProductProductSlugRoute
   '/catalog/': typeof CatalogIndexRoute
+  '/admin/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/categories': typeof AdminAuthedCategoriesRoute
   '/admin/collections': typeof AdminAuthedCollectionsRoute
   '/admin/orders': typeof AdminAuthedOrdersRoute
@@ -143,6 +150,7 @@ export interface FileRoutesByTo {
   '/catalog/$categorySlug': typeof CatalogCategorySlugRoute
   '/product/$productSlug': typeof ProductProductSlugRoute
   '/catalog': typeof CatalogIndexRoute
+  '/admin/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/categories': typeof AdminAuthedCategoriesRoute
   '/admin/collections': typeof AdminAuthedCollectionsRoute
   '/admin/orders': typeof AdminAuthedOrdersRoute
@@ -162,6 +170,7 @@ export interface FileRoutesById {
   '/catalog/$categorySlug': typeof CatalogCategorySlugRoute
   '/product/$productSlug': typeof ProductProductSlugRoute
   '/catalog/': typeof CatalogIndexRoute
+  '/admin/_authed/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/_authed/categories': typeof AdminAuthedCategoriesRoute
   '/admin/_authed/collections': typeof AdminAuthedCollectionsRoute
   '/admin/_authed/orders': typeof AdminAuthedOrdersRoute
@@ -182,6 +191,7 @@ export interface FileRouteTypes {
     | '/catalog/$categorySlug'
     | '/product/$productSlug'
     | '/catalog/'
+    | '/admin/analytics'
     | '/admin/categories'
     | '/admin/collections'
     | '/admin/orders'
@@ -200,6 +210,7 @@ export interface FileRouteTypes {
     | '/catalog/$categorySlug'
     | '/product/$productSlug'
     | '/catalog'
+    | '/admin/analytics'
     | '/admin/categories'
     | '/admin/collections'
     | '/admin/orders'
@@ -218,6 +229,7 @@ export interface FileRouteTypes {
     | '/catalog/$categorySlug'
     | '/product/$productSlug'
     | '/catalog/'
+    | '/admin/_authed/analytics'
     | '/admin/_authed/categories'
     | '/admin/_authed/collections'
     | '/admin/_authed/orders'
@@ -324,6 +336,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAuthedIndexRouteImport
       parentRoute: typeof AdminAuthedRoute
     }
+    '/admin/_authed/analytics': {
+      id: '/admin/_authed/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAuthedAnalyticsRouteImport
+      parentRoute: typeof AdminAuthedRoute
+    }
     '/admin/_authed/categories': {
       id: '/admin/_authed/categories'
       path: '/categories'
@@ -363,6 +382,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminAuthedRouteChildren {
+  AdminAuthedAnalyticsRoute: typeof AdminAuthedAnalyticsRoute
   AdminAuthedCategoriesRoute: typeof AdminAuthedCategoriesRoute
   AdminAuthedCollectionsRoute: typeof AdminAuthedCollectionsRoute
   AdminAuthedOrdersRoute: typeof AdminAuthedOrdersRoute
@@ -372,6 +392,7 @@ interface AdminAuthedRouteChildren {
 }
 
 const AdminAuthedRouteChildren: AdminAuthedRouteChildren = {
+  AdminAuthedAnalyticsRoute: AdminAuthedAnalyticsRoute,
   AdminAuthedCategoriesRoute: AdminAuthedCategoriesRoute,
   AdminAuthedCollectionsRoute: AdminAuthedCollectionsRoute,
   AdminAuthedOrdersRoute: AdminAuthedOrdersRoute,

@@ -504,7 +504,8 @@
       "articles": "Артыкулы",
       "logout": "Выйсці",
       "openMenu": "Адкрыць меню",
-      "administrator": "Адміністратар"
+      "administrator": "Адміністратар",
+      "analytics": "Аналітыка"
     },
     "auth": {
       "title": "Уваход у адмін-панэль",
@@ -710,7 +711,15 @@
         "categoryLabel": "Катэгорыя",
         "categoryAll": "Любая катэгорыя",
         "collectionLabel": "Калекцыя",
-        "collectionAll": "Любая калекцыя"
+        "collectionAll": "Любая калекцыя",
+        "issueLabel": "Патрабуе ўвагі",
+        "issueAll": "Усе тавары",
+        "issues": {
+          "out_of_stock": "Няма ў наяўнасці",
+          "no_photo": "Без фота",
+          "no_collection": "Без калекцыі",
+          "not_ordered": "Без заказаў 90 дзён"
+        }
       },
       "empty": {
         "title": "Тавараў пакуль няма",
@@ -790,6 +799,106 @@
         "publication": "Публікацыя"
       },
       "editSubtitle": "Артыкул {{sku}}"
+    },
+    "analytics": {
+      "title": "Аналітыка",
+      "period": {
+        "label": "Перыяд",
+        "7d": "7 дзён",
+        "30d": "30 дзён",
+        "90d": "90 дзён",
+        "365d": "Год"
+      },
+      "range": "{{from}} – {{to}}",
+      "comparedWith": "Параўнанне з папярэднім перыядам такой жа даўжыні",
+      "kpi": {
+        "revenue": "Выручка",
+        "orders": "Заяўкі",
+        "averageCheck": "Сярэдні чэк",
+        "cancelled": "Адменена",
+        "revenueHint": "Закрытыя заяўкі",
+        "ordersHint": "Усе заяўкі, уключаючы адмененыя",
+        "averageCheckHint": "На адну закрытую заяўку",
+        "cancelledHint": "Доля адмененых заявак",
+        "vsPrevious": "да мінулага перыяду"
+      },
+      "trend": {
+        "revenueTitle": "Выручка па днях",
+        "ordersTitle": "Заяўкі па днях",
+        "revenueHint": "Сума закрытых заявак",
+        "ordersHint": "Усе заяўкі, уключаючы адмененыя",
+        "metricLabel": "Паказчык",
+        "revenue": "Выручка",
+        "orders": "Заяўкі",
+        "ordersCount": "{{count}} заявак"
+      },
+      "statuses": {
+        "title": "Заяўкі па статусах",
+        "description": "Дзе затрымліваюцца заяўкі",
+        "total": "заявак"
+      },
+      "activity": {
+        "title": "Калі афармляюць заяўкі",
+        "description": "Дзень тыдня і гадзіна, па вашым мясцовым часе",
+        "less": "менш",
+        "more": "больш",
+        "cell": "{{day}}, {{hour}}:00",
+        "orders": "{{count}} заявак",
+        "weekdays": {
+          "1": "Пн",
+          "2": "Аў",
+          "3": "Ср",
+          "4": "Чц",
+          "5": "Пт",
+          "6": "Сб",
+          "7": "Нд"
+        }
+      },
+      "products": {
+        "title": "Топ тавараў",
+        "description": "Закрытыя заяўкі за перыяд",
+        "sortLabel": "Сартаванне",
+        "byRevenue": "Па выручцы",
+        "byQuantity": "Па штуках",
+        "pieces": "{{count}} шт."
+      },
+      "categories": {
+        "title": "Выручка па катэгорыях",
+        "description": "Падкатэгорыі ўваходзяць у суму бацькі",
+        "scopeLabel": "Узроўні",
+        "roots": "Асноўныя",
+        "all": "Усе ўзроўні"
+      },
+      "collections": {
+        "title": "Калекцыі",
+        "description": "Выручка па калекцыях"
+      },
+      "split": {
+        "title": "Аплата і атрыманне",
+        "description": "Доля заявак",
+        "payment": "Спосаб аплаты",
+        "delivery": "Атрыманне"
+      },
+      "cities": {
+        "title": "Гарады дастаўкі",
+        "description": "Колькасць заявак",
+        "orders": "{{count}} заявак"
+      },
+      "health": {
+        "title": "Здароўе каталога",
+        "description": "Што варта паправіць. Націск адкрывае спіс тавараў з патрэбным фільтрам.",
+        "open": "Адкрыць спіс",
+        "outOfStock": "Няма ў наяўнасці",
+        "withoutPhoto": "Без фота",
+        "hidden": "Схаваныя",
+        "withoutCollection": "Без калекцыі",
+        "notOrdered": "Без заказаў за 90 дзён"
+      },
+      "noData": "Няма даных за перыяд",
+      "empty": {
+        "title": "Пакуль няма заявак за перыяд",
+        "description": "Калі з’явяцца заяўкі, тут будуць графікі і вынікі."
+      }
     },
     "orders": {
       "searchPlaceholder": "Нумар, імя або тэлефон",

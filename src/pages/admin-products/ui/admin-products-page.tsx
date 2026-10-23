@@ -32,7 +32,13 @@ export function AdminProductsPage({ search, onSearchChange }: AdminProductsPageP
   /** Any filter change goes back to the first page. */
   const changeFilter = (patch: Partial<ProductsSearch>) => onSearchChange({ ...patch, page: undefined });
   const resetFilters = () =>
-    changeFilter({ q: undefined, categoryId: undefined, collectionId: undefined, published: undefined });
+    changeFilter({
+      q: undefined,
+      categoryId: undefined,
+      collectionId: undefined,
+      published: undefined,
+      issue: undefined,
+    });
 
   return (
     <div className="flex min-h-0 flex-1 flex-col gap-4">

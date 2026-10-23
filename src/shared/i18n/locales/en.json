@@ -504,7 +504,8 @@
       "articles": "Articles",
       "logout": "Log out",
       "openMenu": "Open menu",
-      "administrator": "Administrator"
+      "administrator": "Administrator",
+      "analytics": "Analytics"
     },
     "auth": {
       "title": "Admin sign-in",
@@ -706,7 +707,15 @@
         "categoryLabel": "Category",
         "categoryAll": "Any category",
         "collectionLabel": "Collection",
-        "collectionAll": "Any collection"
+        "collectionAll": "Any collection",
+        "issueLabel": "Needs attention",
+        "issueAll": "All products",
+        "issues": {
+          "out_of_stock": "Out of stock",
+          "no_photo": "No photo",
+          "no_collection": "No collection",
+          "not_ordered": "No orders in 90 days"
+        }
       },
       "empty": {
         "title": "No products yet",
@@ -786,6 +795,106 @@
         "publication": "Publication"
       },
       "editSubtitle": "SKU {{sku}}"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "period": {
+        "label": "Period",
+        "7d": "7 days",
+        "30d": "30 days",
+        "90d": "90 days",
+        "365d": "Year"
+      },
+      "range": "{{from}} – {{to}}",
+      "comparedWith": "Compared with the previous period of the same length",
+      "kpi": {
+        "revenue": "Revenue",
+        "orders": "Orders",
+        "averageCheck": "Average order",
+        "cancelled": "Cancelled",
+        "revenueHint": "Finished orders",
+        "ordersHint": "All orders, cancelled included",
+        "averageCheckHint": "Per finished order",
+        "cancelledHint": "Share of cancelled orders",
+        "vsPrevious": "vs previous period"
+      },
+      "trend": {
+        "revenueTitle": "Revenue by day",
+        "ordersTitle": "Orders by day",
+        "revenueHint": "Total of finished orders",
+        "ordersHint": "All orders, cancelled included",
+        "metricLabel": "Metric",
+        "revenue": "Revenue",
+        "orders": "Orders",
+        "ordersCount": "{{count}} orders"
+      },
+      "statuses": {
+        "title": "Orders by status",
+        "description": "Where orders get stuck",
+        "total": "orders"
+      },
+      "activity": {
+        "title": "When orders are placed",
+        "description": "Weekday and hour, in your local time",
+        "less": "fewer",
+        "more": "more",
+        "cell": "{{day}}, {{hour}}:00",
+        "orders": "{{count}} orders",
+        "weekdays": {
+          "1": "Mon",
+          "2": "Tue",
+          "3": "Wed",
+          "4": "Thu",
+          "5": "Fri",
+          "6": "Sat",
+          "7": "Sun"
+        }
+      },
+      "products": {
+        "title": "Top products",
+        "description": "Finished orders of the period",
+        "sortLabel": "Sort",
+        "byRevenue": "By revenue",
+        "byQuantity": "By pieces",
+        "pieces": "{{count}} pcs"
+      },
+      "categories": {
+        "title": "Revenue by category",
+        "description": "Subcategories add up to their parent",
+        "scopeLabel": "Levels",
+        "roots": "Top level",
+        "all": "All levels"
+      },
+      "collections": {
+        "title": "Collections",
+        "description": "Revenue by collection"
+      },
+      "split": {
+        "title": "Payment and receiving",
+        "description": "Share of orders",
+        "payment": "Payment method",
+        "delivery": "Receiving"
+      },
+      "cities": {
+        "title": "Delivery cities",
+        "description": "Number of orders",
+        "orders": "{{count}} orders"
+      },
+      "health": {
+        "title": "Catalog health",
+        "description": "What is worth fixing. A tile opens the product list with the matching filter.",
+        "open": "Open list",
+        "outOfStock": "Out of stock",
+        "withoutPhoto": "No photo",
+        "hidden": "Hidden",
+        "withoutCollection": "No collection",
+        "notOrdered": "No orders in 90 days"
+      },
+      "noData": "No data for the period",
+      "empty": {
+        "title": "No orders in this period yet",
+        "description": "Charts and totals will appear here once orders come in."
+      }
     },
     "orders": {
       "searchPlaceholder": "Number, name or phone",

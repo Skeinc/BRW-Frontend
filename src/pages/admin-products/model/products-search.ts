@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { ProductListParams } from '@/entities/product';
+import { PRODUCT_ISSUES, type ProductListParams } from '@/entities/product';
 import { DEFAULT_TABLE_PAGE_SIZE, tablePageSearchSchema } from '@/shared/lib/table-search';
 
 export const productsSearchSchema = tablePageSearchSchema.extend({
@@ -7,6 +7,7 @@ export const productsSearchSchema = tablePageSearchSchema.extend({
   categoryId: z.uuid().optional().catch(undefined),
   collectionId: z.uuid().optional().catch(undefined),
   published: z.enum(['yes', 'no']).optional().catch(undefined),
+  issue: z.enum(PRODUCT_ISSUES).optional().catch(undefined),
   /** The product open in the dialog: `new` for the create form, or a product id. */
   edit: z
     .union([z.literal('new'), z.uuid()])
@@ -17,7 +18,7 @@ export const productsSearchSchema = tablePageSearchSchema.extend({
 export type ProductsSearch = z.infer<typeof productsSearchSchema>;
 
 export function hasProductFilters(search: ProductsSearch): boolean {
-  return Boolean(search.q || search.categoryId || search.collectionId || search.published);
+  return Boolean(search.q || search.categoryId || search.collectionId || search.published || search.issue);
 }
 
 /** Query params of the API list for the URL search of the screen. */
@@ -29,5 +30,6 @@ export function toProductListParams(search: ProductsSearch): ProductListParams {
     categoryId: search.categoryId,
     collectionId: search.collectionId,
     isPublished: search.published ? search.published === 'yes' : undefined,
+    issue: search.issue,
   };
 }

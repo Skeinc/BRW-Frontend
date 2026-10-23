@@ -4,6 +4,11 @@ export type StockStatus = 'in_stock' | 'on_order' | 'out_of_stock';
 
 export const STOCK_STATUSES: readonly StockStatus[] = ['in_stock', 'on_order', 'out_of_stock'];
 
+/** A reason to look at a product again; the analytics page links to the list filtered by it. */
+export type ProductIssue = 'out_of_stock' | 'no_photo' | 'no_collection' | 'not_ordered';
+
+export const PRODUCT_ISSUES: readonly ProductIssue[] = ['out_of_stock', 'no_photo', 'no_collection', 'not_ordered'];
+
 /** One row of the product list. Prices are strings such as `"1299.00"`. */
 export interface ProductListItem {
   id: string;
@@ -77,4 +82,5 @@ export interface ProductListParams {
   categoryId?: string;
   collectionId?: string;
   isPublished?: boolean;
+  issue?: ProductIssue;
 }

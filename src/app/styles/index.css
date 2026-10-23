@@ -32,6 +32,10 @@
   --sidebar-accent-foreground: #d92d3e;
   --sidebar-border: #e8eaed;
   --sidebar-ring: #d92d3e;
+  --chart-1: #2a78d6;
+  --chart-2: #eb6834;
+  --chart-3: #1baf7a;
+  --chart-4: #9ca3af;
 }
 
 .dark {
@@ -61,6 +65,10 @@
   --sidebar-accent-foreground: #f4a1ab;
   --sidebar-border: #2a2f3a;
   --sidebar-ring: #e5475a;
+  --chart-1: #3987e5;
+  --chart-2: #d95926;
+  --chart-3: #199e70;
+  --chart-4: #6b7280;
 }
 
 @theme inline {
@@ -95,6 +103,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
 }
 
 @layer base {

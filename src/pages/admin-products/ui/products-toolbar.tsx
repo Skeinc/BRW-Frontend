@@ -6,6 +6,7 @@ import { ListToolbar } from '@/shared/ui/list-toolbar';
 import { SearchInput } from '@/shared/ui/search-input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
 import { ToolbarButton } from '@/shared/ui/toolbar-button';
+import { PRODUCT_ISSUES, type ProductIssue } from '@/entities/product';
 import type { ProductsSearch } from '../model/products-search';
 
 const ALL = 'all';
@@ -24,7 +25,10 @@ export function ProductsToolbar({ search, hasFilters, onChange, onReset, onCreat
     <ListToolbar
       isFiltered={hasFilters}
       activeFilterCount={
-        Number(Boolean(search.categoryId)) + Number(Boolean(search.collectionId)) + Number(Boolean(search.published))
+        Number(Boolean(search.categoryId)) +
+        Number(Boolean(search.collectionId)) +
+        Number(Boolean(search.published)) +
+        Number(Boolean(search.issue))
       }
       onReset={onReset}
       search={
@@ -62,6 +66,22 @@ export function ProductsToolbar({ search, hasFilters, onChange, onReset, onCreat
               <SelectItem value={ALL}>{t('admin.filters.statusAll')}</SelectItem>
               <SelectItem value="yes">{t('admin.filters.statusPublished')}</SelectItem>
               <SelectItem value="no">{t('admin.filters.statusHidden')}</SelectItem>
+            </SelectContent>
+          </Select>
+          <Select
+            value={search.issue ?? ALL}
+            onValueChange={(value) => onChange({ issue: value === ALL ? undefined : (value as ProductIssue) })}
+          >
+            <SelectTrigger className="h-10 w-52" aria-label={t('admin.products.filters.issueLabel')}>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value={ALL}>{t('admin.products.filters.issueAll')}</SelectItem>
+              {PRODUCT_ISSUES.map((issue) => (
+                <SelectItem key={issue} value={issue}>
+                  {t(`admin.products.filters.issues.${issue}`)}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </>

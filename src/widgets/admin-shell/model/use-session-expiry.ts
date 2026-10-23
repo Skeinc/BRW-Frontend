@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { ApiError } from '@/shared/api';
 
 function isUnauthorized(error: unknown): boolean {
@@ -11,11 +11,24 @@ function isUnauthorized(error: unknown): boolean {
 export function useSessionExpiry(): void {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const isRedirecting = useRef(false);
 
   useEffect(() => {
+    /**
+     * Cached admin data is dropped only after the screen has been left. Removing a query that still has a mounted
+     * observer makes it fetch again, get another 401 and trigger this again without end. Only the first 401 starts
+     * the redirect; the ones that follow while it is under way are ignored.
+     */
     const redirectToLogin = () => {
-      queryClient.removeQueries({ queryKey: ['admin'] });
-      void navigate({ to: '/admin/login' });
+      if (isRedirecting.current) {
+        return;
+      }
+      isRedirecting.current = true;
+      void navigate({ to: '/admin/login' })
+        .then(() => queryClient.removeQueries({ queryKey: ['admin'] }))
+        .finally(() => {
+          isRedirecting.current = false;
+        });
     };
     const unsubscribeQueries = queryClient.getQueryCache().subscribe((event) => {
       if (event.type === 'updated' && event.action.type === 'error' && isUnauthorized(event.action.error)) {

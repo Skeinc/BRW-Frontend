@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 /** Strings that only admin screens contain: they must not be in the main bundle of the storefront. */
-const ADMIN_MARKERS = /admin\.(auth|categories|collections|products|articles|orders)\./;
+const ADMIN_MARKERS = /admin\.(auth|categories|collections|products|articles|orders|analytics)\./;
 const ASSETS_DIR = join('.output', 'public', 'assets');
 
 const entries = existsSync(ASSETS_DIR) ? readdirSync(ASSETS_DIR).filter((name) => /^index-.*\.js$/.test(name)) : [];
