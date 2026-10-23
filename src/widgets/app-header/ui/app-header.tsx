@@ -33,17 +33,20 @@ export function AppHeader() {
         </div>
         <LanguageSwitcher />
         <Button
+          asChild
           variant="outline"
           className="relative h-12 shrink-0 px-3 sm:px-4"
           aria-label={t('nav.cartWithCount', { count: itemCount })}
         >
-          <ShoppingCart aria-hidden />
-          <span className="hidden sm:inline">{t('nav.cart')}</span>
-          {itemCount > 0 && (
-            <Badge className="absolute -right-2 -top-2 min-w-5 justify-center rounded-full px-1 tabular-nums">
-              {itemCount}
-            </Badge>
-          )}
+          <Link to="/cart">
+            <ShoppingCart aria-hidden />
+            <span className="hidden sm:inline">{t('nav.cart')}</span>
+            {itemCount > 0 && (
+              <Badge className="absolute -right-2 -top-2 min-w-5 justify-center rounded-full px-1 tabular-nums">
+                {itemCount}
+              </Badge>
+            )}
+          </Link>
         </Button>
         <Button asChild size="icon" className="size-12 shrink-0 lg:hidden">
           <a href={`tel:${SITE_PHONE}`} aria-label={t('header.phoneLabel')}>

@@ -52,7 +52,7 @@ export function ProductCard({ product, highlight, className }: ProductCardProps)
         <div className="absolute inset-x-3 top-3 flex items-start justify-between gap-2">
           <div className="flex flex-wrap gap-1.5">
             {badges.map((badge) => (
-              <Badge key={badge} variant={badge === 'hit' ? 'default' : 'secondary'}>
+              <Badge key={badge} className={badge === 'new' ? 'bg-foreground text-background' : undefined}>
                 {t(`catalog.badge.${badge}`)}
               </Badge>
             ))}

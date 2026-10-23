@@ -498,6 +498,14 @@
       "lead": "The product may have been removed or the link is outdated. Start from the home page or the catalog.",
       "home": "Go home",
       "catalog": "Open the catalog"
+    },
+    "cart": {
+      "title": "Cart",
+      "description": "Your BRW cart.",
+      "heading": "Your cart is empty",
+      "lead": "Add furniture from the catalog or call us — we will help you choose and place the order by phone.",
+      "catalog": "Go to the catalog",
+      "call": "Call us"
     }
   },
   "error": {

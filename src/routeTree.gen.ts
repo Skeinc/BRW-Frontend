@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as CartRouteImport } from './routes/cart'
 import { Route as DeliveryAndPaymentRouteImport } from './routes/delivery-and-payment'
 import { Route as InstallmentRouteImport } from './routes/installment'
 import { Route as SearchRouteImport } from './routes/search'
@@ -41,6 +42,11 @@ const AboutRoute = AboutRouteImport.update({
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DeliveryAndPaymentRoute = DeliveryAndPaymentRouteImport.update({
@@ -124,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
+  '/cart': typeof CartRoute
   '/delivery-and-payment': typeof DeliveryAndPaymentRoute
   '/installment': typeof InstallmentRoute
   '/search': typeof SearchRoute
@@ -143,6 +150,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminAuthedIndexRoute
+  '/cart': typeof CartRoute
   '/delivery-and-payment': typeof DeliveryAndPaymentRoute
   '/installment': typeof InstallmentRoute
   '/search': typeof SearchRoute
@@ -162,6 +170,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
+  '/cart': typeof CartRoute
   '/delivery-and-payment': typeof DeliveryAndPaymentRoute
   '/installment': typeof InstallmentRoute
   '/search': typeof SearchRoute
@@ -184,6 +193,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/cart'
     | '/delivery-and-payment'
     | '/installment'
     | '/search'
@@ -203,6 +213,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/cart'
     | '/delivery-and-payment'
     | '/installment'
     | '/search'
@@ -221,6 +232,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/cart'
     | '/delivery-and-payment'
     | '/installment'
     | '/search'
@@ -242,6 +254,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRouteWithChildren
+  CartRoute: typeof CartRoute
   DeliveryAndPaymentRoute: typeof DeliveryAndPaymentRoute
   InstallmentRoute: typeof InstallmentRoute
   SearchRoute: typeof SearchRoute
@@ -271,6 +284,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/delivery-and-payment': {
@@ -421,6 +441,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRouteWithChildren,
+  CartRoute: CartRoute,
   DeliveryAndPaymentRoute: DeliveryAndPaymentRoute,
   InstallmentRoute: InstallmentRoute,
   SearchRoute: SearchRoute,
