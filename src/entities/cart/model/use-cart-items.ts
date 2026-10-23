@@ -18,8 +18,24 @@ function toCents(price: string): number {
   return Math.round(Number(price) * CENTS);
 }
 
-/** Cart lines joined with fresh product data. `total` is an API money string. */
-export function useCartItems(): { items: CartItem[]; total: string; isPending: boolean } {
+/** Total of one line as an API money string, computed in cents to avoid float drift. */
+export function getLineTotal(price: string, qty: number): string {
+  return ((toCents(price) * qty) / CENTS).toFixed(2);
+}
+
+interface CartItems {
+  items: CartItem[];
+  /** Money strings: `subtotal` at the old prices, `discount` is what the old prices add, `total` is what is payable. */
+  subtotal: string;
+  discount: string;
+  total: string;
+  /** Pieces that will be ordered; unavailable products are not counted. */
+  count: number;
+  isPending: boolean;
+}
+
+/** Cart lines joined with fresh product data. */
+export function useCartItems(): CartItems {
   const lines = useCartLines();
   const results = useQueries({
     queries: lines.map((line) => ({
@@ -36,13 +52,22 @@ export function useCartItems(): { items: CartItem[]; total: string; isPending: b
       isUnavailable: result?.error instanceof ApiError && result.error.status === NOT_FOUND,
     };
   });
-  const totalCents = items.reduce(
-    (sum, { line, product }) => (product ? sum + toCents(product.price) * line.qty : sum),
-    0,
-  );
+  let totalCents = 0;
+  let subtotalCents = 0;
+  let count = 0;
+  for (const { line, product } of items) {
+    if (product) {
+      count += line.qty;
+      totalCents += toCents(product.price) * line.qty;
+      subtotalCents += toCents(product.oldPrice ?? product.price) * line.qty;
+    }
+  }
   return {
     items,
+    subtotal: (subtotalCents / CENTS).toFixed(2),
+    discount: ((subtotalCents - totalCents) / CENTS).toFixed(2),
     total: (totalCents / CENTS).toFixed(2),
+    count,
     isPending: items.some((item) => item.isPending),
   };
 }

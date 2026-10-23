@@ -5,6 +5,7 @@ import { I18nextProvider } from 'react-i18next';
 import appCss from '@/app/styles/index.css?url';
 import { readServerRuntimeConfig } from '@/shared/config';
 import { getI18n, readLanguage, translate } from '@/shared/i18n';
+import { TooltipProvider } from '@/shared/ui/tooltip';
 import { AppFooter } from '@/widgets/app-footer';
 import { AppHeader } from '@/widgets/app-header';
 
@@ -52,13 +53,13 @@ function RootComponent() {
           {isAdmin ? (
             <Outlet />
           ) : (
-            <>
+            <TooltipProvider>
               <AppHeader />
               <main className="flex-1">
                 <Outlet />
               </main>
               <AppFooter />
-            </>
+            </TooltipProvider>
           )}
         </I18nextProvider>
         <Scripts />

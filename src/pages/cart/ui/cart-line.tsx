@@ -1,15 +1,14 @@
 import { Link } from '@tanstack/react-router';
 import { Trash2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { removeFromCart, type CartItem } from '@/entities/cart';
-import { PriceTag, StockBadge } from '@/entities/product';
+import { getLineTotal, removeFromCart, type CartItem } from '@/entities/cart';
+import { StockBadge } from '@/entities/product';
 import { QtyStepper } from '@/features/add-to-cart';
 import { formatPrice } from '@/shared/lib/format-price';
+import { Badge } from '@/shared/ui/badge';
 import { Button } from '@/shared/ui/button';
 import { ImagePlaceholder } from '@/shared/ui/image-placeholder';
 import { Skeleton } from '@/shared/ui/skeleton';
-
-const CENTS = 100;
 
 export function CartLine({ item }: { item: CartItem }) {
   const { t, i18n } = useTranslation();
@@ -36,7 +35,6 @@ export function CartLine({ item }: { item: CartItem }) {
   }
   const { id, name, sku, price, oldPrice, discountPercent, stockStatus, images } = product;
   const cover = images[0];
-  const lineTotal = (Math.round(Number(price) * CENTS) * line.qty) / CENTS;
   return (
     <li className="flex gap-3 rounded-xl border bg-card p-3 sm:gap-4 sm:p-4">
       <Link
@@ -82,15 +80,24 @@ export function CartLine({ item }: { item: CartItem }) {
         <StockBadge status={stockStatus} />
         <div className="mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
           <QtyStepper productId={id} qty={line.qty} name={name} />
-          <div className="text-right">
-            <p className="tabular-price font-bold">{formatPrice(lineTotal.toFixed(2), i18n.language)}</p>
+          <div className="flex flex-col items-end gap-0.5">
+            <div className="flex flex-wrap items-baseline justify-end gap-x-2">
+              <span className="tabular-price font-bold">
+                {formatPrice(getLineTotal(price, line.qty), i18n.language)}
+              </span>
+              {oldPrice && discountPercent !== null && (
+                <span className="tabular-price text-sm text-muted-foreground line-through">
+                  {formatPrice(getLineTotal(oldPrice, line.qty), i18n.language)}
+                </span>
+              )}
+            </div>
+            {oldPrice && discountPercent !== null && (
+              <Badge className="tabular-price bg-primary/10 text-primary">{`-${discountPercent}%`}</Badge>
+            )}
             {line.qty > 1 && (
-              <PriceTag
-                price={price}
-                oldPrice={oldPrice}
-                discountPercent={discountPercent}
-                className="justify-end text-xs text-muted-foreground"
-              />
+              <span className="tabular-price text-xs text-muted-foreground">
+                {t('pages.cart.perUnit', { price: formatPrice(price, i18n.language) })}
+              </span>
             )}
           </div>
         </div>

@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CartRouteImport } from './routes/cart'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as DeliveryAndPaymentRouteImport } from './routes/delivery-and-payment'
 import { Route as InstallmentRouteImport } from './routes/installment'
 import { Route as SearchRouteImport } from './routes/search'
@@ -23,6 +24,7 @@ import { Route as ArticlesArticleIdRouteImport } from './routes/articles.$articl
 import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
 import { Route as CatalogCategoryIdRouteImport } from './routes/catalog.$categoryId'
 import { Route as CollectionCollectionIdRouteImport } from './routes/collection.$collectionId'
+import { Route as OrderNumberRouteImport } from './routes/order.$number'
 import { Route as ProductProductIdRouteImport } from './routes/product.$productId'
 import { Route as AdminAuthedIndexRouteImport } from './routes/admin._authed.index'
 import { Route as AdminAuthedAnalyticsRouteImport } from './routes/admin._authed.analytics'
@@ -50,6 +52,11 @@ const AdminRoute = AdminRouteImport.update({
 const CartRoute = CartRouteImport.update({
   id: '/cart',
   path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DeliveryAndPaymentRoute = DeliveryAndPaymentRouteImport.update({
@@ -101,6 +108,11 @@ const CollectionCollectionIdRoute = CollectionCollectionIdRouteImport.update({
   path: '/collection/$collectionId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrderNumberRoute = OrderNumberRouteImport.update({
+  id: '/order/$number',
+  path: '/order/$number',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductProductIdRoute = ProductProductIdRouteImport.update({
   id: '/product/$productId',
   path: '/product/$productId',
@@ -149,6 +161,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
   '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/delivery-and-payment': typeof DeliveryAndPaymentRoute
   '/installment': typeof InstallmentRoute
   '/search': typeof SearchRoute
@@ -156,6 +169,7 @@ export interface FileRoutesByFullPath {
   '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/catalog/$categoryId': typeof CatalogCategoryIdRoute
   '/collection/$collectionId': typeof CollectionCollectionIdRoute
+  '/order/$number': typeof OrderNumberRoute
   '/product/$productId': typeof ProductProductIdRoute
   '/articles/': typeof ArticlesIndexRoute
   '/catalog/': typeof CatalogIndexRoute
@@ -172,6 +186,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/admin': typeof AdminAuthedIndexRoute
   '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/delivery-and-payment': typeof DeliveryAndPaymentRoute
   '/installment': typeof InstallmentRoute
   '/search': typeof SearchRoute
@@ -179,6 +194,7 @@ export interface FileRoutesByTo {
   '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/catalog/$categoryId': typeof CatalogCategoryIdRoute
   '/collection/$collectionId': typeof CollectionCollectionIdRoute
+  '/order/$number': typeof OrderNumberRoute
   '/product/$productId': typeof ProductProductIdRoute
   '/articles': typeof ArticlesIndexRoute
   '/catalog': typeof CatalogIndexRoute
@@ -195,6 +211,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
   '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/delivery-and-payment': typeof DeliveryAndPaymentRoute
   '/installment': typeof InstallmentRoute
   '/search': typeof SearchRoute
@@ -203,6 +220,7 @@ export interface FileRoutesById {
   '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/catalog/$categoryId': typeof CatalogCategoryIdRoute
   '/collection/$collectionId': typeof CollectionCollectionIdRoute
+  '/order/$number': typeof OrderNumberRoute
   '/product/$productId': typeof ProductProductIdRoute
   '/articles/': typeof ArticlesIndexRoute
   '/catalog/': typeof CatalogIndexRoute
@@ -221,6 +239,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/cart'
+    | '/checkout'
     | '/delivery-and-payment'
     | '/installment'
     | '/search'
@@ -228,6 +247,7 @@ export interface FileRouteTypes {
     | '/articles/$articleId'
     | '/catalog/$categoryId'
     | '/collection/$collectionId'
+    | '/order/$number'
     | '/product/$productId'
     | '/articles/'
     | '/catalog/'
@@ -244,6 +264,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/cart'
+    | '/checkout'
     | '/delivery-and-payment'
     | '/installment'
     | '/search'
@@ -251,6 +272,7 @@ export interface FileRouteTypes {
     | '/articles/$articleId'
     | '/catalog/$categoryId'
     | '/collection/$collectionId'
+    | '/order/$number'
     | '/product/$productId'
     | '/articles'
     | '/catalog'
@@ -266,6 +288,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/cart'
+    | '/checkout'
     | '/delivery-and-payment'
     | '/installment'
     | '/search'
@@ -274,6 +297,7 @@ export interface FileRouteTypes {
     | '/articles/$articleId'
     | '/catalog/$categoryId'
     | '/collection/$collectionId'
+    | '/order/$number'
     | '/product/$productId'
     | '/articles/'
     | '/catalog/'
@@ -291,12 +315,14 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRouteWithChildren
   CartRoute: typeof CartRoute
+  CheckoutRoute: typeof CheckoutRoute
   DeliveryAndPaymentRoute: typeof DeliveryAndPaymentRoute
   InstallmentRoute: typeof InstallmentRoute
   SearchRoute: typeof SearchRoute
   ArticlesArticleIdRoute: typeof ArticlesArticleIdRoute
   CatalogCategoryIdRoute: typeof CatalogCategoryIdRoute
   CollectionCollectionIdRoute: typeof CollectionCollectionIdRoute
+  OrderNumberRoute: typeof OrderNumberRoute
   ProductProductIdRoute: typeof ProductProductIdRoute
   ArticlesIndexRoute: typeof ArticlesIndexRoute
   CatalogIndexRoute: typeof CatalogIndexRoute
@@ -330,6 +356,13 @@ declare module '@tanstack/react-router' {
       path: '/cart'
       fullPath: '/cart'
       preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/delivery-and-payment': {
@@ -400,6 +433,13 @@ declare module '@tanstack/react-router' {
       path: '/collection/$collectionId'
       fullPath: '/collection/$collectionId'
       preLoaderRoute: typeof CollectionCollectionIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/order/$number': {
+      id: '/order/$number'
+      path: '/order/$number'
+      fullPath: '/order/$number'
+      preLoaderRoute: typeof OrderNumberRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/product/$productId': {
@@ -502,12 +542,14 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AdminRoute: AdminRouteWithChildren,
   CartRoute: CartRoute,
+  CheckoutRoute: CheckoutRoute,
   DeliveryAndPaymentRoute: DeliveryAndPaymentRoute,
   InstallmentRoute: InstallmentRoute,
   SearchRoute: SearchRoute,
   ArticlesArticleIdRoute: ArticlesArticleIdRoute,
   CatalogCategoryIdRoute: CatalogCategoryIdRoute,
   CollectionCollectionIdRoute: CollectionCollectionIdRoute,
+  OrderNumberRoute: OrderNumberRoute,
   ProductProductIdRoute: ProductProductIdRoute,
   ArticlesIndexRoute: ArticlesIndexRoute,
   CatalogIndexRoute: CatalogIndexRoute,

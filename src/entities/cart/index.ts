@@ -8,4 +8,4 @@ export {
   useCartLines,
   type CartLine,
 } from './model/cart-store';
-export { useCartItems, type CartItem } from './model/use-cart-items';
+export { getLineTotal, useCartItems, type CartItem } from './model/use-cart-items';

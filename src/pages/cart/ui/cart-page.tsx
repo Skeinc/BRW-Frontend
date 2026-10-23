@@ -1,8 +1,6 @@
-import { Link } from '@tanstack/react-router';
 import { useState, useSyncExternalStore } from 'react';
 import { useTranslation } from 'react-i18next';
-import { clearCart, useCartCount, useCartItems } from '@/entities/cart';
-import { Button } from '@/shared/ui/button';
+import { clearCart, useCartItems } from '@/entities/cart';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { ConfirmDialog } from '@/shared/ui/confirm-dialog';
 import { PageBreadcrumbs } from '@/shared/ui/page-breadcrumbs';
@@ -23,12 +21,11 @@ function useIsHydrated(): boolean {
 
 export function CartPage() {
   const { t } = useTranslation();
-  const count = useCartCount();
-  const { items, total, isPending } = useCartItems();
+  const { items, count, subtotal, discount, total, isPending } = useCartItems();
   const [isClearOpen, setIsClearOpen] = useState(false);
   const isHydrated = useIsHydrated();
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-6 pb-40 md:py-8 lg:pb-8">
+    <section className="mx-auto w-full max-w-7xl px-4 py-6 md:py-8">
       <PageBreadcrumbs current={t('nav.cart')} />
       {!isHydrated ? (
         <Skeleton className="h-64 w-full rounded-xl" />
@@ -45,13 +42,14 @@ export function CartPage() {
             </ul>
             <CartSummary
               count={count}
+              subtotal={subtotal}
+              discount={discount}
               total={total}
               isPending={isPending}
               hasPayableItems={items.some((item) => item.product)}
               onClear={() => setIsClearOpen(true)}
             />
           </div>
-          <MobileActions onClear={() => setIsClearOpen(true)} />
           <ConfirmDialog
             open={isClearOpen}
             onOpenChange={setIsClearOpen}
@@ -67,19 +65,5 @@ export function CartPage() {
         </>
       )}
     </section>
-  );
-}
-
-function MobileActions({ onClear }: { onClear: () => void }) {
-  const { t } = useTranslation();
-  return (
-    <div className="mt-4 flex gap-3 lg:hidden">
-      <Button asChild variant="outline" className="h-11 flex-1">
-        <Link to="/catalog">{t('pages.cart.continue')}</Link>
-      </Button>
-      <Button type="button" variant="outline" className="h-11 flex-1" onClick={onClear}>
-        {t('pages.cart.clear')}
-      </Button>
-    </div>
   );
 }

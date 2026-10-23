@@ -4,7 +4,6 @@ import { addToCart, useCartLines } from '@/entities/cart';
 import type { StockStatus } from '@/entities/product';
 import { Button } from '@/shared/ui/button';
 import { DisabledWithTooltip } from '@/shared/ui/disabled-with-tooltip';
-import { TooltipProvider } from '@/shared/ui/tooltip';
 import { QtyStepper } from './qty-stepper';
 
 interface AddToCartButtonProps {
@@ -24,13 +23,11 @@ export function AddToCartButton({ productId, stockStatus, name, className }: Add
     return <QtyStepper productId={productId} qty={qty} name={name} isRemovable isInCartLink className={className} />;
   }
   return (
-    <TooltipProvider>
-      <DisabledWithTooltip reason={isUnavailable ? t('product.addToCart.unavailable') : undefined} className="flex">
-        <Button type="button" className={className} disabled={isUnavailable} onClick={() => addToCart(productId)}>
-          <ShoppingCart aria-hidden />
-          {t('product.addToCart.label')}
-        </Button>
-      </DisabledWithTooltip>
-    </TooltipProvider>
+    <DisabledWithTooltip reason={isUnavailable ? t('product.addToCart.unavailable') : undefined} className="flex">
+      <Button type="button" className={className} disabled={isUnavailable} onClick={() => addToCart(productId)}>
+        <ShoppingCart aria-hidden />
+        {t('product.addToCart.label')}
+      </Button>
+    </DisabledWithTooltip>
   );
 }

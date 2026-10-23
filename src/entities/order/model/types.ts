@@ -52,3 +52,22 @@ export interface OrderListParams {
   status?: OrderStatus;
   q?: string;
 }
+
+export interface CreateOrderInput {
+  contactName: string;
+  /** `+375XXXXXXXXX` */
+  phone: string;
+  email?: string;
+  deliveryMethod: DeliveryMethod;
+  /** Required for delivery. */
+  city?: string;
+  address?: string;
+  paymentMethod: PaymentMethod;
+  comment?: string;
+  consent: true;
+  items: { productId: string; qty: number }[];
+}
+
+export interface CreateOrderResult {
+  number: string;
+}

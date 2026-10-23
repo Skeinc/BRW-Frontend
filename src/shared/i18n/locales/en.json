@@ -522,11 +522,11 @@
       "lead": "Add furniture from the catalog or call us — we will help you choose and place the order by phone.",
       "catalog": "Go to the catalog",
       "call": "Call us",
-      "summary": "Request summary",
+      "summary": "Your order",
       "itemsCount_one": "{{count}} item",
       "itemsCount_other": "{{count}} items",
       "checkout": "Place request",
-      "checkoutNote": "A manager will confirm prices and availability.",
+      "checkoutNote": "No payment is needed now. A manager will call back and confirm availability, timing and delivery cost.",
       "continue": "Continue shopping",
       "clear": "Clear cart",
       "clearTitle": "Clear the cart?",
@@ -538,7 +538,15 @@
       "decrease": "Decrease quantity",
       "increase": "Increase quantity",
       "unavailable": "This product is no longer available and will not be part of the request.",
-      "loadError": "Could not load the product."
+      "loadError": "Could not load the product.",
+      "perUnit": "{{price}} each",
+      "goods": "Items ({{count}})",
+      "discount": "Discount",
+      "delivery": "Delivery",
+      "deliveryLater": "calculated at checkout",
+      "total": "Total",
+      "continueShort": "To catalog",
+      "clearShort": "Clear"
     },
     "collection": {
       "title": "{{name}} collection — BRW furniture",
@@ -583,7 +591,8 @@
       "ORDER_NOT_FOUND": "Order not found.",
       "IMAGE_INVALID": "Invalid image (JPEG, PNG or WebP, up to 10 MB).",
       "IMAGE_NOT_FOUND": "Image not found.",
-      "ORDER_STATUS_INVALID": "The order status cannot be changed this way."
+      "ORDER_STATUS_INVALID": "The order status cannot be changed this way.",
+      "ORDER_ITEM_UNAVAILABLE": "Some products are no longer available. Go back to the cart and update your request."
     }
   },
   "language": {
@@ -1313,5 +1322,64 @@
       "unavailable": "Out of stock",
       "inCartCount": "In cart: {{count}}"
     }
+  },
+  "checkout": {
+    "title": "Place a request",
+    "description": "Place a request for BRW furniture: a manager will contact you and confirm availability, timing and delivery cost.",
+    "sections": {
+      "contacts": "Contacts",
+      "delivery": "Receiving",
+      "payment": "Payment"
+    },
+    "fields": {
+      "name": "Full name",
+      "phone": "Phone",
+      "email": "Email (optional)",
+      "city": "City",
+      "address": "Delivery address",
+      "payment": "Payment method",
+      "comment": "Comment"
+    },
+    "delivery": {
+      "delivery": "Delivery",
+      "pickup": "Pickup"
+    },
+    "pickupNote": "You will pick up the order in a store. A manager will confirm the address and time.",
+    "payment": {
+      "cash_on_delivery": "Cash on delivery",
+      "installment": "Installments",
+      "bank_transfer": "Bank transfer"
+    },
+    "consent": "I agree to the processing of my personal data",
+    "validation": {
+      "required": "Fill in this field",
+      "tooLong": "The value is too long",
+      "phone": "Enter the full phone number, for example +375 29 123 45 67",
+      "email": "Enter a valid email",
+      "consent": "Consent to data processing is required",
+      "invalid": "Check the value of this field"
+    },
+    "submit": "Send request",
+    "submitting": "Sending…",
+    "backToCart": "Back to cart",
+    "summary": "Your request",
+    "total": "Total",
+    "totalNote": "A manager will confirm prices and availability.",
+    "unavailableItem": "Product unavailable",
+    "editCart": "Edit"
+  },
+  "order": {
+    "title": "Request #{{number}} received",
+    "description": "Your BRW furniture request has been received.",
+    "heading": "Request received",
+    "numberLabel": "Your request number",
+    "nextTitle": "What happens next",
+    "steps": {
+      "call": "A manager will call you during the next working hours.",
+      "confirm": "They will confirm availability, prices and payment.",
+      "delivery": "They will agree on delivery timing and cost, or pickup."
+    },
+    "toCatalog": "To the catalog",
+    "call": "Call us"
   }
 }

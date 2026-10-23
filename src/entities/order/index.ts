@@ -1,8 +1,10 @@
-export { updateOrderStatus } from './api/order-api';
+export { createOrder, updateOrderStatus } from './api/order-api';
 export { orderQueryOptions, ordersPageQueryOptions, ordersQueryKey, useUpdateOrderStatus } from './api/order-queries';
 export {
   ORDER_STATUS_TRANSITIONS,
   ORDER_STATUSES,
+  type CreateOrderInput,
+  type CreateOrderResult,
   type DeliveryMethod,
   type Order,
   type OrderItem,
