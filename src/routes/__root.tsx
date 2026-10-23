@@ -2,10 +2,12 @@ import type { QueryClient } from '@tanstack/react-query';
 import { createRootRouteWithContext, HeadContent, Outlet, Scripts, useRouterState } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 import { I18nextProvider } from 'react-i18next';
+import { catalogCategoriesQueryOptions } from '@/entities/category';
 import appCss from '@/app/styles/index.css?url';
 import { readServerRuntimeConfig } from '@/shared/config';
 import { getI18n, readLanguage, translate } from '@/shared/i18n';
 import { TooltipProvider } from '@/shared/ui/tooltip';
+import { CookieConsent } from '@/features/cookie-consent';
 import { AppFooter } from '@/widgets/app-footer';
 import { AppHeader } from '@/widgets/app-header';
 
@@ -17,7 +19,14 @@ interface RouterContext {
 
 export const Route = createRootRouteWithContext<RouterContext>()({
   staleTime: Number.POSITIVE_INFINITY,
-  loader: async () => ({ config: await loadRuntimeConfig(), language: readLanguage() }),
+  loader: async ({ context }) => {
+    // The footer lists the categories; a failed request only leaves that column empty.
+    const [config] = await Promise.all([
+      loadRuntimeConfig(),
+      context.queryClient.ensureQueryData(catalogCategoriesQueryOptions).catch(() => undefined),
+    ]);
+    return { config, language: readLanguage() };
+  },
   head: ({ loaderData }) => ({
     meta: [
       { charSet: 'utf-8' },
@@ -59,6 +68,7 @@ function RootComponent() {
                 <Outlet />
               </main>
               <AppFooter />
+              <CookieConsent />
             </TooltipProvider>
           )}
         </I18nextProvider>

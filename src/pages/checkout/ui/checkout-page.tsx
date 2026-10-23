@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useCartItems } from '@/entities/cart';
 import { PlaceOrderForm } from '@/features/place-order';
 import { CheckoutSummary } from './checkout-summary';
+import { SITE_CURRENCY } from '@/shared/config';
+import { track } from '@/shared/lib/analytics/track';
 import { PageBreadcrumbs } from '@/shared/ui/page-breadcrumbs';
 import { Skeleton } from '@/shared/ui/skeleton';
 
@@ -43,7 +45,15 @@ export function CheckoutPage() {
           <div className="max-w-2xl">
             <PlaceOrderForm
               lines={items.filter((item) => !item.isUnavailable).map((item) => item.line)}
-              onPlaced={() => setIsPlaced(true)}
+              onPlaced={(orderNumber) => {
+                setIsPlaced(true);
+                track('order_submitted', {
+                  order_number: orderNumber,
+                  currency: SITE_CURRENCY,
+                  value: Number(total),
+                  items_count: count,
+                });
+              }}
             />
           </div>
           <CheckoutSummary

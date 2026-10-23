@@ -16,7 +16,9 @@ import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as DeliveryAndPaymentRouteImport } from './routes/delivery-and-payment'
 import { Route as InstallmentRouteImport } from './routes/installment'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AdminAuthedRouteImport } from './routes/admin._authed'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as ArticlesIndexRouteImport } from './routes/articles.index'
@@ -69,9 +71,19 @@ const InstallmentRoute = InstallmentRouteImport.update({
   path: '/installment',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminAuthedRoute = AdminAuthedRouteImport.update({
@@ -164,7 +176,9 @@ export interface FileRoutesByFullPath {
   '/checkout': typeof CheckoutRoute
   '/delivery-and-payment': typeof DeliveryAndPaymentRoute
   '/installment': typeof InstallmentRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/search': typeof SearchRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/login': typeof AdminLoginRoute
   '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/catalog/$categoryId': typeof CatalogCategoryIdRoute
@@ -189,7 +203,9 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutRoute
   '/delivery-and-payment': typeof DeliveryAndPaymentRoute
   '/installment': typeof InstallmentRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/search': typeof SearchRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/login': typeof AdminLoginRoute
   '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/catalog/$categoryId': typeof CatalogCategoryIdRoute
@@ -214,7 +230,9 @@ export interface FileRoutesById {
   '/checkout': typeof CheckoutRoute
   '/delivery-and-payment': typeof DeliveryAndPaymentRoute
   '/installment': typeof InstallmentRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/search': typeof SearchRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/_authed': typeof AdminAuthedRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
   '/articles/$articleId': typeof ArticlesArticleIdRoute
@@ -242,7 +260,9 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/delivery-and-payment'
     | '/installment'
+    | '/robots.txt'
     | '/search'
+    | '/sitemap.xml'
     | '/admin/login'
     | '/articles/$articleId'
     | '/catalog/$categoryId'
@@ -267,7 +287,9 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/delivery-and-payment'
     | '/installment'
+    | '/robots.txt'
     | '/search'
+    | '/sitemap.xml'
     | '/admin/login'
     | '/articles/$articleId'
     | '/catalog/$categoryId'
@@ -291,7 +313,9 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/delivery-and-payment'
     | '/installment'
+    | '/robots.txt'
     | '/search'
+    | '/sitemap.xml'
     | '/admin/_authed'
     | '/admin/login'
     | '/articles/$articleId'
@@ -318,7 +342,9 @@ export interface RootRouteChildren {
   CheckoutRoute: typeof CheckoutRoute
   DeliveryAndPaymentRoute: typeof DeliveryAndPaymentRoute
   InstallmentRoute: typeof InstallmentRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
   SearchRoute: typeof SearchRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ArticlesArticleIdRoute: typeof ArticlesArticleIdRoute
   CatalogCategoryIdRoute: typeof CatalogCategoryIdRoute
   CollectionCollectionIdRoute: typeof CollectionCollectionIdRoute
@@ -379,11 +405,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InstallmentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/search': {
       id: '/search'
       path: '/search'
       fullPath: '/search'
       preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/_authed': {
@@ -545,7 +585,9 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRoute: CheckoutRoute,
   DeliveryAndPaymentRoute: DeliveryAndPaymentRoute,
   InstallmentRoute: InstallmentRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
   SearchRoute: SearchRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   ArticlesArticleIdRoute: ArticlesArticleIdRoute,
   CatalogCategoryIdRoute: CatalogCategoryIdRoute,
   CollectionCollectionIdRoute: CollectionCollectionIdRoute,

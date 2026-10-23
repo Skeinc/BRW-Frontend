@@ -1,16 +1,19 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, redirect } from '@tanstack/react-router';
+import { resolveRenamedSlug } from '@/entities/seo';
 import { catalogProductQueryOptions, catalogProductsQueryOptions, buildProductJsonLd } from '@/entities/product';
 import { ProductPage } from '@/pages/product';
 import { readHeadLanguage, translate } from '@/shared/i18n';
 import { buildBreadcrumbTrailJsonLd } from '@/shared/lib/build-breadcrumb-json-ld';
 import { buildHead } from '@/shared/lib/build-head';
-import { rethrowAsNotFound } from '@/shared/lib/rethrow-as-not-found';
 
 export const Route = createFileRoute('/product/$productId')({
   loader: async ({ context, params }) => {
     const product = await context.queryClient
       .ensureQueryData(catalogProductQueryOptions(params.productId))
-      .catch(rethrowAsNotFound);
+      .catch(async (error: unknown) => {
+        const id = await resolveRenamedSlug('product', params.productId, error);
+        throw redirect({ to: '/product/$productId', params: { productId: id }, statusCode: 301 });
+      });
     await Promise.allSettled([
       context.queryClient.ensureQueryData(
         catalogProductsQueryOptions({ category: product.category.slug, pageSize: 5 }),

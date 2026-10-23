@@ -1,4 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, redirect } from '@tanstack/react-router';
+import { resolveRenamedSlug } from '@/entities/seo';
 import { catalogCollectionQueryOptions } from '@/entities/collection';
 import {
   catalogProductFacetsQueryOptions,
@@ -12,7 +13,6 @@ import { CollectionPage } from '@/pages/collection';
 import { readHeadLanguage, translate } from '@/shared/i18n';
 import { buildBreadcrumbTrailJsonLd } from '@/shared/lib/build-breadcrumb-json-ld';
 import { buildHead } from '@/shared/lib/build-head';
-import { rethrowAsNotFound } from '@/shared/lib/rethrow-as-not-found';
 
 export const Route = createFileRoute('/collection/$collectionId')({
   validateSearch: catalogSearchSchema,
@@ -20,7 +20,15 @@ export const Route = createFileRoute('/collection/$collectionId')({
   loader: async ({ context, params, deps }) => {
     const collection = await context.queryClient
       .ensureQueryData(catalogCollectionQueryOptions(params.collectionId))
-      .catch(rethrowAsNotFound);
+      .catch(async (error: unknown) => {
+        const id = await resolveRenamedSlug('collection', params.collectionId, error);
+        throw redirect({
+          to: '/collection/$collectionId',
+          params: { collectionId: id },
+          search: deps,
+          statusCode: 301,
+        });
+      });
     const pinned = { collection: collection.slug };
     await Promise.allSettled([
       context.queryClient.ensureQueryData(catalogProductsQueryOptions(toCatalogParams(deps, pinned))),

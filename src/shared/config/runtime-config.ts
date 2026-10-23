@@ -1,6 +1,10 @@
 export interface RuntimeConfig {
   publicApiUrl: string;
   siteUrl: string;
+  /** Yandex Metrika counter id; analytics stay off while it is empty. */
+  metrikaId?: string;
+  /** GA4 measurement id such as `G-XXXXXXXXXX`; analytics stay off while it is empty. */
+  gaId?: string;
 }
 
 declare global {
@@ -17,6 +21,8 @@ export function readServerRuntimeConfig(): RuntimeConfig {
   return {
     publicApiUrl: process.env.PUBLIC_API_URL ?? DEFAULT_API_URL,
     siteUrl: process.env.PUBLIC_SITE_URL ?? DEFAULT_SITE_URL,
+    metrikaId: process.env.PUBLIC_METRIKA_ID || undefined,
+    gaId: process.env.PUBLIC_GA4_ID || undefined,
   };
 }
 

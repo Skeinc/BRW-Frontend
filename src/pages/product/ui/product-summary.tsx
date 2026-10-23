@@ -74,7 +74,13 @@ export function ProductSummary({ product }: ProductSummaryProps) {
           ))}
         </ul>
       )}
-      <AddToCartButton productId={id} stockStatus={stockStatus} name={name} className="h-12 w-full text-base" />
+      <AddToCartButton
+        productId={id}
+        stockStatus={stockStatus}
+        name={name}
+        price={price}
+        className="h-12 w-full text-base"
+      />
       <Button asChild variant="outline" className="h-12 text-base">
         <a href={toTelHref(SITE_PHONE)}>
           <Phone aria-hidden />

@@ -30,7 +30,7 @@ interface PlaceOrderFormProps {
   /** Lines to send; the page drops the products that are gone, otherwise the API rejects the whole request. */
   lines: readonly CartLine[];
   /** Called before the cart is cleared, so the page does not mistake the emptied cart for a reason to leave. */
-  onPlaced: () => void;
+  onPlaced: (orderNumber: string) => void;
 }
 
 export function PlaceOrderForm({ lines, onPlaced }: PlaceOrderFormProps) {
@@ -47,7 +47,7 @@ export function PlaceOrderForm({ lines, onPlaced }: PlaceOrderFormProps) {
   const submit = useMutation({
     mutationFn: (values: CheckoutFormValues) => createOrder(toOrderInput(values, lines)),
     onSuccess: ({ number }) => {
-      onPlaced();
+      onPlaced(number);
       clearCart();
       void navigate({ to: '/order/$number', params: { number }, replace: true });
     },

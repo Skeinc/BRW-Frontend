@@ -8,6 +8,7 @@ export function ProductCardCartButton({ product }: { product: CatalogProductCard
       productId={product.id}
       stockStatus={product.stockStatus}
       name={product.name}
+      price={product.price}
       className="h-11 w-full"
     />
   );

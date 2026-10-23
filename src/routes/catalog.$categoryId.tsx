@@ -1,4 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, redirect } from '@tanstack/react-router';
+import { resolveRenamedSlug } from '@/entities/seo';
 import { catalogCategoryQueryOptions } from '@/entities/category';
 import {
   catalogProductFacetsQueryOptions,
@@ -12,7 +13,6 @@ import { CategoryPage } from '@/pages/category';
 import { readHeadLanguage, translate } from '@/shared/i18n';
 import { buildBreadcrumbTrailJsonLd } from '@/shared/lib/build-breadcrumb-json-ld';
 import { buildHead } from '@/shared/lib/build-head';
-import { rethrowAsNotFound } from '@/shared/lib/rethrow-as-not-found';
 
 export const Route = createFileRoute('/catalog/$categoryId')({
   validateSearch: catalogSearchSchema,
@@ -20,7 +20,10 @@ export const Route = createFileRoute('/catalog/$categoryId')({
   loader: async ({ context, params, deps }) => {
     const category = await context.queryClient
       .ensureQueryData(catalogCategoryQueryOptions(params.categoryId))
-      .catch(rethrowAsNotFound);
+      .catch(async (error: unknown) => {
+        const id = await resolveRenamedSlug('category', params.categoryId, error);
+        throw redirect({ to: '/catalog/$categoryId', params: { categoryId: id }, search: deps, statusCode: 301 });
+      });
     const pinned = { category: category.slug };
     await Promise.allSettled([
       context.queryClient.ensureQueryData(catalogProductsQueryOptions(toCatalogParams(deps, pinned))),
