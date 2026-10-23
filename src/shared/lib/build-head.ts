@@ -1,4 +1,6 @@
-import { getRuntimeConfig } from '@/shared/config';
+import { getRuntimeConfig, SITE_NAME } from '@/shared/config';
+
+const OG_LOCALE = 'ru_RU';
 
 export interface BuildHeadInput {
   title: string;
@@ -32,6 +34,11 @@ export function buildHead({ title, description, path, isNoIndex = false, ogImage
       { property: 'og:description', content: description },
       { property: 'og:url', content: canonical },
       { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: SITE_NAME },
+      { property: 'og:locale', content: OG_LOCALE },
+      { name: 'twitter:card', content: ogImage ? 'summary_large_image' : 'summary' },
+      { name: 'twitter:title', content: title },
+      { name: 'twitter:description', content: description },
       ...(ogImage ? [{ property: 'og:image', content: new URL(ogImage, `${siteUrl}/`).href }] : []),
       ...(isNoIndex ? [{ name: 'robots', content: 'noindex, follow' }] : []),
     ],

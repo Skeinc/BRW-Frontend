@@ -1,9 +1,11 @@
 import type { QueryClient } from '@tanstack/react-query';
 import { createRootRouteWithContext, HeadContent, Outlet, Scripts, useRouterState } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
-import { I18nextProvider } from 'react-i18next';
+import { I18nextProvider, useTranslation } from 'react-i18next';
 import { catalogCategoriesQueryOptions } from '@/entities/category';
 import appCss from '@/app/styles/index.css?url';
+import cyrillicFont from '@fontsource-variable/inter/files/inter-cyrillic-wght-normal.woff2?url';
+import latinFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import { readServerRuntimeConfig } from '@/shared/config';
 import { getI18n, readLanguage, translate } from '@/shared/i18n';
 import { TooltipProvider } from '@/shared/ui/tooltip';
@@ -35,6 +37,9 @@ export const Route = createRootRouteWithContext<RouterContext>()({
       { name: 'theme-color', content: '#d92d3e' },
     ],
     links: [
+      { rel: 'preload', href: latinFont, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
+      { rel: 'preload', href: cyrillicFont, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
+      ...(loaderData ? [{ rel: 'preconnect', href: loaderData.config.publicApiUrl }] : []),
       { rel: 'stylesheet', href: appCss },
       { rel: 'icon', href: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
       { rel: 'icon', href: '/favicon-16x16.png', type: 'image/png', sizes: '16x16' },
@@ -49,6 +54,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 
 function RootComponent() {
   const { language } = Route.useLoaderData();
+  const { t } = useTranslation();
   const isAdmin = useRouterState({
     select: (state) => state.location.pathname === '/admin' || state.location.pathname.startsWith('/admin/'),
   });
@@ -63,8 +69,14 @@ function RootComponent() {
             <Outlet />
           ) : (
             <TooltipProvider>
+              <a
+                href="#main"
+                className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-card focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:shadow-lg"
+              >
+                {t('common.skipToContent')}
+              </a>
               <AppHeader />
-              <main className="flex-1">
+              <main id="main" tabIndex={-1} className="flex-1 outline-none">
                 <Outlet />
               </main>
               <AppFooter />

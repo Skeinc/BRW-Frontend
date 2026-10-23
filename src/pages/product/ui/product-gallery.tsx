@@ -64,6 +64,8 @@ export function ProductGallery({ name, images, overlay }: ProductGalleryProps) {
               >
                 <img
                   src={image.url}
+                  srcSet={`${image.thumbUrl} 480w, ${image.url} 1600w`}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   alt={image.alt ?? name}
                   width={image.width}
                   height={image.height}

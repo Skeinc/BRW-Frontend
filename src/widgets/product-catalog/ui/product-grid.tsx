@@ -6,7 +6,7 @@ import { ProductCardCartButton } from '@/features/add-to-cart';
 const SKELETON_COUNT = 6;
 const SKELETON_KEYS = Array.from({ length: SKELETON_COUNT }, (_, index) => `skeleton-${index}`);
 
-const GRID_CLASSES = 'grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3';
+const GRID_CLASSES = 'grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4';
 
 interface ProductGridProps {
   /** `undefined` shows skeletons. */

@@ -14,7 +14,7 @@ export function AppHeader() {
   const itemCount = useCartCount();
   return (
     <header className="sticky top-0 z-40 border-b bg-card">
-      <div className="mx-auto flex h-20 w-full max-w-7xl items-center gap-3 px-4 lg:gap-5">
+      <div className="mx-auto flex min-h-16 w-full max-w-7xl flex-wrap items-center gap-x-2 gap-y-2 px-4 py-2 sm:h-20 sm:flex-nowrap sm:gap-x-3 sm:py-0 lg:gap-5">
         <Link to="/" aria-label={t('nav.goHome')} className="shrink-0">
           <BrandLogo tone="onLight" />
         </Link>
@@ -22,6 +22,11 @@ export function AppHeader() {
           <Link to="/catalog">
             <LayoutGrid aria-hidden />
             {t('nav.catalog')}
+          </Link>
+        </Button>
+        <Button asChild variant="outline" size="icon" className="ml-auto size-12 shrink-0 sm:hidden">
+          <Link to="/catalog" aria-label={t('nav.catalog')}>
+            <LayoutGrid aria-hidden />
           </Link>
         </Button>
         <HeaderSearch />

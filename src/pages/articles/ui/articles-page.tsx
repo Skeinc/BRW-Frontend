@@ -1,3 +1,4 @@
+import { ErrorState } from '@/shared/ui/error-state';
 import { useQuery } from '@tanstack/react-query';
 import { getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
@@ -14,7 +15,7 @@ const SKELETON_KEYS = Array.from({ length: 6 }, (_, index) => `skeleton-${index}
 export function ArticlesPage() {
   const { t } = useTranslation();
   const { page } = route.useSearch();
-  const { data, isError, isPlaceholderData } = useQuery(
+  const { data, isError, error, refetch, isFetching, isPlaceholderData } = useQuery(
     catalogArticlesQueryOptions({ page, pageSize: ARTICLES_PAGE_SIZE }),
   );
   return (
@@ -23,9 +24,9 @@ export function ArticlesPage() {
       <h1 className="text-3xl font-bold tracking-tight md:text-4xl">{t('pages.articles.heading')}</h1>
       <p className="mt-3 max-w-2xl text-muted-foreground">{t('pages.articles.lead')}</p>
       {isError && !data && (
-        <p role="alert" className="mt-8 text-muted-foreground">
-          {t('common.loadError')}
-        </p>
+        <div className="mt-8">
+          <ErrorState error={error} onRetry={() => void refetch()} isRetrying={isFetching} />
+        </div>
       )}
       {!data && !isError && (
         <ul aria-hidden className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

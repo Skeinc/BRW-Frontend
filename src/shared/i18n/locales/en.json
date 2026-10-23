@@ -1247,7 +1247,8 @@
       "label": "Pages",
       "previous": "Previous page",
       "next": "Next page"
-    }
+    },
+    "skipToContent": "Skip to content"
   },
   "product": {
     "gallery": {

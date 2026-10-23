@@ -11,7 +11,7 @@ import {
   type CatalogProductFilters,
   type CatalogSearch,
 } from '@/entities/product';
-import { getApiErrorMessage } from '@/shared/api';
+import { ErrorState } from '@/shared/ui/error-state';
 import { ActiveFilterChips } from './active-filter-chips';
 import { CatalogEmpty } from './catalog-empty';
 import { CatalogResults } from './catalog-results';
@@ -50,9 +50,7 @@ export function ProductCatalog({
   let results: ReactNode;
   if (products.isError && !products.data) {
     results = (
-      <p role="alert" className="rounded-xl border bg-card p-6 text-center text-muted-foreground">
-        {getApiErrorMessage(products.error, t)}
-      </p>
+      <ErrorState error={products.error} onRetry={() => void products.refetch()} isRetrying={products.isFetching} />
     );
   } else if (!products.data) {
     results = <ProductGrid products={undefined} />;

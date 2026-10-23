@@ -42,9 +42,12 @@ export function CatalogResults({ params, firstPage, isRefreshing }: CatalogResul
           </Button>
         )}
         {more.isError && (
-          <p role="alert" className="text-sm text-destructive">
-            {t('catalog.loadMoreError')}
-          </p>
+          <div role="alert" className="flex flex-col items-center gap-2">
+            <p className="text-sm text-destructive">{t('catalog.loadMoreError')}</p>
+            <Button variant="outline" size="sm" onClick={() => void more.loadMore()}>
+              {t('error.retry')}
+            </Button>
+          </div>
         )}
         <PagePagination page={page} totalPages={totalPages} />
       </div>

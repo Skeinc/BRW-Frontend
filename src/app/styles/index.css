@@ -2,6 +2,16 @@
 @import 'tw-animate-css';
 @import '@fontsource-variable/inter';
 
+/* Metric-adjusted local fallback so the swap to Inter does not shift the layout. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107.4%;
+  ascent-override: 90.2%;
+  descent-override: 22.5%;
+  line-gap-override: 0%;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -17,7 +27,7 @@
   --secondary: #e8eaed;
   --secondary-foreground: #171a21;
   --muted: #e8eaed;
-  --muted-foreground: #6b7280;
+  --muted-foreground: #5b6270;
   --accent: #fde8ea;
   --accent-foreground: #d92d3e;
   --destructive: #b3202f;
@@ -72,7 +82,7 @@
 }
 
 @theme inline {
-  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter Variable', 'Inter Fallback', ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

@@ -1,47 +1,70 @@
-# BRW Frontend
+# BRW-Frontend
 
-Storefront for the BRW furniture store: TanStack Start (SSR), React 19, Tailwind v4, shadcn/ui, TanStack Router and Query, i18next. Plan: `../docs/BRW-dev-plan.md`. Coding rules: `CLAUDE.md`.
+Витрина и админка интернет-магазина мебели BRW (Black Red White). Стек: TanStack Start (SSR) + Router + Query, React 19, Tailwind 4, shadcn/ui, i18next (ru, be, en).
 
-## Run locally
+Документация проекта: `../docs/BRW-dev-plan.md`. API: `../BRW-Backend`.
+
+## Быстрый старт
+
+Нужны Node.js 24 и запущенный `BRW-Backend` (по умолчанию `http://localhost:3000`).
 
 ```bash
-cp .env.example .env   # optional, defaults work with the API on :3000
 npm ci
-npm run dev            # http://localhost:8080
+cp .env.example .env
+npm run dev          # http://localhost:8080
 ```
 
-The API (`../BRW-Backend`) is not required for the stage 2 shell; later stages call it.
+Весь стек в Docker (postgres, api, web) поднимается из `../BRW-Backend`: `docker compose up --build`.
 
-## Run in Docker
+## Переменные окружения
 
-The `web` service lives in the backend compose file and builds this folder:
+Читаются на сервере при каждом запуске и передаются в браузер через SSR-оболочку, поэтому один образ работает в любой среде (пересборка не нужна).
 
-```bash
-cd ../BRW-Backend
-docker compose --profile web up --build   # web on :8080, api on :3000
-```
+| Переменная | Назначение |
+| --- | --- |
+| `PUBLIC_API_URL` | адрес API для браузера (без `/api`) |
+| `API_INTERNAL_URL` | адрес API для SSR-сервера (в Docker `http://api:3000`) |
+| `PUBLIC_SITE_URL` | публичный адрес витрины: canonical, `sitemap.xml`, `robots.txt` |
+| `PUBLIC_METRIKA_ID` | счётчик Яндекс.Метрики; пусто = аналитика выключена |
+| `PUBLIC_GA4_ID` | GA4 (`G-XXXXXXXXXX`); пусто = выключена |
 
-## Environment
+В `CORS_ORIGIN` бэкенда должен быть `PUBLIC_SITE_URL` витрины.
 
-| Variable           | Where   | Meaning                                                    |
-| ------------------ | ------- | ---------------------------------------------------------- |
-| `PUBLIC_API_URL`   | browser | API origin without `/api` (read at runtime, not build)     |
-| `API_INTERNAL_URL` | server  | API origin for SSR requests (in Compose `http://api:3000`) |
-| `PUBLIC_SITE_URL`  | server  | Public origin of the site, used for canonical URLs         |
-| `PORT`             | server  | Listen port, default 8080 in Docker                        |
+## Скрипты
 
-## Scripts
+| Скрипт | Назначение |
+| --- | --- |
+| `npm run dev` | dev-сервер на порту 8080 |
+| `npm run build` | сборка в `.output/` и проверка типов |
+| `npm start` | запуск собранного SSR-сервера |
+| `npm run typecheck` | `tsc --noEmit` |
+| `npm run lint` / `lint:fix` | oxlint |
+| `npm run format` / `format:check` | prettier |
+| `npm run check:bundle` | в основном бандле нет экранов админки |
+| `npm run pre-commit` | prettier по staged → typecheck → lint (запускает husky) |
 
-| Script                                        | What it does                             |
-| --------------------------------------------- | ---------------------------------------- |
-| `npm run dev`                                 | Dev server with SSR                      |
-| `npm run build`                               | Production build into `.output/`         |
-| `npm start`                                   | Run the built Node server                |
-| `npm run typecheck` / `lint` / `format:check` | Checks (also run by the pre-commit hook) |
-| `npm run format` / `lint:fix`                 | Autofix                                  |
+Тестов в проекте нет по решению проекта; качество проверяют `typecheck`, `lint`, `format:check`, `build` и `check:bundle`.
 
-No tests in this repo by design.
+## Структура
 
-## Branches
+Feature-Sliced Design: `app`, `routes` (тонкие файлы маршрутов), `pages`, `widgets`, `features`, `entities`, `shared`. Правила: `CLAUDE.md`.
 
-`main` is stable, `develop` is the working branch. Features: `feature/<name>` → PR into `develop`. Conventional Commits.
+Служебные маршруты: `/sitemap.xml` (из `GET /api/seo/urls`), `/robots.txt`. Админка живёт под `/admin` (закрыта `noindex`, загружается отдельным чанком).
+
+## Ветки
+
+`feature/*` → PR в `develop` → релиз: merge `develop` → `main` и тег `v1.0.0`. Коммиты: Conventional Commits. Перед коммитом husky запускает `npm run pre-commit`; перед PR выполните также `npm run format:check && npm run build && npm run check:bundle`.
+
+## Как добавить товар
+
+Товары заводятся в админке:
+
+1. Откройте `/admin/login` и войдите (`ADMIN_EMAIL` и пароль из `.env` бэкенда).
+2. «Категории»: создайте и опубликуйте категорию (до 3 уровней). Если нужна подборка, создайте коллекцию.
+3. «Товары» → «Добавить»: название, категория, артикул (уникальный), цена, наличие, описание, атрибуты, SEO-поля.
+4. Загрузите фото (jpeg, png, webp до 10 МБ); первое становится обложкой, порядок меняется перетаскиванием.
+5. Включите «Опубликован». Товар сразу виден в каталоге, поиске и `sitemap.xml`, если опубликована вся цепочка его категорий.
+
+## Docker
+
+`Dockerfile` собирает SSR-сервер (Node 24, порт 8080); переменные из таблицы выше задаются при запуске контейнера.

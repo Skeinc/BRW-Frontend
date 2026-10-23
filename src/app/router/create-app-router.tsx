@@ -4,6 +4,7 @@ import { createQueryClient } from '@/app/query-client';
 import { routeTree } from '@/routeTree.gen';
 import '@/shared/i18n';
 import { RouterErrorFallback } from './router-error-fallback';
+import { RouterPending } from './router-pending';
 import { RouterNotFound } from './router-not-found';
 
 /** Builds a router per request (SSR) or once in the browser. */
@@ -16,6 +17,7 @@ export function createAppRouter() {
     defaultPreload: 'intent',
     defaultErrorComponent: RouterErrorFallback,
     defaultNotFoundComponent: RouterNotFound,
+    defaultPendingComponent: RouterPending,
   });
   setupRouterSsrQueryIntegration({ router, queryClient });
   return router;

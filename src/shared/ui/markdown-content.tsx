@@ -30,7 +30,9 @@ const BASE_COMPONENTS: Components = {
       {children}
     </pre>
   ),
-  img: ({ src, alt }) => <img src={src} alt={alt ?? ''} loading="lazy" className="my-4 max-w-full rounded-lg" />,
+  img: ({ src, alt }) => (
+    <img src={src} alt={alt ?? ''} loading="lazy" decoding="async" className="my-4 max-w-full rounded-lg" />
+  ),
   blockquote: ({ children }) => (
     <blockquote className="my-4 border-l-4 pl-4 text-muted-foreground italic">{children}</blockquote>
   ),
