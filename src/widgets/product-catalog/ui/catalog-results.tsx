@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next';
 import { CATALOG_PAGE_SIZE, type CatalogProductCard } from '@/entities/product';
 import type { Paginated } from '@/shared/api';
 import { Button } from '@/shared/ui/button';
+import { PagePagination } from '@/shared/ui/page-pagination';
 import { Spinner } from '@/shared/ui/spinner';
 import { useLoadMore } from '../model/use-load-more';
-import { CatalogPagination } from './catalog-pagination';
 import { ProductGrid } from './product-grid';
 import type { CatalogProductsParams } from '@/entities/product';
 
@@ -46,7 +46,7 @@ export function CatalogResults({ params, firstPage, isRefreshing }: CatalogResul
             {t('catalog.loadMoreError')}
           </p>
         )}
-        <CatalogPagination page={page} totalPages={totalPages} />
+        <PagePagination page={page} totalPages={totalPages} />
       </div>
     </div>
   );

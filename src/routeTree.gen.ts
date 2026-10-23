@@ -18,6 +18,8 @@ import { Route as InstallmentRouteImport } from './routes/installment'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as AdminAuthedRouteImport } from './routes/admin._authed'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as ArticlesIndexRouteImport } from './routes/articles.index'
+import { Route as ArticlesArticleIdRouteImport } from './routes/articles.$articleId'
 import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
 import { Route as CatalogCategoryIdRouteImport } from './routes/catalog.$categoryId'
 import { Route as CollectionCollectionIdRouteImport } from './routes/collection.$collectionId'
@@ -73,6 +75,16 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => AdminRoute,
+} as any)
+const ArticlesIndexRoute = ArticlesIndexRouteImport.update({
+  id: '/articles/',
+  path: '/articles/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArticlesArticleIdRoute = ArticlesArticleIdRouteImport.update({
+  id: '/articles/$articleId',
+  path: '/articles/$articleId',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CatalogIndexRoute = CatalogIndexRouteImport.update({
   id: '/catalog/',
@@ -141,9 +153,11 @@ export interface FileRoutesByFullPath {
   '/installment': typeof InstallmentRoute
   '/search': typeof SearchRoute
   '/admin/login': typeof AdminLoginRoute
+  '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/catalog/$categoryId': typeof CatalogCategoryIdRoute
   '/collection/$collectionId': typeof CollectionCollectionIdRoute
   '/product/$productId': typeof ProductProductIdRoute
+  '/articles/': typeof ArticlesIndexRoute
   '/catalog/': typeof CatalogIndexRoute
   '/admin/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/categories': typeof AdminAuthedCategoriesRoute
@@ -162,9 +176,11 @@ export interface FileRoutesByTo {
   '/installment': typeof InstallmentRoute
   '/search': typeof SearchRoute
   '/admin/login': typeof AdminLoginRoute
+  '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/catalog/$categoryId': typeof CatalogCategoryIdRoute
   '/collection/$collectionId': typeof CollectionCollectionIdRoute
   '/product/$productId': typeof ProductProductIdRoute
+  '/articles': typeof ArticlesIndexRoute
   '/catalog': typeof CatalogIndexRoute
   '/admin/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/categories': typeof AdminAuthedCategoriesRoute
@@ -184,9 +200,11 @@ export interface FileRoutesById {
   '/search': typeof SearchRoute
   '/admin/_authed': typeof AdminAuthedRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
+  '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/catalog/$categoryId': typeof CatalogCategoryIdRoute
   '/collection/$collectionId': typeof CollectionCollectionIdRoute
   '/product/$productId': typeof ProductProductIdRoute
+  '/articles/': typeof ArticlesIndexRoute
   '/catalog/': typeof CatalogIndexRoute
   '/admin/_authed/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/_authed/categories': typeof AdminAuthedCategoriesRoute
@@ -207,9 +225,11 @@ export interface FileRouteTypes {
     | '/installment'
     | '/search'
     | '/admin/login'
+    | '/articles/$articleId'
     | '/catalog/$categoryId'
     | '/collection/$collectionId'
     | '/product/$productId'
+    | '/articles/'
     | '/catalog/'
     | '/admin/analytics'
     | '/admin/categories'
@@ -228,9 +248,11 @@ export interface FileRouteTypes {
     | '/installment'
     | '/search'
     | '/admin/login'
+    | '/articles/$articleId'
     | '/catalog/$categoryId'
     | '/collection/$collectionId'
     | '/product/$productId'
+    | '/articles'
     | '/catalog'
     | '/admin/analytics'
     | '/admin/categories'
@@ -249,9 +271,11 @@ export interface FileRouteTypes {
     | '/search'
     | '/admin/_authed'
     | '/admin/login'
+    | '/articles/$articleId'
     | '/catalog/$categoryId'
     | '/collection/$collectionId'
     | '/product/$productId'
+    | '/articles/'
     | '/catalog/'
     | '/admin/_authed/analytics'
     | '/admin/_authed/categories'
@@ -270,9 +294,11 @@ export interface RootRouteChildren {
   DeliveryAndPaymentRoute: typeof DeliveryAndPaymentRoute
   InstallmentRoute: typeof InstallmentRoute
   SearchRoute: typeof SearchRoute
+  ArticlesArticleIdRoute: typeof ArticlesArticleIdRoute
   CatalogCategoryIdRoute: typeof CatalogCategoryIdRoute
   CollectionCollectionIdRoute: typeof CollectionCollectionIdRoute
   ProductProductIdRoute: typeof ProductProductIdRoute
+  ArticlesIndexRoute: typeof ArticlesIndexRoute
   CatalogIndexRoute: typeof CatalogIndexRoute
 }
 
@@ -340,6 +366,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/login'
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/articles/': {
+      id: '/articles/'
+      path: '/articles'
+      fullPath: '/articles/'
+      preLoaderRoute: typeof ArticlesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/articles/$articleId': {
+      id: '/articles/$articleId'
+      path: '/articles/$articleId'
+      fullPath: '/articles/$articleId'
+      preLoaderRoute: typeof ArticlesArticleIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/catalog/': {
       id: '/catalog/'
@@ -465,9 +505,11 @@ const rootRouteChildren: RootRouteChildren = {
   DeliveryAndPaymentRoute: DeliveryAndPaymentRoute,
   InstallmentRoute: InstallmentRoute,
   SearchRoute: SearchRoute,
+  ArticlesArticleIdRoute: ArticlesArticleIdRoute,
   CatalogCategoryIdRoute: CatalogCategoryIdRoute,
   CollectionCollectionIdRoute: CollectionCollectionIdRoute,
   ProductProductIdRoute: ProductProductIdRoute,
+  ArticlesIndexRoute: ArticlesIndexRoute,
   CatalogIndexRoute: CatalogIndexRoute,
 }
 export const routeTree = rootRouteImport

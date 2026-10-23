@@ -13,7 +13,8 @@
     "deliveryAndPayment": "Delivery and payment",
     "breadcrumbs": "Breadcrumbs",
     "installment": "Installments",
-    "adminPanel": "Admin panel"
+    "adminPanel": "Admin panel",
+    "articles": "Articles"
   },
   "header": {
     "searchPlaceholder": "Search the catalog",
@@ -103,6 +104,11 @@
         "title": "0% overpayment for up to 24 months",
         "text": "Arrange instalments for any furniture in the store or by phone — no down payment.",
         "cta": "See the terms"
+      },
+      "articles": {
+        "eyebrow": "BRW blog",
+        "title": "Latest articles",
+        "all": "All articles"
       }
     },
     "catalog": {
@@ -521,6 +527,19 @@
       "title": "{{name}} collection — BRW furniture",
       "description": "Furniture of the \"{{name}}\" collection at BRW: prices, photos, availability. Delivery across Belarus.",
       "fallbackTitle": "Collection"
+    },
+    "articles": {
+      "title": "BRW furniture articles",
+      "description": "Tips on choosing and arranging furniture: articles from the BRW store.",
+      "heading": "Articles",
+      "lead": "Tips on choosing, arranging and caring for furniture.",
+      "empty": "No articles have been published yet."
+    },
+    "article": {
+      "fallbackTitle": "Article",
+      "related": "Read also",
+      "all": "All articles",
+      "title": "{{title}} | BRW"
     }
   },
   "error": {
@@ -1183,11 +1202,6 @@
       "title": "Nothing found",
       "description": "Try changing or resetting the filters."
     },
-    "pagination": {
-      "label": "Pages",
-      "previous": "Previous page",
-      "next": "Next page"
-    },
     "emptyCategory": {
       "title": "There are no products in this category yet",
       "description": "New items are coming soon. Have a look at similar categories or call us and we will pick a model to order.",
@@ -1201,7 +1215,12 @@
   "common": {
     "collapse": "Collapse",
     "readMore": "Read more",
-    "loadError": "Could not load the data. Please reload the page."
+    "loadError": "Could not load the data. Please reload the page.",
+    "pagination": {
+      "label": "Pages",
+      "previous": "Previous page",
+      "next": "Next page"
+    }
   },
   "product": {
     "gallery": {

@@ -1,11 +1,11 @@
 import { Link } from '@tanstack/react-router';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { buttonVariants } from '@/shared/ui/button';
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem } from '@/shared/ui/pagination';
+import { buttonVariants } from './button';
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem } from './pagination';
 import { cn } from '@/shared/lib/utils';
 
-interface CatalogPaginationProps {
+interface PagePaginationProps {
   page: number;
   totalPages: number;
 }
@@ -32,20 +32,20 @@ function linkClass(isActive: boolean): string {
   );
 }
 
-export function CatalogPagination({ page, totalPages }: CatalogPaginationProps) {
+export function PagePagination({ page, totalPages }: PagePaginationProps) {
   const { t } = useTranslation();
   if (totalPages <= 1) {
     return null;
   }
   return (
-    <Pagination aria-label={t('catalog.pagination.label')}>
+    <Pagination aria-label={t('common.pagination.label')}>
       <PaginationContent>
         <PaginationItem>
           <Link
             to="."
             search={(prev) => ({ ...prev, page: page - 1 > 1 ? page - 1 : undefined })}
             disabled={page <= 1}
-            aria-label={t('catalog.pagination.previous')}
+            aria-label={t('common.pagination.previous')}
             className={cn(linkClass(false), page <= 1 && 'pointer-events-none opacity-50')}
           >
             <ChevronLeft aria-hidden />
@@ -74,7 +74,7 @@ export function CatalogPagination({ page, totalPages }: CatalogPaginationProps) 
             to="."
             search={(prev) => ({ ...prev, page: page + 1 })}
             disabled={page >= totalPages}
-            aria-label={t('catalog.pagination.next')}
+            aria-label={t('common.pagination.next')}
             className={cn(linkClass(false), page >= totalPages && 'pointer-events-none opacity-50')}
           >
             <ChevronRight aria-hidden />
