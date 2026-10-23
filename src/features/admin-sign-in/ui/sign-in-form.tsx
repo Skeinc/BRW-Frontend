@@ -1,10 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Link } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { adminMeQueryKey, loginAdmin } from '@/entities/admin-session';
 import { ApiError, getApiErrorMessage } from '@/shared/api';
 import { translateFieldError } from '@/shared/lib/form/translate-field-error';
+import { BrandLogo } from '@/shared/ui/brand-logo';
 import { Button } from '@/shared/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/ui/card';
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/shared/ui/field';
@@ -40,7 +42,8 @@ export function SignInForm({ onSuccess }: SignInFormProps) {
 
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="justify-items-center text-center">
+        <BrandLogo tone="onLight" className="mb-3 [&_span.hidden]:block" />
         <CardTitle>{t('admin.auth.title')}</CardTitle>
         <CardDescription>{t('admin.auth.subtitle')}</CardDescription>
       </CardHeader>
@@ -81,6 +84,9 @@ export function SignInForm({ onSuccess }: SignInFormProps) {
           ) : null}
           <Button type="submit" size="lg" loading={signIn.isPending}>
             {t('admin.auth.submit')}
+          </Button>
+          <Button asChild type="button" variant="ghost" size="lg">
+            <Link to="/">{t('nav.goHome')}</Link>
           </Button>
         </form>
       </CardContent>
