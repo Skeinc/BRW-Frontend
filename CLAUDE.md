@@ -1,6 +1,6 @@
 # BRW Storefront
 
-Coding rules for Claude Code in this repo. Stack and plan: `../docs/BRW-dev-plan.md`. Reference project: `../../Vespa/VESPA-Frontend`.
+Coding rules for Claude Code in this repo. Project docs: `../docs/README.md`. Reference project: `../../Vespa/VESPA-Frontend`.
 
 # Tests
 

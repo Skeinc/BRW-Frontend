@@ -2,7 +2,7 @@
 
 Витрина и админка интернет-магазина мебели BRW (Black Red White). Стек: TanStack Start (SSR) + Router + Query, React 19, Tailwind 4, shadcn/ui, i18next (ru, be, en).
 
-Документация проекта: `../docs/BRW-dev-plan.md`. API: `../BRW-Backend`.
+Документация проекта: `../docs/README.md`. API: `../BRW-Backend`.
 
 ## Быстрый старт
 
