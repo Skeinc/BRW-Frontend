@@ -1,4 +1,5 @@
 import { Bar, BarChart, LabelList, XAxis, YAxis } from 'recharts';
+import { cn } from '@/shared/lib/utils';
 import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from '@/shared/ui/chart';
 import { ChartTooltipRow } from './chart-tooltip-row';
 
@@ -24,9 +25,10 @@ interface RankedTickProps {
   payload?: { value: string };
   rows: RankedBarRow[];
   maxChars: number;
+  onRowClick?: (id: string) => void;
 }
 
-function RankedTick({ x = 0, y = 0, payload, rows, maxChars }: RankedTickProps) {
+function RankedTick({ x = 0, y = 0, payload, rows, maxChars, onRowClick }: RankedTickProps) {
   const row = rows.find((candidate) => candidate.id === payload?.value);
   if (!row) {
     return null;
@@ -39,7 +41,22 @@ function RankedTick({ x = 0, y = 0, payload, rows, maxChars }: RankedTickProps) 
       y={y}
       dy={4}
       textAnchor="end"
-      className={isNested ? 'fill-muted-foreground text-xs' : 'fill-foreground text-xs font-semibold'}
+      className={cn(
+        isNested ? 'fill-muted-foreground text-xs' : 'fill-foreground text-xs font-semibold',
+        onRowClick && 'cursor-pointer hover:underline',
+      )}
+      role={onRowClick ? 'link' : undefined}
+      tabIndex={onRowClick ? 0 : undefined}
+      onClick={onRowClick ? () => onRowClick(row.id) : undefined}
+      onKeyDown={
+        onRowClick
+          ? (event) => {
+              if (event.key === 'Enter') {
+                onRowClick(row.id);
+              }
+            }
+          : undefined
+      }
     >
       <title>{row.label}</title>
       {isNested ? `› ${text}` : text}
@@ -53,10 +70,12 @@ interface RankedBarChartProps {
   color: string;
   /** Width of the label column; a narrow card uses less. */
   labelWidth?: number;
+  /** Makes the labels and bars clickable; gets the id of the row. */
+  onRowClick?: (id: string) => void;
 }
 
 /** Horizontal bars sorted by the caller, one row each, with the label on the left and the value at the bar end. */
-export function RankedBarChart({ rows, color, labelWidth = DEFAULT_LABEL_WIDTH }: RankedBarChartProps) {
+export function RankedBarChart({ rows, color, labelWidth = DEFAULT_LABEL_WIDTH, onRowClick }: RankedBarChartProps) {
   const config = { value: { label: '', color } } satisfies ChartConfig;
   return (
     <ChartContainer config={config} className="aspect-auto w-full" style={{ height: rows.length * ROW_HEIGHT + 8 }}>
@@ -69,7 +88,7 @@ export function RankedBarChart({ rows, color, labelWidth = DEFAULT_LABEL_WIDTH }
           tickLine={false}
           axisLine={false}
           interval={0}
-          tick={<RankedTick rows={rows} maxChars={Math.floor(labelWidth / LABEL_CHAR_WIDTH)} />}
+          tick={<RankedTick rows={rows} maxChars={Math.floor(labelWidth / LABEL_CHAR_WIDTH)} onRowClick={onRowClick} />}
         />
         <ChartTooltip
           cursor={false}
@@ -86,7 +105,14 @@ export function RankedBarChart({ rows, color, labelWidth = DEFAULT_LABEL_WIDTH }
             />
           }
         />
-        <Bar dataKey="value" fill="var(--color-value)" radius={[0, 4, 4, 0]} barSize={14}>
+        <Bar
+          dataKey="value"
+          fill="var(--color-value)"
+          radius={[0, 4, 4, 0]}
+          barSize={14}
+          className={onRowClick ? 'cursor-pointer' : undefined}
+          onClick={onRowClick ? (bar) => onRowClick(String((bar.payload as Partial<RankedBarRow>).id)) : undefined}
+        >
           <LabelList dataKey="valueLabel" position="right" className="fill-foreground text-xs font-medium" />
         </Bar>
       </BarChart>

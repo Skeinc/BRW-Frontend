@@ -42,9 +42,18 @@ export function QtyStepper({
         <Minus aria-hidden />
       </Button>
       {isInCartLink ? (
-        <Button asChild className="h-11 min-w-0 flex-1">
-          <Link to="/cart">{t('product.addToCart.inCartCount', { count: qty })}</Link>
-        </Button>
+        <>
+          <Link
+            to="/cart"
+            aria-label={t('product.addToCart.inCartCount', { count: qty })}
+            className="tabular-price flex h-11 min-w-0 flex-1 items-center justify-center px-1 font-medium sm:hidden"
+          >
+            {qty}
+          </Link>
+          <Button asChild className="hidden h-11 min-w-0 flex-1 sm:inline-flex">
+            <Link to="/cart">{t('product.addToCart.inCartCount', { count: qty })}</Link>
+          </Button>
+        </>
       ) : (
         <span aria-live="polite" className="tabular-price min-w-10 px-1 text-center font-medium">
           {qty}

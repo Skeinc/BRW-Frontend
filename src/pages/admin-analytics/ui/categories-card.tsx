@@ -1,3 +1,4 @@
+import { useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { AnalyticsCategoryRow } from '@/entities/analytics';
@@ -14,6 +15,7 @@ interface CategoriesCardProps {
 
 export function CategoriesCard({ categories }: CategoriesCardProps) {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const [scope, setScope] = useState<CategoryScope>('roots');
   const rows = categories
     .filter((category) => scope === 'all' || category.depth === 1)
@@ -44,7 +46,11 @@ export function CategoriesCard({ categories }: CategoriesCardProps) {
         <p className="py-8 text-center text-sm text-muted-foreground">{t('admin.analytics.noData')}</p>
       ) : (
         <div className="max-h-[28rem] overflow-y-auto">
-          <RankedBarChart rows={rows} color="var(--primary)" />
+          <RankedBarChart
+            rows={rows}
+            color="var(--primary)"
+            onRowClick={(id) => void navigate({ to: '/admin/categories', search: { edit: id } })}
+          />
         </div>
       )}
     </AnalyticsCard>

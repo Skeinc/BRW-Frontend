@@ -2,10 +2,16 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
-import { categoriesPageQueryOptions, useMoveCategory, type Category } from '@/entities/category';
+import {
+  categoriesPageQueryOptions,
+  categoryTreeQueryOptions,
+  useMoveCategory,
+  type Category,
+} from '@/entities/category';
 import { EntityGallery } from '@/features/entity-gallery';
 import { CategoryFormDialog } from '@/features/upsert-category';
 import { getApiErrorMessage } from '@/shared/api';
+import { useLinkedEntity } from '@/shared/lib/use-linked-entity';
 import {
   getVisibleRows,
   hasCategoryFilters,
@@ -39,6 +45,16 @@ export function AdminCategoriesPage({ search, onSearchChange }: AdminCategoriesP
   const total = categoriesQuery.data?.total ?? 0;
   const isFiltered = hasCategoryFilters(search);
   const editedCategory = editor === 'new' ? null : editor;
+
+  const treeQuery = useQuery({ ...categoryTreeQueryOptions, enabled: Boolean(search.edit) });
+  useLinkedEntity({
+    id: search.edit,
+    items: treeQuery.data,
+    isError: treeQuery.isError,
+    onFound: setEditor,
+    onMissing: () => toast.error(t('admin.common.linkedNotFound')),
+    onHandled: () => onSearchChange({ edit: undefined }),
+  });
 
   /** After the last row of a page is deleted or filtered out, step back to the last page that still has rows. */
   useEffect(() => {

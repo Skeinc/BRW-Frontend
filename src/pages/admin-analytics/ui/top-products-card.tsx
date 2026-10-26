@@ -1,3 +1,4 @@
+import { useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { AnalyticsReport } from '@/entities/analytics';
@@ -14,6 +15,7 @@ interface TopProductsCardProps {
 
 export function TopProductsCard({ report }: TopProductsCardProps) {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const [sort, setSort] = useState<ProductSort>('revenue');
   const products = sort === 'revenue' ? report.topProductsByRevenue : report.topProductsByQuantity;
   const rows = products.map((product) => ({
@@ -44,7 +46,11 @@ export function TopProductsCard({ report }: TopProductsCardProps) {
       {rows.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">{t('admin.analytics.noData')}</p>
       ) : (
-        <RankedBarChart rows={rows} color="var(--primary)" />
+        <RankedBarChart
+          rows={rows}
+          color="var(--primary)"
+          onRowClick={(id) => void navigate({ to: '/admin/products', search: { edit: id } })}
+        />
       )}
     </AnalyticsCard>
   );

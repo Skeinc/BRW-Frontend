@@ -6,6 +6,8 @@ export const collectionsSearchSchema = tablePageSearchSchema.extend({
   q: z.string().optional().catch(undefined),
   published: z.enum(['yes', 'no']).optional().catch(undefined),
   contents: z.enum(['with', 'empty']).optional().catch(undefined),
+  /** A collection id to open in the edit form on arrival, for links from other screens. */
+  edit: z.uuid().optional().catch(undefined),
 });
 
 export type CollectionsSearch = z.infer<typeof collectionsSearchSchema>;

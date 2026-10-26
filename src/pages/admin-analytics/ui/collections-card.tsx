@@ -1,3 +1,4 @@
+import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import type { AnalyticsCollectionRow } from '@/entities/analytics';
 import { formatMoneyShort, toChartNumber } from '../model/analytics-format';
@@ -12,6 +13,7 @@ interface CollectionsCardProps {
 
 export function CollectionsCard({ collections }: CollectionsCardProps) {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const rows = collections.map((collection) => ({
     id: collection.id,
     label: collection.name,
@@ -26,7 +28,12 @@ export function CollectionsCard({ collections }: CollectionsCardProps) {
       {rows.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">{t('admin.analytics.noData')}</p>
       ) : (
-        <RankedBarChart rows={rows} color="var(--primary)" labelWidth={NARROW_LABEL_WIDTH} />
+        <RankedBarChart
+          rows={rows}
+          color="var(--primary)"
+          labelWidth={NARROW_LABEL_WIDTH}
+          onRowClick={(id) => void navigate({ to: '/admin/collections', search: { edit: id } })}
+        />
       )}
     </AnalyticsCard>
   );

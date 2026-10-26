@@ -6,6 +6,8 @@ export const categoriesSearchSchema = tablePageSearchSchema.extend({
   q: z.string().optional().catch(undefined),
   published: z.enum(['yes', 'no']).optional().catch(undefined),
   level: z.coerce.number().int().min(1).max(3).optional().catch(undefined),
+  /** A category id to open in the edit form on arrival, for links from other screens. */
+  edit: z.uuid().optional().catch(undefined),
 });
 
 export type CategoriesSearch = z.infer<typeof categoriesSearchSchema>;

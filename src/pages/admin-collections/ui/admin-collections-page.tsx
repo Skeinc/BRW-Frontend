@@ -6,10 +6,13 @@ import { collectionsPageQueryOptions, useMoveCollection, type Collection } from 
 import { EntityGallery } from '@/features/entity-gallery';
 import { CollectionFormDialog } from '@/features/upsert-collection';
 import { getApiErrorMessage } from '@/shared/api';
+import { useLinkedEntity } from '@/shared/lib/use-linked-entity';
 import { hasCollectionFilters, toCollectionListParams, type CollectionsSearch } from '../model/collections-search';
 import { CollectionsTable } from './collections-table';
 import { CollectionsToolbar } from './collections-toolbar';
 import { DeleteCollectionDialog } from './delete-collection-dialog';
+
+const MAX_PAGE_SIZE = 100;
 
 /** `'new'` opens the create form; a collection opens its edit form. */
 type EditorTarget = Collection | 'new' | null;
@@ -32,6 +35,19 @@ export function AdminCollectionsPage({ search, onSearchChange }: AdminCollection
   const total = collectionsQuery.data?.total ?? 0;
   const isFiltered = hasCollectionFilters(search);
   const editedCollection = editor === 'new' ? null : editor;
+
+  const linkedQuery = useQuery({
+    ...collectionsPageQueryOptions({ page: 1, pageSize: MAX_PAGE_SIZE }),
+    enabled: Boolean(search.edit),
+  });
+  useLinkedEntity({
+    id: search.edit,
+    items: linkedQuery.data?.items,
+    isError: linkedQuery.isError,
+    onFound: setEditor,
+    onMissing: () => toast.error(t('admin.common.linkedNotFound')),
+    onHandled: () => onSearchChange({ edit: undefined }),
+  });
 
   /** After the last row of a page is deleted or filtered out, step back to the last page that still has rows. */
   useEffect(() => {

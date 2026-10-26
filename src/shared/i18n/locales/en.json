@@ -653,6 +653,7 @@
       "cancel": "Cancel",
       "save": "Save",
       "edit": "Edit",
+      "linkedNotFound": "Could not open the item: it may have been deleted.",
       "create": "Create",
       "published": "Published",
       "yes": "Yes",
