@@ -54,7 +54,6 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 
 function RootComponent() {
   const { language } = Route.useLoaderData();
-  const { t } = useTranslation();
   const isAdmin = useRouterState({
     select: (state) => state.location.pathname === '/admin' || state.location.pathname.startsWith('/admin/'),
   });
@@ -65,27 +64,30 @@ function RootComponent() {
       </head>
       <body className="flex min-h-screen flex-col">
         <I18nextProvider i18n={getI18n(language)}>
-          {isAdmin ? (
-            <Outlet />
-          ) : (
-            <TooltipProvider>
-              <a
-                href="#main"
-                className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-card focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:shadow-lg"
-              >
-                {t('common.skipToContent')}
-              </a>
-              <AppHeader />
-              <main id="main" tabIndex={-1} className="flex-1 outline-none">
-                <Outlet />
-              </main>
-              <AppFooter />
-              <CookieConsent />
-            </TooltipProvider>
-          )}
+          <TooltipProvider>{isAdmin ? <Outlet /> : <StorefrontShell />}</TooltipProvider>
         </I18nextProvider>
         <Scripts />
       </body>
     </html>
+  );
+}
+
+function StorefrontShell() {
+  const { t } = useTranslation();
+  return (
+    <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-card focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:shadow-lg"
+      >
+        {t('common.skipToContent')}
+      </a>
+      <AppHeader />
+      <main id="main" tabIndex={-1} className="flex-1 outline-none">
+        <Outlet />
+      </main>
+      <AppFooter />
+      <CookieConsent />
+    </>
   );
 }
