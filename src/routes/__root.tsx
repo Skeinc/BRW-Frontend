@@ -1,8 +1,10 @@
 import type { QueryClient } from '@tanstack/react-query';
 import { createRootRouteWithContext, HeadContent, Outlet, Scripts, useRouterState } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
+import { useEffect } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { catalogCategoriesQueryOptions } from '@/entities/category';
+import { buildPageLoaderCss, PAGE_LOADER_SCRIPT } from '@/app/page-loader';
 import appCss from '@/app/styles/index.css?url';
 import cyrillicFont from '@fontsource-variable/inter/files/inter-cyrillic-wght-normal.woff2?url';
 import latinFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
@@ -45,15 +47,22 @@ export const Route = createRootRouteWithContext<RouterContext>()({
       { rel: 'icon', href: '/favicon-16x16.png', type: 'image/png', sizes: '16x16' },
       { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' },
     ],
-    scripts: loaderData
-      ? [{ children: `window.BRW_CONFIG=${JSON.stringify(loaderData.config).replace(/</g, '\\u003c')}` }]
-      : [],
+    styles: [{ children: buildPageLoaderCss(translate(loaderData?.language ?? 'ru', 'ui.loading')) }],
+    scripts: [
+      { children: PAGE_LOADER_SCRIPT },
+      ...(loaderData
+        ? [{ children: `window.BRW_CONFIG=${JSON.stringify(loaderData.config).replace(/</g, '\\u003c')}` }]
+        : []),
+    ],
   }),
   component: RootComponent,
 });
 
 function RootComponent() {
   const { language } = Route.useLoaderData();
+  useEffect(() => {
+    window.brwAppReady?.();
+  }, []);
   const isAdmin = useRouterState({
     select: (state) => state.location.pathname === '/admin' || state.location.pathname.startsWith('/admin/'),
   });
@@ -90,4 +99,10 @@ function StorefrontShell() {
       <CookieConsent />
     </>
   );
+}
+
+declare global {
+  interface Window {
+    brwAppReady?: () => void;
+  }
 }
