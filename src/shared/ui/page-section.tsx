@@ -13,7 +13,7 @@ export function PageSection({ id, heading, lead, children }: PageSectionProps) {
     <section
       id={id}
       aria-labelledby={headingId}
-      className="mx-auto w-full max-w-7xl scroll-mt-[var(--section-scroll-margin,6rem)] px-4 pb-12 md:pb-16"
+      className="mx-auto w-full max-w-7xl scroll-mt-[var(--section-scroll-margin,6rem)] md:scroll-mt-[var(--section-scroll-margin,8.75rem)] px-4 pb-12 md:pb-16"
     >
       <h2 id={headingId} className="text-2xl font-bold tracking-tight md:text-3xl">
         {heading}

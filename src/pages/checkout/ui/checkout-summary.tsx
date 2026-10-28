@@ -20,7 +20,7 @@ interface CheckoutSummaryProps {
 export function CheckoutSummary({ items, count, subtotal, discount, total, isPending }: CheckoutSummaryProps) {
   const { t, i18n } = useTranslation();
   return (
-    <aside aria-label={t('checkout.summary')} className="rounded-2xl border bg-card p-5 lg:sticky lg:top-28">
+    <aside aria-label={t('checkout.summary')} className="rounded-2xl border bg-card p-5 lg:sticky lg:top-39">
       <div className="flex items-center justify-between gap-3">
         <h2 className="text-xl font-bold">{t('checkout.summary')}</h2>
         <Button asChild variant="ghost" size="sm" className="h-9 text-muted-foreground">

@@ -25,7 +25,7 @@ export function CartSummary({
 }: CartSummaryProps) {
   const { t } = useTranslation();
   return (
-    <aside aria-label={t('pages.cart.summary')} className="rounded-2xl border bg-card p-5 lg:sticky lg:top-28">
+    <aside aria-label={t('pages.cart.summary')} className="rounded-2xl border bg-card p-5 lg:sticky lg:top-39">
       <h2 className="text-xl font-bold">{t('pages.cart.summary')}</h2>
       <div className="mt-4">
         <OrderTotals count={count} subtotal={subtotal} discount={discount} total={total} isPending={isPending} />
