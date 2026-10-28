@@ -1,4 +1,4 @@
-export type GalleryOwner = 'products' | 'categories' | 'collections' | 'articles';
+export type GalleryOwner = 'products' | 'categories' | 'collections' | 'articles' | 'news';
 
 export interface MediaImage {
   id: string;

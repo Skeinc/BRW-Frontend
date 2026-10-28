@@ -1,4 +1,4 @@
-import { ChartColumn, FileText, FolderTree, Inbox, Layers, Package, type LucideIcon } from 'lucide-react';
+import { ChartColumn, FileText, FolderTree, Inbox, Layers, Newspaper, Package, type LucideIcon } from 'lucide-react';
 
 export interface AdminNavItem {
   to:
@@ -7,6 +7,7 @@ export interface AdminNavItem {
     | '/admin/products'
     | '/admin/orders'
     | '/admin/articles'
+    | '/admin/news'
     | '/admin/analytics';
   titleKey: string;
   icon: LucideIcon;
@@ -19,4 +20,5 @@ export const ADMIN_NAV: AdminNavItem[] = [
   { to: '/admin/products', titleKey: 'admin.nav.products', icon: Package },
   { to: '/admin/orders', titleKey: 'admin.nav.orders', icon: Inbox },
   { to: '/admin/articles', titleKey: 'admin.nav.articles', icon: FileText },
+  { to: '/admin/news', titleKey: 'admin.nav.news', icon: Newspaper },
 ];

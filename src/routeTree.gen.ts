@@ -26,6 +26,8 @@ import { Route as ArticlesArticleIdRouteImport } from './routes/articles.$articl
 import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
 import { Route as CatalogCategoryIdRouteImport } from './routes/catalog.$categoryId'
 import { Route as CollectionCollectionIdRouteImport } from './routes/collection.$collectionId'
+import { Route as NewsIndexRouteImport } from './routes/news.index'
+import { Route as NewsNewsIdRouteImport } from './routes/news.$newsId'
 import { Route as OrderNumberRouteImport } from './routes/order.$number'
 import { Route as ProductProductIdRouteImport } from './routes/product.$productId'
 import { Route as AdminAuthedIndexRouteImport } from './routes/admin._authed.index'
@@ -34,6 +36,7 @@ import { Route as AdminAuthedCategoriesRouteImport } from './routes/admin._authe
 import { Route as AdminAuthedCollectionsRouteImport } from './routes/admin._authed.collections'
 import { Route as AdminAuthedOrdersRouteImport } from './routes/admin._authed.orders'
 import { Route as AdminAuthedArticlesIndexRouteImport } from './routes/admin._authed.articles.index'
+import { Route as AdminAuthedNewsIndexRouteImport } from './routes/admin._authed.news.index'
 import { Route as AdminAuthedProductsIndexRouteImport } from './routes/admin._authed.products.index'
 
 const IndexRoute = IndexRouteImport.update({
@@ -120,6 +123,16 @@ const CollectionCollectionIdRoute = CollectionCollectionIdRouteImport.update({
   path: '/collection/$collectionId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsIndexRoute = NewsIndexRouteImport.update({
+  id: '/news/',
+  path: '/news/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsNewsIdRoute = NewsNewsIdRouteImport.update({
+  id: '/news/$newsId',
+  path: '/news/$newsId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OrderNumberRoute = OrderNumberRouteImport.update({
   id: '/order/$number',
   path: '/order/$number',
@@ -161,6 +174,11 @@ const AdminAuthedArticlesIndexRoute =
     path: '/articles/',
     getParentRoute: () => AdminAuthedRoute,
   } as any)
+const AdminAuthedNewsIndexRoute = AdminAuthedNewsIndexRouteImport.update({
+  id: '/news/',
+  path: '/news/',
+  getParentRoute: () => AdminAuthedRoute,
+} as any)
 const AdminAuthedProductsIndexRoute =
   AdminAuthedProductsIndexRouteImport.update({
     id: '/products/',
@@ -183,16 +201,19 @@ export interface FileRoutesByFullPath {
   '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/catalog/$categoryId': typeof CatalogCategoryIdRoute
   '/collection/$collectionId': typeof CollectionCollectionIdRoute
+  '/news/$newsId': typeof NewsNewsIdRoute
   '/order/$number': typeof OrderNumberRoute
   '/product/$productId': typeof ProductProductIdRoute
   '/articles/': typeof ArticlesIndexRoute
   '/catalog/': typeof CatalogIndexRoute
+  '/news/': typeof NewsIndexRoute
   '/admin/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/categories': typeof AdminAuthedCategoriesRoute
   '/admin/collections': typeof AdminAuthedCollectionsRoute
   '/admin/orders': typeof AdminAuthedOrdersRoute
   '/admin/': typeof AdminAuthedIndexRoute
   '/admin/articles/': typeof AdminAuthedArticlesIndexRoute
+  '/admin/news/': typeof AdminAuthedNewsIndexRoute
   '/admin/products/': typeof AdminAuthedProductsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -210,15 +231,18 @@ export interface FileRoutesByTo {
   '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/catalog/$categoryId': typeof CatalogCategoryIdRoute
   '/collection/$collectionId': typeof CollectionCollectionIdRoute
+  '/news/$newsId': typeof NewsNewsIdRoute
   '/order/$number': typeof OrderNumberRoute
   '/product/$productId': typeof ProductProductIdRoute
   '/articles': typeof ArticlesIndexRoute
   '/catalog': typeof CatalogIndexRoute
+  '/news': typeof NewsIndexRoute
   '/admin/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/categories': typeof AdminAuthedCategoriesRoute
   '/admin/collections': typeof AdminAuthedCollectionsRoute
   '/admin/orders': typeof AdminAuthedOrdersRoute
   '/admin/articles': typeof AdminAuthedArticlesIndexRoute
+  '/admin/news': typeof AdminAuthedNewsIndexRoute
   '/admin/products': typeof AdminAuthedProductsIndexRoute
 }
 export interface FileRoutesById {
@@ -238,16 +262,19 @@ export interface FileRoutesById {
   '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/catalog/$categoryId': typeof CatalogCategoryIdRoute
   '/collection/$collectionId': typeof CollectionCollectionIdRoute
+  '/news/$newsId': typeof NewsNewsIdRoute
   '/order/$number': typeof OrderNumberRoute
   '/product/$productId': typeof ProductProductIdRoute
   '/articles/': typeof ArticlesIndexRoute
   '/catalog/': typeof CatalogIndexRoute
+  '/news/': typeof NewsIndexRoute
   '/admin/_authed/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/_authed/categories': typeof AdminAuthedCategoriesRoute
   '/admin/_authed/collections': typeof AdminAuthedCollectionsRoute
   '/admin/_authed/orders': typeof AdminAuthedOrdersRoute
   '/admin/_authed/': typeof AdminAuthedIndexRoute
   '/admin/_authed/articles/': typeof AdminAuthedArticlesIndexRoute
+  '/admin/_authed/news/': typeof AdminAuthedNewsIndexRoute
   '/admin/_authed/products/': typeof AdminAuthedProductsIndexRoute
 }
 export interface FileRouteTypes {
@@ -267,16 +294,19 @@ export interface FileRouteTypes {
     | '/articles/$articleId'
     | '/catalog/$categoryId'
     | '/collection/$collectionId'
+    | '/news/$newsId'
     | '/order/$number'
     | '/product/$productId'
     | '/articles/'
     | '/catalog/'
+    | '/news/'
     | '/admin/analytics'
     | '/admin/categories'
     | '/admin/collections'
     | '/admin/orders'
     | '/admin/'
     | '/admin/articles/'
+    | '/admin/news/'
     | '/admin/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -294,15 +324,18 @@ export interface FileRouteTypes {
     | '/articles/$articleId'
     | '/catalog/$categoryId'
     | '/collection/$collectionId'
+    | '/news/$newsId'
     | '/order/$number'
     | '/product/$productId'
     | '/articles'
     | '/catalog'
+    | '/news'
     | '/admin/analytics'
     | '/admin/categories'
     | '/admin/collections'
     | '/admin/orders'
     | '/admin/articles'
+    | '/admin/news'
     | '/admin/products'
   id:
     | '__root__'
@@ -321,16 +354,19 @@ export interface FileRouteTypes {
     | '/articles/$articleId'
     | '/catalog/$categoryId'
     | '/collection/$collectionId'
+    | '/news/$newsId'
     | '/order/$number'
     | '/product/$productId'
     | '/articles/'
     | '/catalog/'
+    | '/news/'
     | '/admin/_authed/analytics'
     | '/admin/_authed/categories'
     | '/admin/_authed/collections'
     | '/admin/_authed/orders'
     | '/admin/_authed/'
     | '/admin/_authed/articles/'
+    | '/admin/_authed/news/'
     | '/admin/_authed/products/'
   fileRoutesById: FileRoutesById
 }
@@ -348,10 +384,12 @@ export interface RootRouteChildren {
   ArticlesArticleIdRoute: typeof ArticlesArticleIdRoute
   CatalogCategoryIdRoute: typeof CatalogCategoryIdRoute
   CollectionCollectionIdRoute: typeof CollectionCollectionIdRoute
+  NewsNewsIdRoute: typeof NewsNewsIdRoute
   OrderNumberRoute: typeof OrderNumberRoute
   ProductProductIdRoute: typeof ProductProductIdRoute
   ArticlesIndexRoute: typeof ArticlesIndexRoute
   CatalogIndexRoute: typeof CatalogIndexRoute
+  NewsIndexRoute: typeof NewsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -475,6 +513,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CollectionCollectionIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news/': {
+      id: '/news/'
+      path: '/news'
+      fullPath: '/news/'
+      preLoaderRoute: typeof NewsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news/$newsId': {
+      id: '/news/$newsId'
+      path: '/news/$newsId'
+      fullPath: '/news/$newsId'
+      preLoaderRoute: typeof NewsNewsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/order/$number': {
       id: '/order/$number'
       path: '/order/$number'
@@ -531,6 +583,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAuthedArticlesIndexRouteImport
       parentRoute: typeof AdminAuthedRoute
     }
+    '/admin/_authed/news/': {
+      id: '/admin/_authed/news/'
+      path: '/news'
+      fullPath: '/admin/news/'
+      preLoaderRoute: typeof AdminAuthedNewsIndexRouteImport
+      parentRoute: typeof AdminAuthedRoute
+    }
     '/admin/_authed/products/': {
       id: '/admin/_authed/products/'
       path: '/products'
@@ -548,6 +607,7 @@ interface AdminAuthedRouteChildren {
   AdminAuthedOrdersRoute: typeof AdminAuthedOrdersRoute
   AdminAuthedIndexRoute: typeof AdminAuthedIndexRoute
   AdminAuthedArticlesIndexRoute: typeof AdminAuthedArticlesIndexRoute
+  AdminAuthedNewsIndexRoute: typeof AdminAuthedNewsIndexRoute
   AdminAuthedProductsIndexRoute: typeof AdminAuthedProductsIndexRoute
 }
 
@@ -558,6 +618,7 @@ const AdminAuthedRouteChildren: AdminAuthedRouteChildren = {
   AdminAuthedOrdersRoute: AdminAuthedOrdersRoute,
   AdminAuthedIndexRoute: AdminAuthedIndexRoute,
   AdminAuthedArticlesIndexRoute: AdminAuthedArticlesIndexRoute,
+  AdminAuthedNewsIndexRoute: AdminAuthedNewsIndexRoute,
   AdminAuthedProductsIndexRoute: AdminAuthedProductsIndexRoute,
 }
 
@@ -591,10 +652,12 @@ const rootRouteChildren: RootRouteChildren = {
   ArticlesArticleIdRoute: ArticlesArticleIdRoute,
   CatalogCategoryIdRoute: CatalogCategoryIdRoute,
   CollectionCollectionIdRoute: CollectionCollectionIdRoute,
+  NewsNewsIdRoute: NewsNewsIdRoute,
   OrderNumberRoute: OrderNumberRoute,
   ProductProductIdRoute: ProductProductIdRoute,
   ArticlesIndexRoute: ArticlesIndexRoute,
   CatalogIndexRoute: CatalogIndexRoute,
+  NewsIndexRoute: NewsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

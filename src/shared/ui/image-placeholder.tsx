@@ -1,13 +1,14 @@
-import { FileText, Layers, LayoutGrid, Package, type LucideIcon } from 'lucide-react';
+import { FileText, Layers, LayoutGrid, Newspaper, Package, type LucideIcon } from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
 
-export type ImagePlaceholderKind = 'product' | 'category' | 'collection' | 'article';
+export type ImagePlaceholderKind = 'product' | 'category' | 'collection' | 'article' | 'news';
 
 const KIND_ICONS: Record<ImagePlaceholderKind, LucideIcon> = {
   product: Package,
   category: LayoutGrid,
   collection: Layers,
   article: FileText,
+  news: Newspaper,
 };
 
 interface ImagePlaceholderProps {
@@ -19,7 +20,7 @@ interface ImagePlaceholderProps {
   iconClassName?: string;
 }
 
-/** Stand-in for the photo of a product, category, collection or article that has none yet. */
+/** Stand-in for the photo of a product, category, collection, article or news item that has none yet. */
 export function ImagePlaceholder({ kind, icon, className, iconClassName }: ImagePlaceholderProps) {
   const Icon = icon ?? KIND_ICONS[kind];
   return (

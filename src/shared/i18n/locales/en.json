@@ -14,7 +14,8 @@
     "breadcrumbs": "Breadcrumbs",
     "installment": "Installments",
     "adminPanel": "Admin panel",
-    "articles": "Articles"
+    "articles": "Articles",
+    "news": "News"
   },
   "header": {
     "searchPlaceholder": "Search the catalog",
@@ -566,6 +567,20 @@
       "related": "Read also",
       "all": "All articles",
       "title": "{{title}} | BRW"
+    },
+    "news": {
+      "title": "BRW news and promotions",
+      "description": "News from the BRW furniture store: promotions, discounts and events.",
+      "heading": "News",
+      "lead": "Promotions, discounts and events of the BRW store.",
+      "empty": "No news has been published yet.",
+      "promoBadge": "Promotion"
+    },
+    "newsItem": {
+      "fallbackTitle": "News",
+      "related": "More news",
+      "all": "All news",
+      "title": "{{title}} | BRW"
     }
   },
   "error": {
@@ -589,6 +604,7 @@
       "COLLECTION_NOT_EMPTY": "Cannot delete: the collection has products.",
       "PRODUCT_HAS_ORDERS": "Cannot delete: the product is in orders. Unpublish it instead.",
       "ARTICLE_NOT_FOUND": "Article not found.",
+      "NEWS_NOT_FOUND": "News item not found.",
       "ORDER_NOT_FOUND": "Order not found.",
       "IMAGE_INVALID": "Invalid image (JPEG, PNG or WebP, up to 10 MB).",
       "IMAGE_NOT_FOUND": "Image not found.",
@@ -630,6 +646,7 @@
       "products": "Products",
       "orders": "Orders",
       "articles": "Articles",
+      "news": "News",
       "logout": "Log out",
       "openMenu": "Open menu",
       "administrator": "Administrator",
@@ -1153,6 +1170,79 @@
         "edit": "Editor",
         "preview": "Preview",
         "empty": "Nothing to show yet: add the article text."
+      }
+    },
+    "news": {
+      "searchPlaceholder": "Search by title",
+      "create": "New news item",
+      "createTitle": "New news item",
+      "editTitle": "Edit news item",
+      "backToList": "Back to news",
+      "created": "News item created. You can add photos now.",
+      "updated": "News item saved",
+      "deleted": "News item deleted",
+      "deleteTitle": "Delete this news item?",
+      "deleteDescription": "The news item \"{{name}}\" will be deleted permanently.",
+      "promoBadge": "Promotion",
+      "filters": {
+        "promoLabel": "Record type",
+        "promoAll": "News and promotions",
+        "promoOnly": "Promotions only",
+        "promoNone": "No promotions"
+      },
+      "columns": {
+        "title": "Title",
+        "publishedAt": "Publication date"
+      },
+      "empty": {
+        "title": "No news yet",
+        "description": "Create the first news item to tell customers about promotions and store events."
+      },
+      "sections": {
+        "main": "Content",
+        "publication": "Publication and SEO",
+        "mainHint": "Title, short description and the text of the news item.",
+        "photos": "Photos",
+        "photosHint": "The first photo becomes the cover of the news item.",
+        "publicationHint": "Whether to show the news item on the site, whether it is a promotion and how it looks in search."
+      },
+      "fields": {
+        "title": "Title",
+        "excerpt": "Short description",
+        "content": "News text",
+        "contentHint": "Markdown or HTML. To put an image into the text, click \"Insert image\": it is uploaded and placed where the cursor is.",
+        "insertImage": "Insert image",
+        "publishedHint": "A published news item is visible on the site.",
+        "isPromo": "Promotion",
+        "isPromoHint": "Tick it for a sale or discount: the site shows a \"Promotion\" label.",
+        "publishedAt": "Publication date and time",
+        "publishedAtHint": "The current time is set by default. You can change the date.",
+        "seoTitle": "SEO title",
+        "seoDescription": "SEO description",
+        "titlePlaceholder": "For example: Family traditions sale",
+        "excerptPlaceholder": "One or two sentences about the news: shown in lists.",
+        "contentPlaceholder": "Start writing here…",
+        "words": "Words: {{count}}",
+        "publishedText": "The news item is visible on the site.",
+        "draftText": "The news item is hidden: only you can see it."
+      },
+      "formDescription": "News item data: content, photos and publication.",
+      "tabs": {
+        "content": "Content",
+        "photos": "Photos",
+        "publication": "Publication"
+      },
+      "format": {
+        "heading": "Subheading",
+        "bold": "Bold",
+        "italic": "Italic",
+        "list": "List",
+        "link": "Link"
+      },
+      "preview": {
+        "edit": "Editor",
+        "preview": "Preview",
+        "empty": "Nothing to show yet: add the news text."
       }
     }
   },

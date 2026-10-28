@@ -58,6 +58,9 @@ export function AppFooter() {
             <Link to="/articles" className="hover:text-primary">
               {t('nav.articles')}
             </Link>
+            <Link to="/news" className="hover:text-primary">
+              {t('nav.news')}
+            </Link>
             <Link to="/admin" className="hover:text-primary">
               {t('nav.adminPanel')}
             </Link>

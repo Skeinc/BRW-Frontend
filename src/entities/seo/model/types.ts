@@ -12,6 +12,7 @@ export interface SeoUrls {
   collections: SeoUrl[];
   products: SeoUrl[];
   articles: SeoUrl[];
+  news: SeoUrl[];
 }
 
 /** Current location of an entity that was requested by an old slug. */

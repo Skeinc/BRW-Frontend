@@ -5,9 +5,11 @@ import { useTranslation } from 'react-i18next';
 
 export interface BreadcrumbStep {
   label: string;
-  /** Where the step leads: the catalog index or a category. Omitted on the current page. */
-  to?: 'catalog' | 'articles' | { categoryId: string };
+  /** Where the step leads: the catalog index, a list of articles or news, or a category. Omitted on the current page. */
+  to?: 'catalog' | 'articles' | 'news' | { categoryId: string };
 }
+
+const STEP_PATHS = { catalog: '/catalog', articles: '/articles', news: '/news' } as const;
 
 interface BreadcrumbTrailProps {
   /** Steps after "Home"; the last one is the current page. */
@@ -37,11 +39,8 @@ export function BreadcrumbTrail({ steps }: BreadcrumbTrailProps) {
                 </li>
               ) : (
                 <li>
-                  {step.to === 'catalog' || step.to === 'articles' ? (
-                    <Link
-                      to={step.to === 'catalog' ? '/catalog' : '/articles'}
-                      className="inline-flex min-h-6 items-center hover:text-primary"
-                    >
+                  {typeof step.to === 'string' ? (
+                    <Link to={STEP_PATHS[step.to]} className="inline-flex min-h-6 items-center hover:text-primary">
                       {step.label}
                     </Link>
                   ) : (

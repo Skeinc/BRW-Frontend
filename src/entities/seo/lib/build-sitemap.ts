@@ -1,6 +1,14 @@
 import type { SeoUrls } from '../model/types';
 
-const STATIC_PATHS = ['/', '/catalog', '/articles', '/about', '/delivery-and-payment', '/installment'] as const;
+const STATIC_PATHS = [
+  '/',
+  '/catalog',
+  '/articles',
+  '/news',
+  '/about',
+  '/delivery-and-payment',
+  '/installment',
+] as const;
 
 interface SitemapEntry {
   path: string;
@@ -16,7 +24,7 @@ function escapeXml(value: string): string {
     .replaceAll("'", '&apos;');
 }
 
-/** sitemap.xml for the static pages and every published category, collection, product and article. */
+/** sitemap.xml for the static pages and every published category, collection, product, article and news item. */
 export function buildSitemap(siteUrl: string, urls: SeoUrls): string {
   const origin = siteUrl.replace(/\/$/, '');
   const entries: SitemapEntry[] = [
@@ -25,6 +33,7 @@ export function buildSitemap(siteUrl: string, urls: SeoUrls): string {
     ...urls.collections.map(({ id, updatedAt }) => ({ path: `/collection/${id}`, updatedAt })),
     ...urls.products.map(({ id, updatedAt }) => ({ path: `/product/${id}`, updatedAt })),
     ...urls.articles.map(({ id, updatedAt }) => ({ path: `/articles/${id}`, updatedAt })),
+    ...urls.news.map(({ id, updatedAt }) => ({ path: `/news/${id}`, updatedAt })),
   ];
   const items = entries.map(({ path, updatedAt }) => {
     const lastmod = updatedAt ? `<lastmod>${escapeXml(updatedAt)}</lastmod>` : '';
