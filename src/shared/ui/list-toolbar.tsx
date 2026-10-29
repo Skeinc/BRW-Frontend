@@ -17,6 +17,8 @@ interface ListToolbarProps {
   onReset: () => void;
   /** Main buttons, for example "Create": at the right end of the row. */
   actions?: ReactNode;
+  /** For many filters: search and actions in the first row, the filters below in a grid of equal columns. */
+  stackFilters?: boolean;
 }
 
 /**
@@ -30,10 +32,33 @@ export function ListToolbar({
   activeFilterCount = 0,
   onReset,
   actions,
+  stackFilters = false,
 }: ListToolbarProps) {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+  const resetButton = isFiltered ? (
+    <Button type="button" variant="ghost" className="h-10" onClick={onReset}>
+      <X aria-hidden />
+      {t('admin.filters.reset')}
+    </Button>
+  ) : null;
+
+  if (!isMobile && stackFilters && filters) {
+    return (
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0 flex-1">{search}</div>
+          <div className="flex shrink-0 items-center gap-2">
+            {resetButton}
+            {actions}
+          </div>
+        </div>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(11rem,1fr))] gap-2">{filters}</div>
+      </div>
+    );
+  }
 
   if (!isMobile) {
     return (
@@ -41,12 +66,7 @@ export function ListToolbar({
         <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
           {search}
           {filters}
-          {isFiltered ? (
-            <Button type="button" variant="ghost" className="h-10" onClick={onReset}>
-              <X aria-hidden />
-              {t('admin.filters.reset')}
-            </Button>
-          ) : null}
+          {resetButton}
         </div>
         <div className="flex shrink-0 items-center gap-2">{actions}</div>
       </div>

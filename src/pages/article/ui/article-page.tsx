@@ -16,7 +16,6 @@ export function ArticlePage() {
   const { data: article } = useSuspenseQuery(catalogArticleQueryOptions(articleId));
   const { data: latest } = useQuery(catalogArticlesQueryOptions(RELATED_ARTICLES_PARAMS));
   const related = (latest?.items ?? []).filter((item) => item.id !== article.id).slice(0, RELATED_ARTICLES_COUNT);
-  const cover = article.images[0];
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-6 md:py-8">
       <BreadcrumbTrail steps={[{ label: t('nav.articles'), to: 'articles' }, { label: article.title }]} />
@@ -26,16 +25,6 @@ export function ArticlePage() {
           <time dateTime={article.publishedAt} className="mt-3 block text-sm text-muted-foreground">
             {formatDate(article.publishedAt, i18n.language)}
           </time>
-        )}
-        {cover && (
-          <img
-            src={cover.url}
-            alt={cover.alt ?? article.title}
-            width={cover.width}
-            height={cover.height}
-            fetchPriority="high"
-            className="mt-6 w-full rounded-2xl bg-muted object-cover"
-          />
         )}
         <div className="mt-6">
           <MarkdownContent content={article.content} demoteHeadings />

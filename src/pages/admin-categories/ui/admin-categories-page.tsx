@@ -12,12 +12,7 @@ import { EntityGallery } from '@/features/entity-gallery';
 import { CategoryFormDialog } from '@/features/upsert-category';
 import { getApiErrorMessage } from '@/shared/api';
 import { useLinkedEntity } from '@/shared/lib/use-linked-entity';
-import {
-  getVisibleRows,
-  hasCategoryFilters,
-  toCategoryListParams,
-  type CategoriesSearch,
-} from '../model/categories-search';
+import { hasCategoryFilters, toCategoryListParams, type CategoriesSearch } from '../model/categories-search';
 import { CategoriesTable } from './categories-table';
 import { CategoriesToolbar } from './categories-toolbar';
 import { DeleteCategoryDialog } from './delete-category-dialog';
@@ -37,8 +32,6 @@ export function AdminCategoriesPage({ search, onSearchChange }: AdminCategoriesP
   const categoriesQuery = useQuery({ ...pageQuery, placeholderData: keepPreviousData });
   const move = useMoveCategory(pageQuery.queryKey);
   const [editor, setEditor] = useState<EditorTarget>(null);
-  /** Branches the user collapsed; everything is expanded by default. Not kept in the URL. */
-  const [collapsedIds, setCollapsedIds] = useState<ReadonlySet<string>>(new Set());
   const [categoryToDelete, setCategoryToDelete] = useState<Category | null>(null);
 
   const rows = categoriesQuery.data?.items ?? [];
@@ -73,17 +66,6 @@ export function AdminCategoriesPage({ search, onSearchChange }: AdminCategoriesP
   /** Any filter change goes back to the first page. */
   const changeFilter = (patch: Partial<CategoriesSearch>) => onSearchChange({ ...patch, page: undefined });
 
-  const toggleCategory = (category: Category) => {
-    const next = new Set(collapsedIds);
-    if (!next.delete(category.id)) {
-      next.add(category.id);
-    }
-    setCollapsedIds(next);
-  };
-  const expandableIds = rows.filter((row) => row.childCount > 0).map((row) => row.id);
-  const isCollapsed = collapsedIds.size > 0;
-  const toggleAll = () => setCollapsedIds(isCollapsed ? new Set() : new Set(expandableIds));
-
   const resetFilters = () => changeFilter({ q: undefined, published: undefined, level: undefined });
 
   return (
@@ -93,13 +75,10 @@ export function AdminCategoriesPage({ search, onSearchChange }: AdminCategoriesP
         hasFilters={isFiltered}
         onChange={changeFilter}
         onReset={resetFilters}
-        canCollapse={expandableIds.length > 0}
-        isCollapsed={isCollapsed}
-        onToggleAll={toggleAll}
         onCreate={() => setEditor('new')}
       />
       <CategoriesTable
-        rows={isFiltered ? rows : getVisibleRows(rows, collapsedIds)}
+        rows={rows}
         total={total}
         isFiltered={isFiltered}
         isPending={categoriesQuery.isPending}
@@ -112,8 +91,6 @@ export function AdminCategoriesPage({ search, onSearchChange }: AdminCategoriesP
         onReorder={(id, overId) =>
           move.mutate({ id, overId }, { onError: (error) => toast.error(getApiErrorMessage(error, t)) })
         }
-        collapsedIds={collapsedIds}
-        onToggle={toggleCategory}
         onCreate={() => setEditor('new')}
         onResetFilters={resetFilters}
         onEdit={setEditor}

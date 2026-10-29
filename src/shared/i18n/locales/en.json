@@ -15,7 +15,15 @@
     "installment": "Installments",
     "adminPanel": "Admin panel",
     "articles": "Articles",
-    "news": "News"
+    "news": "News",
+    "openSearch": "Open search",
+    "closeSearch": "Close search",
+    "collections": "Collections",
+    "categories": "Categories",
+    "allCatalog": "All products",
+    "mainMenu": "Main menu",
+    "faq": "Questions and answers",
+    "privacy": "Personal data processing agreement"
   },
   "header": {
     "searchPlaceholder": "Search the catalog",
@@ -33,7 +41,15 @@
     "legalEntity": "Artamid LLC, 212025, Republic of Belarus, Mogilev region, Mogilev, Nepokorennykh blvd., 26. State registration certificate No. 791351518 of 14.01.2024, issued by the administration of the Leninsky district of Mogilev.",
     "disclaimer": "All information about product characteristics, stock availability and prices is for reference only and is not a public offer as defined by Art. 407(2) of the Civil Code of the Republic of Belarus.",
     "rights": "© {{year}} BRW · Black Red White. All rights reserved.",
-    "allCatalog": "Full catalog"
+    "allCatalog": "Full catalog",
+    "byRoom": "Catalog by room",
+    "byCategory": "Catalog by category",
+    "network": "Where to buy",
+    "company": "About us",
+    "payment": "Payment methods",
+    "paymentCash": "Cash",
+    "paymentMore": "All payment methods",
+    "address": "Address"
   },
   "stores": {
     "city": "Mogilev",
@@ -68,9 +84,8 @@
         }
       },
       "categories": {
-        "eyebrow": "Catalogue",
-        "title": "Furniture categories",
-        "all": "Full catalogue"
+        "title": "Product catalog",
+        "more": "Show more"
       },
       "advantages": {
         "delivery": {
@@ -88,7 +103,8 @@
         "consultation": {
           "title": "Consultation",
           "text": "We help with sizes, colours and assembly by phone"
-        }
+        },
+        "title": "Advantages"
       },
       "newArrivals": {
         "eyebrow": "Just added to the catalogue",
@@ -107,10 +123,31 @@
         "text": "Arrange instalments for any furniture in the store or by phone — no down payment.",
         "cta": "See the terms"
       },
+      "news": {
+        "title": "News and promotions",
+        "all": "All news and promotions"
+      },
+      "about": {
+        "title": "About the company",
+        "more": "More about the company",
+        "p1": "Black Red White is an international group of companies whose main business is producing and selling cabinet furniture.",
+        "p2": "For 25 years we have been making quality furniture, growing our store network in Belarus and abroad, and modernising our production processes to make them more efficient and eco-friendly.",
+        "p3": "Every season our designers release collections that blend current trends, aesthetics and reliability.",
+        "shop": "The official online store of the Black Red White group and one of the largest online marketplaces in Belarus where you can buy cabinet furniture for your home.",
+        "conveniencesLead": "We have made your online shopping as simple and pleasant as possible:",
+        "conveniences": [
+          "easy navigation on the site",
+          "always up-to-date information about current promotions",
+          "the option to buy goods in instalments"
+        ]
+      },
       "articles": {
-        "eyebrow": "BRW blog",
-        "title": "Latest articles",
+        "title": "Useful articles",
         "all": "All articles"
+      },
+      "rooms": {
+        "title": "Collections",
+        "more": "Show more"
       }
     },
     "catalog": {
@@ -152,7 +189,6 @@
       "heading": "Black Red White",
       "lead": "Black Red White is an international group of companies focused on producing and selling cabinet furniture. The company is modernising its production processes and growing its store network in Belarus and abroad.",
       "slogan": "Create stylish interiors with furniture from Black Red White",
-      "cta": "Go to the catalog",
       "facts": {
         "years": "25",
         "yearsLabel": "years of experience",
@@ -168,7 +204,8 @@
       },
       "legal": {
         "heading": "Company details"
-      }
+      },
+      "cta": "Go to the catalog"
     },
     "deliveryAndPayment": {
       "title": "Delivery and payment",
@@ -581,6 +618,171 @@
       "related": "More news",
       "all": "All news",
       "title": "{{title}} | BRW"
+    },
+    "room": {
+      "title": "Furniture for «{{name}}» — BRW collections",
+      "description": "Furniture collections for «{{name}}» at BRW: ready-made sets, photos and prices.",
+      "fallbackTitle": "Room not found"
+    },
+    "roomCollection": {
+      "title": "{{room}} {{name}} — BRW ready-made sets",
+      "description": "Ready-made sets of the {{name}} collection for «{{room}}»: furniture sets, photos, prices and contents."
+    },
+    "rooms": {
+      "title": "Furniture collections by room — BRW",
+      "description": "All BRW cabinet furniture collections by room: living rooms, bedrooms, hallways, youth rooms, studies and dining rooms.",
+      "heading": "Cabinet furniture",
+      "roomHeading": "Cabinet furniture: {{name}}"
+    },
+    "privacy": {
+      "title": "Personal Data Processing Agreement — BRW",
+      "description": "Artamid LLC policy on personal data processing: purposes, retention, user rights and protection measures.",
+      "heading": "Personal Data Processing Agreement",
+      "lead": "The personal data processing policy of Artamid LLC. By submitting a form, placing an order or using the website, you agree to its terms.",
+      "navLabel": "Document sections",
+      "sections": [
+        {
+          "title": "General provisions",
+          "body": "1.1. This document sets out the policy of Artamid LLC (registered address: 26 Nepokorennykh Blvd., Mogilev 212025, Republic of Belarus; the \"Company\") on the processing of personal data (the \"Policy\").\n\n1.2. The purpose of the Policy is to comply with the personal data legislation of the Republic of Belarus and to protect the interests of data subjects (the \"users\").\n\n1.3. The Policy applies to all personal data received by the Company:\n\n- in the performance of concluded (or planned) transactions;\n- when orders and enquiries are placed on the Company's website (the \"Website\");\n- to give users access to the information published on the Website;\n- obtained in any other way.\n\n1.4. The Company processes and stores personal data in accordance with applicable law and this Policy in order to identify users; communicate with them; improve the quality of its services; send notifications and commercial offers; provide information about the Company's activities; run promotions and bonus programmes; send advertising and informational messages; assess and analyse the operation of the Website; and inform users about promotions, discounts and special offers.\n\n1.5. The Policy applies to the Company's processes in which personal data is processed and stored, including with the use of automation tools.\n\n1.6. The current version of the Policy is published on the Website in open access and takes effect from the moment of publication.\n\n1.7. Persons who submit personal data to the Company must read the Policy. By ticking \"I agree\" next to a link to this Policy, visiting the Website or providing their personal data, the user consents to the processing of that data on the terms set out in the Policy and confirms that they have read it and agree to its terms.\n\n1.8. This Policy is an integral part of the contracts concluded with the Company where their terms expressly say so.\n\n1.9. This Policy applies to the Website only. The Company does not control, and is not responsible for, third-party websites that users may reach through links on the Website."
+        },
+        {
+          "title": "Terms, definitions and abbreviations",
+          "body": "2.1. The following terms are used in this Policy:\n\n- **personal data** – any information relating to an identified individual or an individual who can be identified;\n- **data subject** – an individual whose personal data is processed;\n- **operator** – a legal entity or other organisation that, alone or jointly with others, organises and (or) carries out the processing of personal data;\n- **processing of personal data** – any action or set of actions performed on personal data, including collection, systematisation, storage, modification, use, depersonalisation, blocking, provision and deletion;\n- **blocking of personal data** – ending access to personal data without deleting it;\n- **depersonalisation of personal data** – actions after which it is impossible, without additional information, to tell which data subject the personal data belongs to;\n- **provision of personal data** – actions aimed at making personal data known to a specific person or group of persons;\n- **dissemination of personal data** – actions aimed at making personal data known to an indefinite group of persons;\n- **deletion of personal data** – actions after which personal data can no longer be recovered in the information resources (systems) that contain it, and (or) after which the physical media of personal data are destroyed."
+        },
+        {
+          "title": "Processing and storage of personal data",
+          "body": "3.1. The Company processes and stores personal data in order to identify the user when interacting with them and providing services.\n\n3.2. The personal data a user provides when placing an order or enquiry on the Website includes:\n\n- surname, first name and patronymic;\n- email address;\n- contact phone numbers;\n- delivery address;\n- other data that, taken together, may constitute personal data.\n\nThe IP address, cookie data, information about the user's browser (or other software used to access the Website), date and time of access, addresses of requested pages, purchase history and similar information are transmitted automatically while the Website is used, by software installed on the user's device.\n\n3.3. The Company may combine personal data with information the data subject provides in other ways (orally, in writing, etc.).\n\n3.4. The Company processes personal data with and without the use of automation tools, and in a mixed manner, including in information and telecommunication networks, for the purposes stated in the Policy.\n\n3.5. The Company transmits personal data:\n\n- to the data subject – without restriction, except where the legislation of the Republic of Belarus expressly provides otherwise;\n- to other persons – in cases provided for by the legislation of the Republic of Belarus.\n\n3.6. Personal data is stored:\n\n- on paper;\n- as computer files;\n- in the Company's specialised systems that provide automatic processing and storage of information.\n\n3.7. Personal data may be processed in the Company only in compliance with the legislation of the Republic of Belarus.\n\n3.8. The consent of the user to the processing of personal data is given for as long as the user uses the Company's Website. The user may withdraw consent at any time by sending the Company a written application.\n\n3.9. The Company entrusts the processing of personal data to a third party only under a contract concluded in accordance with the legislation of the Republic of Belarus. The contract obliges the person processing data on the Company's behalf to follow the principles and rules of personal data processing set out in the Policy and in the legislation.\n\n3.10. If the Company entrusts the processing of personal data to another person, the Company is responsible to the data subject for that person's actions. The person processing data on the Company's behalf is responsible to the Company.\n\n3.11. The Company obliges any other persons who gain access to personal data not to disclose it to third parties or disseminate it without the data subject's consent, unless the legislation of the Republic of Belarus provides otherwise.\n\n3.12. Processed personal data must be deleted or depersonalised once the purposes of processing have been achieved or are no longer relevant, unless the legislation of the Republic of Belarus provides otherwise."
+        },
+        {
+          "title": "Rights of users as data subjects",
+          "body": "4.1. Data subjects have the right to:\n\n- withdraw their consent to the processing of their personal data;\n- receive information about the processing of their personal data and change that data;\n- receive information about the provision of their personal data to third parties;\n- demand that the processing of their personal data stop;\n- demand the deletion of their personal data;\n- appeal against the actions (inaction) and decisions of the operator relating to the processing of their personal data;\n- exercise other rights provided for by law.\n\n4.2. To exercise these rights, a data subject submits a written application to the Company in the manner established by law.\n\n4.3. Within five working days of receiving the application, the Company gives the applicant, in an accessible form, information about the processing of their personal data.\n\n4.4. Within fifteen days of receiving the application, the Company:\n\n- if the application asks to stop processing, deletes the personal data and notifies the applicant. If deletion is technically impossible, the Company takes measures to prevent further processing, including blocking, and notifies the applicant within the same period;\n- if the application asks for changes, makes the changes and notifies the applicant, or states the reasons for refusal;\n- if the application asks for information, states which personal data was provided and to whom in the year before the application was submitted, or states the reasons for refusal.\n\n4.5. The Company may refuse a request to stop processing and (or) delete personal data where there are grounds for processing under the Law on Personal Data Protection and other legislation, including where the data is necessary for the stated purposes of processing, and notifies the applicant within fifteen days of receiving the application."
+        },
+        {
+          "title": "Protection of personal data",
+          "body": "5.1. When processing personal data, the Company follows the law and takes the necessary legal, organisational and technical measures to protect personal data from unauthorised access and from other unlawful actions concerning personal data.\n\n5.2. Personal data is processed and stored in accordance with the law and the Company's internal rules and regulations."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Questions and answers — BRW",
+      "description": "Answers to common questions about ordering, delivery, payment, installments, returns and the Black Red White store in Mogilev.",
+      "heading": "Questions and answers",
+      "lead": "We have collected answers to what we are asked most often. Can't find yours? Call us and we will help.",
+      "groupsLabel": "Question topics",
+      "groups": [
+        {
+          "id": "order",
+          "title": "How to order",
+          "items": [
+            {
+              "q": "Can I buy furniture in Belarus and send it to Russia?",
+              "a": "Yes, but only if you arrange everything yourself: finding a carrier and paying for delivery and any related services.\n\nBlack Red White is not responsible for damage to the goods in transit to the destination."
+            },
+            {
+              "q": "What documents do I need for an installment plan?",
+              "a": "To pay with an installment card you need the card itself and your passport. For bank loans the list of documents depends on the bank and the programme; the terms of every option are on the [Installment](/installment) page."
+            },
+            {
+              "q": "Can I place an order on the website and pay in installments?",
+              "a": "Yes. Place the order on the website and pay for it with an installment card (Halva, Purchase Card, Turtle) in the store. Details are on the [Installment](/installment) page."
+            },
+            {
+              "q": "Can I only buy in the store, or is there online payment?",
+              "a": "You can place an order in the Mogilev store or on the website. Online card payment on the website is not available yet: you can pay in cash to the courier on delivery in Mogilev, or in the store. Read more in [Delivery and payment](/delivery-and-payment)."
+            }
+          ]
+        },
+        {
+          "id": "delivery",
+          "title": "Delivery and payment",
+          "items": [
+            {
+              "q": "Do you run promotions often?",
+              "a": "We publish current promotions and special offers in the [News](/news) section. The terms of some promotions depend on the furniture manufacturer, so please check with a store consultant.\n\nPromotions and discount programmes do not apply when you pay with an installment card."
+            },
+            {
+              "q": "I placed an order. How do I find out it is ready?",
+              "a": "Orders are handled by the consultants of the Black Red White store. You can find out the status of your order by calling the store at +375 29 622 67 67."
+            },
+            {
+              "q": "Can I use an installment plan?",
+              "a": "Yes. Installment cards let you pay over 2 to 8 months, and bank loans and installments run for up to 7 years. The terms, rates and conditions of each programme are on the [Installment](/installment) page."
+            },
+            {
+              "q": "What are the delivery terms for orders placed on the website?",
+              "a": "Delivery terms depend on the city (or locality) and the order amount. Full information is in [Delivery and payment](/delivery-and-payment)."
+            }
+          ]
+        },
+        {
+          "id": "assortment",
+          "title": "Range",
+          "items": [
+            {
+              "q": "Do you sell office chairs, desks, mattresses or coat stands?",
+              "a": "Our main range is Black Red White cabinet furniture, which is in the [catalog](/catalog). Related goods from other suppliers are not always in stock, so please check availability in the store."
+            },
+            {
+              "q": "What is discontinued stock, and why is it limited?",
+              "a": "Discontinued furniture is furniture with the status “No longer produced”. It is sold until the warehouse stock runs out, because no further batches will be made.\n\nAsk the store consultants about the availability of discontinued items and whether you can order them."
+            },
+            {
+              "q": "Is a particular furniture item in stock?",
+              "a": "It is best to check the availability of specific items in the remaining stock with the store consultants by phone."
+            },
+            {
+              "q": "I can't find the assembly instructions. What should I do?",
+              "a": "Contact the store where you placed the order and we will tell you where to find the instructions for your model."
+            },
+            {
+              "q": "Where can I see a furniture set in person?",
+              "a": "To find out whether a particular sample is on display, call the store. The store address and phone are on the [About us](/about) page."
+            }
+          ]
+        },
+        {
+          "id": "returns",
+          "title": "Returns and complaints",
+          "items": [
+            {
+              "q": "How long does it take to consider a complaint?",
+              "a": "The store must give the buyer an official reply within 14 days of the enquiry, as required by the legislation of the Republic of Belarus."
+            },
+            {
+              "q": "I found the display cabinet glass cracked when unpacking. How do I get the part replaced?",
+              "a": "Contact the store where you placed the order and we will help you arrange a replacement."
+            }
+          ]
+        },
+        {
+          "id": "cooperation",
+          "title": "Cooperation",
+          "items": [
+            {
+              "q": "Where do I go with questions about cooperation?",
+              "a": "For cooperation and commercial proposals, call us at +375 29 622 67 67 or write to info@brw-shop.by."
+            }
+          ]
+        },
+        {
+          "id": "stores",
+          "title": "Stores and assembly",
+          "items": [
+            {
+              "q": "Do you offer furniture assembly?",
+              "a": "For furniture assembly, contact the store consultants: they will advise on terms and timing."
+            },
+            {
+              "q": "Are there stores in other cities?",
+              "a": "Our store is in Mogilev, and we deliver orders across Belarus. The address and phone are on the [About us](/about) page."
+            },
+            {
+              "q": "I want to give my parents a gift. Can I order here and deliver to another city?",
+              "a": "Yes. When placing the order, enter the city and address the furniture should be delivered to. Delivery terms are in [Delivery and payment](/delivery-and-payment)."
+            }
+          ]
+        }
+      ]
     }
   },
   "error": {
@@ -609,7 +811,10 @@
       "IMAGE_INVALID": "Invalid image (JPEG, PNG or WebP, up to 10 MB).",
       "IMAGE_NOT_FOUND": "Image not found.",
       "ORDER_STATUS_INVALID": "The order status cannot be changed this way.",
-      "ORDER_ITEM_UNAVAILABLE": "Some products are no longer available. Go back to the cart and update your request."
+      "ORDER_ITEM_UNAVAILABLE": "Some products are no longer available. Go back to the cart and update your request.",
+      "ROOM_NOT_FOUND": "Room not found.",
+      "ROOM_NOT_EMPTY": "Cannot delete: the room has ready-made sets.",
+      "SOLUTION_NOT_FOUND": "Ready-made set not found."
     }
   },
   "language": {
@@ -650,7 +855,10 @@
       "logout": "Log out",
       "openMenu": "Open menu",
       "administrator": "Administrator",
-      "analytics": "Analytics"
+      "analytics": "Analytics",
+      "settings": "Settings",
+      "rooms": "Rooms",
+      "solutions": "Ready-made sets"
     },
     "auth": {
       "title": "Admin sign-in",
@@ -709,7 +917,10 @@
     "validation": {
       "required": "Fill in this field",
       "tooLong": "The value is too long",
-      "nameTaken": "An entry with this name already exists"
+      "nameTaken": "An entry with this name already exists",
+      "linkInvalid": "Enter a path on the site (for example /catalog) or an address starting with https://",
+      "priceInvalid": "Enter a price, for example 738.96",
+      "tooMany": "Too many elements"
     },
     "categories": {
       "title": "Categories",
@@ -754,10 +965,6 @@
         "levelAll": "Any level",
         "level": "Level {{level}}"
       },
-      "expand": "Expand \"{{name}}\"",
-      "collapse": "Collapse \"{{name}}\"",
-      "expandAll": "Expand all",
-      "collapseAll": "Collapse all",
       "childCount_one": "{{count}} subcategory",
       "childCount_other": "{{count}} subcategories",
       "editSubtitle": "Level {{level}} · subcategories: {{children}} · products: {{products}}",
@@ -1244,6 +1451,157 @@
         "preview": "Preview",
         "empty": "Nothing to show yet: add the news text."
       }
+    },
+    "settings": {
+      "title": "Settings",
+      "tabs": {
+        "slider": "Slider"
+      }
+    },
+    "slides": {
+      "create": "Add slide",
+      "createTitle": "New slide",
+      "editTitle": "Edit slide",
+      "formDescription": "Enter a caption and a link. You can add the picture after saving.",
+      "created": "Slide created. Now add the picture.",
+      "updated": "Slide saved",
+      "deleted": "Slide deleted",
+      "deleteTitle": "Delete the slide?",
+      "deleteDescription": "The slide “{{name}}” and its picture will be deleted permanently.",
+      "columns": {
+        "alt": "Slide",
+        "link": "Link"
+      },
+      "noLink": "No link",
+      "noImage": "No picture",
+      "empty": {
+        "title": "No slides yet",
+        "description": "Add the first slide for the home page."
+      },
+      "fields": {
+        "alt": "Caption",
+        "altHint": "A short description of the picture for search engines and screen readers.",
+        "altPlaceholder": "For example: Bedroom sale",
+        "link": "Link",
+        "linkHint": "Where the slide leads. May be left empty.",
+        "linkPlaceholder": "/catalog or https://…",
+        "publishedText": "The slide is shown on the home page.",
+        "draftText": "The slide is hidden: only you can see it."
+      },
+      "sections": {
+        "main": "Main",
+        "mainHint": "Caption and link of the slide.",
+        "image": "Picture",
+        "imageHint": "The text must be drawn on the picture itself. Recommended size: 1600×600 pixels.",
+        "publication": "Publication",
+        "publicationHint": "Whether to show the slide on the home page."
+      }
+    },
+    "rooms": {
+      "title": "Rooms",
+      "description": "Sections of the ready-made solutions catalogue: living rooms, bedrooms and others.",
+      "create": "New room",
+      "createTitle": "New room",
+      "editTitle": "Edit room",
+      "formDescription": "Fill in the name and description. Drag rows to change the order of rooms.",
+      "created": "Room created. You can add a photo now.",
+      "updated": "Room saved",
+      "deleted": "Room deleted",
+      "deleteTitle": "Delete room?",
+      "deleteDescription": "Room \"{{name}}\" will be deleted permanently.",
+      "deleteBlocked": "Cannot delete: the room has ready-made sets",
+      "columns": {
+        "name": "Name",
+        "solutions": "Sets"
+      },
+      "empty": {
+        "title": "No rooms yet",
+        "description": "Create the first room to collect ready-made sets in it."
+      },
+      "fields": {
+        "name": "Name",
+        "description": "Description",
+        "seoTitle": "SEO title",
+        "seoDescription": "SEO description",
+        "namePlaceholder": "For example: Living rooms",
+        "descriptionPlaceholder": "Tell what furniture for this room the section offers.",
+        "publishedText": "The room is visible on the site.",
+        "draftText": "The room is hidden: only you can see it."
+      },
+      "editSubtitle_one": "{{count}} ready-made set",
+      "editSubtitle_other": "{{count}} ready-made sets",
+      "sections": {
+        "main": "Main",
+        "mainHint": "Name and description of the room.",
+        "photo": "Photo",
+        "photoHint": "Shown on the room card on the home page.",
+        "publication": "Publication and SEO",
+        "publicationHint": "Whether the room is shown on the site and how it looks in search."
+      }
+    },
+    "solutions": {
+      "title": "Ready-made sets",
+      "description": "Furniture sets of one collection for a room at a ready price.",
+      "create": "New set",
+      "createTitle": "New ready-made set",
+      "editTitle": "Edit set",
+      "formDescription": "Choose the room and collection, enter the set price and add the elements.",
+      "editSubtitle": "{{room}} · {{collection}}",
+      "created": "Set created. You can add a photo now.",
+      "updated": "Set saved",
+      "deleted": "Set deleted",
+      "deleteTitle": "Delete ready-made set?",
+      "deleteDescription": "Set \"{{name}}\" will be deleted permanently. The products stay in the catalogue.",
+      "searchPlaceholder": "Search by name",
+      "priceValue": "{{price, number}} BYN",
+      "columns": {
+        "name": "Name",
+        "room": "Room",
+        "collection": "Collection",
+        "price": "Price",
+        "products": "Elements"
+      },
+      "filters": {
+        "roomLabel": "Room",
+        "roomAll": "All rooms",
+        "collectionLabel": "Collection",
+        "collectionAll": "All collections"
+      },
+      "empty": {
+        "title": "No ready-made sets yet",
+        "description": "Create the first set: products of a collection for a room."
+      },
+      "fields": {
+        "name": "Name",
+        "namePlaceholder": "For example: Living room no. 1",
+        "room": "Room",
+        "roomNone": "Choose a room",
+        "collection": "Collection",
+        "collectionNone": "Choose a collection",
+        "price": "Set price, BYN",
+        "description": "Description",
+        "publishedText": "The set is visible on the site.",
+        "draftText": "The set is hidden: only you can see it."
+      },
+      "products": {
+        "none": "No elements yet.",
+        "pickCollection": "Choose a collection in the Main section first.",
+        "search": "Find a product of the collection",
+        "add": "Add",
+        "remove": "Remove \"{{name}}\"",
+        "loading": "Loading…",
+        "noResults": "No matching products."
+      },
+      "sections": {
+        "main": "Main",
+        "mainHint": "Room, collection, name and price of the set.",
+        "elements": "Set elements",
+        "elementsHint": "Products of the collection that belong to the set.",
+        "photo": "Photo",
+        "photoHint": "Shown on the collection page next to the price.",
+        "publication": "Publication",
+        "publicationHint": "Whether the set is shown on the site."
+      }
     }
   },
   "ui": {
@@ -1270,7 +1628,8 @@
       "seoPreview": "How the page may look in search",
       "seoPreviewTitle": "Page title",
       "seoPreviewDescription": "The page description will appear here."
-    }
+    },
+    "read": "Read"
   },
   "catalog": {
     "badge": {
@@ -1481,5 +1840,15 @@
     "accept": "Accept",
     "decline": "Decline",
     "settings": "Cookie settings"
+  },
+  "rooms": {
+    "collectionsCount_one": "{{count}} collection",
+    "collectionsCount_other": "{{count}} collections",
+    "solutionsCount_one": "{{count}} set",
+    "solutionsCount_other": "{{count}} sets",
+    "solutionPrice": "Set price:",
+    "elements": "Set elements",
+    "allElements": "All collection elements",
+    "collectionTitle": "{{room}} {{name}}"
   }
 }

@@ -43,7 +43,7 @@ export function SignInForm({ onSuccess }: SignInFormProps) {
   return (
     <Card>
       <CardHeader className="justify-items-center text-center">
-        <BrandLogo tone="onLight" className="mb-3 [&_span.hidden]:block" />
+        <BrandLogo tone="onLight" className="mb-3" />
         <CardTitle>{t('admin.auth.title')}</CardTitle>
         <CardDescription>{t('admin.auth.subtitle')}</CardDescription>
       </CardHeader>

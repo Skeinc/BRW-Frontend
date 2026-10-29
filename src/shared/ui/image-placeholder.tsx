@@ -1,7 +1,18 @@
-import { FileText, Layers, LayoutGrid, Newspaper, Package, type LucideIcon } from 'lucide-react';
+import {
+  FileText,
+  GalleryHorizontal,
+  Layers,
+  Sofa,
+  Boxes,
+  LayoutGrid,
+  Newspaper,
+  Package,
+  type LucideIcon,
+} from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
 
-export type ImagePlaceholderKind = 'product' | 'category' | 'collection' | 'article' | 'news';
+export type ImagePlaceholderKind =
+  'product' | 'category' | 'collection' | 'article' | 'news' | 'slide' | 'room' | 'solution';
 
 const KIND_ICONS: Record<ImagePlaceholderKind, LucideIcon> = {
   product: Package,
@@ -9,6 +20,9 @@ const KIND_ICONS: Record<ImagePlaceholderKind, LucideIcon> = {
   collection: Layers,
   article: FileText,
   news: Newspaper,
+  slide: GalleryHorizontal,
+  room: Sofa,
+  solution: Boxes,
 };
 
 interface ImagePlaceholderProps {

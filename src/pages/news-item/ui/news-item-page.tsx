@@ -16,7 +16,6 @@ export function NewsItemPage() {
   const { data: newsItem } = useSuspenseQuery(catalogNewsItemQueryOptions(newsId));
   const { data: latest } = useQuery(catalogNewsQueryOptions(RELATED_NEWS_PARAMS));
   const related = (latest?.items ?? []).filter((item) => item.id !== newsItem.id).slice(0, RELATED_NEWS_COUNT);
-  const cover = newsItem.images[0];
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-6 md:py-8">
       <BreadcrumbTrail steps={[{ label: t('nav.news'), to: 'news' }, { label: newsItem.title }]} />
@@ -26,16 +25,6 @@ export function NewsItemPage() {
           <time dateTime={newsItem.publishedAt} className="mt-3 block text-sm text-muted-foreground">
             {formatDate(newsItem.publishedAt, i18n.language)}
           </time>
-        )}
-        {cover && (
-          <img
-            src={cover.url}
-            alt={cover.alt ?? newsItem.title}
-            width={cover.width}
-            height={cover.height}
-            fetchPriority="high"
-            className="mt-6 w-full rounded-2xl bg-muted object-cover"
-          />
         )}
         <div className="mt-6">
           <MarkdownContent content={newsItem.content} demoteHeadings />

@@ -2,11 +2,17 @@ import { useNavigate, useRouterState, useSearch } from '@tanstack/react-router';
 import { Search } from 'lucide-react';
 import { useEffect, useState, type SubmitEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { cn } from '@/shared/lib/utils';
 import { Input } from '@/shared/ui/input';
 
 const DEBOUNCE_MS = 300;
 
-export function HeaderSearch() {
+interface HeaderSearchProps {
+  className?: string;
+  autoFocus?: boolean;
+}
+
+export function HeaderSearch({ className, autoFocus = false }: HeaderSearchProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const isSearchPage = useRouterState({ select: (state) => state.location.pathname === '/search' });
@@ -39,7 +45,7 @@ export function HeaderSearch() {
     <form
       role="search"
       onSubmit={handleSubmit}
-      className="relative order-last min-w-0 basis-full sm:order-none sm:basis-auto sm:flex-1"
+      className={cn('relative order-last min-w-0 basis-full sm:order-none sm:basis-auto sm:flex-1', className)}
     >
       <Search
         className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
@@ -47,6 +53,7 @@ export function HeaderSearch() {
       />
       <Input
         type="search"
+        autoFocus={autoFocus}
         value={query}
         onChange={(event) => setQuery(event.target.value)}
         placeholder={t('header.searchPlaceholder')}

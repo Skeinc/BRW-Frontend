@@ -22,8 +22,6 @@ interface CategoriesTableProps {
   onPageChange: (page: number) => void;
   onPageSizeChange: (pageSize: number) => void;
   onReorder: (activeId: string, overId: string) => void;
-  collapsedIds: ReadonlySet<string>;
-  onToggle: (category: Category) => void;
   onCreate: () => void;
   onResetFilters: () => void;
   onEdit: (category: Category) => void;
@@ -42,8 +40,6 @@ export function CategoriesTable({
   onPageChange,
   onPageSizeChange,
   onReorder,
-  collapsedIds,
-  onToggle,
   onCreate,
   onResetFilters,
   onEdit,
@@ -55,14 +51,7 @@ export function CategoriesTable({
     {
       id: 'name',
       header: t('admin.categories.columns.name'),
-      cell: (row) => (
-        <CategoryNameCell
-          category={row}
-          isTree={!isFiltered}
-          isExpanded={!collapsedIds.has(row.id)}
-          onToggle={onToggle}
-        />
-      ),
+      cell: (row) => <CategoryNameCell category={row} isTree={!isFiltered} />,
     },
     {
       id: 'products',

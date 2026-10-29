@@ -11,8 +11,11 @@ const ADVANTAGES = [
 export function AdvantagesStrip() {
   const { t } = useTranslation();
   return (
-    <section className="mx-auto w-full max-w-7xl px-4">
-      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <section aria-labelledby="home-advantages" className="mx-auto w-full max-w-7xl px-4">
+      <h2 id="home-advantages" className="text-2xl font-bold tracking-tight md:text-3xl">
+        {t('pages.home.advantages.title')}
+      </h2>
+      <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {ADVANTAGES.map(({ key, icon: Icon }) => (
           <li
             key={key}

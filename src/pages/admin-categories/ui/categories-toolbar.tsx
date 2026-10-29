@@ -1,4 +1,4 @@
-import { ChevronsDownUp, ChevronsUpDown, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { MAX_CATEGORY_DEPTH } from '@/entities/category';
 import { ListToolbar } from '@/shared/ui/list-toolbar';
@@ -13,25 +13,12 @@ const LEVELS = Array.from({ length: MAX_CATEGORY_DEPTH }, (_, index) => index + 
 interface CategoriesToolbarProps {
   search: CategoriesSearch;
   hasFilters: boolean;
-  /** Whether any category on the page has subcategories, so collapsing makes sense. */
-  canCollapse: boolean;
-  isCollapsed: boolean;
   onChange: (patch: Partial<CategoriesSearch>) => void;
   onReset: () => void;
   onCreate: () => void;
-  onToggleAll: () => void;
 }
 
-export function CategoriesToolbar({
-  search,
-  hasFilters,
-  canCollapse,
-  isCollapsed,
-  onChange,
-  onReset,
-  onCreate,
-  onToggleAll,
-}: CategoriesToolbarProps) {
+export function CategoriesToolbar({ search, hasFilters, onChange, onReset, onCreate }: CategoriesToolbarProps) {
   const { t } = useTranslation();
   return (
     <ListToolbar
@@ -79,19 +66,7 @@ export function CategoriesToolbar({
           </Select>
         </>
       }
-      actions={
-        <>
-          {!hasFilters && canCollapse ? (
-            <ToolbarButton
-              variant="outline"
-              icon={isCollapsed ? ChevronsUpDown : ChevronsDownUp}
-              label={t(isCollapsed ? 'admin.categories.expandAll' : 'admin.categories.collapseAll')}
-              onClick={onToggleAll}
-            />
-          ) : null}
-          <ToolbarButton icon={Plus} label={t('admin.categories.create')} onClick={onCreate} />
-        </>
-      }
+      actions={<ToolbarButton icon={Plus} label={t('admin.categories.create')} onClick={onCreate} />}
     />
   );
 }

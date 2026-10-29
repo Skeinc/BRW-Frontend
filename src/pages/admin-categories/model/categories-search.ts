@@ -1,6 +1,9 @@
 import { z } from 'zod';
-import type { Category, CategoryListParams } from '@/entities/category';
-import { DEFAULT_TABLE_PAGE_SIZE, tablePageSearchSchema } from '@/shared/lib/table-search';
+import type { CategoryListParams } from '@/entities/category';
+import { tablePageSearchSchema } from '@/shared/lib/table-search';
+
+/** The category tree is read as a whole, so a page holds 100 rows by default. */
+const CATEGORIES_DEFAULT_PAGE_SIZE = 100;
 
 export const categoriesSearchSchema = tablePageSearchSchema.extend({
   q: z.string().optional().catch(undefined),
@@ -20,21 +23,9 @@ export function hasCategoryFilters(search: CategoriesSearch): boolean {
 export function toCategoryListParams(search: CategoriesSearch): CategoryListParams {
   return {
     page: search.page ?? 1,
-    pageSize: search.pageSize ?? DEFAULT_TABLE_PAGE_SIZE,
+    pageSize: search.pageSize ?? CATEGORIES_DEFAULT_PAGE_SIZE,
     q: search.q?.trim() || undefined,
     isPublished: search.published ? search.published === 'yes' : undefined,
     depth: search.level,
   };
-}
-
-/** Rows to show: those whose ancestors are all expanded. `rows` come in tree order, parents first. */
-export function getVisibleRows(rows: readonly Category[], collapsedIds: ReadonlySet<string>): Category[] {
-  const hiddenIds = new Set<string>();
-  return rows.filter((row) => {
-    const isHidden = row.parentId !== null && (hiddenIds.has(row.parentId) || collapsedIds.has(row.parentId));
-    if (isHidden) {
-      hiddenIds.add(row.id);
-    }
-    return !isHidden;
-  });
 }

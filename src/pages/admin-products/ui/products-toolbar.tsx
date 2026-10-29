@@ -10,6 +10,7 @@ import { PRODUCT_ISSUES, type ProductIssue } from '@/entities/product';
 import type { ProductsSearch } from '../model/products-search';
 
 const ALL = 'all';
+const FILTER_CLASS = 'h-10 w-full data-[size=default]:h-10';
 
 interface ProductsToolbarProps {
   search: ProductsSearch;
@@ -31,9 +32,10 @@ export function ProductsToolbar({ search, hasFilters, onChange, onReset, onCreat
         Number(Boolean(search.issue))
       }
       onReset={onReset}
+      stackFilters
       search={
         <SearchInput
-          className="w-full md:w-64"
+          className="w-full md:max-w-md"
           value={search.q ?? ''}
           placeholder={t('admin.products.searchPlaceholder')}
           onChange={(q) => onChange({ q: q || undefined })}
@@ -42,14 +44,14 @@ export function ProductsToolbar({ search, hasFilters, onChange, onReset, onCreat
       filters={
         <>
           <CategorySelect
-            className="h-10 w-52"
+            className={FILTER_CLASS}
             value={search.categoryId ?? ''}
             noneLabel={t('admin.products.filters.categoryAll')}
             ariaLabel={t('admin.products.filters.categoryLabel')}
             onValueChange={(categoryId) => onChange({ categoryId: categoryId || undefined })}
           />
           <CollectionSelect
-            className="h-10 w-48"
+            className={FILTER_CLASS}
             value={search.collectionId ?? ''}
             noneLabel={t('admin.products.filters.collectionAll')}
             ariaLabel={t('admin.products.filters.collectionLabel')}
@@ -59,7 +61,7 @@ export function ProductsToolbar({ search, hasFilters, onChange, onReset, onCreat
             value={search.published ?? ALL}
             onValueChange={(value) => onChange({ published: value === ALL ? undefined : (value as 'yes' | 'no') })}
           >
-            <SelectTrigger className="h-10 w-40" aria-label={t('admin.filters.statusLabel')}>
+            <SelectTrigger className={FILTER_CLASS} aria-label={t('admin.filters.statusLabel')}>
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -72,7 +74,7 @@ export function ProductsToolbar({ search, hasFilters, onChange, onReset, onCreat
             value={search.issue ?? ALL}
             onValueChange={(value) => onChange({ issue: value === ALL ? undefined : (value as ProductIssue) })}
           >
-            <SelectTrigger className="h-10 w-52" aria-label={t('admin.products.filters.issueLabel')}>
+            <SelectTrigger className={FILTER_CLASS} aria-label={t('admin.products.filters.issueLabel')}>
               <SelectValue />
             </SelectTrigger>
             <SelectContent>

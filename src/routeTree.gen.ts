@@ -15,7 +15,9 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as DeliveryAndPaymentRouteImport } from './routes/delivery-and-payment'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as InstallmentRouteImport } from './routes/installment'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -30,11 +32,17 @@ import { Route as NewsIndexRouteImport } from './routes/news.index'
 import { Route as NewsNewsIdRouteImport } from './routes/news.$newsId'
 import { Route as OrderNumberRouteImport } from './routes/order.$number'
 import { Route as ProductProductIdRouteImport } from './routes/product.$productId'
+import { Route as RoomIndexRouteImport } from './routes/room.index'
 import { Route as AdminAuthedIndexRouteImport } from './routes/admin._authed.index'
 import { Route as AdminAuthedAnalyticsRouteImport } from './routes/admin._authed.analytics'
 import { Route as AdminAuthedCategoriesRouteImport } from './routes/admin._authed.categories'
 import { Route as AdminAuthedCollectionsRouteImport } from './routes/admin._authed.collections'
 import { Route as AdminAuthedOrdersRouteImport } from './routes/admin._authed.orders'
+import { Route as AdminAuthedRoomsRouteImport } from './routes/admin._authed.rooms'
+import { Route as AdminAuthedSettingsRouteImport } from './routes/admin._authed.settings'
+import { Route as AdminAuthedSolutionsRouteImport } from './routes/admin._authed.solutions'
+import { Route as RoomRoomIdIndexRouteImport } from './routes/room.$roomId.index'
+import { Route as RoomRoomIdCollectionIdRouteImport } from './routes/room.$roomId.$collectionId'
 import { Route as AdminAuthedArticlesIndexRouteImport } from './routes/admin._authed.articles.index'
 import { Route as AdminAuthedNewsIndexRouteImport } from './routes/admin._authed.news.index'
 import { Route as AdminAuthedProductsIndexRouteImport } from './routes/admin._authed.products.index'
@@ -69,9 +77,19 @@ const DeliveryAndPaymentRoute = DeliveryAndPaymentRouteImport.update({
   path: '/delivery-and-payment',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InstallmentRoute = InstallmentRouteImport.update({
   id: '/installment',
   path: '/installment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
@@ -143,6 +161,11 @@ const ProductProductIdRoute = ProductProductIdRouteImport.update({
   path: '/product/$productId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RoomIndexRoute = RoomIndexRouteImport.update({
+  id: '/room/',
+  path: '/room/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminAuthedIndexRoute = AdminAuthedIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -167,6 +190,31 @@ const AdminAuthedOrdersRoute = AdminAuthedOrdersRouteImport.update({
   id: '/orders',
   path: '/orders',
   getParentRoute: () => AdminAuthedRoute,
+} as any)
+const AdminAuthedRoomsRoute = AdminAuthedRoomsRouteImport.update({
+  id: '/rooms',
+  path: '/rooms',
+  getParentRoute: () => AdminAuthedRoute,
+} as any)
+const AdminAuthedSettingsRoute = AdminAuthedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminAuthedRoute,
+} as any)
+const AdminAuthedSolutionsRoute = AdminAuthedSolutionsRouteImport.update({
+  id: '/solutions',
+  path: '/solutions',
+  getParentRoute: () => AdminAuthedRoute,
+} as any)
+const RoomRoomIdIndexRoute = RoomRoomIdIndexRouteImport.update({
+  id: '/room/$roomId/',
+  path: '/room/$roomId/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoomRoomIdCollectionIdRoute = RoomRoomIdCollectionIdRouteImport.update({
+  id: '/room/$roomId/$collectionId',
+  path: '/room/$roomId/$collectionId',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AdminAuthedArticlesIndexRoute =
   AdminAuthedArticlesIndexRouteImport.update({
@@ -193,7 +241,9 @@ export interface FileRoutesByFullPath {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/delivery-and-payment': typeof DeliveryAndPaymentRoute
+  '/faq': typeof FaqRoute
   '/installment': typeof InstallmentRoute
+  '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/search': typeof SearchRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -207,11 +257,17 @@ export interface FileRoutesByFullPath {
   '/articles/': typeof ArticlesIndexRoute
   '/catalog/': typeof CatalogIndexRoute
   '/news/': typeof NewsIndexRoute
+  '/room/': typeof RoomIndexRoute
   '/admin/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/categories': typeof AdminAuthedCategoriesRoute
   '/admin/collections': typeof AdminAuthedCollectionsRoute
   '/admin/orders': typeof AdminAuthedOrdersRoute
+  '/admin/rooms': typeof AdminAuthedRoomsRoute
+  '/admin/settings': typeof AdminAuthedSettingsRoute
+  '/admin/solutions': typeof AdminAuthedSolutionsRoute
+  '/room/$roomId/$collectionId': typeof RoomRoomIdCollectionIdRoute
   '/admin/': typeof AdminAuthedIndexRoute
+  '/room/$roomId/': typeof RoomRoomIdIndexRoute
   '/admin/articles/': typeof AdminAuthedArticlesIndexRoute
   '/admin/news/': typeof AdminAuthedNewsIndexRoute
   '/admin/products/': typeof AdminAuthedProductsIndexRoute
@@ -223,7 +279,9 @@ export interface FileRoutesByTo {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/delivery-and-payment': typeof DeliveryAndPaymentRoute
+  '/faq': typeof FaqRoute
   '/installment': typeof InstallmentRoute
+  '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/search': typeof SearchRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -237,10 +295,16 @@ export interface FileRoutesByTo {
   '/articles': typeof ArticlesIndexRoute
   '/catalog': typeof CatalogIndexRoute
   '/news': typeof NewsIndexRoute
+  '/room': typeof RoomIndexRoute
   '/admin/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/categories': typeof AdminAuthedCategoriesRoute
   '/admin/collections': typeof AdminAuthedCollectionsRoute
   '/admin/orders': typeof AdminAuthedOrdersRoute
+  '/admin/rooms': typeof AdminAuthedRoomsRoute
+  '/admin/settings': typeof AdminAuthedSettingsRoute
+  '/admin/solutions': typeof AdminAuthedSolutionsRoute
+  '/room/$roomId/$collectionId': typeof RoomRoomIdCollectionIdRoute
+  '/room/$roomId': typeof RoomRoomIdIndexRoute
   '/admin/articles': typeof AdminAuthedArticlesIndexRoute
   '/admin/news': typeof AdminAuthedNewsIndexRoute
   '/admin/products': typeof AdminAuthedProductsIndexRoute
@@ -253,7 +317,9 @@ export interface FileRoutesById {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/delivery-and-payment': typeof DeliveryAndPaymentRoute
+  '/faq': typeof FaqRoute
   '/installment': typeof InstallmentRoute
+  '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/search': typeof SearchRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -268,11 +334,17 @@ export interface FileRoutesById {
   '/articles/': typeof ArticlesIndexRoute
   '/catalog/': typeof CatalogIndexRoute
   '/news/': typeof NewsIndexRoute
+  '/room/': typeof RoomIndexRoute
   '/admin/_authed/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/_authed/categories': typeof AdminAuthedCategoriesRoute
   '/admin/_authed/collections': typeof AdminAuthedCollectionsRoute
   '/admin/_authed/orders': typeof AdminAuthedOrdersRoute
+  '/admin/_authed/rooms': typeof AdminAuthedRoomsRoute
+  '/admin/_authed/settings': typeof AdminAuthedSettingsRoute
+  '/admin/_authed/solutions': typeof AdminAuthedSolutionsRoute
+  '/room/$roomId/$collectionId': typeof RoomRoomIdCollectionIdRoute
   '/admin/_authed/': typeof AdminAuthedIndexRoute
+  '/room/$roomId/': typeof RoomRoomIdIndexRoute
   '/admin/_authed/articles/': typeof AdminAuthedArticlesIndexRoute
   '/admin/_authed/news/': typeof AdminAuthedNewsIndexRoute
   '/admin/_authed/products/': typeof AdminAuthedProductsIndexRoute
@@ -286,7 +358,9 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/delivery-and-payment'
+    | '/faq'
     | '/installment'
+    | '/privacy'
     | '/robots.txt'
     | '/search'
     | '/sitemap.xml'
@@ -300,11 +374,17 @@ export interface FileRouteTypes {
     | '/articles/'
     | '/catalog/'
     | '/news/'
+    | '/room/'
     | '/admin/analytics'
     | '/admin/categories'
     | '/admin/collections'
     | '/admin/orders'
+    | '/admin/rooms'
+    | '/admin/settings'
+    | '/admin/solutions'
+    | '/room/$roomId/$collectionId'
     | '/admin/'
+    | '/room/$roomId/'
     | '/admin/articles/'
     | '/admin/news/'
     | '/admin/products/'
@@ -316,7 +396,9 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/delivery-and-payment'
+    | '/faq'
     | '/installment'
+    | '/privacy'
     | '/robots.txt'
     | '/search'
     | '/sitemap.xml'
@@ -330,10 +412,16 @@ export interface FileRouteTypes {
     | '/articles'
     | '/catalog'
     | '/news'
+    | '/room'
     | '/admin/analytics'
     | '/admin/categories'
     | '/admin/collections'
     | '/admin/orders'
+    | '/admin/rooms'
+    | '/admin/settings'
+    | '/admin/solutions'
+    | '/room/$roomId/$collectionId'
+    | '/room/$roomId'
     | '/admin/articles'
     | '/admin/news'
     | '/admin/products'
@@ -345,7 +433,9 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/delivery-and-payment'
+    | '/faq'
     | '/installment'
+    | '/privacy'
     | '/robots.txt'
     | '/search'
     | '/sitemap.xml'
@@ -360,11 +450,17 @@ export interface FileRouteTypes {
     | '/articles/'
     | '/catalog/'
     | '/news/'
+    | '/room/'
     | '/admin/_authed/analytics'
     | '/admin/_authed/categories'
     | '/admin/_authed/collections'
     | '/admin/_authed/orders'
+    | '/admin/_authed/rooms'
+    | '/admin/_authed/settings'
+    | '/admin/_authed/solutions'
+    | '/room/$roomId/$collectionId'
     | '/admin/_authed/'
+    | '/room/$roomId/'
     | '/admin/_authed/articles/'
     | '/admin/_authed/news/'
     | '/admin/_authed/products/'
@@ -377,7 +473,9 @@ export interface RootRouteChildren {
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
   DeliveryAndPaymentRoute: typeof DeliveryAndPaymentRoute
+  FaqRoute: typeof FaqRoute
   InstallmentRoute: typeof InstallmentRoute
+  PrivacyRoute: typeof PrivacyRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SearchRoute: typeof SearchRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -390,6 +488,9 @@ export interface RootRouteChildren {
   ArticlesIndexRoute: typeof ArticlesIndexRoute
   CatalogIndexRoute: typeof CatalogIndexRoute
   NewsIndexRoute: typeof NewsIndexRoute
+  RoomIndexRoute: typeof RoomIndexRoute
+  RoomRoomIdCollectionIdRoute: typeof RoomRoomIdCollectionIdRoute
+  RoomRoomIdIndexRoute: typeof RoomRoomIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -436,11 +537,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DeliveryAndPaymentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/installment': {
       id: '/installment'
       path: '/installment'
       fullPath: '/installment'
       preLoaderRoute: typeof InstallmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/robots.txt': {
@@ -541,6 +656,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/room/': {
+      id: '/room/'
+      path: '/room'
+      fullPath: '/room/'
+      preLoaderRoute: typeof RoomIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/_authed/': {
       id: '/admin/_authed/'
       path: '/'
@@ -576,6 +698,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAuthedOrdersRouteImport
       parentRoute: typeof AdminAuthedRoute
     }
+    '/admin/_authed/rooms': {
+      id: '/admin/_authed/rooms'
+      path: '/rooms'
+      fullPath: '/admin/rooms'
+      preLoaderRoute: typeof AdminAuthedRoomsRouteImport
+      parentRoute: typeof AdminAuthedRoute
+    }
+    '/admin/_authed/settings': {
+      id: '/admin/_authed/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminAuthedSettingsRouteImport
+      parentRoute: typeof AdminAuthedRoute
+    }
+    '/admin/_authed/solutions': {
+      id: '/admin/_authed/solutions'
+      path: '/solutions'
+      fullPath: '/admin/solutions'
+      preLoaderRoute: typeof AdminAuthedSolutionsRouteImport
+      parentRoute: typeof AdminAuthedRoute
+    }
+    '/room/$roomId/': {
+      id: '/room/$roomId/'
+      path: '/room/$roomId'
+      fullPath: '/room/$roomId/'
+      preLoaderRoute: typeof RoomRoomIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/room/$roomId/$collectionId': {
+      id: '/room/$roomId/$collectionId'
+      path: '/room/$roomId/$collectionId'
+      fullPath: '/room/$roomId/$collectionId'
+      preLoaderRoute: typeof RoomRoomIdCollectionIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/_authed/articles/': {
       id: '/admin/_authed/articles/'
       path: '/articles'
@@ -605,6 +762,9 @@ interface AdminAuthedRouteChildren {
   AdminAuthedCategoriesRoute: typeof AdminAuthedCategoriesRoute
   AdminAuthedCollectionsRoute: typeof AdminAuthedCollectionsRoute
   AdminAuthedOrdersRoute: typeof AdminAuthedOrdersRoute
+  AdminAuthedRoomsRoute: typeof AdminAuthedRoomsRoute
+  AdminAuthedSettingsRoute: typeof AdminAuthedSettingsRoute
+  AdminAuthedSolutionsRoute: typeof AdminAuthedSolutionsRoute
   AdminAuthedIndexRoute: typeof AdminAuthedIndexRoute
   AdminAuthedArticlesIndexRoute: typeof AdminAuthedArticlesIndexRoute
   AdminAuthedNewsIndexRoute: typeof AdminAuthedNewsIndexRoute
@@ -616,6 +776,9 @@ const AdminAuthedRouteChildren: AdminAuthedRouteChildren = {
   AdminAuthedCategoriesRoute: AdminAuthedCategoriesRoute,
   AdminAuthedCollectionsRoute: AdminAuthedCollectionsRoute,
   AdminAuthedOrdersRoute: AdminAuthedOrdersRoute,
+  AdminAuthedRoomsRoute: AdminAuthedRoomsRoute,
+  AdminAuthedSettingsRoute: AdminAuthedSettingsRoute,
+  AdminAuthedSolutionsRoute: AdminAuthedSolutionsRoute,
   AdminAuthedIndexRoute: AdminAuthedIndexRoute,
   AdminAuthedArticlesIndexRoute: AdminAuthedArticlesIndexRoute,
   AdminAuthedNewsIndexRoute: AdminAuthedNewsIndexRoute,
@@ -645,7 +808,9 @@ const rootRouteChildren: RootRouteChildren = {
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
   DeliveryAndPaymentRoute: DeliveryAndPaymentRoute,
+  FaqRoute: FaqRoute,
   InstallmentRoute: InstallmentRoute,
+  PrivacyRoute: PrivacyRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SearchRoute: SearchRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
@@ -658,6 +823,9 @@ const rootRouteChildren: RootRouteChildren = {
   ArticlesIndexRoute: ArticlesIndexRoute,
   CatalogIndexRoute: CatalogIndexRoute,
   NewsIndexRoute: NewsIndexRoute,
+  RoomIndexRoute: RoomIndexRoute,
+  RoomRoomIdCollectionIdRoute: RoomRoomIdCollectionIdRoute,
+  RoomRoomIdIndexRoute: RoomRoomIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -8,6 +8,8 @@ const STATIC_PATHS = [
   '/about',
   '/delivery-and-payment',
   '/installment',
+  '/faq',
+  '/privacy',
 ] as const;
 
 interface SitemapEntry {
