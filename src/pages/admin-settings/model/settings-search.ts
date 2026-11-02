@@ -6,7 +6,6 @@ import { tablePageSearchSchema } from '@/shared/lib/table-search';
 const SLIDES_DEFAULT_PAGE_SIZE = 100;
 
 export const settingsSearchSchema = tablePageSearchSchema.extend({
-  tab: z.enum(['slider']).optional().catch(undefined),
   /** A slide id to open in the edit form on arrival, for links from other screens. */
   edit: z.uuid().optional().catch(undefined),
 });
