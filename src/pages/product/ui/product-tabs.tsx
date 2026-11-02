@@ -5,6 +5,8 @@ import { getProductSpecRows } from './get-product-spec-rows';
 import { ProductDescription } from './product-description';
 import { ProductSpecs } from './product-specs';
 
+const triggerClass = 'min-w-0 px-2 text-xs sm:px-3 sm:text-sm';
+
 interface ProductTabsProps {
   product: CatalogProductDetail;
 }
@@ -19,9 +21,17 @@ export function ProductTabs({ product }: ProductTabsProps) {
   }
   return (
     <Tabs defaultValue={rows.length > 0 ? 'specs' : 'description'} className="max-w-3xl">
-      <TabsList>
-        {rows.length > 0 && <TabsTrigger value="specs">{t('product.tabs.specs')}</TabsTrigger>}
-        {description && <TabsTrigger value="description">{t('product.tabs.description')}</TabsTrigger>}
+      <TabsList className="h-auto w-full">
+        {rows.length > 0 && (
+          <TabsTrigger value="specs" className={triggerClass}>
+            {t('product.tabs.specs')}
+          </TabsTrigger>
+        )}
+        {description && (
+          <TabsTrigger value="description" className={triggerClass}>
+            {t('product.tabs.description')}
+          </TabsTrigger>
+        )}
       </TabsList>
       {rows.length > 0 && (
         <TabsContent value="specs" className="mt-2">
