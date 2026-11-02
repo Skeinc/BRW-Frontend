@@ -90,7 +90,7 @@ export function toCatalogParams(search: CatalogSearch, pinned: CatalogProductFil
 export function countActiveFilters(search: CatalogSearch): number {
   return FILTER_KEYS.filter((key) => {
     const value = search[key];
-    return Array.isArray(value) ? value.length > 0 : Boolean(value);
+    return Array.isArray(value) ? value.length > 0 : value !== undefined && value !== '';
   }).length;
 }
 
