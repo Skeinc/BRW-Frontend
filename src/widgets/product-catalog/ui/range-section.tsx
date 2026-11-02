@@ -16,7 +16,7 @@ export function RangeSection({ label, bounds, value, onCommit, defaultOpen = fal
   const hasValue = value.from !== undefined || value.to !== undefined;
   return (
     <Collapsible defaultOpen={defaultOpen || hasValue} className="flex flex-col gap-2">
-      <CollapsibleTrigger className="group flex min-h-11 w-full lg:min-h-7 items-center justify-between gap-3 text-left text-sm font-semibold">
+      <CollapsibleTrigger className="group -mx-2 flex min-h-11 w-[calc(100%+1rem)] cursor-pointer items-center justify-between gap-3 rounded-md px-2 text-left text-sm font-semibold transition-colors hover:bg-foreground/5 focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none lg:min-h-7">
         {label}
         <ChevronDownIcon
           aria-hidden
