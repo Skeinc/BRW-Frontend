@@ -69,13 +69,10 @@ export function AppHeader() {
               {t('nav.catalog')}
             </Link>
           </Button>
-          <Button asChild variant="outline" size="icon" className="ml-auto size-12 shrink-0 sm:hidden">
-            <Link to="/catalog" aria-label={t('nav.catalog')}>
-              <LayoutGrid aria-hidden />
-            </Link>
-          </Button>
           <HeaderSearch />
-          <LanguageSwitcher />
+          <div className="ml-auto sm:ml-0">
+            <LanguageSwitcher />
+          </div>
           <Button asChild variant="outline" className="relative h-12 shrink-0 px-3 sm:px-4" aria-label={cartLabel}>
             <Link to="/cart">
               <ShoppingCart aria-hidden />

@@ -15,7 +15,7 @@ import { PopularSection, NewArrivalsSection } from '@/widgets/product-showcase';
 export function HomePage() {
   const { data: slides = [] } = useQuery(catalogSlidesQueryOptions);
   return (
-    <div className="flex flex-col gap-12 md:gap-16">
+    <div className="flex flex-col gap-12 pt-4 md:gap-16 md:pt-6">
       {slides.length > 0 ? <HomeSlider slides={slides} /> : <HomeHero />}
       <AdvantagesStrip />
       <CategoryTiles />

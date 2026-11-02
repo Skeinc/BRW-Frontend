@@ -31,13 +31,7 @@ export function FiltersPanel({
       <h2 id="filters-panel-title" className="mb-1 text-lg font-semibold">
         {t('catalog.filters.panelTitle')}
       </h2>
-      <ProductFilters
-        facets={facets}
-        search={search}
-        showCollections={showCollections}
-        onChange={onChange}
-        layout="panel"
-      />
+      <ProductFilters facets={facets} search={search} showCollections={showCollections} onChange={onChange} />
       <div className="mt-3 flex flex-col items-center gap-1">
         <Button className="h-11 w-full" onClick={onShow}>
           {t('catalog.filters.show', { count: total ?? 0 })}

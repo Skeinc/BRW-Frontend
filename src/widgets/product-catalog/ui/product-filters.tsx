@@ -10,8 +10,6 @@ interface ProductFiltersProps {
   /** Collections are offered only where the list is not pinned to one. */
   showCollections: boolean;
   onChange: (patch: Partial<CatalogSearch>) => void;
-  /** `panel` shows the groups as select-like fields in the wide panel above the products. */
-  layout?: 'column' | 'panel';
 }
 
 const DIMENSIONS: readonly CatalogDimension[] = ['width', 'height', 'depth', 'length'];
@@ -28,7 +26,7 @@ function toggle(list: readonly string[] | undefined, value: string): string[] | 
   return next.length > 0 ? next : undefined;
 }
 
-export function ProductFilters({ facets, search, showCollections, onChange, layout = 'column' }: ProductFiltersProps) {
+export function ProductFilters({ facets, search, showCollections, onChange }: ProductFiltersProps) {
   const { t } = useTranslation();
   const min = Math.floor(Number(facets?.price.min));
   const max = Math.ceil(Number(facets?.price.max));
@@ -36,7 +34,6 @@ export function ProductFilters({ facets, search, showCollections, onChange, layo
   const material = search.material ?? [];
   const colorBody = search.colorBody ?? [];
   const colorFacade = search.colorFacade ?? [];
-  const isPanel = layout === 'panel';
   const priceSection = hasPrice && (
     <RangeSection
       label={t('catalog.filters.price')}
@@ -77,7 +74,7 @@ export function ProductFilters({ facets, search, showCollections, onChange, layo
       node: (
         <FacetChecklist
           title={t('catalog.filters.collection')}
-          hideTitle={isPanel}
+          hideTitle
           values={collections.map((item) => ({ value: item.name, count: item.count }))}
           selected={collections.filter((item) => item.slug === search.collection).map((item) => item.name)}
           onToggle={(name) => {
@@ -95,7 +92,7 @@ export function ProductFilters({ facets, search, showCollections, onChange, layo
         node: (
           <FacetChecklist
             title={t('catalog.filters.material')}
-            hideTitle={isPanel}
+            hideTitle
             values={withSelected(facets.materials, material)}
             selected={material}
             onToggle={(value) => onChange({ material: toggle(search.material, value) })}
@@ -110,7 +107,7 @@ export function ProductFilters({ facets, search, showCollections, onChange, layo
         node: (
           <FacetChecklist
             title={t('catalog.filters.colorBody')}
-            hideTitle={isPanel}
+            hideTitle
             values={withSelected(facets.colorsBody, colorBody)}
             selected={colorBody}
             onToggle={(value) => onChange({ colorBody: toggle(search.colorBody, value) })}
@@ -125,7 +122,7 @@ export function ProductFilters({ facets, search, showCollections, onChange, layo
         node: (
           <FacetChecklist
             title={t('catalog.filters.colorFacade')}
-            hideTitle={isPanel}
+            hideTitle
             values={withSelected(facets.colorsFacade, colorFacade)}
             selected={colorFacade}
             onToggle={(value) => onChange({ colorFacade: toggle(search.colorFacade, value) })}
@@ -135,31 +132,20 @@ export function ProductFilters({ facets, search, showCollections, onChange, layo
   ].filter((group) => group !== false && group !== undefined);
   const dropdowns = groups.filter(({ id }) => id !== 'colorFacade');
   const facadeGroup = groups.find(({ id }) => id === 'colorFacade');
-  if (isPanel) {
-    return (
-      <div className="flex flex-col gap-1">
-        {priceSection}
-        {dropdowns.map(({ id, title, selected, node }) => (
-          <FilterGroup key={id} label={title} selected={selected}>
-            {node}
-          </FilterGroup>
-        ))}
-        {sizeSections}
-        {facadeGroup && (
-          <FilterGroup label={facadeGroup.title} selected={facadeGroup.selected}>
-            {facadeGroup.node}
-          </FilterGroup>
-        )}
-      </div>
-    );
-  }
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-1">
       {priceSection}
-      {groups.map(({ id, node }) => (
-        <div key={id}>{node}</div>
+      {dropdowns.map(({ id, title, selected, node }) => (
+        <FilterGroup key={id} label={title} selected={selected}>
+          {node}
+        </FilterGroup>
       ))}
       {sizeSections}
+      {facadeGroup && (
+        <FilterGroup label={facadeGroup.title} selected={facadeGroup.selected}>
+          {facadeGroup.node}
+        </FilterGroup>
+      )}
     </div>
   );
 }

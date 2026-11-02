@@ -21,12 +21,12 @@ export function CategoryTile({ category }: CategoryTileProps) {
           width={800}
           height={600}
           loading="lazy"
-          className="size-full object-contain p-4 pb-14 transition-transform duration-300 group-hover:scale-105"
+          className="size-full object-contain p-4 pb-10 sm:pb-14 transition-transform duration-300 group-hover:scale-105"
         />
       ) : (
         <ImagePlaceholder kind="category" className="size-full" iconClassName="size-1/4" />
       )}
-      <p className="absolute inset-x-0 bottom-0 line-clamp-2 bg-foreground/55 px-4 py-3 font-medium text-white transition-colors group-hover:bg-primary/80">
+      <p className="absolute inset-x-0 bottom-0 truncate bg-foreground/55 px-3 py-2 text-sm font-medium sm:px-4 sm:py-3 sm:text-base text-white transition-colors group-hover:bg-primary/80">
         {name}
       </p>
     </Link>
