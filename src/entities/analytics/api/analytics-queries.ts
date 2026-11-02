@@ -9,4 +9,6 @@ export const analyticsReportQueryOptions = (params: AnalyticsParams) =>
   queryOptions({
     queryKey: [...analyticsQueryKey, params],
     queryFn: () => fetchAnalyticsReport(params),
+    staleTime: 0,
+    refetchOnWindowFocus: true,
   });
