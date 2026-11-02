@@ -1,5 +1,10 @@
 import { apiRequest } from '@/shared/api';
-import type { CatalogRoomCollectionDetail, CatalogRoomDetail, CatalogRoomItem } from '../model/catalog-types';
+import type {
+  CatalogCollectionSolution,
+  CatalogRoomCollectionDetail,
+  CatalogRoomDetail,
+  CatalogRoomItem,
+} from '../model/catalog-types';
 
 /** Published rooms in display order. */
 export function fetchCatalogRooms(): Promise<CatalogRoomItem[]> {
@@ -12,4 +17,8 @@ export function fetchCatalogRoom(id: string): Promise<CatalogRoomDetail> {
 
 export function fetchCatalogRoomCollection(roomId: string, collectionId: string): Promise<CatalogRoomCollectionDetail> {
   return apiRequest<CatalogRoomCollectionDetail>(`/rooms/${roomId}/collections/${collectionId}`);
+}
+
+export function fetchCatalogCollectionSolutions(collectionId: string): Promise<CatalogCollectionSolution[]> {
+  return apiRequest<CatalogCollectionSolution[]>(`/rooms/collection/${collectionId}/solutions`);
 }

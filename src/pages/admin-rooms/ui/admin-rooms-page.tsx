@@ -7,7 +7,7 @@ import { EntityGallery } from '@/features/entity-gallery';
 import { RoomFormDialog } from '@/features/upsert-room';
 import { getApiErrorMessage } from '@/shared/api';
 import { useLinkedEntity } from '@/shared/lib/use-linked-entity';
-import { toRoomListParams, type RoomsSearch } from '../model/rooms-search';
+import { hasRoomFilters, toRoomListParams, type RoomsSearch } from '../model/rooms-search';
 import { RoomsTable } from './rooms-table';
 import { RoomsToolbar } from './rooms-toolbar';
 import { DeleteRoomDialog } from './delete-room-dialog';
@@ -33,6 +33,7 @@ export function AdminRoomsPage({ search, onSearchChange }: AdminRoomsPageProps) 
 
   const rows = roomsQuery.data?.items ?? [];
   const total = roomsQuery.data?.total ?? 0;
+  const isFiltered = hasRoomFilters(search);
   const editedRoom = editor === 'new' ? null : editor;
 
   const linkedQuery = useQuery({
@@ -55,12 +56,24 @@ export function AdminRoomsPage({ search, onSearchChange }: AdminRoomsPageProps) 
     }
   }, [roomsQuery.isSuccess, roomsQuery.isPlaceholderData, rows.length, total, params.pageSize, onSearchChange]);
 
+  /** Any filter change goes back to the first page. */
+  const changeFilter = (patch: Partial<RoomsSearch>) => onSearchChange({ ...patch, page: undefined });
+
+  const resetFilters = () => changeFilter({ q: undefined, published: undefined });
+
   return (
     <div className="flex min-h-0 flex-1 flex-col gap-4">
-      <RoomsToolbar onCreate={() => setEditor('new')} />
+      <RoomsToolbar
+        search={search}
+        hasFilters={isFiltered}
+        onChange={changeFilter}
+        onReset={resetFilters}
+        onCreate={() => setEditor('new')}
+      />
       <RoomsTable
         rows={rows}
         total={total}
+        isFiltered={isFiltered}
         isPending={roomsQuery.isPending}
         isRefreshing={roomsQuery.isFetching && !roomsQuery.isPending}
         error={roomsQuery.error}
@@ -72,6 +85,7 @@ export function AdminRoomsPage({ search, onSearchChange }: AdminRoomsPageProps) 
           move.mutate({ id, overId }, { onError: (error) => toast.error(getApiErrorMessage(error, t)) })
         }
         onCreate={() => setEditor('new')}
+        onResetFilters={resetFilters}
         onEdit={setEditor}
         onDelete={setRoomToDelete}
       />

@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { catalogArticlesQueryOptions } from '@/entities/article';
 import { catalogCategoriesQueryOptions } from '@/entities/category';
 import { catalogNewsQueryOptions } from '@/entities/news';
-import { catalogProductsQueryOptions, HITS_PARAMS, NEW_ARRIVALS_PARAMS } from '@/entities/product';
+import { catalogProductsQueryOptions, POPULAR_PARAMS, NEW_ARRIVALS_PARAMS } from '@/entities/product';
 import { catalogRoomsQueryOptions } from '@/entities/room';
 import { catalogSlidesQueryOptions } from '@/entities/slide';
 import { HomePage } from '@/pages/home';
@@ -19,7 +19,7 @@ export const Route = createFileRoute('/')({
       context.queryClient.ensureQueryData(catalogCategoriesQueryOptions),
       context.queryClient.ensureQueryData(catalogRoomsQueryOptions),
       context.queryClient.ensureQueryData(catalogProductsQueryOptions(NEW_ARRIVALS_PARAMS)),
-      context.queryClient.ensureQueryData(catalogProductsQueryOptions(HITS_PARAMS)),
+      context.queryClient.ensureQueryData(catalogProductsQueryOptions(POPULAR_PARAMS)),
       context.queryClient.ensureQueryData(catalogArticlesQueryOptions(LATEST_ARTICLES_PARAMS)),
       context.queryClient.ensureQueryData(catalogNewsQueryOptions(LATEST_NEWS_PARAMS)),
     ]);

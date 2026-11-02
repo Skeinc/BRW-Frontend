@@ -18,12 +18,10 @@
     "news": "News",
     "openSearch": "Open search",
     "closeSearch": "Close search",
-    "collections": "Collections",
-    "categories": "Categories",
-    "allCatalog": "All products",
     "mainMenu": "Main menu",
     "faq": "Questions and answers",
-    "privacy": "Personal data processing agreement"
+    "privacy": "Personal data processing agreement",
+    "rooms": "Rooms"
   },
   "header": {
     "searchPlaceholder": "Search the catalog",
@@ -41,7 +39,6 @@
     "legalEntity": "Artamid LLC, 212025, Republic of Belarus, Mogilev region, Mogilev, Nepokorennykh blvd., 26. State registration certificate No. 791351518 of 14.01.2024, issued by the administration of the Leninsky district of Mogilev.",
     "disclaimer": "All information about product characteristics, stock availability and prices is for reference only and is not a public offer as defined by Art. 407(2) of the Civil Code of the Republic of Belarus.",
     "rights": "© {{year}} BRW · Black Red White. All rights reserved.",
-    "allCatalog": "Full catalog",
     "byRoom": "Catalog by room",
     "byCategory": "Catalog by category",
     "network": "Where to buy",
@@ -112,10 +109,11 @@
         "previous": "Previous products",
         "next": "Next products"
       },
-      "hits": {
+      "popular": {
         "eyebrow": "Customers’ choice",
-        "title": "Bestsellers",
-        "all": "All bestsellers"
+        "title": "Popular products",
+        "previous": "Previous products",
+        "next": "Next products"
       },
       "installment": {
         "eyebrow": "Instalments",
@@ -1500,6 +1498,7 @@
     "rooms": {
       "title": "Rooms",
       "description": "Sections of the ready-made solutions catalogue: living rooms, bedrooms and others.",
+      "searchPlaceholder": "Search by name",
       "create": "New room",
       "createTitle": "New room",
       "editTitle": "Edit room",
@@ -1632,6 +1631,10 @@
     "read": "Read"
   },
   "catalog": {
+    "card": {
+      "sizes": "Size (w/h/d)",
+      "collection": "Collection"
+    },
     "badge": {
       "new": "New",
       "hit": "Bestseller"
@@ -1653,10 +1656,16 @@
     "filters": {
       "title": "Filters",
       "description": "Product filters",
+      "panelTitle": "Select parameters",
+      "width": "Width, cm",
+      "height": "Height, cm",
+      "depth": "Depth, cm",
+      "length": "Length, cm",
+      "rangeFrom": "{{label}}: from",
+      "rangeTo": "{{label}}: to",
+      "rangeChip": "{{label}}: {{from}} – {{to}}",
       "open": "Filters",
       "price": "Price, BYN",
-      "priceFrom": "Price from",
-      "priceTo": "Price to",
       "from": "from {{value}}",
       "to": "to {{value}}",
       "priceRange": "Price {{from}} – {{to}}",
@@ -1664,7 +1673,6 @@
       "material": "Material",
       "colorBody": "Body colour",
       "colorFacade": "Facade colour",
-      "inStock": "In stock only",
       "reset": "Reset filters",
       "remove": "Remove filter: {{name}}",
       "show_one": "Show {{count}} product",
@@ -1708,16 +1716,7 @@
       "show": "Show photo {{index}}",
       "zoomDescription": "Enlarged product photo"
     },
-    "tiles": {
-      "dimensions": "W × H × D",
-      "material": "Material",
-      "facade": "Facades"
-    },
     "cm": "cm",
-    "sku": "SKU {{sku}}",
-    "collection": "{{name}} collection",
-    "installment": "or from {{monthly}}/month with 0% instalments for {{months}} months",
-    "call": "Call us",
     "orderNote": "Online ordering is coming soon. For now we take orders by phone: a manager will confirm availability, timing and delivery cost.",
     "benefits": {
       "delivery": {
@@ -1732,10 +1731,11 @@
         "title": "0% instalments",
         "text": "up to 24 months, no overpayment"
       },
-      "assembly": {
-        "title": "Assembly",
-        "text": "professional, from 10% of the price"
-      }
+      "payment": {
+        "title": "Payment:",
+        "text": "cash and non-cash"
+      },
+      "more": "*More"
     },
     "specs": {
       "width": "Width",
@@ -1747,33 +1747,18 @@
       "colorBody": "Body colour",
       "colorFacade": "Facade colour"
     },
-    "specsTitle": "Specifications",
-    "descriptionTitle": "About the model",
-    "faq": {
-      "title": "Frequently asked questions",
-      "delivery": {
-        "question": "How does delivery work?",
-        "answer": "We deliver across Belarus from 2 days. A manager agrees the date and time, and the driver calls before leaving. Delivery in Mogilev is free over 500 BYN."
-      },
-      "assembly": {
-        "question": "Do you assemble the furniture?",
-        "answer": "Yes, our fitters assemble it on the delivery day. Assembly costs from 10% of the price; a manager will give the exact amount."
-      },
-      "warranty": {
-        "question": "What is the warranty?",
-        "answer": "BRW furniture comes with an 18-month warranty. If a factory defect is found, we replace the part or the item."
-      }
-    },
-    "similar": {
-      "eyebrow": "From this category",
-      "title": "Similar products",
-      "all": "All: {{name}}"
-    },
     "addToCart": {
       "label": "Add to cart",
       "unavailable": "Out of stock",
       "inCartCount": "In cart: {{count}}"
-    }
+    },
+    "code": "Code: {{sku}}",
+    "tabs": {
+      "specs": "Specifications",
+      "description": "Description"
+    },
+    "related": "Customers also buy",
+    "sku": "SKU {{sku}}"
   },
   "checkout": {
     "title": "Place a request",
@@ -1846,9 +1831,13 @@
     "collectionsCount_other": "{{count}} collections",
     "solutionsCount_one": "{{count}} set",
     "solutionsCount_other": "{{count}} sets",
-    "solutionPrice": "Set price:",
-    "elements": "Set elements",
-    "allElements": "All collection elements",
+    "solutionPrice": "Price:",
+    "readySolutions": "Ready-made sets of the {{name}} collection",
+    "aboutCollection": "About the {{name}} collection",
+    "selectedElements": "Elements of the selected set",
+    "allCollectionElements": "All collection elements",
+    "addSet": "Add set to cart",
+    "setInCart": "Set is in the cart",
     "collectionTitle": "{{room}} {{name}}"
   }
 }

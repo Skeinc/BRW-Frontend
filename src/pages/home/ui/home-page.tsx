@@ -10,7 +10,7 @@ import { HomeSlider } from '@/widgets/home-slider';
 import { InstallmentBanner } from '@/widgets/installment-banner';
 import { LatestArticles } from '@/widgets/latest-articles';
 import { LatestNews } from '@/widgets/latest-news';
-import { HitsSection, NewArrivalsSection } from '@/widgets/product-showcase';
+import { PopularSection, NewArrivalsSection } from '@/widgets/product-showcase';
 
 export function HomePage() {
   const { data: slides = [] } = useQuery(catalogSlidesQueryOptions);
@@ -21,8 +21,8 @@ export function HomePage() {
       <CategoryTiles />
       <HomeRooms />
       <NewArrivalsSection />
+      <PopularSection />
       <InstallmentBanner />
-      <HitsSection />
       <LatestNews />
       <AboutTeaser />
       <LatestArticles />

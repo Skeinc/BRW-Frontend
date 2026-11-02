@@ -7,6 +7,7 @@ export const CATALOG_SORTS: readonly CatalogProductSort[] = ['popular', 'new', '
 
 const PRICE_PATTERN = /^\d+(\.\d{1,2})?$/;
 const price = z.string().regex(PRICE_PATTERN).optional().catch(undefined);
+const size = z.coerce.number().int().min(0).optional().catch(undefined);
 const values = z.array(z.string()).optional().catch(undefined);
 
 /** URL search params of every product list: category, collection and search pages. */
@@ -20,7 +21,14 @@ export const catalogSearchSchema = z.object({
   material: values,
   colorBody: values,
   colorFacade: values,
-  inStock: z.boolean().optional().catch(undefined),
+  widthMin: size,
+  widthMax: size,
+  heightMin: size,
+  heightMax: size,
+  depthMin: size,
+  depthMax: size,
+  lengthMin: size,
+  lengthMax: size,
 });
 
 export type CatalogSearch = z.infer<typeof catalogSearchSchema>;
@@ -34,7 +42,14 @@ const FILTER_KEYS: readonly FilterKey[] = [
   'material',
   'colorBody',
   'colorFacade',
-  'inStock',
+  'widthMin',
+  'widthMax',
+  'heightMin',
+  'heightMax',
+  'depthMin',
+  'depthMax',
+  'lengthMin',
+  'lengthMax',
 ];
 
 function nonEmpty(list: readonly string[] | undefined): readonly string[] | undefined {
@@ -52,7 +67,14 @@ export function toCatalogFilters(search: CatalogSearch, pinned: CatalogProductFi
     material: nonEmpty(search.material),
     colorBody: nonEmpty(search.colorBody),
     colorFacade: nonEmpty(search.colorFacade),
-    inStock: search.inStock ? true : undefined,
+    widthMin: search.widthMin,
+    widthMax: search.widthMax,
+    heightMin: search.heightMin,
+    heightMax: search.heightMax,
+    depthMin: search.depthMin,
+    depthMax: search.depthMax,
+    lengthMin: search.lengthMin,
+    lengthMax: search.lengthMax,
   };
 }
 

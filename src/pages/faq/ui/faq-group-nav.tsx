@@ -10,7 +10,7 @@ interface FaqGroupNavProps {
 export function FaqGroupNav({ groups }: FaqGroupNavProps) {
   const { t } = useTranslation();
   return (
-    <nav aria-label={t('pages.faq.groupsLabel')} className="lg:sticky lg:top-40 lg:self-start">
+    <nav aria-label={t('pages.faq.groupsLabel')} className="lg:sticky lg:top-52 lg:self-start">
       <ul className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 lg:mx-0 lg:flex-col lg:gap-1 lg:overflow-visible lg:px-0">
         {groups.map((group) => (
           <li key={group.id} className="shrink-0">

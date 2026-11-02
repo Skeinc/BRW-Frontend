@@ -4,7 +4,6 @@ import { createServerFn } from '@tanstack/react-start';
 import { useEffect } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { catalogCategoriesQueryOptions } from '@/entities/category';
-import { catalogCollectionsQueryOptions } from '@/entities/collection';
 import { catalogRoomsQueryOptions } from '@/entities/room';
 import { buildPageLoaderCss, PAGE_LOADER_SCRIPT } from '@/app/page-loader';
 import appCss from '@/app/styles/index.css?url';
@@ -26,11 +25,10 @@ interface RouterContext {
 export const Route = createRootRouteWithContext<RouterContext>()({
   staleTime: Number.POSITIVE_INFINITY,
   loader: async ({ context }) => {
-    // The header menu and the footer list categories, collections and rooms; a failed request only leaves them empty.
+    // The footer lists categories and rooms; a failed request only leaves them empty.
     const [config] = await Promise.all([
       loadRuntimeConfig(),
       context.queryClient.ensureQueryData(catalogCategoriesQueryOptions).catch(() => undefined),
-      context.queryClient.ensureQueryData(catalogCollectionsQueryOptions).catch(() => undefined),
       context.queryClient.ensureQueryData(catalogRoomsQueryOptions).catch(() => undefined),
     ]);
     return { config, language: readLanguage() };

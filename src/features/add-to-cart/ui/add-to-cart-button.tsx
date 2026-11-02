@@ -14,11 +14,20 @@ interface AddToCartButtonProps {
   name: string;
   /** API money string; reported with the add_to_cart event. */
   price: string;
+  /** Icon-only button for product cards. */
+  isCompact?: boolean;
   className?: string;
 }
 
 /** "В корзину" until the product is in the cart, then a stepper with the quantity. */
-export function AddToCartButton({ productId, stockStatus, name, price, className }: AddToCartButtonProps) {
+export function AddToCartButton({
+  productId,
+  stockStatus,
+  name,
+  price,
+  isCompact = false,
+  className,
+}: AddToCartButtonProps) {
   const { t } = useTranslation();
   const qty = useCartLines().find((line) => line.productId === productId)?.qty ?? 0;
   const isUnavailable = stockStatus === 'out_of_stock';
@@ -37,9 +46,17 @@ export function AddToCartButton({ productId, stockStatus, name, price, className
   }
   return (
     <DisabledWithTooltip reason={isUnavailable ? t('product.addToCart.unavailable') : undefined} className="flex">
-      <Button type="button" className={className} disabled={isUnavailable} onClick={handleAdd}>
+      <Button
+        type="button"
+        size={isCompact ? 'icon' : 'default'}
+        variant={isCompact ? 'outline' : 'default'}
+        aria-label={isCompact ? t('product.addToCart.label') : undefined}
+        className={className}
+        disabled={isUnavailable}
+        onClick={handleAdd}
+      >
         <ShoppingCart aria-hidden />
-        {t('product.addToCart.label')}
+        {!isCompact && t('product.addToCart.label')}
       </Button>
     </DisabledWithTooltip>
   );

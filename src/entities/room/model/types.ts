@@ -27,4 +27,6 @@ export interface RoomInput {
 export interface RoomListParams {
   page: number;
   pageSize: number;
+  q?: string;
+  isPublished?: boolean;
 }

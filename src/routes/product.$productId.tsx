@@ -1,6 +1,12 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 import { resolveRenamedSlug } from '@/entities/seo';
-import { catalogProductQueryOptions, catalogProductsQueryOptions, buildProductJsonLd } from '@/entities/product';
+import {
+  catalogProductQueryOptions,
+  catalogProductsQueryOptions,
+  buildProductJsonLd,
+  getRelatedProductsParams,
+} from '@/entities/product';
+import { catalogCollectionSolutionsQueryOptions } from '@/entities/room';
 import { ProductPage } from '@/pages/product';
 import { readHeadLanguage, translate } from '@/shared/i18n';
 import { buildBreadcrumbTrailJsonLd } from '@/shared/lib/build-breadcrumb-json-ld';
@@ -15,9 +21,9 @@ export const Route = createFileRoute('/product/$productId')({
         throw redirect({ to: '/product/$productId', params: { productId: id }, statusCode: 301 });
       });
     await Promise.allSettled([
-      context.queryClient.ensureQueryData(
-        catalogProductsQueryOptions({ category: product.category.slug, pageSize: 5 }),
-      ),
+      context.queryClient.ensureQueryData(catalogProductsQueryOptions(getRelatedProductsParams(product))),
+      product.collection &&
+        context.queryClient.ensureQueryData(catalogCollectionSolutionsQueryOptions(product.collection.id)),
     ]);
     return { product };
   },

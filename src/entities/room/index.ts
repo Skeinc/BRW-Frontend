@@ -1,9 +1,11 @@
 export {
+  catalogCollectionSolutionsQueryOptions,
   catalogRoomCollectionQueryOptions,
   catalogRoomQueryOptions,
   catalogRoomsQueryOptions,
 } from './api/catalog-room-queries';
 export type {
+  CatalogCollectionSolution,
   CatalogRoomCollection,
   CatalogRoomCollectionDetail,
   CatalogRoomDetail,

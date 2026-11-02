@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { ArrowRight, Phone, Search } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { catalogProductsQueryOptions, HITS_PARAMS } from '@/entities/product';
+import { catalogProductsQueryOptions, POPULAR_PARAMS } from '@/entities/product';
 import { ProductGrid } from '@/widgets/product-catalog';
 import { SITE_PHONE } from '@/shared/config';
 import { toTelHref } from '@/shared/lib/phone';
@@ -18,7 +18,7 @@ interface SearchEmptyProps {
 
 export function SearchEmpty({ query }: SearchEmptyProps) {
   const { t } = useTranslation();
-  const { data: hits } = useQuery(catalogProductsQueryOptions(HITS_PARAMS));
+  const { data: hits } = useQuery(catalogProductsQueryOptions(POPULAR_PARAMS));
   const popular = t('pages.search.popularQueries', { returnObjects: true });
   const popularQueries = Array.isArray(popular)
     ? popular.filter((item): item is string => typeof item === 'string')

@@ -1,43 +1,54 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { getRouteApi, Link } from '@tanstack/react-router';
-import { ArrowRight } from 'lucide-react';
+import { getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { catalogRoomCollectionQueryOptions } from '@/entities/room';
+import { ProductCatalog } from '@/widgets/product-catalog';
 import { BreadcrumbTrail } from '@/shared/ui/breadcrumb-trail';
-import { Button } from '@/shared/ui/button';
 import { CollapsibleText } from '@/shared/ui/collapsible-text';
-import { SolutionCard } from './solution-card';
+import { SolutionDetails } from './solution-details';
+import { SolutionElements } from './solution-elements';
+import { SolutionStrip } from './solution-strip';
 
 const route = getRouteApi('/room/$roomId/$collectionId');
 
 export function RoomCollectionPage() {
   const { t } = useTranslation();
   const { roomId, collectionId } = route.useParams();
+  const { solution: solutionId, ...catalogSearch } = route.useSearch();
+  const search = { ...catalogSearch, collection: undefined };
+  const navigate = route.useNavigate();
   const { data } = useSuspenseQuery(catalogRoomCollectionQueryOptions(roomId, collectionId));
   const { room, collection, solutions } = data;
+  const selected = solutions.find(({ id }) => id === solutionId) ?? solutions[0];
   return (
     <section className="mx-auto w-full max-w-7xl px-4 py-6 md:py-8">
       <BreadcrumbTrail steps={[{ label: room.name, to: { roomId: room.id } }, { label: collection.name }]} />
       <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
         {t('rooms.collectionTitle', { room: room.name, name: collection.name })}
       </h1>
-      {collection.description && (
-        <div className="mt-4 max-w-3xl">
-          <CollapsibleText text={collection.description} />
-        </div>
-      )}
-      <div className="mt-8 flex flex-col gap-6">
-        {solutions.map((solution) => (
-          <SolutionCard key={solution.id} solution={solution} />
-        ))}
-      </div>
-      <div className="mt-8">
-        <Button asChild variant="outline">
-          <Link to="/collection/$collectionId" params={{ collectionId: collection.id }}>
-            {t('rooms.allElements')}
-            <ArrowRight aria-hidden />
-          </Link>
-        </Button>
+      <div className="mt-6 flex flex-col gap-10">
+        <SolutionStrip collectionName={collection.name} solutions={solutions} selectedId={selected.id} />
+        {collection.description && (
+          <section aria-labelledby="about-collection" className="max-w-3xl">
+            <h2 id="about-collection" className="mb-3 text-xl font-bold tracking-tight">
+              {t('rooms.aboutCollection', { name: collection.name })}
+            </h2>
+            <CollapsibleText text={collection.description} />
+          </section>
+        )}
+        <SolutionDetails solution={selected} />
+        {selected.products.length > 0 && <SolutionElements products={selected.products} />}
+        <section aria-labelledby="all-elements">
+          <h2 id="all-elements" className="mb-4 text-xl font-bold tracking-tight">
+            {t('rooms.allCollectionElements')}
+          </h2>
+          <ProductCatalog
+            search={search}
+            pinned={{ collection: collection.slug }}
+            withFilters={false}
+            onSearchChange={(next) => void navigate({ search: { ...next, solution: solutionId } })}
+          />
+        </section>
       </div>
     </section>
   );

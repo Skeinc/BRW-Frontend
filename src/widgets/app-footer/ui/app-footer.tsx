@@ -30,26 +30,7 @@ export function AppFooter() {
   return (
     <footer className="mt-16 bg-foreground text-background">
       <div className="mx-auto w-full max-w-7xl px-4">
-        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1.6fr_1.2fr_1.2fr]">
-          <div className="sm:col-span-2 lg:col-span-1">
-            <BrandLogo />
-            <p className="mt-6 max-w-md text-sm text-background/60">{t('footer.description')}</p>
-            <a href={`tel:${SITE_PHONE}`} className="tabular-price mt-4 block text-2xl font-bold">
-              {SITE_PHONE_LABEL}
-            </a>
-            <p className="mt-2 text-sm text-background/60">{t('footer.hours')}</p>
-            <a href={`mailto:${SITE_EMAIL}`} className={`mt-2 block text-sm ${LINK_CLASS}`}>
-              {SITE_EMAIL}
-            </a>
-            <a
-              href={SITE_INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`mt-2 block text-sm ${LINK_CLASS}`}
-            >
-              {t('footer.instagram')}
-            </a>
-          </div>
+        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1fr_1.6fr_1.2fr_1.2fr_1.2fr]">
           <nav aria-labelledby="footer-rooms" className="flex flex-col gap-3 text-sm">
             <FooterHeading id="footer-rooms">{t('footer.byRoom')}</FooterHeading>
             {rooms.map((room) => (
@@ -72,17 +53,6 @@ export function AppFooter() {
                 </Link>
               ))}
             </div>
-            <Link to="/catalog" className="font-medium text-primary hover:underline">
-              {t('footer.allCatalog')}
-            </Link>
-          </nav>
-          <nav aria-labelledby="footer-company" className="flex flex-col gap-3 text-sm">
-            <FooterHeading id="footer-company">{t('footer.company')}</FooterHeading>
-            {COMPANY_LINKS.map(({ to, labelKey }) => (
-              <Link key={to} to={to} className={LINK_CLASS}>
-                {t(labelKey)}
-              </Link>
-            ))}
           </nav>
           <div className="flex flex-col gap-4 text-sm">
             <FooterHeading id="footer-network">{t('footer.network')}</FooterHeading>
@@ -96,15 +66,49 @@ export function AppFooter() {
               </div>
             ))}
           </div>
+          <nav aria-labelledby="footer-company" className="flex flex-col gap-3 text-sm">
+            <FooterHeading id="footer-company">{t('footer.company')}</FooterHeading>
+            {COMPANY_LINKS.map(({ to, labelKey }) => (
+              <Link key={to} to={to} className={LINK_CLASS}>
+                {t(labelKey)}
+              </Link>
+            ))}
+          </nav>
+          <div className="sm:col-span-2 lg:col-span-1">
+            <BrandLogo />
+            <p className="mt-6 max-w-md text-sm text-background/60">{t('footer.description')}</p>
+            <a href={`tel:${SITE_PHONE}`} className="tabular-price mt-4 block whitespace-nowrap text-xl font-bold">
+              {SITE_PHONE_LABEL}
+            </a>
+            <p className="mt-2 text-sm text-background/60">{t('footer.hours')}</p>
+            <a href={`mailto:${SITE_EMAIL}`} className={`mt-2 block text-sm ${LINK_CLASS}`}>
+              {SITE_EMAIL}
+            </a>
+            <a
+              href={SITE_INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`mt-2 block text-sm ${LINK_CLASS}`}
+            >
+              {t('footer.instagram')}
+            </a>
+          </div>
         </div>
-        <FooterPayment />
-        <div className="space-y-3 border-t border-background/15 py-6 text-xs text-background/60">
-          <p>{t('footer.legalEntity')}</p>
-          <p>{t('footer.disclaimer')}</p>
+        <div className="flex flex-col gap-6 border-t border-background/15 py-6 lg:flex-row lg:items-stretch lg:gap-8">
+          <div className="flex flex-1 flex-col justify-center gap-3 text-xs text-background/60">
+            <p>{t('footer.legalEntity')}</p>
+            <p>{t('footer.disclaimer')}</p>
+          </div>
+          <FooterPayment />
         </div>
         <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-background/15 py-6 text-xs text-background/60">
           <p>{t('footer.rights', { year: CURRENT_YEAR })}</p>
-          <CookieSettingsButton />
+          <div className="flex items-center gap-6">
+            <Link to="/admin" className={LINK_CLASS}>
+              {t('nav.adminPanel')}
+            </Link>
+            <CookieSettingsButton />
+          </div>
         </div>
       </div>
     </footer>

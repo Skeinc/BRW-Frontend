@@ -15,8 +15,9 @@ export {
   type ProductListParams,
   type StockStatus,
 } from './model/types';
-export { HITS_PARAMS, NEW_ARRIVALS_PARAMS } from './model/catalog-params';
+export { getRelatedProductsParams, POPULAR_PARAMS, NEW_ARRIVALS_PARAMS } from './model/catalog-params';
 export type {
+  CatalogDimension,
   CatalogFacetValue,
   CatalogProductCard,
   CatalogProductDetail,

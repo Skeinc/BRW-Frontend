@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Badge } from '@/shared/ui/badge';
 import { ImagePlaceholder } from '@/shared/ui/image-placeholder';
 import { cn } from '@/shared/lib/utils';
+import { formatCm } from '../lib/format-dimensions';
 import type { CatalogProductCard } from '../model/catalog-types';
 import { PriceTag } from './price-tag';
 import { StockBadge } from './stock-badge';
@@ -12,14 +13,14 @@ interface ProductCardProps {
   product: CatalogProductCard;
   /** Extra badge chosen by the section that shows the card. */
   highlight?: 'new' | 'hit';
-  /** Action under the link, e.g. an add-to-cart button; kept outside the link so it stays valid HTML. */
+  /** Action beside the price, e.g. an add-to-cart button; kept outside the link so it stays valid HTML. */
   footer?: ReactNode;
   className?: string;
 }
 
 export function ProductCard({ product, highlight, footer, className }: ProductCardProps) {
-  const { t } = useTranslation();
-  const { id, name, price, oldPrice, discountPercent, isHit, stockStatus, coverImage, category, collection } = product;
+  const { t, i18n } = useTranslation();
+  const { id, name, price, oldPrice, discountPercent, isHit, stockStatus, coverImage, collection } = product;
   const badges: ('new' | 'hit')[] = [];
   if (highlight) {
     badges.push(highlight);
@@ -27,12 +28,15 @@ export function ProductCard({ product, highlight, footer, className }: ProductCa
   if (isHit && highlight !== 'hit') {
     badges.push('hit');
   }
-  const caption = [category.name, collection?.name].filter(Boolean).join(' · ');
+  const sizes = [product.widthMm ?? product.lengthMm, product.heightMm, product.depthMm]
+    .map((mm) => formatCm(mm, i18n.language))
+    .filter((value): value is string => value !== null)
+    .join('/');
   const isUnavailable = stockStatus === 'out_of_stock';
   return (
-    <div className={cn('flex h-full flex-col overflow-hidden rounded-xl border bg-card', className)}>
+    <div className={cn('flex h-full flex-col overflow-hidden rounded-lg border bg-card', className)}>
       <Link to="/product/$productId" params={{ productId: id }} className="group flex flex-1 flex-col">
-        <div className="relative aspect-4/5 overflow-hidden bg-muted">
+        <div className="relative aspect-4/3 overflow-hidden bg-background">
           {coverImage ? (
             <img
               src={coverImage.thumbUrl}
@@ -41,14 +45,14 @@ export function ProductCard({ product, highlight, footer, className }: ProductCa
               height={coverImage.height}
               loading="lazy"
               className={cn(
-                'size-full object-cover transition-transform duration-300 group-hover:scale-105',
+                'size-full object-contain p-4 transition-transform duration-300 group-hover:scale-105',
                 isUnavailable && 'opacity-60',
               )}
             />
           ) : (
             <ImagePlaceholder kind="product" className="size-full" iconClassName="size-1/4" />
           )}
-          <div className="absolute inset-x-3 top-3 flex items-start justify-between gap-2">
+          <div className="absolute inset-x-2 top-2 flex items-start justify-between gap-2">
             <div className="flex flex-wrap gap-1.5">
               {badges.map((badge) => (
                 <Badge key={badge} className={badge === 'new' ? 'bg-foreground text-background' : undefined}>
@@ -61,14 +65,33 @@ export function ProductCard({ product, highlight, footer, className }: ProductCa
             )}
           </div>
         </div>
-        <div className="flex flex-1 flex-col gap-2 p-4">
-          <p className="truncate text-xs text-muted-foreground">{caption}</p>
-          <p className="line-clamp-2 text-sm font-medium">{name}</p>
-          <PriceTag price={price} oldPrice={oldPrice} discountPercent={discountPercent} className="mt-auto" />
-          <StockBadge status={stockStatus} />
+        <div className="min-h-19 shrink-0 bg-muted px-3 py-2 sm:min-h-14">
+          <p className="line-clamp-3 text-sm font-medium sm:line-clamp-2">{name}</p>
         </div>
+        <dl className="flex flex-col gap-1 px-3 pt-3 text-xs text-muted-foreground">
+          <div className="flex justify-between gap-3">
+            <dt>{t('catalog.card.sizes')}</dt>
+            <dd className="tabular-price text-foreground">{sizes || '—'}</dd>
+          </div>
+          <div className="flex justify-between gap-3">
+            <dt>{t('catalog.card.collection')}</dt>
+            <dd className="truncate text-foreground">{collection?.name ?? '—'}</dd>
+          </div>
+          {stockStatus !== 'in_stock' && <StockBadge status={stockStatus} />}
+        </dl>
       </Link>
-      {footer && <div className="px-4 pb-4">{footer}</div>}
+      <div className="flex flex-wrap items-center justify-between gap-2 px-3 pt-2 pb-3">
+        <Link
+          to="/product/$productId"
+          params={{ productId: id }}
+          tabIndex={-1}
+          aria-hidden
+          className="whitespace-nowrap"
+        >
+          <PriceTag price={price} oldPrice={oldPrice} discountPercent={discountPercent} className="text-base" />
+        </Link>
+        {footer}
+      </div>
     </div>
   );
 }

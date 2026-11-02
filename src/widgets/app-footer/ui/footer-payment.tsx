@@ -7,7 +7,7 @@ const PAYMENT_METHODS = ['paymentCash', 'halva', 'purchaseCard', 'turtle'] as co
 export function FooterPayment() {
   const { t } = useTranslation();
   return (
-    <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-background/15 py-6 text-sm">
+    <div className="flex flex-col gap-4 text-sm lg:w-72 lg:shrink-0 lg:border-l lg:border-background/15 lg:pl-8">
       <p className="text-xs font-semibold uppercase tracking-widest text-background/60">{t('footer.payment')}</p>
       <ul className="flex flex-wrap gap-2">
         {PAYMENT_METHODS.map((method) => (
@@ -18,7 +18,7 @@ export function FooterPayment() {
       </ul>
       <Link
         to="/delivery-and-payment"
-        className="text-xs text-background/70 underline-offset-4 hover:text-primary hover:underline"
+        className="w-fit text-xs text-background/70 underline-offset-4 hover:text-primary hover:underline"
       >
         {t('footer.paymentMore')}
       </Link>

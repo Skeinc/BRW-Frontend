@@ -1,16 +1,52 @@
 import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { ListToolbar } from '@/shared/ui/list-toolbar';
+import { SearchInput } from '@/shared/ui/search-input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
 import { ToolbarButton } from '@/shared/ui/toolbar-button';
+import type { RoomsSearch } from '../model/rooms-search';
+
+const ALL = 'all';
 
 interface RoomsToolbarProps {
+  search: RoomsSearch;
+  hasFilters: boolean;
+  onChange: (patch: Partial<RoomsSearch>) => void;
+  onReset: () => void;
   onCreate: () => void;
 }
 
-export function RoomsToolbar({ onCreate }: RoomsToolbarProps) {
+export function RoomsToolbar({ search, hasFilters, onChange, onReset, onCreate }: RoomsToolbarProps) {
   const { t } = useTranslation();
   return (
-    <div className="flex justify-end">
-      <ToolbarButton icon={Plus} label={t('admin.rooms.create')} onClick={onCreate} />
-    </div>
+    <ListToolbar
+      isFiltered={hasFilters}
+      activeFilterCount={Number(Boolean(search.published))}
+      onReset={onReset}
+      search={
+        <SearchInput
+          className="w-full md:w-64"
+          value={search.q ?? ''}
+          placeholder={t('admin.rooms.searchPlaceholder')}
+          onChange={(q) => onChange({ q: q || undefined })}
+        />
+      }
+      filters={
+        <Select
+          value={search.published ?? ALL}
+          onValueChange={(value) => onChange({ published: value === ALL ? undefined : (value as 'yes' | 'no') })}
+        >
+          <SelectTrigger className="h-10 w-40" aria-label={t('admin.filters.statusLabel')}>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value={ALL}>{t('admin.filters.statusAll')}</SelectItem>
+            <SelectItem value="yes">{t('admin.filters.statusPublished')}</SelectItem>
+            <SelectItem value="no">{t('admin.filters.statusHidden')}</SelectItem>
+          </SelectContent>
+        </Select>
+      }
+      actions={<ToolbarButton icon={Plus} label={t('admin.rooms.create')} onClick={onCreate} />}
+    />
   );
 }

@@ -1,4 +1,4 @@
-import { Pencil, Plus, Sofa, Trash2 } from 'lucide-react';
+import { Pencil, Plus, SearchX, Sofa, Trash2, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import type { Room } from '@/entities/room';
 import { getApiErrorMessage } from '@/shared/api';
@@ -12,6 +12,7 @@ interface RoomsTableProps {
   /** The rooms of the current page, already searched and filtered by the API. */
   rows: Room[];
   total: number;
+  isFiltered: boolean;
   isPending: boolean;
   isRefreshing: boolean;
   error: unknown;
@@ -21,6 +22,7 @@ interface RoomsTableProps {
   onPageSizeChange: (pageSize: number) => void;
   onReorder: (activeId: string, overId: string) => void;
   onCreate: () => void;
+  onResetFilters: () => void;
   onEdit: (room: Room) => void;
   onDelete: (room: Room) => void;
 }
@@ -28,6 +30,7 @@ interface RoomsTableProps {
 export function RoomsTable({
   rows,
   total,
+  isFiltered,
   isPending,
   isRefreshing,
   error,
@@ -37,6 +40,7 @@ export function RoomsTable({
   onPageSizeChange,
   onReorder,
   onCreate,
+  onResetFilters,
   onEdit,
   onDelete,
 }: RoomsTableProps) {
@@ -85,10 +89,15 @@ export function RoomsTable({
       isRefreshing={isRefreshing}
       error={error ? getApiErrorMessage(error, t) : undefined}
       empty={{
-        title: t('admin.rooms.empty.title'),
-        description: t('admin.rooms.empty.description'),
-        icon: Sofa,
-        action: (
+        title: t(isFiltered ? 'admin.common.nothingFound' : 'admin.rooms.empty.title'),
+        description: t(isFiltered ? 'admin.common.nothingFoundHint' : 'admin.rooms.empty.description'),
+        icon: isFiltered ? SearchX : Sofa,
+        action: isFiltered ? (
+          <Button variant="outline" onClick={onResetFilters}>
+            <X aria-hidden />
+            {t('admin.filters.reset')}
+          </Button>
+        ) : (
           <Button onClick={onCreate}>
             <Plus aria-hidden />
             {t('admin.rooms.create')}
@@ -105,7 +114,7 @@ export function RoomsTable({
         onPageSizeChange,
       }}
       reorder={{
-        enabled: true,
+        enabled: !isFiltered,
         handleLabel: t('table.reorder.handle'),
         disabledReason: t('table.reorder.disabled'),
         onReorder,

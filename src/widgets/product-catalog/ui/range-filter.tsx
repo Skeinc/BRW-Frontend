@@ -3,12 +3,18 @@ import { useTranslation } from 'react-i18next';
 import { Input } from '@/shared/ui/input';
 import { Slider } from '@/shared/ui/slider';
 
-interface PriceFilterProps {
-  /** Lowest and highest price of the current selection. */
+/** Chosen ends of a range as strings; `undefined` means the end of the bounds. */
+export interface RangeValue {
+  from: string | undefined;
+  to: string | undefined;
+}
+
+interface RangeFilterProps {
+  label: string;
+  /** Lowest and highest value of the current selection. */
   bounds: { min: number; max: number };
-  priceMin: string | undefined;
-  priceMax: string | undefined;
-  onCommit: (range: { priceMin: string | undefined; priceMax: string | undefined }) => void;
+  value: RangeValue;
+  onCommit: (range: RangeValue) => void;
 }
 
 function clamp(value: number, min: number, max: number): number {
@@ -16,21 +22,21 @@ function clamp(value: number, min: number, max: number): number {
 }
 
 /** Mount with a `key` of the URL range so the draft starts over when the URL changes. */
-export function PriceFilter({ bounds, priceMin, priceMax, onCommit }: PriceFilterProps) {
+export function RangeFilter({ label, bounds, value, onCommit }: RangeFilterProps) {
   const { t } = useTranslation();
   const [draft, setDraft] = useState<[number, number]>([
-    clamp(Number(priceMin ?? bounds.min), bounds.min, bounds.max),
-    clamp(Number(priceMax ?? bounds.max), bounds.min, bounds.max),
+    clamp(Number(value.from ?? bounds.min), bounds.min, bounds.max),
+    clamp(Number(value.to ?? bounds.max), bounds.min, bounds.max),
   ]);
 
   const commit = ([low, high]: [number, number]): void => {
     const ordered: [number, number] = low <= high ? [low, high] : [high, low];
     setDraft(ordered);
     const next = {
-      priceMin: ordered[0] > bounds.min ? String(ordered[0]) : undefined,
-      priceMax: ordered[1] < bounds.max ? String(ordered[1]) : undefined,
+      from: ordered[0] > bounds.min ? String(ordered[0]) : undefined,
+      to: ordered[1] < bounds.max ? String(ordered[1]) : undefined,
     };
-    if (next.priceMin !== priceMin || next.priceMax !== priceMax) {
+    if (next.from !== value.from || next.to !== value.to) {
       onCommit(next);
     }
   };
@@ -51,9 +57,9 @@ export function PriceFilter({ bounds, priceMin, priceMax, onCommit }: PriceFilte
         <Input
           key={`min-${draft[0]}`}
           type="number"
-          className="[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          className="bg-background [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           inputMode="numeric"
-          aria-label={t('catalog.filters.priceFrom')}
+          aria-label={t('catalog.filters.rangeFrom', { label })}
           placeholder={t('catalog.filters.from', { value: bounds.min })}
           defaultValue={draft[0] > bounds.min ? draft[0] : ''}
           onBlur={(event) => setEnd(0, event.target.value)}
@@ -61,9 +67,9 @@ export function PriceFilter({ bounds, priceMin, priceMax, onCommit }: PriceFilte
         <Input
           key={`max-${draft[1]}`}
           type="number"
-          className="[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          className="bg-background [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           inputMode="numeric"
-          aria-label={t('catalog.filters.priceTo')}
+          aria-label={t('catalog.filters.rangeTo', { label })}
           placeholder={t('catalog.filters.to', { value: bounds.max })}
           defaultValue={draft[1] < bounds.max ? draft[1] : ''}
           onBlur={(event) => setEnd(1, event.target.value)}
@@ -76,7 +82,7 @@ export function PriceFilter({ bounds, priceMin, priceMax, onCommit }: PriceFilte
         value={draft}
         onValueChange={(next) => setDraft([next[0] ?? bounds.min, next[1] ?? bounds.max])}
         onValueCommit={(next) => commit([next[0] ?? bounds.min, next[1] ?? bounds.max])}
-        aria-label={t('catalog.filters.price')}
+        aria-label={label}
         className="px-1"
       />
     </div>

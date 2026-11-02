@@ -1,7 +1,7 @@
 import type { CatalogProductCard } from '@/entities/product';
 import { AddToCartButton } from './add-to-cart-button';
 
-/** Footer for `ProductCard`: add-to-cart button sized for the card. */
+/** Footer for `ProductCard`: a small cart button next to the price. */
 export function ProductCardCartButton({ product }: { product: CatalogProductCard }) {
   return (
     <AddToCartButton
@@ -9,7 +9,7 @@ export function ProductCardCartButton({ product }: { product: CatalogProductCard
       stockStatus={product.stockStatus}
       name={product.name}
       price={product.price}
-      className="h-11 w-full"
+      isCompact
     />
   );
 }

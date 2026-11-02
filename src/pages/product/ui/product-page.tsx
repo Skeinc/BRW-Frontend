@@ -5,12 +5,11 @@ import { catalogProductQueryOptions } from '@/entities/product';
 import { Badge } from '@/shared/ui/badge';
 import { BreadcrumbTrail } from '@/shared/ui/breadcrumb-trail';
 import { ProductBenefits } from './product-benefits';
-import { ProductDescription } from './product-description';
-import { ProductFaq } from './product-faq';
+import { ProductCollectionSolutions } from './product-collection-solutions';
 import { ProductGallery } from './product-gallery';
-import { ProductSpecs } from './product-specs';
 import { ProductSummary } from './product-summary';
-import { SimilarProducts } from './similar-products';
+import { ProductTabs } from './product-tabs';
+import { RelatedProducts } from './related-products';
 
 const route = getRouteApi('/product/$productId');
 
@@ -31,6 +30,7 @@ export function ProductPage() {
           { label: product.name },
         ]}
       />
+      <h1 className="mb-6 text-2xl font-bold tracking-tight md:text-3xl">{product.name}</h1>
       <div className="grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-10">
         <ProductGallery
           key={product.id}
@@ -56,15 +56,16 @@ export function ProductPage() {
           <ProductBenefits />
         </div>
       </div>
-      <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-14">
-        <ProductSpecs product={product} />
-        {product.description && <ProductDescription text={product.description} />}
+      <div className="mt-12">
+        <ProductTabs product={product} />
       </div>
-      <div className="mt-14">
-        <ProductFaq />
-      </div>
-      <div className="mt-14">
-        <SimilarProducts product={product} />
+      {product.collection && (
+        <div className="mt-10">
+          <ProductCollectionSolutions collection={product.collection} />
+        </div>
+      )}
+      <div className="mt-12">
+        <RelatedProducts product={product} />
       </div>
     </article>
   );

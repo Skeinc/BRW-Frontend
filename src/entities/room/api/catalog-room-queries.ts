@@ -1,5 +1,10 @@
 import { queryOptions } from '@tanstack/react-query';
-import { fetchCatalogRoom, fetchCatalogRoomCollection, fetchCatalogRooms } from './catalog-room-api';
+import {
+  fetchCatalogCollectionSolutions,
+  fetchCatalogRoom,
+  fetchCatalogRoomCollection,
+  fetchCatalogRooms,
+} from './catalog-room-api';
 
 export const catalogRoomsQueryOptions = queryOptions({
   queryKey: ['catalog', 'rooms'],
@@ -16,4 +21,10 @@ export const catalogRoomCollectionQueryOptions = (roomId: string, collectionId: 
   queryOptions({
     queryKey: ['catalog', 'room', roomId, 'collection', collectionId],
     queryFn: () => fetchCatalogRoomCollection(roomId, collectionId),
+  });
+
+export const catalogCollectionSolutionsQueryOptions = (collectionId: string) =>
+  queryOptions({
+    queryKey: ['catalog', 'collection', collectionId, 'solutions'],
+    queryFn: () => fetchCatalogCollectionSolutions(collectionId),
   });

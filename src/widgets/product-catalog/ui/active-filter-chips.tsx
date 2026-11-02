@@ -20,6 +20,8 @@ function without(list: readonly string[] | undefined, value: string): string[] |
   return next.length > 0 ? next : undefined;
 }
 
+const DIMENSIONS = ['width', 'height', 'depth', 'length'] as const;
+
 export function ActiveFilterChips({ search, facets, onChange }: ActiveFilterChipsProps) {
   const { t } = useTranslation();
   const chips: FilterChip[] = [];
@@ -34,6 +36,21 @@ export function ActiveFilterChips({ search, facets, onChange }: ActiveFilterChip
       patch: { priceMin: undefined, priceMax: undefined },
     });
   }
+  for (const name of DIMENSIONS) {
+    const from = search[`${name}Min`];
+    const to = search[`${name}Max`];
+    if (from !== undefined || to !== undefined) {
+      chips.push({
+        key: name,
+        label: t('catalog.filters.rangeChip', {
+          label: t(`catalog.filters.${name}`),
+          from: from ?? '…',
+          to: to ?? '…',
+        }),
+        patch: { [`${name}Min`]: undefined, [`${name}Max`]: undefined },
+      });
+    }
+  }
   for (const value of search.material ?? []) {
     chips.push({ key: `material-${value}`, label: value, patch: { material: without(search.material, value) } });
   }
@@ -42,9 +59,6 @@ export function ActiveFilterChips({ search, facets, onChange }: ActiveFilterChip
   }
   for (const value of search.colorFacade ?? []) {
     chips.push({ key: `facade-${value}`, label: value, patch: { colorFacade: without(search.colorFacade, value) } });
-  }
-  if (search.inStock) {
-    chips.push({ key: 'in-stock', label: t('catalog.filters.inStock'), patch: { inStock: undefined } });
   }
   if (chips.length === 0) {
     return null;

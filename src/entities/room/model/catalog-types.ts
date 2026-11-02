@@ -52,10 +52,20 @@ export interface CatalogRoomCollectionDetail {
   room: { id: string; name: string };
   collection: {
     id: string;
+    slug: string;
     name: string;
     description: string | null;
     seoTitle: string | null;
     seoDescription: string | null;
   };
   solutions: CatalogSolution[];
+}
+
+/** A solution of a collection in some room: a thumbnail that opens the collection page of that room. */
+export interface CatalogCollectionSolution {
+  id: string;
+  name: string;
+  roomId: string;
+  roomName: string;
+  image: CatalogRoomImage | null;
 }

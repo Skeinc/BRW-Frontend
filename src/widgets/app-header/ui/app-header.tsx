@@ -9,6 +9,7 @@ import { Badge } from '@/shared/ui/badge';
 import { BrandLogo } from '@/shared/ui/brand-logo';
 import { Button } from '@/shared/ui/button';
 import { HeaderNav } from './header-nav';
+import { HeaderRoomsBar } from './header-rooms-bar';
 import { HeaderSearch } from './header-search';
 import { HeaderTopBar } from './header-top-bar';
 
@@ -51,6 +52,7 @@ export function AppHeader() {
             </Button>
           </div>
         </div>
+        <HeaderRoomsBar />
         {isSearchOpen && (
           <div className="mx-auto hidden w-full max-w-7xl border-t px-4 py-3 lg:flex">
             <HeaderSearch autoFocus className="order-none basis-auto flex-1" />
@@ -58,7 +60,8 @@ export function AppHeader() {
         )}
         <div className="mx-auto flex min-h-16 w-full max-w-7xl flex-wrap items-center gap-x-2 gap-y-2 px-4 py-2 sm:h-20 sm:flex-nowrap sm:gap-x-3 sm:py-0 lg:hidden">
           <Link to="/" aria-label={t('nav.goHome')} className="shrink-0">
-            <BrandLogo tone="onLight" />
+            <BrandLogo tone="onLight" isMark className="sm:hidden" />
+            <BrandLogo tone="onLight" className="hidden sm:block" />
           </Link>
           <Button asChild className="hidden h-12 px-5 sm:inline-flex">
             <Link to="/catalog">

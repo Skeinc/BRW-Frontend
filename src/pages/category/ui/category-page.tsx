@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { Link, getRouteApi } from '@tanstack/react-router';
+import { getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { catalogCategoryQueryOptions } from '@/entities/category';
 import { ProductCatalog } from '@/widgets/product-catalog';
@@ -30,22 +30,6 @@ export function CategoryPage() {
         <h1 className="text-3xl font-bold tracking-tight md:text-4xl">{category.name}</h1>
         <p className="text-muted-foreground">{t('catalog.productsCount', { count: category.productCount })}</p>
       </div>
-      {category.children.length > 0 && (
-        <ul className="mt-4 flex flex-wrap gap-2">
-          {category.children.map((child) => (
-            <li key={child.id}>
-              <Link
-                to="/catalog/$categoryId"
-                params={{ categoryId: child.id }}
-                className="inline-flex min-h-11 items-center rounded-full border bg-card px-4 text-sm hover:border-primary/40"
-              >
-                {child.name}
-                <span className="tabular-price ml-1.5 text-muted-foreground">{`· ${child.productCount}`}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
       <div className="mt-6">
         <ProductCatalog
           search={search}

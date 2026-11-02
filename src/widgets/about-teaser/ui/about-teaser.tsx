@@ -59,8 +59,8 @@ export function AboutTeaser() {
               className="col-span-2 flex items-center gap-4 rounded-xl border bg-card p-6 transition-colors hover:bg-muted"
             >
               <AtSign aria-hidden className="size-8 shrink-0 text-primary" />
-              <div>
-                <dd className="text-2xl font-bold">{SITE_INSTAGRAM_HANDLE}</dd>
+              <div className="min-w-0">
+                <dd className="truncate text-lg font-bold sm:text-2xl">{SITE_INSTAGRAM_HANDLE}</dd>
                 <dt className="text-sm text-muted-foreground">{t('pages.about.stores.instagram')}</dt>
               </div>
             </a>

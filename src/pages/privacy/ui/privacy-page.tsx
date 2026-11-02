@@ -16,7 +16,7 @@ export function PrivacyPage() {
       <h1 className="max-w-4xl text-3xl font-bold tracking-tight md:text-5xl">{t('pages.privacy.heading')}</h1>
       <p className="mt-6 max-w-3xl text-lg text-muted-foreground">{t('pages.privacy.lead')}</p>
       <div className="mt-10 grid gap-8 lg:grid-cols-[18rem_minmax(0,1fr)] lg:gap-12">
-        <nav aria-label={t('pages.privacy.navLabel')} className="lg:sticky lg:top-40 lg:self-start">
+        <nav aria-label={t('pages.privacy.navLabel')} className="lg:sticky lg:top-52 lg:self-start">
           <ol className="flex flex-col gap-1 text-sm">
             {sections.map((section, index) => (
               <li key={section.title}>

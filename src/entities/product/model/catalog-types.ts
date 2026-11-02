@@ -25,6 +25,10 @@ export interface CatalogProductCard {
   discountPercent: number | null;
   isHit: boolean;
   stockStatus: StockStatus;
+  widthMm: number | null;
+  heightMm: number | null;
+  depthMm: number | null;
+  lengthMm: number | null;
   coverImage: CatalogCoverImage | null;
   category: CatalogRef;
   collection: CatalogRef | null;
@@ -32,7 +36,13 @@ export interface CatalogProductCard {
 
 export type CatalogProductSort = 'price_asc' | 'price_desc' | 'new' | 'popular';
 
-export interface CatalogProductsParams {
+/** Sizes of a product that the catalog filters by. */
+export type CatalogDimension = 'width' | 'height' | 'depth' | 'length';
+
+/** Both ends of every size range, in centimetres. */
+export type CatalogDimensionFilters = { [K in CatalogDimension as `${K}Min` | `${K}Max`]?: number };
+
+export interface CatalogProductsParams extends CatalogDimensionFilters {
   sort?: CatalogProductSort;
   /** Category slug; includes the subcategories. */
   category?: string;
@@ -44,7 +54,6 @@ export interface CatalogProductsParams {
   material?: readonly string[];
   colorBody?: readonly string[];
   colorFacade?: readonly string[];
-  inStock?: boolean;
   /** Only the products marked as bestsellers in the admin panel. */
   hit?: boolean;
   page?: number;
@@ -65,6 +74,8 @@ export interface CatalogProductFacets {
   materials: CatalogFacetValue[];
   colorsBody: CatalogFacetValue[];
   colorsFacade: CatalogFacetValue[];
+  /** Smallest and largest size of the current selection, in centimetres. */
+  dimensions: Record<CatalogDimension, { min: number | null; max: number | null }>;
 }
 
 export interface CatalogProductImage {
