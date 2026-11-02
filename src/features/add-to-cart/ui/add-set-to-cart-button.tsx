@@ -19,6 +19,9 @@ export function AddSetToCartButton({ products, className }: AddSetToCartButtonPr
   const isInCart = products.length > 0 && missing.length === 0;
 
   const handleAdd = (): void => {
+    if (missing.length === 0) {
+      return;
+    }
     missing.forEach((product) => addToCart(product.id));
     track('add_to_cart', {
       currency: SITE_CURRENCY,
