@@ -860,15 +860,15 @@
     },
     "auth": {
       "title": "Admin sign-in",
-      "subtitle": "Enter the administrator email and password",
-      "email": "Email",
+      "subtitle": "Enter the administrator login and password",
+      "login": "Login",
       "password": "Password",
       "submit": "Sign in",
       "validation": {
-        "email": "Enter a valid email",
+        "login": "Enter the login",
         "password": "Enter the password"
       },
-      "invalidCredentials": "Invalid email or password"
+      "invalidCredentials": "Invalid login or password"
     },
     "panel": "Admin panel",
     "common": {
@@ -1451,10 +1451,7 @@
       }
     },
     "settings": {
-      "title": "Settings",
-      "tabs": {
-        "slider": "Slider"
-      }
+      "title": "Settings"
     },
     "slides": {
       "create": "Add slide",

@@ -35,7 +35,7 @@ export function AdminNavUser() {
     return null;
   }
 
-  const initials = me.email.slice(0, 2).toUpperCase();
+  const initials = me.login.slice(0, 2).toUpperCase();
 
   return (
     <SidebarMenu>
@@ -51,7 +51,7 @@ export function AdminNavUser() {
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{t('admin.nav.administrator')}</span>
-                <span className="truncate text-xs">{me.email}</span>
+                <span className="truncate text-xs">{me.login}</span>
               </div>
               <ChevronsUpDown className="ml-auto" />
             </SidebarMenuButton>
@@ -69,7 +69,7 @@ export function AdminNavUser() {
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">{t('admin.nav.administrator')}</span>
-                  <span className="truncate text-xs">{me.email}</span>
+                  <span className="truncate text-xs">{me.login}</span>
                 </div>
               </div>
             </DropdownMenuLabel>

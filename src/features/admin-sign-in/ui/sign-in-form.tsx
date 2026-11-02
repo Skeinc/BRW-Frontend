@@ -22,7 +22,7 @@ export function SignInForm({ onSuccess }: SignInFormProps) {
   const queryClient = useQueryClient();
   const form = useForm<SignInValues>({
     resolver: zodResolver(signInSchema),
-    defaultValues: { email: '', password: '' },
+    defaultValues: { login: '', password: '' },
   });
   const errors = form.formState.errors;
 
@@ -54,16 +54,16 @@ export function SignInForm({ onSuccess }: SignInFormProps) {
           className="flex flex-col gap-5"
         >
           <FieldGroup>
-            <Field data-invalid={!!errors.email || undefined}>
-              <FieldLabel htmlFor="admin-email">{t('admin.auth.email')}</FieldLabel>
+            <Field data-invalid={!!errors.login || undefined}>
+              <FieldLabel htmlFor="admin-login">{t('admin.auth.login')}</FieldLabel>
               <Input
-                id="admin-email"
-                type="email"
+                id="admin-login"
+                type="text"
                 autoComplete="username"
-                aria-invalid={!!errors.email || undefined}
-                {...form.register('email')}
+                aria-invalid={!!errors.login || undefined}
+                {...form.register('login')}
               />
-              <FieldError errors={[translateFieldError(errors.email, t)]} />
+              <FieldError errors={[translateFieldError(errors.login, t)]} />
             </Field>
             <Field data-invalid={!!errors.password || undefined}>
               <FieldLabel htmlFor="admin-password">{t('admin.auth.password')}</FieldLabel>

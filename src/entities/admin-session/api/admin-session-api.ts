@@ -1,11 +1,11 @@
 import { apiRequest } from '@/shared/api';
 
 export interface AdminMe {
-  email: string;
+  login: string;
 }
 
 export interface AdminLoginInput {
-  email: string;
+  login: string;
   password: string;
 }
 
