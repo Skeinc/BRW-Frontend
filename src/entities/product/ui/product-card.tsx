@@ -80,15 +80,20 @@ export function ProductCard({ product, highlight, footer, className }: ProductCa
           {stockStatus !== 'in_stock' && <StockBadge status={stockStatus} />}
         </dl>
       </Link>
-      <div className="flex flex-wrap items-center justify-between gap-2 px-3 pt-2 pb-3">
+      <div className="flex flex-wrap items-end justify-between gap-2 px-3 pt-2 pb-3">
         <Link
           to="/product/$productId"
           params={{ productId: id }}
           tabIndex={-1}
           aria-hidden
-          className="whitespace-nowrap"
+          className="min-w-0 whitespace-nowrap"
         >
-          <PriceTag price={price} oldPrice={oldPrice} discountPercent={discountPercent} className="text-base" />
+          <PriceTag
+            price={price}
+            oldPrice={oldPrice}
+            discountPercent={discountPercent}
+            className="flex-col-reverse items-start gap-y-0 text-sm sm:text-base [&>span:first-child]:flex [&>span:first-child]:min-h-9 [&>span:first-child]:items-center max-md:[&>span:first-child]:min-h-11"
+          />
         </Link>
         {footer}
       </div>
