@@ -17,7 +17,7 @@ export function ArticlePage() {
   const { data: latest } = useQuery(catalogArticlesQueryOptions(RELATED_ARTICLES_PARAMS));
   const related = (latest?.items ?? []).filter((item) => item.id !== article.id).slice(0, RELATED_ARTICLES_COUNT);
   return (
-    <div className="mx-auto w-full max-w-7xl px-4 py-6 md:py-8">
+    <div className="mx-auto w-full max-w-6xl px-4 py-6 md:py-8">
       <BreadcrumbTrail steps={[{ label: t('nav.articles'), to: 'articles' }, { label: article.title }]} />
       <article>
         <h1 className="text-3xl font-bold tracking-tight md:text-4xl">{article.title}</h1>

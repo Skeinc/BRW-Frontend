@@ -6,7 +6,7 @@ import { Button } from '@/shared/ui/button';
 export function InstallmentBanner() {
   const { t } = useTranslation();
   return (
-    <section className="mx-auto w-full max-w-7xl px-4">
+    <section className="mx-auto w-full max-w-6xl px-4">
       <div className="relative overflow-hidden rounded-2xl bg-primary p-6 text-primary-foreground md:p-12">
         <div aria-hidden className="absolute -top-16 -right-16 size-72 rounded-full bg-primary-foreground/10" />
         <div aria-hidden className="absolute -right-4 -bottom-24 size-72 rounded-full bg-primary-foreground/10" />

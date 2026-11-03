@@ -10,7 +10,7 @@ export function FaqPage() {
   const groups = t('pages.faq.groups', { returnObjects: true }) as FaqGroup[];
   return (
     <>
-      <section className="mx-auto w-full max-w-7xl px-4 pb-12 pt-12 md:pb-16 md:pt-16">
+      <section className="mx-auto w-full max-w-6xl px-4 pb-12 pt-12 md:pb-16 md:pt-16">
         <PageBreadcrumbs current={t('pages.faq.heading')} />
         <h1 className="text-3xl font-bold tracking-tight md:text-5xl">{t('pages.faq.heading')}</h1>
         <p className="mt-6 max-w-3xl text-lg text-muted-foreground">{t('pages.faq.lead')}</p>

@@ -16,7 +16,7 @@ interface TeaserSectionProps {
 /** Home block with a title, an "all" link, one large card and a 2x2 grid of smaller ones. */
 export function TeaserSection({ id, title, allLabel, allTo, featured, items }: TeaserSectionProps) {
   return (
-    <section aria-labelledby={id} className="mx-auto w-full max-w-7xl px-4">
+    <section aria-labelledby={id} className="mx-auto w-full max-w-6xl px-4">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <h2 id={id} className="text-2xl font-bold tracking-tight md:text-3xl">
           {title}

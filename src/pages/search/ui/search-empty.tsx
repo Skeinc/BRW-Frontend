@@ -24,7 +24,7 @@ export function SearchEmpty({ query }: SearchEmptyProps) {
     ? popular.filter((item): item is string => typeof item === 'string')
     : [];
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-6 md:py-12">
+    <section className="mx-auto w-full max-w-6xl px-4 py-6 md:py-12">
       <Empty>
         <EmptyHeader className="max-w-xl">
           <EmptyMedia variant="icon" className="size-20 rounded-full [&_svg:not([class*='size-'])]:size-9">

@@ -25,7 +25,7 @@ export function CartPage() {
   const [isClearOpen, setIsClearOpen] = useState(false);
   const isHydrated = useIsHydrated();
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-6 md:py-8">
+    <section className="mx-auto w-full max-w-6xl px-4 py-6 md:py-8">
       <PageBreadcrumbs current={t('nav.cart')} />
       {!isHydrated ? (
         <Skeleton className="h-64 w-full rounded-xl" />

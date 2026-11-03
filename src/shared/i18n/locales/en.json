@@ -89,13 +89,9 @@
           "title": "Delivery across Belarus",
           "text": "Free in Mogilev from 500 BYN, to other cities from 2 days"
         },
-        "warranty": {
-          "title": "18-month warranty",
-          "text": "Official BRW furniture with documents and certificates"
-        },
-        "installment": {
-          "title": "0% instalments",
-          "text": "Up to 24 months with no overpayment on instalment cards"
+        "assortment": {
+          "title": "Wide range",
+          "text": "Wardrobes, beds, chests, tables and hallways — over 570 models in the catalogue"
         },
         "consultation": {
           "title": "Consultation",
@@ -527,7 +523,7 @@
           },
           "document": {
             "title": "Get a payment document",
-            "text": "Ask the consultant for an invoice or a document confirming the price and origin of the goods."
+            "text": "Ask the consultant for an invoice for the goods."
           },
           "bank": {
             "title": "Go to the bank",
@@ -1719,10 +1715,6 @@
       "delivery": {
         "title": "Delivery across Belarus",
         "text": "from 2 days · free in Mogilev over 500 BYN"
-      },
-      "warranty": {
-        "title": "18-month warranty",
-        "text": "official BRW furniture"
       },
       "installment": {
         "title": "0% instalments",

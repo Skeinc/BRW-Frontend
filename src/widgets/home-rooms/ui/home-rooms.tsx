@@ -11,7 +11,7 @@ export function HomeRooms() {
     return null;
   }
   return (
-    <section aria-labelledby="home-rooms" className="mx-auto w-full max-w-7xl px-4">
+    <section aria-labelledby="home-rooms" className="mx-auto w-full max-w-6xl px-4">
       <h2 id="home-rooms" className="text-2xl font-bold tracking-tight md:text-3xl">
         {t('pages.home.rooms.title')}
       </h2>

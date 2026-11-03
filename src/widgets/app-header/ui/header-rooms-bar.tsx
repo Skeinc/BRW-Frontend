@@ -16,7 +16,7 @@ export function HeaderRoomsBar() {
   }
   return (
     <nav aria-label={t('nav.rooms')} className="hidden border-t bg-muted lg:block">
-      <ul className="mx-auto flex w-full max-w-7xl items-center px-4">
+      <ul className="mx-auto flex w-full max-w-6xl items-center px-4">
         {rooms.map((room, index) => {
           const collections = details[index]?.data?.collections ?? [];
           return (

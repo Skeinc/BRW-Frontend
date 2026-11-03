@@ -11,7 +11,7 @@ const FACTS = [
 export function InstallmentHero() {
   const { t } = useTranslation();
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 pb-6 pt-12 md:pb-8 md:pt-16">
+    <section className="mx-auto w-full max-w-6xl px-4 pb-6 pt-12 md:pb-8 md:pt-16">
       <PageBreadcrumbs current={t('pages.installment.heading')} />
       <h1 className="text-3xl font-bold tracking-tight md:text-5xl">{t('pages.installment.heading')}</h1>
       <p className="mt-6 max-w-3xl text-lg text-muted-foreground">{t('pages.installment.lead')}</p>

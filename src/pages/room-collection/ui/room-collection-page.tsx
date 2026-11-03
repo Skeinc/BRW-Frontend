@@ -21,7 +21,7 @@ export function RoomCollectionPage() {
   const { room, collection, solutions } = data;
   const selected = solutions.find(({ id }) => id === solutionId) ?? solutions.at(0);
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-6 md:py-8">
+    <section className="mx-auto w-full max-w-6xl px-4 py-6 md:py-8">
       <BreadcrumbTrail steps={[{ label: room.name, to: { roomId: room.id } }, { label: collection.name }]} />
       <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
         {t('rooms.collectionTitle', { room: room.name, name: collection.name })}

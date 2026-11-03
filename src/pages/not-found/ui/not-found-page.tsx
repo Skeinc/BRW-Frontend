@@ -6,7 +6,7 @@ import { Button } from '@/shared/ui/button';
 export function NotFoundPage() {
   const { t } = useTranslation();
   return (
-    <section className="mx-auto flex w-full max-w-7xl flex-col items-center px-4 py-16 text-center md:py-28">
+    <section className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 py-16 text-center md:py-28">
       <p className="text-8xl font-extrabold leading-none text-primary md:text-[10rem]" aria-hidden>
         404
       </p>

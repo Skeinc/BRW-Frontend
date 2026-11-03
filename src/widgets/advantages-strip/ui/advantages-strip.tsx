@@ -1,21 +1,20 @@
-import { CreditCard, MessageCircle, ShieldCheck, Truck } from 'lucide-react';
+import { LayoutGrid, MessageCircle, Truck } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const ADVANTAGES = [
-  { key: 'delivery', icon: Truck },
-  { key: 'warranty', icon: ShieldCheck },
-  { key: 'installment', icon: CreditCard },
   { key: 'consultation', icon: MessageCircle },
+  { key: 'assortment', icon: LayoutGrid },
+  { key: 'delivery', icon: Truck },
 ] as const;
 
 export function AdvantagesStrip() {
   const { t } = useTranslation();
   return (
-    <section aria-labelledby="home-advantages" className="mx-auto w-full max-w-7xl px-4">
+    <section aria-labelledby="home-advantages" className="mx-auto w-full max-w-6xl px-4">
       <h2 id="home-advantages" className="text-2xl font-bold tracking-tight md:text-3xl">
         {t('pages.home.advantages.title')}
       </h2>
-      <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="mt-6 grid gap-4 md:grid-cols-3">
         {ADVANTAGES.map(({ key, icon: Icon }) => (
           <li
             key={key}

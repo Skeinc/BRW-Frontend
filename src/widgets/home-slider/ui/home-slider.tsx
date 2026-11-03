@@ -41,7 +41,7 @@ export function HomeSlider({ slides }: HomeSliderProps) {
     <section
       aria-roledescription="carousel"
       aria-label={t('pages.home.slider.label')}
-      className="relative mx-auto w-full max-w-7xl overflow-hidden md:rounded-lg"
+      className="relative mx-auto w-full max-w-6xl overflow-hidden md:rounded-lg"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}

@@ -15,7 +15,7 @@ export function HeaderTopBar() {
   const { t } = useTranslation();
   return (
     <div className="hidden bg-foreground text-sm text-background md:block">
-      <div className="mx-auto flex h-11 w-full max-w-7xl items-center gap-6 px-4">
+      <div className="mx-auto flex h-11 w-full max-w-6xl items-center gap-6 px-4">
         <Link to="/about" className="group inline-flex items-center gap-2.5 transition-colors hover:text-background/80">
           <span className={cn(ICON_BADGE, 'group-hover:bg-primary group-hover:text-primary-foreground')}>
             <MapPin aria-hidden className="size-3.5" />

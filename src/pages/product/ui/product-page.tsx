@@ -19,7 +19,7 @@ export function ProductPage() {
   const { data: product } = useSuspenseQuery(catalogProductQueryOptions(productId));
   const { discountPercent, isHit } = product;
   return (
-    <article className="mx-auto w-full max-w-7xl px-4 py-6 md:py-8">
+    <article className="mx-auto w-full max-w-6xl px-4 py-6 md:py-8">
       <BreadcrumbTrail
         steps={[
           { label: t('nav.catalog'), to: 'catalog' },

@@ -1,11 +1,10 @@
 import { Link } from '@tanstack/react-router';
-import { Banknote, CreditCard, ShieldCheck, Truck } from 'lucide-react';
+import { Banknote, CreditCard, Truck } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const BENEFITS = [
   { key: 'delivery', icon: Truck, to: '/delivery-and-payment' },
   { key: 'payment', icon: Banknote, to: '/delivery-and-payment' },
-  { key: 'warranty', icon: ShieldCheck },
   { key: 'installment', icon: CreditCard, to: '/installment' },
 ] as const;
 

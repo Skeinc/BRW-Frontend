@@ -27,7 +27,7 @@ export function ProductSlider({ id, textKey, products, highlight }: ProductSlide
     list?.scrollBy({ left: direction * list.clientWidth, behavior: 'smooth' });
   };
   return (
-    <section aria-labelledby={id} className="mx-auto w-full max-w-7xl px-4">
+    <section aria-labelledby={id} className="mx-auto w-full max-w-6xl px-4">
       <ShowcaseHeading id={id} eyebrow={t(`${textKey}.eyebrow`)} title={t(`${textKey}.title`)}>
         <div className="hidden gap-2 sm:flex">
           <Button

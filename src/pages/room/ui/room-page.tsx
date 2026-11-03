@@ -12,7 +12,7 @@ export function RoomPage() {
   const { roomId } = route.useParams();
   const { data: room } = useSuspenseQuery(catalogRoomQueryOptions(roomId));
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-6 md:py-8">
+    <section className="mx-auto w-full max-w-6xl px-4 py-6 md:py-8">
       <BreadcrumbTrail steps={[{ label: room.name }]} />
       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <h1 className="text-3xl font-bold tracking-tight md:text-4xl">{room.name}</h1>

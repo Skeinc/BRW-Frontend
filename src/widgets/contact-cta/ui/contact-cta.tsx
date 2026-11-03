@@ -7,7 +7,7 @@ export function ContactCta() {
   const { t } = useTranslation();
   const base = 'contactCta';
   return (
-    <section className="mx-auto w-full max-w-7xl px-4">
+    <section className="mx-auto w-full max-w-6xl px-4">
       <div className="grid gap-6 rounded-xl bg-foreground p-6 text-background md:grid-cols-[1.5fr_1fr] md:p-10">
         <div>
           <h2 className="text-2xl font-bold tracking-tight md:text-3xl">{t(`${base}.heading`)}</h2>

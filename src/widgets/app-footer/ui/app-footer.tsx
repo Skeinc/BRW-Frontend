@@ -29,7 +29,7 @@ export function AppFooter() {
   const { data: rooms = [] } = useQuery(catalogRoomsQueryOptions);
   return (
     <footer className="mt-16 bg-foreground text-background">
-      <div className="mx-auto w-full max-w-7xl px-4">
+      <div className="mx-auto w-full max-w-6xl px-4">
         <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1fr_1.6fr_1.2fr_1.2fr_1.2fr]">
           <nav aria-labelledby="footer-rooms" className="flex flex-col gap-3 text-sm">
             <FooterHeading id="footer-rooms">{t('footer.byRoom')}</FooterHeading>

@@ -1,10 +1,9 @@
-import { CreditCard, ShieldCheck, Truck } from 'lucide-react';
+import { CreditCard, Truck } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { formatPrice } from '@/shared/lib/format-price';
 
 const BENEFITS = [
   { key: 'delivery', icon: Truck },
-  { key: 'warranty', icon: ShieldCheck },
   { key: 'installment', icon: CreditCard },
 ] as const;
 

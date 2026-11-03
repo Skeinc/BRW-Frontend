@@ -11,7 +11,7 @@ export function PrivacyPage() {
   const { t } = useTranslation();
   const sections = t('pages.privacy.sections', { returnObjects: true }) as PrivacySection[];
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 pb-12 pt-12 md:pb-16 md:pt-16">
+    <section className="mx-auto w-full max-w-6xl px-4 pb-12 pt-12 md:pb-16 md:pt-16">
       <PageBreadcrumbs current={t('pages.privacy.heading')} />
       <h1 className="max-w-4xl text-3xl font-bold tracking-tight md:text-5xl">{t('pages.privacy.heading')}</h1>
       <p className="mt-6 max-w-3xl text-lg text-muted-foreground">{t('pages.privacy.lead')}</p>

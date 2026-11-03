@@ -14,7 +14,7 @@ export function AboutFacts() {
     { icon: Package, value: t('pages.about.facts.items'), label: t('pages.about.facts.itemsLabel') },
   ];
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 pb-12 md:pb-16">
+    <section className="mx-auto w-full max-w-6xl px-4 pb-12 md:pb-16">
       <ul className="grid gap-4 md:grid-cols-2">
         {facts.map(({ icon: Icon, value, label }) => (
           <li key={label} className="flex items-center gap-4 rounded-xl border bg-card p-6">

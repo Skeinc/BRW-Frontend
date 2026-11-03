@@ -35,7 +35,7 @@ export function CheckoutPage() {
   }, [isEmpty, navigate]);
 
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-6 md:py-8">
+    <section className="mx-auto w-full max-w-6xl px-4 py-6 md:py-8">
       <PageBreadcrumbs current={t('checkout.title')} />
       <h1 className="mb-6 text-2xl font-bold tracking-tight md:text-4xl">{t('checkout.title')}</h1>
       {!isHydrated || isEmpty ? (

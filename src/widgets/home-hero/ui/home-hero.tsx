@@ -18,7 +18,7 @@ export function HomeHero() {
   const { data } = useQuery(catalogProductsQueryOptions(NEW_ARRIVALS_PARAMS));
   const featured = data?.items[0];
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 pt-6 md:pt-8">
+    <section className="mx-auto w-full max-w-6xl px-4 pt-6 md:pt-8">
       <div className="relative grid items-center gap-10 overflow-hidden rounded-3xl border bg-linear-to-br from-card via-card to-primary/10 p-6 md:p-10 lg:grid-cols-2 lg:gap-12 lg:p-14">
         <div aria-hidden className="absolute -top-24 -left-24 size-80 rounded-full bg-primary/10 blur-3xl" />
         <div className="relative">

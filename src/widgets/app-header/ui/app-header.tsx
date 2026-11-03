@@ -23,7 +23,7 @@ export function AppHeader() {
     <div className="sticky top-0 z-40">
       <HeaderTopBar />
       <header className="relative border-b bg-card">
-        <div className="mx-auto hidden h-20 w-full max-w-7xl items-center gap-4 px-4 lg:flex">
+        <div className="mx-auto hidden h-20 w-full max-w-6xl items-center gap-4 px-4 lg:flex">
           <Link to="/" aria-label={t('nav.goHome')} className="shrink-0">
             <BrandLogo tone="onLight" />
           </Link>
@@ -54,11 +54,11 @@ export function AppHeader() {
         </div>
         <HeaderRoomsBar />
         {isSearchOpen && (
-          <div className="mx-auto hidden w-full max-w-7xl border-t px-4 py-3 lg:flex">
+          <div className="mx-auto hidden w-full max-w-6xl border-t px-4 py-3 lg:flex">
             <HeaderSearch autoFocus className="order-none basis-auto flex-1" />
           </div>
         )}
-        <div className="mx-auto flex min-h-16 w-full max-w-7xl flex-wrap items-center gap-x-2 gap-y-2 px-4 py-2 sm:h-20 sm:flex-nowrap sm:gap-x-3 sm:py-0 lg:hidden">
+        <div className="mx-auto flex min-h-16 w-full max-w-6xl flex-wrap items-center gap-x-2 gap-y-2 px-4 py-2 sm:h-20 sm:flex-nowrap sm:gap-x-3 sm:py-0 lg:hidden">
           <Link to="/" aria-label={t('nav.goHome')} className="shrink-0">
             <BrandLogo tone="onLight" isMark className="sm:hidden" />
             <BrandLogo tone="onLight" className="hidden sm:block" />

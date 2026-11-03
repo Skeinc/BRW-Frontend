@@ -8,7 +8,7 @@ export function RoomsPage() {
   const { data: rooms } = useSuspenseQuery(catalogRoomsQueryOptions);
   const details = useQueries({ queries: rooms.map((room) => catalogRoomQueryOptions(room.id)) });
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-6 md:py-8">
+    <section className="mx-auto w-full max-w-6xl px-4 py-6 md:py-8">
       <BreadcrumbTrail steps={[{ label: t('pages.rooms.heading') }]} />
       <h1 className="text-3xl font-bold tracking-tight md:text-4xl">{t('pages.rooms.heading')}</h1>
       {details.map(({ data: room }) =>

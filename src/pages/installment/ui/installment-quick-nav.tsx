@@ -10,7 +10,7 @@ const TARGETS = [
 export function InstallmentQuickNav() {
   const { t } = useTranslation();
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 pb-12 md:pb-16">
+    <section className="mx-auto w-full max-w-6xl px-4 pb-12 md:pb-16">
       <ul className="grid gap-4 md:grid-cols-2">
         {TARGETS.map(({ id, icon: Icon }) => (
           <li key={id}>
@@ -18,7 +18,7 @@ export function InstallmentQuickNav() {
               to="/installment"
               hash={id}
               hashScrollIntoView={{ behavior: 'smooth', block: 'start' }}
-              className="group flex min-h-20 items-center gap-4 rounded-xl border bg-card p-5 transition-colors hover:border-primary sm:p-6"
+              className="group flex h-full min-h-20 items-center gap-4 rounded-xl border bg-card p-5 transition-colors hover:border-primary sm:p-6"
             >
               <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <Icon aria-hidden className="size-6" />

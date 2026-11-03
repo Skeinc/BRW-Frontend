@@ -20,7 +20,7 @@ export function AboutTeaser() {
   ];
   const conveniences = t('pages.home.about.conveniences', { returnObjects: true }) as string[];
   return (
-    <section aria-labelledby="home-about" className="mx-auto w-full max-w-7xl px-4">
+    <section aria-labelledby="home-about" className="mx-auto w-full max-w-6xl px-4">
       <div className="border-y py-6 md:py-8">
         <h2 id="home-about" className="text-2xl font-bold tracking-tight md:text-3xl">
           {t('pages.home.about.title')}

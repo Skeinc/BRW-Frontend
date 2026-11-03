@@ -17,7 +17,7 @@ export function NewsItemPage() {
   const { data: latest } = useQuery(catalogNewsQueryOptions(RELATED_NEWS_PARAMS));
   const related = (latest?.items ?? []).filter((item) => item.id !== newsItem.id).slice(0, RELATED_NEWS_COUNT);
   return (
-    <div className="mx-auto w-full max-w-7xl px-4 py-6 md:py-8">
+    <div className="mx-auto w-full max-w-6xl px-4 py-6 md:py-8">
       <BreadcrumbTrail steps={[{ label: t('nav.news'), to: 'news' }, { label: newsItem.title }]} />
       <article>
         <h1 className="text-3xl font-bold tracking-tight md:text-4xl">{newsItem.title}</h1>

@@ -20,7 +20,7 @@ export function ProductTabs({ product }: ProductTabsProps) {
     return null;
   }
   return (
-    <Tabs defaultValue={rows.length > 0 ? 'specs' : 'description'} className="max-w-3xl">
+    <Tabs defaultValue={rows.length > 0 ? 'specs' : 'description'}>
       <TabsList className="h-auto w-full">
         {rows.length > 0 && (
           <TabsTrigger value="specs" className={triggerClass}>

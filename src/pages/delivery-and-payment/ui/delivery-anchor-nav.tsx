@@ -14,7 +14,7 @@ export function DeliveryAnchorNav() {
       aria-label={t('pages.deliveryAndPayment.nav.label')}
       className="sticky top-20 z-30 md:top-31 lg:top-43 mb-10 border-b bg-background/95 backdrop-blur"
     >
-      <ol className="mx-auto flex w-full max-w-7xl items-center px-4 py-3">
+      <ol className="mx-auto flex w-full max-w-6xl items-center px-4 py-3">
         {SECTION_IDS.map((section, index) => {
           const value = progress[index] ?? 0;
           const isDone = value >= 1;

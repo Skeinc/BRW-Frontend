@@ -6,7 +6,7 @@ import { AboutContactRow } from './about-contact-row';
 export function AboutStores() {
   const { t } = useTranslation();
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 pb-12 md:pb-16">
+    <section className="mx-auto w-full max-w-6xl px-4 pb-12 md:pb-16">
       <h2 className="text-2xl font-bold tracking-tight md:text-3xl">{t('pages.about.stores.heading')}</h2>
       <ul className="mt-6 grid gap-4">
         {SITE_STORES.map((store) => {
