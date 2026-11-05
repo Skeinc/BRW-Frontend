@@ -23,6 +23,7 @@ import { Route as SearchRouteImport } from './routes/search'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AdminAuthedRouteImport } from './routes/admin._authed'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as ApiSplatRouteImport } from './routes/api.$'
 import { Route as ArticlesIndexRouteImport } from './routes/articles.index'
 import { Route as ArticlesArticleIdRouteImport } from './routes/articles.$articleId'
 import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
@@ -115,6 +116,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => AdminRoute,
+} as any)
+const ApiSplatRoute = ApiSplatRouteImport.update({
+  id: '/api/$',
+  path: '/api/$',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ArticlesIndexRoute = ArticlesIndexRouteImport.update({
   id: '/articles/',
@@ -248,6 +254,7 @@ export interface FileRoutesByFullPath {
   '/search': typeof SearchRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/login': typeof AdminLoginRoute
+  '/api/$': typeof ApiSplatRoute
   '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/catalog/$categoryId': typeof CatalogCategoryIdRoute
   '/collection/$collectionId': typeof CollectionCollectionIdRoute
@@ -286,6 +293,7 @@ export interface FileRoutesByTo {
   '/search': typeof SearchRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/login': typeof AdminLoginRoute
+  '/api/$': typeof ApiSplatRoute
   '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/catalog/$categoryId': typeof CatalogCategoryIdRoute
   '/collection/$collectionId': typeof CollectionCollectionIdRoute
@@ -325,6 +333,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/_authed': typeof AdminAuthedRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
+  '/api/$': typeof ApiSplatRoute
   '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/catalog/$categoryId': typeof CatalogCategoryIdRoute
   '/collection/$collectionId': typeof CollectionCollectionIdRoute
@@ -365,6 +374,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/sitemap.xml'
     | '/admin/login'
+    | '/api/$'
     | '/articles/$articleId'
     | '/catalog/$categoryId'
     | '/collection/$collectionId'
@@ -403,6 +413,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/sitemap.xml'
     | '/admin/login'
+    | '/api/$'
     | '/articles/$articleId'
     | '/catalog/$categoryId'
     | '/collection/$collectionId'
@@ -441,6 +452,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/admin/_authed'
     | '/admin/login'
+    | '/api/$'
     | '/articles/$articleId'
     | '/catalog/$categoryId'
     | '/collection/$collectionId'
@@ -479,6 +491,7 @@ export interface RootRouteChildren {
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SearchRoute: typeof SearchRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ApiSplatRoute: typeof ApiSplatRoute
   ArticlesArticleIdRoute: typeof ArticlesArticleIdRoute
   CatalogCategoryIdRoute: typeof CatalogCategoryIdRoute
   CollectionCollectionIdRoute: typeof CollectionCollectionIdRoute
@@ -592,6 +605,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/login'
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/api/$': {
+      id: '/api/$'
+      path: '/api/$'
+      fullPath: '/api/$'
+      preLoaderRoute: typeof ApiSplatRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/articles/': {
       id: '/articles/'
@@ -814,6 +834,7 @@ const rootRouteChildren: RootRouteChildren = {
   RobotsDottxtRoute: RobotsDottxtRoute,
   SearchRoute: SearchRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ApiSplatRoute: ApiSplatRoute,
   ArticlesArticleIdRoute: ArticlesArticleIdRoute,
   CatalogCategoryIdRoute: CatalogCategoryIdRoute,
   CollectionCollectionIdRoute: CollectionCollectionIdRoute,
