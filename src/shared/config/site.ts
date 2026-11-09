@@ -3,8 +3,8 @@ export const SITE_LEGAL_NAME = 'ООО «Артамид»';
 export const SITE_PHONE = '+375296226767';
 export const SITE_PHONE_LABEL = '+375 29 622 67 67';
 export const SITE_CURRENCY = 'BYN';
-export const SITE_INSTAGRAM_URL = 'https://www.instagram.com/blackredwhite__belarus/';
-export const SITE_INSTAGRAM_HANDLE = '@blackredwhite__belarus';
+export const SITE_INSTAGRAM_URL = 'https://www.instagram.com/brw_mebel_mogilev/';
+export const SITE_INSTAGRAM_HANDLE = '@brw_mebel_mogilev';
 
 export interface SiteStore {
   id: 'nepokorennykh';

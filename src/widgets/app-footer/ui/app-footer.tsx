@@ -10,7 +10,6 @@ import { FooterHeading } from './footer-heading';
 import { FooterPayment } from './footer-payment';
 
 const CURRENT_YEAR = new Date().getFullYear();
-const SITE_EMAIL = 'info@brw-shop.by';
 const LINK_CLASS = 'hover:text-primary';
 
 const COMPANY_LINKS = [
@@ -81,9 +80,6 @@ export function AppFooter() {
               {SITE_PHONE_LABEL}
             </a>
             <p className="mt-2 text-sm text-background/60">{t('footer.hours')}</p>
-            <a href={`mailto:${SITE_EMAIL}`} className={`mt-2 block text-sm ${LINK_CLASS}`}>
-              {SITE_EMAIL}
-            </a>
             <a
               href={SITE_INSTAGRAM_URL}
               target="_blank"
