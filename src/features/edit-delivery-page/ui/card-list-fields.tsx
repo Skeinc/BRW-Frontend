@@ -8,7 +8,7 @@ import { Button } from '@/shared/ui/button';
 import { FieldError } from '@/shared/ui/field';
 import { RECEIVING_STEPS_MAX, type DeliveryFormValues } from '../model/delivery-form-schema';
 import { CardTextFields } from './card-text-fields';
-import { ListRowActions } from './list-row-actions';
+import { ListRowActions } from '@/shared/ui/list-row-actions';
 
 type CardListName = 'payment' | 'delivery' | 'receiving';
 

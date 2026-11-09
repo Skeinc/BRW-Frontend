@@ -853,7 +853,8 @@
       "settings": "Settings",
       "rooms": "Rooms",
       "solutions": "Ready-made sets",
-      "delivery": "Delivery and payment"
+      "delivery": "Delivery and payment",
+      "installment": "Installment"
     },
     "auth": {
       "title": "Admin sign-in",
@@ -883,7 +884,10 @@
       "required": "Required field",
       "searchOptions": "Search",
       "nothingFound": "Nothing found",
-      "nothingFoundHint": "Try changing the query or resetting the filters."
+      "nothingFoundHint": "Try changing the query or resetting the filters.",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "removeRow": "Remove"
     },
     "gallery": {
       "title": "Photos",
@@ -1630,13 +1634,45 @@
       "addStep": "Add step",
       "addDocument": "Add document",
       "addFaq": "Add question",
-      "moveUp": "Move up",
-      "moveDown": "Move down",
-      "remove": "Remove",
       "saved": "Page saved",
       "faqQuestion": "Question {{number}}: question",
       "faqAnswer": "Question {{number}}: answer",
       "paymentActive": "Available"
+    },
+    "installmentPage": {
+      "description": "Card texts on the Installment page. The header, block headings, quick navigation and the other texts are not editable. Each text is shown as written, in every language version of the site. Until something is saved, the built-in translations stay. The first save stores all blocks exactly as they are in the form.",
+      "sections": {
+        "cards": "Installment cards",
+        "cardsHint": "Cards can be added, removed and reordered.",
+        "loans": "Bank loans",
+        "loansHint": "A bank loan or installment. Badges, conditions, requirements and the application order are optional: empty lists are not shown on the page.",
+        "facts": "Conditions (label and value)"
+      },
+      "fields": {
+        "note": "Line above the name",
+        "name": "Name",
+        "months": "Term in months",
+        "rate": "Interest",
+        "payment": "Payment (may be left empty)",
+        "bank": "Bank",
+        "term": "Term",
+        "badge": "Badge",
+        "factLabel": "Label, e.g. “Amount”",
+        "factValue": "Value",
+        "detailLabel": "Label, e.g. “Documents”",
+        "detailValue": "Value",
+        "step": "Step {{number}}"
+      },
+      "monthsUnit": "mo.",
+      "add": {
+        "card": "Add card",
+        "loan": "Add loan",
+        "badge": "Add badge",
+        "fact": "Add condition",
+        "detail": "Add requirement",
+        "step": "Add step"
+      },
+      "saved": "Page saved"
     }
   },
   "ui": {

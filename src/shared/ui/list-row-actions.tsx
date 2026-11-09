@@ -21,7 +21,7 @@ export function ListRowActions({ index, count, canRemove, onMove, onRemove }: Li
         variant="ghost"
         size="icon"
         className="size-10 text-muted-foreground"
-        aria-label={t('admin.deliveryPage.moveUp')}
+        aria-label={t('admin.common.moveUp')}
         disabled={index === 0}
         onClick={() => onMove(index, index - 1)}
       >
@@ -32,7 +32,7 @@ export function ListRowActions({ index, count, canRemove, onMove, onRemove }: Li
         variant="ghost"
         size="icon"
         className="size-10 text-muted-foreground"
-        aria-label={t('admin.deliveryPage.moveDown')}
+        aria-label={t('admin.common.moveDown')}
         disabled={index === count - 1}
         onClick={() => onMove(index, index + 1)}
       >
@@ -43,7 +43,7 @@ export function ListRowActions({ index, count, canRemove, onMove, onRemove }: Li
         variant="ghost"
         size="icon"
         className="size-10 text-muted-foreground hover:text-destructive"
-        aria-label={t('admin.deliveryPage.remove')}
+        aria-label={t('admin.common.removeRow')}
         disabled={!canRemove}
         onClick={() => onRemove(index)}
       >

@@ -1,14 +1,15 @@
 import {
+  Boxes,
   ChartColumn,
+  CreditCard,
   FileText,
   FolderTree,
   Inbox,
   Layers,
   Newspaper,
   Package,
-  Boxes,
-  Sofa,
   Settings,
+  Sofa,
   Truck,
   type LucideIcon,
 } from 'lucide-react';
@@ -24,6 +25,7 @@ export interface AdminNavItem {
     | '/admin/articles'
     | '/admin/news'
     | '/admin/delivery'
+    | '/admin/installment'
     | '/admin/settings'
     | '/admin/analytics';
   titleKey: string;
@@ -41,5 +43,6 @@ export const ADMIN_NAV: AdminNavItem[] = [
   { to: '/admin/articles', titleKey: 'admin.nav.articles', icon: FileText },
   { to: '/admin/news', titleKey: 'admin.nav.news', icon: Newspaper },
   { to: '/admin/delivery', titleKey: 'admin.nav.delivery', icon: Truck },
+  { to: '/admin/installment', titleKey: 'admin.nav.installment', icon: CreditCard },
   { to: '/admin/settings', titleKey: 'admin.nav.settings', icon: Settings },
 ];

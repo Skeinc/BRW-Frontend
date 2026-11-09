@@ -6,7 +6,7 @@ import { Button } from '@/shared/ui/button';
 import { FieldError } from '@/shared/ui/field';
 import { Textarea } from '@/shared/ui/textarea';
 import { DOCUMENTS_MAX, type DeliveryFormValues } from '../model/delivery-form-schema';
-import { ListRowActions } from './list-row-actions';
+import { ListRowActions } from '@/shared/ui/list-row-actions';
 
 const DOCUMENT_ICONS = [Receipt, Truck, FileSignature, FileText] as const;
 

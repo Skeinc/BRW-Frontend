@@ -7,7 +7,7 @@ import { FieldError } from '@/shared/ui/field';
 import { Input } from '@/shared/ui/input';
 import { Textarea } from '@/shared/ui/textarea';
 import { FAQ_ITEMS_MAX, type DeliveryFormValues } from '../model/delivery-form-schema';
-import { ListRowActions } from './list-row-actions';
+import { ListRowActions } from '@/shared/ui/list-row-actions';
 
 /** FAQ list that looks like the accordion on the public page, with every question and answer editable in place. */
 export function FaqFields() {
