@@ -1,24 +1,29 @@
+import { resolveDeliveryContent, type DeliveryPageContent } from '@/entities/delivery-page';
 import { translate, type Language } from '@/shared/i18n';
 import { buildBreadcrumbJsonLd } from '@/shared/lib/build-breadcrumb-json-ld';
-import { FAQ_IDS } from '../model/faq-ids';
 
 /** schema.org `FAQPage` and `BreadcrumbList` for the delivery and payment page. */
-export function buildDeliveryJsonLd(language: Language): Record<string, unknown> {
+export function buildDeliveryJsonLd(
+  language: Language,
+  saved: DeliveryPageContent | null | undefined,
+): Record<string, unknown> {
+  const { faq } = resolveDeliveryContent({ saved, language });
   return {
     '@context': 'https://schema.org',
     '@graph': [
       buildBreadcrumbJsonLd(language, translate(language, 'pages.deliveryAndPayment.heading'), '/delivery-and-payment'),
-      {
-        '@type': 'FAQPage',
-        mainEntity: FAQ_IDS.map((id) => ({
-          '@type': 'Question',
-          name: translate(language, `pages.deliveryAndPayment.faq.items.${id}.q`),
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: translate(language, `pages.deliveryAndPayment.faq.items.${id}.a`),
-          },
-        })),
-      },
+      ...(faq.length > 0
+        ? [
+            {
+              '@type': 'FAQPage',
+              mainEntity: faq.map((item) => ({
+                '@type': 'Question',
+                name: item.question,
+                acceptedAnswer: { '@type': 'Answer', text: item.answer },
+              })),
+            },
+          ]
+        : []),
     ],
   };
 }

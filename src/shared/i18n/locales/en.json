@@ -852,7 +852,8 @@
       "analytics": "Analytics",
       "settings": "Settings",
       "rooms": "Rooms",
-      "solutions": "Ready-made sets"
+      "solutions": "Ready-made sets",
+      "delivery": "Delivery and payment"
     },
     "auth": {
       "title": "Admin sign-in",
@@ -1594,6 +1595,48 @@
         "publication": "Publication",
         "publicationHint": "Whether the set is shown on the site."
       }
+    },
+    "deliveryPage": {
+      "description": "Card texts on the Delivery and payment page. Block headings, the header and the other texts are not editable. Each text is shown as written, in every language version of the site. Until something is saved, the built-in translations stay. The first save stores all blocks exactly as they are in the form.",
+      "sections": {
+        "payment": "Payment methods",
+        "delivery": "Delivery",
+        "receiving": "Receiving an order",
+        "receivingHint": "Steps can be added, removed and reordered. Numbers are set automatically.",
+        "documents": "Documents",
+        "faq": "FAQ"
+      },
+      "cards": {
+        "payment": {
+          "courier": "Cash on delivery",
+          "pickup": "Cash at the pickup point",
+          "card": "Bank card on the site"
+        },
+        "delivery": {
+          "price": "Cost",
+          "term": "Lead time",
+          "place": "Where we deliver"
+        }
+      },
+      "fields": {
+        "title": "Title",
+        "text": "Text",
+        "question": "Question",
+        "answer": "Answer",
+        "document": "Document {{number}}"
+      },
+      "step": "Step {{number}}",
+      "faqEmpty": "No questions: the block on the page will be empty.",
+      "addStep": "Add step",
+      "addDocument": "Add document",
+      "addFaq": "Add question",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "remove": "Remove",
+      "saved": "Page saved",
+      "faqQuestion": "Question {{number}}: question",
+      "faqAnswer": "Question {{number}}: answer",
+      "paymentActive": "Available"
     }
   },
   "ui": {

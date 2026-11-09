@@ -9,6 +9,7 @@ import {
   Boxes,
   Sofa,
   Settings,
+  Truck,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -22,6 +23,7 @@ export interface AdminNavItem {
     | '/admin/orders'
     | '/admin/articles'
     | '/admin/news'
+    | '/admin/delivery'
     | '/admin/settings'
     | '/admin/analytics';
   titleKey: string;
@@ -38,5 +40,6 @@ export const ADMIN_NAV: AdminNavItem[] = [
   { to: '/admin/orders', titleKey: 'admin.nav.orders', icon: Inbox },
   { to: '/admin/articles', titleKey: 'admin.nav.articles', icon: FileText },
   { to: '/admin/news', titleKey: 'admin.nav.news', icon: Newspaper },
+  { to: '/admin/delivery', titleKey: 'admin.nav.delivery', icon: Truck },
   { to: '/admin/settings', titleKey: 'admin.nav.settings', icon: Settings },
 ];

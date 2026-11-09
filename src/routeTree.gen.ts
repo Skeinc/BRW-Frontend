@@ -38,6 +38,7 @@ import { Route as AdminAuthedIndexRouteImport } from './routes/admin._authed.ind
 import { Route as AdminAuthedAnalyticsRouteImport } from './routes/admin._authed.analytics'
 import { Route as AdminAuthedCategoriesRouteImport } from './routes/admin._authed.categories'
 import { Route as AdminAuthedCollectionsRouteImport } from './routes/admin._authed.collections'
+import { Route as AdminAuthedDeliveryRouteImport } from './routes/admin._authed.delivery'
 import { Route as AdminAuthedOrdersRouteImport } from './routes/admin._authed.orders'
 import { Route as AdminAuthedRoomsRouteImport } from './routes/admin._authed.rooms'
 import { Route as AdminAuthedSettingsRouteImport } from './routes/admin._authed.settings'
@@ -192,6 +193,11 @@ const AdminAuthedCollectionsRoute = AdminAuthedCollectionsRouteImport.update({
   path: '/collections',
   getParentRoute: () => AdminAuthedRoute,
 } as any)
+const AdminAuthedDeliveryRoute = AdminAuthedDeliveryRouteImport.update({
+  id: '/delivery',
+  path: '/delivery',
+  getParentRoute: () => AdminAuthedRoute,
+} as any)
 const AdminAuthedOrdersRoute = AdminAuthedOrdersRouteImport.update({
   id: '/orders',
   path: '/orders',
@@ -268,6 +274,7 @@ export interface FileRoutesByFullPath {
   '/admin/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/categories': typeof AdminAuthedCategoriesRoute
   '/admin/collections': typeof AdminAuthedCollectionsRoute
+  '/admin/delivery': typeof AdminAuthedDeliveryRoute
   '/admin/orders': typeof AdminAuthedOrdersRoute
   '/admin/rooms': typeof AdminAuthedRoomsRoute
   '/admin/settings': typeof AdminAuthedSettingsRoute
@@ -307,6 +314,7 @@ export interface FileRoutesByTo {
   '/admin/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/categories': typeof AdminAuthedCategoriesRoute
   '/admin/collections': typeof AdminAuthedCollectionsRoute
+  '/admin/delivery': typeof AdminAuthedDeliveryRoute
   '/admin/orders': typeof AdminAuthedOrdersRoute
   '/admin/rooms': typeof AdminAuthedRoomsRoute
   '/admin/settings': typeof AdminAuthedSettingsRoute
@@ -347,6 +355,7 @@ export interface FileRoutesById {
   '/admin/_authed/analytics': typeof AdminAuthedAnalyticsRoute
   '/admin/_authed/categories': typeof AdminAuthedCategoriesRoute
   '/admin/_authed/collections': typeof AdminAuthedCollectionsRoute
+  '/admin/_authed/delivery': typeof AdminAuthedDeliveryRoute
   '/admin/_authed/orders': typeof AdminAuthedOrdersRoute
   '/admin/_authed/rooms': typeof AdminAuthedRoomsRoute
   '/admin/_authed/settings': typeof AdminAuthedSettingsRoute
@@ -388,6 +397,7 @@ export interface FileRouteTypes {
     | '/admin/analytics'
     | '/admin/categories'
     | '/admin/collections'
+    | '/admin/delivery'
     | '/admin/orders'
     | '/admin/rooms'
     | '/admin/settings'
@@ -427,6 +437,7 @@ export interface FileRouteTypes {
     | '/admin/analytics'
     | '/admin/categories'
     | '/admin/collections'
+    | '/admin/delivery'
     | '/admin/orders'
     | '/admin/rooms'
     | '/admin/settings'
@@ -466,6 +477,7 @@ export interface FileRouteTypes {
     | '/admin/_authed/analytics'
     | '/admin/_authed/categories'
     | '/admin/_authed/collections'
+    | '/admin/_authed/delivery'
     | '/admin/_authed/orders'
     | '/admin/_authed/rooms'
     | '/admin/_authed/settings'
@@ -711,6 +723,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAuthedCollectionsRouteImport
       parentRoute: typeof AdminAuthedRoute
     }
+    '/admin/_authed/delivery': {
+      id: '/admin/_authed/delivery'
+      path: '/delivery'
+      fullPath: '/admin/delivery'
+      preLoaderRoute: typeof AdminAuthedDeliveryRouteImport
+      parentRoute: typeof AdminAuthedRoute
+    }
     '/admin/_authed/orders': {
       id: '/admin/_authed/orders'
       path: '/orders'
@@ -781,6 +800,7 @@ interface AdminAuthedRouteChildren {
   AdminAuthedAnalyticsRoute: typeof AdminAuthedAnalyticsRoute
   AdminAuthedCategoriesRoute: typeof AdminAuthedCategoriesRoute
   AdminAuthedCollectionsRoute: typeof AdminAuthedCollectionsRoute
+  AdminAuthedDeliveryRoute: typeof AdminAuthedDeliveryRoute
   AdminAuthedOrdersRoute: typeof AdminAuthedOrdersRoute
   AdminAuthedRoomsRoute: typeof AdminAuthedRoomsRoute
   AdminAuthedSettingsRoute: typeof AdminAuthedSettingsRoute
@@ -795,6 +815,7 @@ const AdminAuthedRouteChildren: AdminAuthedRouteChildren = {
   AdminAuthedAnalyticsRoute: AdminAuthedAnalyticsRoute,
   AdminAuthedCategoriesRoute: AdminAuthedCategoriesRoute,
   AdminAuthedCollectionsRoute: AdminAuthedCollectionsRoute,
+  AdminAuthedDeliveryRoute: AdminAuthedDeliveryRoute,
   AdminAuthedOrdersRoute: AdminAuthedOrdersRoute,
   AdminAuthedRoomsRoute: AdminAuthedRoomsRoute,
   AdminAuthedSettingsRoute: AdminAuthedSettingsRoute,
