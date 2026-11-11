@@ -21,7 +21,7 @@ export function RoomPage() {
       <ul className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
         {room.collections.map((collection) => (
           <li key={collection.id}>
-            <RoomCollectionCard roomId={room.id} collection={collection} hasSolutionCount={!room.isConsultationOnly} />
+            <RoomCollectionCard roomId={room.id} collection={collection} />
           </li>
         ))}
       </ul>

@@ -1,17 +1,13 @@
 import { Link } from '@tanstack/react-router';
-import { useTranslation } from 'react-i18next';
 import { ImagePlaceholder } from '@/shared/ui/image-placeholder';
 import type { CatalogRoomCollection } from '../model/catalog-types';
 
 interface RoomCollectionCardProps {
   roomId: string;
   collection: CatalogRoomCollection;
-  /** Off in a consultation-only room, where collections have no ready-made solutions. */
-  hasSolutionCount?: boolean;
 }
 
-export function RoomCollectionCard({ roomId, collection, hasSolutionCount = true }: RoomCollectionCardProps) {
-  const { t } = useTranslation();
+export function RoomCollectionCard({ roomId, collection }: RoomCollectionCardProps) {
   return (
     <Link
       to="/room/$roomId/$collectionId"
@@ -34,11 +30,6 @@ export function RoomCollectionCard({ roomId, collection, hasSolutionCount = true
       </div>
       <div className="p-4">
         <p className="truncate font-semibold">{collection.name}</p>
-        {hasSolutionCount && (
-          <p className="text-sm text-muted-foreground">
-            {t('rooms.solutionsCount', { count: collection.solutionCount })}
-          </p>
-        )}
       </div>
     </Link>
   );

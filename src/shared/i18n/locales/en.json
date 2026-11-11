@@ -1912,8 +1912,6 @@
   "rooms": {
     "collectionsCount_one": "{{count}} collection",
     "collectionsCount_other": "{{count}} collections",
-    "solutionsCount_one": "{{count}} set",
-    "solutionsCount_other": "{{count}} sets",
     "solutionPrice": "Price:",
     "readySolutions": "Ready-made sets of the {{name}} collection",
     "aboutCollection": "About the {{name}} collection",
