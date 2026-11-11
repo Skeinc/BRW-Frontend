@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Globe, ImagePlus, Images, Info } from 'lucide-react';
+import { Globe, ImagePlus, Images, Info, LayoutGrid } from 'lucide-react';
 import { useEffect, type ReactNode } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -11,6 +11,7 @@ import { EditorFooter } from '@/shared/ui/editor-footer';
 import { EditorSections, type EditorSection } from '@/shared/ui/editor-sections';
 import { roomFormSchema, type RoomFormValues } from '../model/room-form-schema';
 import { toDefaultValues, toInput } from '../model/room-form-values';
+import { RoomCollectionsFields } from './room-collections-fields';
 import { RoomMainFields } from './room-main-fields';
 import { RoomPublicationFields } from './room-publication-fields';
 
@@ -74,6 +75,13 @@ export function RoomForm({ room, jumpTo, onDirtyChange, onSaved, onClose, galler
           <p className="text-sm text-muted-foreground">{t('admin.gallery.saveFirstLong')}</p>
         </div>
       ),
+    },
+    {
+      id: 'collections',
+      title: t('admin.rooms.sections.collections'),
+      description: t('admin.rooms.sections.collectionsHint'),
+      icon: LayoutGrid,
+      content: <RoomCollectionsFields />,
     },
     {
       id: 'publication',

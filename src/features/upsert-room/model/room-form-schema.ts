@@ -10,6 +10,8 @@ export const roomFormSchema = z.object({
   seoTitle: z.string().max(120, { error: 'admin.validation.tooLong' }),
   seoDescription: z.string().max(320, { error: 'admin.validation.tooLong' }),
   isPublished: z.boolean(),
+  isConsultationOnly: z.boolean(),
+  collectionIds: z.array(z.string()),
 });
 
 export type RoomFormValues = z.infer<typeof roomFormSchema>;

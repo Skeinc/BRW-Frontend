@@ -5,6 +5,7 @@ import { catalogRoomCollectionQueryOptions } from '@/entities/room';
 import { ProductCatalog } from '@/widgets/product-catalog';
 import { BreadcrumbTrail } from '@/shared/ui/breadcrumb-trail';
 import { CollapsibleText } from '@/shared/ui/collapsible-text';
+import { ConsultationCollection } from './consultation-collection';
 import { SolutionDetails } from './solution-details';
 import { SolutionElements } from './solution-elements';
 import { SolutionStrip } from './solution-strip';
@@ -26,30 +27,36 @@ export function RoomCollectionPage() {
       <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
         {t('rooms.collectionTitle', { room: room.name, name: collection.name })}
       </h1>
-      <div className="mt-6 flex flex-col gap-10">
-        {selected && <SolutionStrip collectionName={collection.name} solutions={solutions} selectedId={selected.id} />}
-        {collection.description && (
-          <section aria-labelledby="about-collection" className="max-w-3xl">
-            <h2 id="about-collection" className="mb-3 text-xl font-bold tracking-tight">
-              {t('rooms.aboutCollection', { name: collection.name })}
+      {room.isConsultationOnly ? (
+        <ConsultationCollection collection={collection} />
+      ) : (
+        <div className="mt-6 flex flex-col gap-10">
+          {selected && (
+            <SolutionStrip collectionName={collection.name} solutions={solutions} selectedId={selected.id} />
+          )}
+          {collection.description && (
+            <section aria-labelledby="about-collection" className="max-w-3xl">
+              <h2 id="about-collection" className="mb-3 text-xl font-bold tracking-tight">
+                {t('rooms.aboutCollection', { name: collection.name })}
+              </h2>
+              <CollapsibleText text={collection.description} />
+            </section>
+          )}
+          {selected && <SolutionDetails solution={selected} />}
+          {selected && selected.products.length > 0 && <SolutionElements products={selected.products} />}
+          <section aria-labelledby="all-elements">
+            <h2 id="all-elements" className="mb-4 text-xl font-bold tracking-tight">
+              {t('rooms.allCollectionElements')}
             </h2>
-            <CollapsibleText text={collection.description} />
+            <ProductCatalog
+              search={search}
+              pinned={{ collection: collection.slug }}
+              withFilters={false}
+              onSearchChange={(next) => void navigate({ search: { ...next, solution: solutionId } })}
+            />
           </section>
-        )}
-        {selected && <SolutionDetails solution={selected} />}
-        {selected && selected.products.length > 0 && <SolutionElements products={selected.products} />}
-        <section aria-labelledby="all-elements">
-          <h2 id="all-elements" className="mb-4 text-xl font-bold tracking-tight">
-            {t('rooms.allCollectionElements')}
-          </h2>
-          <ProductCatalog
-            search={search}
-            pinned={{ collection: collection.slug }}
-            withFilters={false}
-            onSearchChange={(next) => void navigate({ search: { ...next, solution: solutionId } })}
-          />
-        </section>
-      </div>
+        </div>
+      )}
     </section>
   );
 }

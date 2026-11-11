@@ -10,11 +10,16 @@ export interface CatalogRoomImage {
 export interface CatalogRoomItem {
   id: string;
   name: string;
+  /** Kitchens: no solutions and no cart; the collection page shows photos, the text, `priceFrom` and the contacts. */
+  isConsultationOnly: boolean;
   imageUrl: string | null;
   collectionCount: number;
 }
 
-/** A collection card inside a room; the photo is the first solution picture of the collection in that room. */
+/**
+ * A collection card inside a room; the photo is the first solution picture of the collection in that room, or the
+ * collection cover in a consultation-only room.
+ */
 export interface CatalogRoomCollection {
   id: string;
   name: string;
@@ -47,14 +52,16 @@ export interface CatalogSolution {
   products: CatalogSolutionProduct[];
 }
 
-/** A collection inside a room: its text and the ready-made solutions of that room. */
+/** A collection inside a room: its text, photos and the ready-made solutions of that room (none in a consultation-only room). */
 export interface CatalogRoomCollectionDetail {
-  room: { id: string; name: string };
+  room: { id: string; name: string; isConsultationOnly: boolean };
   collection: {
     id: string;
     slug: string;
     name: string;
     description: string | null;
+    priceFrom: string | null;
+    images: CatalogRoomImage[];
     seoTitle: string | null;
     seoDescription: string | null;
   };

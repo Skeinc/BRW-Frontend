@@ -9,6 +9,8 @@ export function toDefaultValues(room: Room | null): RoomFormValues {
     seoTitle: room?.seoTitle ?? '',
     seoDescription: room?.seoDescription ?? '',
     isPublished: room?.isPublished ?? true,
+    isConsultationOnly: room?.isConsultationOnly ?? false,
+    collectionIds: room?.collectionIds ?? [],
   };
 }
 
@@ -20,5 +22,7 @@ export function toInput(values: RoomFormValues): RoomInput {
     seoTitle: emptyToNull(values.seoTitle),
     seoDescription: emptyToNull(values.seoDescription),
     isPublished: values.isPublished,
+    isConsultationOnly: values.isConsultationOnly,
+    collectionIds: values.isConsultationOnly ? values.collectionIds : [],
   };
 }

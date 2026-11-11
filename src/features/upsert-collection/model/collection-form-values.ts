@@ -6,6 +6,7 @@ export function toDefaultValues(collection: Collection | null): CollectionFormVa
   return {
     name: collection?.name ?? '',
     description: collection?.description ?? '',
+    priceFrom: collection?.priceFrom ?? '',
     seoTitle: collection?.seoTitle ?? '',
     seoDescription: collection?.seoDescription ?? '',
     isPublished: collection?.isPublished ?? true,
@@ -17,6 +18,7 @@ export function toInput(values: CollectionFormValues): CollectionInput {
   return {
     name: values.name.trim(),
     description: emptyToNull(values.description),
+    priceFrom: emptyToNull(values.priceFrom),
     seoTitle: emptyToNull(values.seoTitle),
     seoDescription: emptyToNull(values.seoDescription),
     isPublished: values.isPublished,

@@ -6,9 +6,11 @@ import type { CatalogRoomCollection } from '../model/catalog-types';
 interface RoomCollectionCardProps {
   roomId: string;
   collection: CatalogRoomCollection;
+  /** Off in a consultation-only room, where collections have no ready-made solutions. */
+  hasSolutionCount?: boolean;
 }
 
-export function RoomCollectionCard({ roomId, collection }: RoomCollectionCardProps) {
+export function RoomCollectionCard({ roomId, collection, hasSolutionCount = true }: RoomCollectionCardProps) {
   const { t } = useTranslation();
   return (
     <Link
@@ -32,9 +34,11 @@ export function RoomCollectionCard({ roomId, collection }: RoomCollectionCardPro
       </div>
       <div className="p-4">
         <p className="truncate font-semibold">{collection.name}</p>
-        <p className="text-sm text-muted-foreground">
-          {t('rooms.solutionsCount', { count: collection.solutionCount })}
-        </p>
+        {hasSolutionCount && (
+          <p className="text-sm text-muted-foreground">
+            {t('rooms.solutionsCount', { count: collection.solutionCount })}
+          </p>
+        )}
       </div>
     </Link>
   );

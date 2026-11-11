@@ -1005,7 +1005,9 @@
         "namePlaceholder": "For example: Jasmin",
         "descriptionPlaceholder": "Tell about the series: style, materials, what is included.",
         "publishedText": "The collection is visible on the site.",
-        "draftText": "The collection is hidden: only you can see it."
+        "draftText": "The collection is hidden: only you can see it.",
+        "priceFrom": "Price from",
+        "priceFromHint": "Shown as \"Price from …\" in consultation-only rooms (kitchens). Empty: no price is shown."
       },
       "searchPlaceholder": "Search by name",
       "filters": {
@@ -1523,7 +1525,9 @@
         "namePlaceholder": "For example: Living rooms",
         "descriptionPlaceholder": "Tell what furniture for this room the section offers.",
         "publishedText": "The room is visible on the site.",
-        "draftText": "The room is hidden: only you can see it."
+        "draftText": "The room is hidden: only you can see it.",
+        "consultation": "Consultation only",
+        "consultationText": "No ready-made sets and no cart. The customer calls or visits the salon, as for kitchens."
       },
       "editSubtitle_one": "{{count}} ready-made set",
       "editSubtitle_other": "{{count}} ready-made sets",
@@ -1533,7 +1537,18 @@
         "photo": "Photo",
         "photoHint": "Shown on the room card on the home page.",
         "publication": "Publication and SEO",
-        "publicationHint": "Whether the room is shown on the site and how it looks in search."
+        "publicationHint": "Whether the room is shown on the site and how it looks in search.",
+        "collections": "Kitchens and consultation",
+        "collectionsHint": "A room without the cart: it shows the chosen collections with photos, a text, the price \"from\" and the phone."
+      },
+      "collections": {
+        "none": "No collections chosen",
+        "add": "Add",
+        "remove": "Remove \"{{name}}\"",
+        "moveUp": "Move \"{{name}}\" up",
+        "search": "Find a collection",
+        "noResults": "Nothing found",
+        "loading": "Loading…"
       }
     },
     "solutions": {
@@ -1906,6 +1921,12 @@
     "allCollectionElements": "All collection elements",
     "addSet": "Add set to cart",
     "setInCart": "Set is in the cart",
-    "collectionTitle": "{{room}} {{name}}"
+    "collectionTitle": "{{room}} {{name}}",
+    "consultation": {
+      "priceFrom": "Price from",
+      "heading": "We will fit the kitchen to your room",
+      "text": "Call us: a manager will tell you about the materials and work out the price. Or visit the salon to see the fronts in person.",
+      "call": "Learn more and order a quote"
+    }
   }
 }

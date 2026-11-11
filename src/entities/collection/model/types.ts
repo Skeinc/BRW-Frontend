@@ -5,6 +5,8 @@ export interface Collection {
   slug: string;
   name: string;
   description: string | null;
+  /** Starting price "от …" on the collection page of a consultation-only room (kitchens). */
+  priceFrom: string | null;
   seoTitle: string | null;
   seoDescription: string | null;
   sortOrder: number;
@@ -21,6 +23,7 @@ export interface CollectionInput {
   name: string;
   slug?: string;
   description?: string | null;
+  priceFrom?: string | null;
   seoTitle?: string | null;
   seoDescription?: string | null;
   sortOrder?: number;

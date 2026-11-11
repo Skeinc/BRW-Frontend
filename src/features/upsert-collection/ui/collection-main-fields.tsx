@@ -1,7 +1,8 @@
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { translateFieldError } from '@/shared/lib/form/translate-field-error';
-import { Field, FieldError, FieldLabel } from '@/shared/ui/field';
+import { AdornedInput } from '@/shared/ui/adorned-input';
+import { Field, FieldDescription, FieldError, FieldLabel } from '@/shared/ui/field';
 import { Input } from '@/shared/ui/input';
 import { RequiredMark } from '@/shared/ui/required-mark';
 import { Textarea } from '@/shared/ui/textarea';
@@ -37,6 +38,19 @@ export function CollectionMainFields() {
           placeholder={t('admin.collections.fields.descriptionPlaceholder')}
           {...register('description')}
         />
+      </Field>
+      <Field data-invalid={!!errors.priceFrom || undefined}>
+        <FieldLabel htmlFor="collection-price-from">{t('admin.collections.fields.priceFrom')}</FieldLabel>
+        <AdornedInput
+          id="collection-price-from"
+          suffix="BYN"
+          inputMode="decimal"
+          autoComplete="off"
+          aria-invalid={!!errors.priceFrom || undefined}
+          {...register('priceFrom')}
+        />
+        <FieldDescription>{t('admin.collections.fields.priceFromHint')}</FieldDescription>
+        <FieldError errors={[translateFieldError(errors.priceFrom, t)]} />
       </Field>
     </>
   );
