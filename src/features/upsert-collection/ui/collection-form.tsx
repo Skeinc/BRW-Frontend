@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Globe, ImagePlus, Images, Info } from 'lucide-react';
+import { Globe, ImagePlus, Images, Info, LayoutGrid } from 'lucide-react';
 import { useEffect, type ReactNode } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +12,7 @@ import {
   type Collection,
   type CollectionDetail,
 } from '@/entities/collection';
+import { roomsQueryKey } from '@/entities/room';
 import { ApiError, getApiErrorMessage } from '@/shared/api';
 import { EditorFooter } from '@/shared/ui/editor-footer';
 import { EditorSections, type EditorSection } from '@/shared/ui/editor-sections';
@@ -19,6 +20,7 @@ import { collectionFormSchema, type CollectionFormValues } from '../model/collec
 import { toDefaultValues, toInput } from '../model/collection-form-values';
 import { CollectionMainFields } from './collection-main-fields';
 import { CollectionPublicationFields } from './collection-publication-fields';
+import { CollectionRoomsField } from './collection-rooms-field';
 
 interface CollectionFormProps {
   /** The collection being edited; null while creating. */
@@ -55,7 +57,10 @@ export function CollectionForm({ collection, jumpTo, onDirtyChange, onSaved, onC
     mutationFn: (values: CollectionFormValues) =>
       collection ? updateCollection(collection.id, toInput(values)) : createCollection(toInput(values)),
     onSuccess: async (saved) => {
-      await queryClient.invalidateQueries({ queryKey: collectionsQueryKey });
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: collectionsQueryKey }),
+        queryClient.invalidateQueries({ queryKey: roomsQueryKey }),
+      ]);
       toast.success(t(collection ? 'admin.collections.updated' : 'admin.collections.created'));
       onSaved(saved, collection === null);
     },
@@ -87,6 +92,13 @@ export function CollectionForm({ collection, jumpTo, onDirtyChange, onSaved, onC
           <p className="text-sm text-muted-foreground">{t('admin.gallery.saveFirstLong')}</p>
         </div>
       ),
+    },
+    {
+      id: 'rooms',
+      title: t('admin.collections.sections.rooms'),
+      description: t('admin.collections.sections.roomsHint'),
+      icon: LayoutGrid,
+      content: <CollectionRoomsField links={collection?.rooms ?? []} />,
     },
     {
       id: 'publication',

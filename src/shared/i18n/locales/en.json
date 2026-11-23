@@ -808,7 +808,11 @@
       "ORDER_ITEM_UNAVAILABLE": "Some products are no longer available. Go back to the cart and update your request.",
       "ROOM_NOT_FOUND": "Room not found.",
       "ROOM_NOT_EMPTY": "Cannot delete: the room has ready-made sets.",
-      "SOLUTION_NOT_FOUND": "Ready-made set not found."
+      "SOLUTION_NOT_FOUND": "Ready-made set not found.",
+      "ROOM_HAS_SOLUTIONS": "The room cannot become consultation only: it has ready-made sets.",
+      "ROOM_CONSULTATION_ONLY": "A consultation-only room has no ready-made sets.",
+      "COLLECTION_NOT_IN_ROOM": "The collection is not shown in this room. Tick the room in the collection form.",
+      "COLLECTION_HAS_SOLUTIONS_IN_ROOM": "The collection cannot leave a room while the room has its ready-made sets."
     }
   },
   "language": {
@@ -1024,7 +1028,21 @@
         "photo": "Photo",
         "photoHint": "Shown next to the collection on the site.",
         "publication": "Publication and SEO",
-        "publicationHint": "Whether to show the collection on the site and how it looks in search."
+        "publicationHint": "Whether to show the collection on the site and how it looks in search.",
+        "rooms": "Rooms",
+        "roomsHint": "Rooms that show the collection. A room with ready-made sets shows it once it has published sets of this collection."
+      },
+      "rooms": {
+        "loading": "Loading…",
+        "empty": "No rooms yet. Create them in \"Rooms\".",
+        "locked_one": "This room has {{count}} ready-made set of the collection. Delete or move it first.",
+        "locked_other": "This room has {{count}} ready-made sets of the collection. Delete or move them first.",
+        "consultation": "Consultation only",
+        "solutions": "Ready-made sets",
+        "consultationShown": "Shown with photos, a text and the price \"from\".",
+        "solutionsShown_one": "{{count}} ready-made set on the site",
+        "solutionsShown_other": "{{count}} ready-made sets on the site",
+        "noSolutions": "Not visible yet: add a ready-made set of this collection in \"Ready-made sets\"."
       }
     },
     "filters": {
@@ -1527,7 +1545,8 @@
         "publishedText": "The room is visible on the site.",
         "draftText": "The room is hidden: only you can see it.",
         "consultation": "Consultation only",
-        "consultationText": "No ready-made sets and no cart. The customer calls or visits the salon, as for kitchens."
+        "consultationText": "No ready-made sets and no cart. The customer calls or visits the salon, as for kitchens.",
+        "consultationLocked": "Cannot be turned on: the room has ready-made sets. Delete or move them first."
       },
       "editSubtitle_one": "{{count}} ready-made set",
       "editSubtitle_other": "{{count}} ready-made sets",
@@ -1538,17 +1557,16 @@
         "photoHint": "Shown on the room card on the home page.",
         "publication": "Publication and SEO",
         "publicationHint": "Whether the room is shown on the site and how it looks in search.",
-        "collections": "Kitchens and consultation",
-        "collectionsHint": "A room without the cart: it shows the chosen collections with photos, a text, the price \"from\" and the phone."
+        "collections": "Mode and collections",
+        "collectionsHint": "How the room sells and in what order it shows its collections."
       },
       "collections": {
-        "none": "No collections chosen",
-        "add": "Add",
-        "remove": "Remove \"{{name}}\"",
+        "none": "The room has no collections yet.",
         "moveUp": "Move \"{{name}}\" up",
-        "search": "Find a collection",
-        "noResults": "Nothing found",
-        "loading": "Loading…"
+        "moveDown": "Move \"{{name}}\" down",
+        "hidden": "Not visible on the site: no published ready-made sets",
+        "addHint": "Add or remove a collection in the collection form, \"Rooms\" block.",
+        "newRoom": "After saving, tick this room in the forms of the collections it needs (\"Rooms\" block), then set their order here."
       }
     },
     "solutions": {
@@ -1593,7 +1611,8 @@
         "price": "Set price, BYN",
         "description": "Description",
         "publishedText": "The set is visible on the site.",
-        "draftText": "The set is hidden: only you can see it."
+        "draftText": "The set is hidden: only you can see it.",
+        "roomNoneForCollection": "The collection is not shown in any room with ready-made sets. Tick rooms in the collection form."
       },
       "products": {
         "none": "No elements yet.",

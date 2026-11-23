@@ -5,6 +5,8 @@ import { useEffect, type ReactNode } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
+import { collectionsQueryKey } from '@/entities/collection';
+import { roomsQueryKey } from '@/entities/room';
 import { createSolution, solutionsQueryKey, updateSolution, type SolutionDetail } from '@/entities/solution';
 import { getApiErrorMessage } from '@/shared/api';
 import { EditorFooter } from '@/shared/ui/editor-footer';
@@ -60,7 +62,11 @@ export function SolutionForm({
     mutationFn: (values: SolutionFormValues) =>
       solution ? updateSolution(solution.id, toInput(values)) : createSolution(toInput(values)),
     onSuccess: async (saved) => {
-      await queryClient.invalidateQueries({ queryKey: solutionsQueryKey });
+      await Promise.all(
+        [solutionsQueryKey, roomsQueryKey, collectionsQueryKey].map((queryKey) =>
+          queryClient.invalidateQueries({ queryKey }),
+        ),
+      );
       toast.success(t(solution ? 'admin.solutions.updated' : 'admin.solutions.created'));
       onSaved(saved, solution === null);
     },

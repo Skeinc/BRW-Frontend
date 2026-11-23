@@ -13,6 +13,16 @@ export interface Collection {
   isPublished: boolean;
   productCount: number;
   cover: MediaCover | null;
+  /** Rooms that show the collection, in room order. */
+  rooms: CollectionLinkedRoom[];
+}
+
+/** A room that shows a collection, with the number of its solutions there. */
+export interface CollectionLinkedRoom {
+  roomId: string;
+  /** All solutions of the collection in the room: while there are any, the room cannot be unticked. */
+  solutionCount: number;
+  publishedSolutionCount: number;
 }
 
 export interface CollectionDetail extends Collection {
@@ -28,6 +38,8 @@ export interface CollectionInput {
   seoDescription?: string | null;
   sortOrder?: number;
   isPublished?: boolean;
+  /** Rooms that show the collection; replaces the current list. */
+  roomIds?: string[];
 }
 
 export interface CollectionListParams {

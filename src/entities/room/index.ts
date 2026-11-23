@@ -19,4 +19,13 @@ export { RoomCollectionCard } from './ui/room-collection-card';
 export { createRoom, deleteRoom, updateRoom } from './api/room-api';
 export { roomOptionsQueryOptions, roomsPageQueryOptions, roomsQueryKey, useMoveRoom } from './api/room-queries';
 export { RoomSelect } from './ui/room-select';
-export type { Room, RoomDetail, RoomInput, RoomListParams } from './model/types';
+export { canHostSolution } from './model/can-host-solution';
+export type {
+  Room,
+  RoomDetail,
+  RoomInput,
+  RoomLinkedCollection,
+  RoomListParams,
+  RoomOption,
+  RoomUpdateInput,
+} from './model/types';

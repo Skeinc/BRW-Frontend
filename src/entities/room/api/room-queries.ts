@@ -1,6 +1,6 @@
 import { queryOptions, useMutation, useQueryClient, type QueryKey } from '@tanstack/react-query';
 import type { Paginated } from '@/shared/api';
-import type { Room, RoomListParams } from '../model/types';
+import type { Room, RoomListParams, RoomOption } from '../model/types';
 import { fetchRoomsPage, moveRoom } from './room-api';
 
 /** Prefix of every admin room query. */
@@ -50,9 +50,15 @@ export function useMoveRoom(pageQueryKey: QueryKey) {
   });
 }
 
-/** Every room as id and name, for pickers and filters. */
+/** Every room in display order, for pickers and filters. */
 export const roomOptionsQueryOptions = queryOptions({
   queryKey: [...roomsQueryKey, 'options'],
   queryFn: () => fetchRoomsPage({ page: 1, pageSize: ROOM_OPTIONS_LIMIT }),
-  select: (data) => data.items.map((item) => ({ id: item.id, name: item.name })),
+  select: (data): RoomOption[] =>
+    data.items.map((item) => ({
+      id: item.id,
+      name: item.name,
+      isConsultationOnly: item.isConsultationOnly,
+      collectionIds: item.collections.map((linked) => linked.collectionId),
+    })),
 });

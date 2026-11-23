@@ -8,4 +8,10 @@ export {
   useMoveCollection,
 } from './api/collection-queries';
 export { CollectionSelect } from './ui/collection-select';
-export type { Collection, CollectionDetail, CollectionInput, CollectionListParams } from './model/types';
+export type {
+  Collection,
+  CollectionDetail,
+  CollectionInput,
+  CollectionLinkedRoom,
+  CollectionListParams,
+} from './model/types';

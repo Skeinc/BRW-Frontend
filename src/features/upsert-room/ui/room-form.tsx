@@ -10,7 +10,7 @@ import { getApiErrorMessage } from '@/shared/api';
 import { EditorFooter } from '@/shared/ui/editor-footer';
 import { EditorSections, type EditorSection } from '@/shared/ui/editor-sections';
 import { roomFormSchema, type RoomFormValues } from '../model/room-form-schema';
-import { toDefaultValues, toInput } from '../model/room-form-values';
+import { toDefaultValues, toInput, toUpdateInput } from '../model/room-form-values';
 import { RoomCollectionsFields } from './room-collections-fields';
 import { RoomMainFields } from './room-main-fields';
 import { RoomPublicationFields } from './room-publication-fields';
@@ -47,7 +47,8 @@ export function RoomForm({ room, jumpTo, onDirtyChange, onSaved, onClose, galler
   }, [form, room]);
 
   const save = useMutation({
-    mutationFn: (values: RoomFormValues) => (room ? updateRoom(room.id, toInput(values)) : createRoom(toInput(values))),
+    mutationFn: (values: RoomFormValues) =>
+      room ? updateRoom(room.id, toUpdateInput(values)) : createRoom(toInput(values)),
     onSuccess: async (saved) => {
       await queryClient.invalidateQueries({ queryKey: roomsQueryKey });
       toast.success(t(room ? 'admin.rooms.updated' : 'admin.rooms.created'));
@@ -81,7 +82,7 @@ export function RoomForm({ room, jumpTo, onDirtyChange, onSaved, onClose, galler
       title: t('admin.rooms.sections.collections'),
       description: t('admin.rooms.sections.collectionsHint'),
       icon: LayoutGrid,
-      content: <RoomCollectionsFields />,
+      content: <RoomCollectionsFields room={room} />,
     },
     {
       id: 'publication',

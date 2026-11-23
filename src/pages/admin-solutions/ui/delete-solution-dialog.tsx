@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
+import { collectionsQueryKey } from '@/entities/collection';
+import { roomsQueryKey } from '@/entities/room';
 import { solutionsQueryKey, deleteSolution, type Solution } from '@/entities/solution';
 import { getApiErrorMessage } from '@/shared/api';
 import { ConfirmDialog } from '@/shared/ui/confirm-dialog';
@@ -17,7 +19,11 @@ export function DeleteSolutionDialog({ solution, onClose }: DeleteSolutionDialog
   const remove = useMutation({
     mutationFn: (target: Solution) => deleteSolution(target.id),
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: solutionsQueryKey });
+      await Promise.all(
+        [solutionsQueryKey, roomsQueryKey, collectionsQueryKey].map((queryKey) =>
+          queryClient.invalidateQueries({ queryKey }),
+        ),
+      );
       toast.success(t('admin.solutions.deleted'));
       onClose();
     },

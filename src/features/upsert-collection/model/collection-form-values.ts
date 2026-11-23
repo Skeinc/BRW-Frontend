@@ -10,6 +10,7 @@ export function toDefaultValues(collection: Collection | null): CollectionFormVa
     seoTitle: collection?.seoTitle ?? '',
     seoDescription: collection?.seoDescription ?? '',
     isPublished: collection?.isPublished ?? true,
+    roomIds: collection?.rooms.map((link) => link.roomId) ?? [],
   };
 }
 
@@ -22,5 +23,6 @@ export function toInput(values: CollectionFormValues): CollectionInput {
     seoTitle: emptyToNull(values.seoTitle),
     seoDescription: emptyToNull(values.seoDescription),
     isPublished: values.isPublished,
+    roomIds: values.roomIds,
   };
 }

@@ -1,5 +1,5 @@
 import { apiRequest, toQueryString, type Paginated } from '@/shared/api';
-import type { Room, RoomDetail, RoomInput, RoomListParams } from '../model/types';
+import type { Room, RoomDetail, RoomInput, RoomListParams, RoomUpdateInput } from '../model/types';
 
 export function fetchRoomsPage(params: RoomListParams): Promise<Paginated<Room>> {
   return apiRequest<Paginated<Room>>(`/admin/rooms${toQueryString({ ...params })}`);
@@ -9,7 +9,7 @@ export function createRoom(input: RoomInput): Promise<RoomDetail> {
   return apiRequest<RoomDetail>('/admin/rooms', { method: 'POST', body: JSON.stringify(input) });
 }
 
-export function updateRoom(id: string, input: Partial<RoomInput>): Promise<RoomDetail> {
+export function updateRoom(id: string, input: RoomUpdateInput): Promise<RoomDetail> {
   return apiRequest<RoomDetail>(`/admin/rooms/${id}`, { method: 'PATCH', body: JSON.stringify(input) });
 }
 

@@ -1,4 +1,4 @@
-import type { Room, RoomInput } from '@/entities/room';
+import type { Room, RoomInput, RoomUpdateInput } from '@/entities/room';
 import { emptyToNull } from '@/shared/lib/form/empty-to-null';
 import type { RoomFormValues } from './room-form-schema';
 
@@ -10,7 +10,7 @@ export function toDefaultValues(room: Room | null): RoomFormValues {
     seoDescription: room?.seoDescription ?? '',
     isPublished: room?.isPublished ?? true,
     isConsultationOnly: room?.isConsultationOnly ?? false,
-    collectionIds: room?.collectionIds ?? [],
+    collectionIds: room?.collections.map((link) => link.collectionId) ?? [],
   };
 }
 
@@ -23,6 +23,10 @@ export function toInput(values: RoomFormValues): RoomInput {
     seoDescription: emptyToNull(values.seoDescription),
     isPublished: values.isPublished,
     isConsultationOnly: values.isConsultationOnly,
-    collectionIds: values.isConsultationOnly ? values.collectionIds : [],
   };
+}
+
+/** An edit also sends the order of the collections; adding or removing them happens in the collection form. */
+export function toUpdateInput(values: RoomFormValues): RoomUpdateInput {
+  return { ...toInput(values), collectionIds: values.collectionIds };
 }

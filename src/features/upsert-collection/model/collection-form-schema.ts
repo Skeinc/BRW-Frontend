@@ -16,6 +16,7 @@ export const collectionFormSchema = z.object({
   seoTitle: z.string().max(120, { error: 'admin.validation.tooLong' }),
   seoDescription: z.string().max(320, { error: 'admin.validation.tooLong' }),
   isPublished: z.boolean(),
+  roomIds: z.array(z.string()),
 });
 
 export type CollectionFormValues = z.infer<typeof collectionFormSchema>;
