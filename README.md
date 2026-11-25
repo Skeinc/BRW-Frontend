@@ -135,15 +135,6 @@ Push в релизную ветку запускает GitHub Actions: сбор�
 - Перед коммитом husky запускает `npm run pre-commit`; перед PR выполните также `npm run format:check && npm run build && npm run check:bundle`.
 - CI на PR в `develop`: `typecheck`, `lint`, `format:check`.
 
-## Документация
-
-| Документ | О чём |
-| --- | --- |
-| [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | компоненты, потоки данных, модель данных |
-| [docs/DEVELOPMENT.md](../docs/DEVELOPMENT.md) | локальный запуск и процесс разработки |
-| [docs/DEPLOY.md](../docs/DEPLOY.md) | сервер, CI/CD, откат, бэкапы |
-| [docs/SEO-LAUNCH.md](../docs/SEO-LAUNCH.md) | чек-лист запуска и SEO |
-
 ---
 
 <div align="center">
